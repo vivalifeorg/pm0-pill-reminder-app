@@ -1,0 +1,76 @@
+This implements basic kanban flow in the development of the app. This keeps work in progress low, and the amount of items that are finished high. 
+
+Overview:
+	Task Categories:
+		@_1.Propective ~ Things yet to be done
+		@_2.Planning (Limit 4) ~ Things we are arranging things for, but aren't yet doing
+		@_3.Developing (Limit 4) ~ Things code is being written for, but isn't released
+		@_4.Finalizing (Limit 6) ~ Things we are about to bless for eventual release
+		@_5.Completed ~ High Level Things we have accomplished 
+	
+	Done Rules:
+		* (No Limit) PT -> Planning: Be reasonable next step for the project
+		* (Limit 4) Planning -> Developing: Be a needed next step for discussions, or be next on priority lists
+		* (Limit 4) Developing -> Finalizing: Be completed in a releasable state, or have several TK items on it pending input.
+		* Finalizing -> Completed: Be ready to present as ready for deployment/user testing
+	
+	
+0. Project Setup:
+	- Add accounts to build apps @done(2017-12-29)
+	- Add account to sign apps @done(2017-12-29)
+	- Add account to create appstore entry @done(2017-12-29)
+	- Create developer certs to allow local developement of the app @done(2017-12-29)
+	- Create distribution certs to allow sharing the app among members of the team @done(2017-12-29)
+	- Create a testflight target @done(2017-12-29)
+	- Create source code repo @done(2017-12-29)
+	- Create planning docs @done(2017-12-29)
+	- Flesh out planning docs from SOW @done(2017-12-29)
+	- Create Xcode Project @done(2017-12-29)
+	- Add script to number project so we can upload error free @done(2017-12-29)
+	- Get testflight to show the target on Michael's phone @_3.Developing
+	- Invite Hampton to testflight @_2.Planning
+	- Eventually invite AK (we have to get him a iTunesConnect user)
+	- Install fastlane
+	- Create demo/placeholder icon @_3.Developing
+	- Create a changelog screen that pulls in the changelog
+	- Create an acknowledgement page that pulls in the cocoapods acknowledgements
+	- Talk company branding/accompanying product @_2.Planning
+	- Schedule weekly/biweekly meeting @_2.Planning
+	
+1. Prescription tracking stored locally on the device:
+		a. User will input their prescriptions:
+			- Add rudimentary name, dose, and freq description for now. Will redo on later design pass
+		b. Verify these against a listing of available drugs in the US (from FDA):
+			- Transform FDA list into DB/Code DB
+			- Add "nearest neighbor type of search" to ask "are you sure that is what is printed on the label"
+		c. Show “daily plan” of medications/treatments that should be taken today along with times:
+			- Design calendaring system with user confirmation
+			Add basic types:
+				- daily
+				- weekly
+				- 2x a day
+				- 2x a day with meals
+				- 21 days a month 7 off
+				- 1x every 3 days
+				- once every x hours without awaking
+				- once every x hours awakening
+		d. May use bar codes on the drugs to assist this. This is not a core feature and may need to be experimented with to know if worth developing far enough for release. (Optional):
+			-- Develop scanner that takes GTINs and outputs drug names/potency.
+2. Rudimentary scanning of documents:
+		a. May not work well with things like X-rays and other glossy documents:
+		b. Aims to capture things like physician handwriting at a “good enough” level:
+		c. May require third party (for pay) modules for later processing of the captured images:
+3. Faxing:
+		a. Plans were based off using Twilio to do this, with the Client paying costs and assisting in the setup of the account in a secure manner:
+		b. If Twilio is not considered secure enough to satisfy regulatory goals, an alternative vendor will be found by a joint effort of Client and Company:
+		c. Confirmation of doctor fax numbers may be provided, but may not. This may require an external server component or listed database and some “screen scraping” tools. (Optional):
+4. Tracking list of “pills taken so far today”:
+		a. Capturing when the “checkmark” is made. Aka, if the person checks “10 am Advil” at 2pm that day, that is noted:
+5. Tracking list of the medical facilities the user needs to go to:
+		a. Storage of numbers + addresses by the patient:
+		b. Lookup of phone and/or fax numbers from a database Client maintains but Company may help initially produce. (Optional):
+		c. Launch maps app from addresses:
+			--Add Maps shell out
+		d. Launch phone app from phone numbers:
+		  --Add Number Calling Shell Out
+
