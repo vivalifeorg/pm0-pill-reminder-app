@@ -27,7 +27,7 @@ Overview:
 	- Flesh out planning docs from SOW @done(2017-12-29)
 	- Create Xcode Project @done(2017-12-29)
 	- Add script to number project so we can upload error free @done(2017-12-29)
-	- Get testflight to show the target on Michael's phone
+	- Get testflight to show the target on Michael's phone @done(2018-01-05)
 	- Invite Hampton to testflight @_2.Planning
 	- Eventually invite AK (we have to get him a iTunesConnect user)
 	- Install fastlane
