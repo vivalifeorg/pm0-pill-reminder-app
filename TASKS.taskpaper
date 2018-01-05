@@ -13,8 +13,8 @@ Overview:
 		* (Limit 4) Planning -> Developing: Be a needed next step for discussions, or be next on priority lists
 		* (Limit 4) Developing -> Finalizing: Be completed in a releasable state, or have several TK items on it pending input.
 		* Finalizing -> Completed: Be ready to present as ready for deployment/user testing
-	
-	
+
+
 0. Project Setup:
 	- Add accounts to build apps @done(2017-12-29)
 	- Add account to sign apps @done(2017-12-29)
@@ -27,16 +27,16 @@ Overview:
 	- Flesh out planning docs from SOW @done(2017-12-29)
 	- Create Xcode Project @done(2017-12-29)
 	- Add script to number project so we can upload error free @done(2017-12-29)
-	- Get testflight to show the target on Michael's phone @_3.Developing
+	- Get testflight to show the target on Michael's phone
 	- Invite Hampton to testflight @_2.Planning
 	- Eventually invite AK (we have to get him a iTunesConnect user)
 	- Install fastlane
-	- Create demo/placeholder icon @_3.Developing
+	- Create demo/placeholder icon @done(2018-01-05)
 	- Create a changelog screen that pulls in the changelog
 	- Create an acknowledgement page that pulls in the cocoapods acknowledgements
 	- Talk company branding/accompanying product @_2.Planning
 	- Schedule weekly/biweekly meeting @_2.Planning
-	
+
 1. Prescription tracking stored locally on the device:
 		a. User will input their prescriptions:
 			- Add rudimentary name, dose, and freq description for now. Will redo on later design pass
@@ -72,5 +72,5 @@ Overview:
 		c. Launch maps app from addresses:
 			--Add Maps shell out
 		d. Launch phone app from phone numbers:
-		  --Add Number Calling Shell Out
+		--Add Number Calling Shell Out
 
