@@ -80,6 +80,24 @@ struct PrescriptionListViewModel{
   }
 }
 
+struct VLColors{
+  static var primaryText:UIColor{
+    return UIColor.white
+  }
+  static var secondaryText:UIColor{
+    return UIColor.gray
+  }
+  static var background:UIColor{
+    return UIColor.black
+  }
+  static var warmHighlight:UIColor{
+    return UIColor(red:0.92, green:0.60, blue:0.34, alpha:1.00) //porche
+  }
+  static var coolHighlight:UIColor{
+    return UIColor(red:0.29, green:0.68, blue:0.92, alpha:1.00) //picton blue
+  }
+}
+
 class PrescriptionListViewController: UIViewController,UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
 
@@ -88,7 +106,9 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
+    tableView.tableFooterView?.backgroundColor = VLColors.background
     tableView.dataSource = self
+    tableView.backgroundColor = VLColors.background
   }
 
   @IBAction func addTapped(_ sender: Any) {
@@ -103,7 +123,7 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path)
     cell.textLabel?.text = viewModel[path].title
-    cell.textLabel?.textColor = UIColor.white
+    cell.textLabel?.textColor = VLColors.primaryText
     cell.detailTextLabel?.text = viewModel[path].subTitle
     return cell
   }
