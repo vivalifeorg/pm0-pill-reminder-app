@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
-		89F3D9911FF6AC4F0081FA77 /* PerscriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PerscriptionListViewController.swift */; };
+		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingViewController.swift */; };
 		89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F3D9941FF6AC4F0081FA77 /* Main.storyboard */; };
 		89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		89F3D9901FF6AC4F0081FA77 /* PerscriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerscriptionListViewController.swift; sourceTree = "<group>"; };
+		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
 		89F3D9921FF6AC4F0081FA77 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		89F3D9951FF6AC4F0081FA77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
-				89F3D9901FF6AC4F0081FA77 /* PerscriptionListViewController.swift */,
+				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingViewController.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
@@ -222,7 +222,7 @@
 			files = (
 				89F3D9931FF6AC4F0081FA77 /* UpcomingViewController.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
-				89F3D9911FF6AC4F0081FA77 /* PerscriptionListViewController.swift in Sources */,
+				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
