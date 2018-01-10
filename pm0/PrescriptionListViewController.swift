@@ -68,7 +68,7 @@ extension Prescription{
     return drug?.shortName ?? "<Unnamed>"
   }
   var subTitle:String{
-    return conditionPrescribedFor.map{"for \($0)"} ?? ""
+    return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
   }
 }
 
@@ -95,6 +95,24 @@ struct VLColors{
   }
   static var coolHighlight:UIColor{
     return UIColor(red:0.29, green:0.68, blue:0.92, alpha:1.00) //picton blue
+  }
+  static var cellBackground:UIColor{
+    return sipTarawera
+  }
+  static var sipMirage:UIColor{
+    return UIColor(red:0.06, green:0.11, blue:0.15, alpha:1.00)
+  }
+
+  static var sipTarawera:UIColor{
+    return UIColor(red:0.13, green:0.22, blue:0.30, alpha:1.00)
+  }
+
+  static var sipPatternsBlue:UIColor{
+    return UIColor(red:0.89, green:0.95, blue:0.98, alpha:1.00)
+  }
+
+  static var tintColor:UIColor{
+    return sipPatternsBlue
   }
 }
 
@@ -125,6 +143,8 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
     cell.textLabel?.text = viewModel[path].title
     cell.textLabel?.textColor = VLColors.primaryText
     cell.detailTextLabel?.text = viewModel[path].subTitle
+    cell.backgroundColor = VLColors.cellBackground
+    view.tintColor = VLColors.tintColor
     return cell
   }
 
