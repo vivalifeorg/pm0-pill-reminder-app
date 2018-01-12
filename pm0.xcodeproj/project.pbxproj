@@ -107,8 +107,8 @@
 			buildConfigurationList = 89F3D9AA1FF6AC500081FA77 /* Build configuration list for PBXNativeTarget "pm0" */;
 			buildPhases = (
 				89F3D9871FF6AC4F0081FA77 /* Sources */,
-				89F3D9881FF6AC4F0081FA77 /* Frameworks */,
 				89F3D9B01FF6ACE10081FA77 /* Set Build To Date Automatically */,
+				89F3D9881FF6AC4F0081FA77 /* Frameworks */,
 				89F3D9891FF6AC4F0081FA77 /* Resources */,
 			);
 			buildRules = (

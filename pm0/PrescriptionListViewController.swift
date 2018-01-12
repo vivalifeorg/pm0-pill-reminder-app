@@ -65,7 +65,7 @@ struct Prescription{
 
 extension Prescription{
   var title:String{
-    return drug?.shortName ?? "<Unnamed>"
+    return drug?.shortName ?? "Drug Name"
   }
   var subTitle:String{
     return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
@@ -84,6 +84,9 @@ struct VLColors{
   static var primaryText:UIColor{
     return UIColor.white
   }
+  static var highlightedPrimaryText:UIColor{
+    return VLColors.sipChathamsBlue
+  }
   static var secondaryText:UIColor{
     return UIColor.gray
   }
@@ -99,6 +102,9 @@ struct VLColors{
   static var cellBackground:UIColor{
     return sipTarawera
   }
+  static var sipChathamsBlue:UIColor{
+    return UIColor(red:0.19, green:0.34, blue:0.45, alpha:1.00)
+  }
   static var sipMirage:UIColor{
     return UIColor(red:0.06, green:0.11, blue:0.15, alpha:1.00)
   }
@@ -109,6 +115,10 @@ struct VLColors{
 
   static var sipPatternsBlue:UIColor{
     return UIColor(red:0.89, green:0.95, blue:0.98, alpha:1.00)
+  }
+
+  static var selectedCellBackground:UIColor{
+    return sipPatternsBlue
   }
 
   static var tintColor:UIColor{
@@ -127,6 +137,7 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
     tableView.tableFooterView?.backgroundColor = VLColors.background
     tableView.dataSource = self
     tableView.backgroundColor = VLColors.background
+    tableView.separatorColor = UIColor.lightGray
   }
 
   @IBAction func addTapped(_ sender: Any) {
@@ -138,12 +149,23 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
     return "PrescriptionListViewControllerCell"
   }
 
+
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path)
     cell.textLabel?.text = viewModel[path].title
-    cell.textLabel?.textColor = VLColors.primaryText
     cell.detailTextLabel?.text = viewModel[path].subTitle
+
+    //let isSelected = tableView.indexPathsForSelectedRows?.contains(path) ?? false
+    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
+    cell.textLabel?.textColor = VLColors.primaryText
+    cell.textLabel?.highlightedTextColor = VLColors.highlightedPrimaryText
+    cell.detailTextLabel?.textColor = VLColors.secondaryText
+
     cell.backgroundColor = VLColors.cellBackground
+    let selectedBG = UIView()
+    selectedBG.backgroundColor  = VLColors.selectedCellBackground
+    cell.selectedBackgroundView = selectedBG
+
     view.tintColor = VLColors.tintColor
     return cell
   }
