@@ -126,7 +126,7 @@ struct VLColors{
   }
 }
 
-class PrescriptionListViewController: UIViewController,UITableViewDataSource {
+class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
 
   var viewModel = PrescriptionListViewModel()
@@ -136,8 +136,10 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
     tableView.tableFooterView = UIView() //gets rid of excess lines
     tableView.tableFooterView?.backgroundColor = VLColors.background
     tableView.dataSource = self
+    tableView.delegate = self
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
+    tableView.sectionHeaderHeight = 40
   }
 
   @IBAction func addTapped(_ sender: Any) {
@@ -149,6 +151,17 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
     return "PrescriptionListViewControllerCell"
   }
 
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 40
+  }
+
+  func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    guard let header = view as? UITableViewHeaderFooterView else { return }
+    header.textLabel?.textColor = VLColors.primaryText
+    header.textLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+    header.textLabel?.frame = header.frame
+    header.textLabel?.text = "Prescriptions"
+  }
 
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path)
@@ -181,6 +194,8 @@ class PrescriptionListViewController: UIViewController,UITableViewDataSource {
   func tableView(_ tableView:UITableView, titleForHeaderInSection: Int)->String?{
     return "Prescriptions"
   }
+
+ 
 
 }
 
