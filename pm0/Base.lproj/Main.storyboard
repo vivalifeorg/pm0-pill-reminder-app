@@ -324,6 +324,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="HqD-3w-ZBL" firstAttribute="centerX" secondItem="xJC-m7-OTm" secondAttribute="centerX" id="I45-wT-8X4"/>
                                     <constraint firstAttribute="bottom" secondItem="HqD-3w-ZBL" secondAttribute="bottom" id="MOr-Bh-mU2"/>
