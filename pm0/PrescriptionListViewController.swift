@@ -126,15 +126,20 @@ struct VLColors{
   }
 }
 
+
+
 class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
 
   var viewModel = PrescriptionListViewModel()
 
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
-    debugPrint("unwind from \(segue.identifier)")
+
     if segue.identifier == "doneEditingPrescription"{
-      viewModel.prescriptions.append(Prescription())
+      let name = (segue.source as? PrescriptionEntryViewController)?.medicationName ?? "- Unspecified"
+      var rx = Prescription()
+      rx.drug = Drug(name:name)
+      viewModel.prescriptions.append(rx)
       tableView.reloadData()
     }
   }

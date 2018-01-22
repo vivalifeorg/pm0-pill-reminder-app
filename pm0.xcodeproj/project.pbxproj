@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingViewController.swift */; };
@@ -27,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		89A1EBB72016765000C00F69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
+		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
@@ -83,8 +84,8 @@
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
 				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingViewController.swift */,
-				89A1EBB62016765000C00F69 /* PrescriptionEntryViewController.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
+				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
 				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
 				89F3D99C1FF6AC4F0081FA77 /* Info.plist */,
@@ -225,6 +226,7 @@
 				89F3D9931FF6AC4F0081FA77 /* UpcomingViewController.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
+				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,14 +249,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		89A1EBB62016765000C00F69 /* PrescriptionEntryViewController.swift */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89A1EBB72016765000C00F69 /* Base */,
-			);
-			name = PrescriptionEntryViewController.swift;
-			sourceTree = "<group>";
-		};
 		89F3D9941FF6AC4F0081FA77 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
