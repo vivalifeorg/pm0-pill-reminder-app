@@ -53,7 +53,7 @@ struct MedicationSource{
 
 struct Prescription{
   var drug:Drug?
-  var strength:Potency?
+  var unitStrength:Potency?
   var dosageForm:DosageForm?
   var quantityPrescribed:Int?
   var refillsPrescribed:Int?
@@ -131,6 +131,14 @@ class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITab
 
   var viewModel = PrescriptionListViewModel()
 
+  @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
+    debugPrint("unwind from \(segue.identifier)")
+    if segue.identifier == "doneEditingPrescription"{
+      viewModel.prescriptions.append(Prescription())
+      tableView.reloadData()
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -143,8 +151,7 @@ class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITab
   }
 
   @IBAction func addTapped(_ sender: Any) {
-    viewModel.prescriptions.append(Prescription())
-    tableView.reloadData()
+    //don't do anything here, just show editor for new
   }
 
   static var cellIdentifier:String{
