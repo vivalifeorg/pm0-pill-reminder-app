@@ -2,11 +2,21 @@ PODS:
   - SearchTextField (1.2.0)
 
 DEPENDENCIES:
-  - SearchTextField
+  - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
+
+EXTERNAL SOURCES:
+  SearchTextField:
+    :commit: 97cb555c4721cd80257022637ee255dc812eda3a
+    :git: https://github.com/apasccon/SearchTextField
+
+CHECKOUT OPTIONS:
+  SearchTextField:
+    :commit: 97cb555c4721cd80257022637ee255dc812eda3a
+    :git: https://github.com/apasccon/SearchTextField
 
 SPEC CHECKSUMS:
-  SearchTextField: a5bb7e4c33affadb115afdbe8100d84ef10a8024
+  SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
 
-PODFILE CHECKSUM: c7c6b02be6f829420fdee86b174077cd2c33b3c8
+PODFILE CHECKSUM: 060775f829749b26a3c6427501e12d7716ea9751
 
 COCOAPODS: 1.4.0.beta.2

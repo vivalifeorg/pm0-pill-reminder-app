@@ -14,16 +14,19 @@ open class SearchTextField: UITextField {
     // Public interface
     
     /// Maximum number of results to be shown in the suggestions list
-    open var maxNumberOfResults = 0
+    open var maxNumberOfResults = Int.max
     
     /// Maximum height of the results list
-    open var maxResultsListHeight = 0
+    open var maxResultsListHeight = CGFloat.greatestFiniteMagnitude
     
     /// Indicate if this field has been interacted with yet
     open var interactedWith = false
     
     /// Indicate if keyboard is showing or not
     open var keyboardIsShowing = false
+
+    /// How long to wait before deciding typing has stopped
+    open var typingStoppedDelay = 0.8
     
     /// Set your custom visual theme, or just choose between pre-defined SearchTextFieldTheme.lightTheme() and SearchTextFieldTheme.darkTheme() themes
     open var theme = SearchTextFieldTheme.lightTheme() {
@@ -75,7 +78,7 @@ open class SearchTextField: UITextField {
     open var userStoppedTypingHandler: (() -> Void)?
     
     /// Set your custom set of attributes in order to highlight the string found in each item
-    open var highlightAttributes: [NSAttributedStringKey: AnyObject] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont.boldSystemFont(ofSize: 10)]
+    open var highlightAttributes: [NSAttributedStringKey: AnyObject] = [.font: UIFont.boldSystemFont(ofSize: 10)]
     
     /// Start showing the default loading indicator, useful for searches that take some time.
     open func showLoadingIndicator() {
@@ -107,6 +110,9 @@ open class SearchTextField: UITextField {
     
     /// Min number of characters to start filtering
     open var minCharactersNumberToStartFiltering: Int = 0
+
+    /// Force no filtering (display the entire filtered data source)
+    open var forceNoFiltering: Bool = false
     
     /// If startFilteringAfter is set, and startSuggestingInmediately is true, the list of suggestions appear inmediately
     open var startSuggestingInmediately = false
@@ -116,6 +122,12 @@ open class SearchTextField: UITextField {
     
     /// Set the results list's header
     open var resultsListHeader: UIView?
+
+    // Move the table around to customize for your layout
+    open var tableXOffset: CGFloat = 0.0
+    open var tableYOffset: CGFloat = 0.0
+    open var tableCornerRadius: CGFloat = 2.0
+    open var tableBottomMargin: CGFloat = 10.0
     
     ////////////////////////////////////////////////////////////////////////
     // Private implementation
@@ -134,7 +146,7 @@ open class SearchTextField: UITextField {
     fileprivate var filteredResults = [SearchTextFieldItem]()
     fileprivate var filterDataSource = [SearchTextFieldItem]() {
         didSet {
-            filter(forceShowAll: false)
+            filter(forceShowAll: forceNoFiltering)
             buildSearchTableView()
             
             if startVisibleWithoutInteraction {
@@ -190,8 +202,9 @@ open class SearchTextField: UITextField {
     // Create the filter table and shadow view
     fileprivate func buildSearchTableView() {
         if let tableView = tableView, let shadowView = shadowView {
+            tableView.estimatedRowHeight = theme.cellHeight
             tableView.layer.masksToBounds = true
-            tableView.layer.borderWidth = 0.5
+            tableView.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 0.5
             tableView.dataSource = self
             tableView.delegate = self
             tableView.separatorInset = UIEdgeInsets.zero
@@ -247,36 +260,36 @@ open class SearchTextField: UITextField {
     
     // Re-set frames and theme colors
     fileprivate func redrawSearchTableView() {
-        if inlineMode {
+        guard !inlineMode else {
             tableView?.isHidden = true
             return
         }
-        
-        if let tableView = tableView {
-            guard let frame = self.superview?.convert(self.frame, to: nil) else { return }
+
+
+        guard let tableView = tableView else{
+            return
+        }
+        tableView.reloadData() //acquires up-to-date tableView size
+
+        guard let frame = self.superview?.convert(self.frame, to: nil) else {
+          return
+
+        }
             
-            if self.direction == .down {
-                
-                var tableHeight: CGFloat = 0
-                if keyboardIsShowing, let keyboardHeight = keyboardFrame?.size.height {
-                    tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - frame.height - keyboardHeight))
-                } else {
-                    tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - frame.height))
-                }
-                
-                if maxResultsListHeight > 0 {
-                    tableHeight = min(tableHeight, CGFloat(maxResultsListHeight))
-                }
-                
-                // Set a bottom margin of 10p
-                if tableHeight < tableView.contentSize.height {
-                    tableHeight -= 10
-                }
+        if self.direction == .down {
+
+                let screenHeight = UIScreen.main.bounds.size.height
+                let asFarDownAsWeCouldReasonablyGo = keyboardFrame?.minY ?? screenHeight
+                let tableHeightForLongList = asFarDownAsWeCouldReasonablyGo - frame.minY - tableBottomMargin
+
+                let tableHeight = min(tableHeightForLongList,
+                                      maxResultsListHeight,
+                                      tableView.contentSize.height)
                 
                 var tableViewFrame = CGRect(x: 0, y: 0, width: frame.size.width - 4, height: tableHeight)
                 tableViewFrame.origin = self.convert(tableViewFrame.origin, to: nil)
-                tableViewFrame.origin.x += 2
-                tableViewFrame.origin.y += frame.size.height + 2
+                tableViewFrame.origin.x += 2 + tableXOffset
+                tableViewFrame.origin.y += frame.size.height + 2 + tableYOffset
                 UIView.animate(withDuration: 0.2, animations: { [weak self] in
                     self?.tableView?.frame = tableViewFrame
                 })
@@ -286,28 +299,25 @@ open class SearchTextField: UITextField {
                 shadowFrame.origin.x += 3
                 shadowFrame.origin.y = tableView.frame.origin.y
                 shadowView!.frame = shadowFrame
-            } else {
-                let tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - theme.cellHeight))
-                UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                    self?.tableView?.frame = CGRect(x: frame.origin.x + 2, y: (frame.origin.y - tableHeight), width: frame.size.width - 4, height: tableHeight)
-                    self?.shadowView?.frame = CGRect(x: frame.origin.x + 3, y: (frame.origin.y + 3), width: frame.size.width - 6, height: 1)
-                })
-            }
-            
-            superview?.bringSubview(toFront: tableView)
-            superview?.bringSubview(toFront: shadowView!)
-            
-            if self.isFirstResponder {
-                superview?.bringSubview(toFront: self)
-            }
-            
-            tableView.layer.borderColor = theme.borderColor.cgColor
-            tableView.layer.cornerRadius = 2
-            tableView.separatorColor = theme.separatorColor
-            tableView.backgroundColor = theme.bgColor
-            
-            tableView.reloadData()
+        } else {
+              let tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - theme.cellHeight))
+              UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                  self?.tableView?.frame = CGRect(x: frame.origin.x + 2, y: (frame.origin.y - tableHeight), width: frame.size.width - 4, height: tableHeight)
+                  self?.shadowView?.frame = CGRect(x: frame.origin.x + 3, y: (frame.origin.y + 3), width: frame.size.width - 6, height: 1)
+              })
         }
+            
+        superview?.bringSubview(toFront: tableView)
+        superview?.bringSubview(toFront: shadowView!)
+            
+        if self.isFirstResponder {
+                superview?.bringSubview(toFront: self)
+        }
+            
+        tableView.layer.borderColor = theme.borderColor.cgColor
+        tableView.layer.cornerRadius = tableCornerRadius
+        tableView.separatorColor = theme.separatorColor
+        tableView.backgroundColor = theme.bgColor
     }
     
     // Handle keyboard events
@@ -336,9 +346,7 @@ open class SearchTextField: UITextField {
     }
     
     @objc open func typingDidStop() {
-        if userStoppedTypingHandler != nil {
-            self.userStoppedTypingHandler!()
-        }
+        self.userStoppedTypingHandler?()
     }
     
     // Handle text field changes
@@ -351,7 +359,7 @@ open class SearchTextField: UITextField {
         
         // Detect pauses while typing
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(SearchTextField.typingDidStop), userInfo: self, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: typingStoppedDelay, target: self, selector: #selector(SearchTextField.typingDidStop), userInfo: self, repeats: false)
         
         if text!.isEmpty {
             clearResults()
@@ -361,7 +369,7 @@ open class SearchTextField: UITextField {
             }
             self.placeholderLabel?.text = ""
         } else {
-            filter(forceShowAll: false)
+            filter(forceShowAll: forceNoFiltering)
             prepareDrawTableResult()
         }
         
@@ -412,7 +420,7 @@ open class SearchTextField: UITextField {
     fileprivate func filter(forceShowAll addAll: Bool) {
         clearResults()
         
-        if text!.characters.count < minCharactersNumberToStartFiltering {
+        if text!.count < minCharactersNumberToStartFiltering {
             return
         }
         
@@ -530,6 +538,7 @@ open class SearchTextField: UITextField {
 }
 
 extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.isHidden = !interactedWith || (filteredResults.count == 0)
         shadowView?.isHidden = !interactedWith || (filteredResults.count == 0)
@@ -554,7 +563,7 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
         cell!.textLabel?.font = theme.font
         cell!.detailTextLabel?.font = UIFont(name: theme.font.fontName, size: theme.font.pointSize * fontConversionRate)
         cell!.textLabel?.textColor = theme.fontColor
-        cell!.detailTextLabel?.textColor = theme.fontColor
+        cell!.detailTextLabel?.textColor = theme.subtitleFontColor
         
         cell!.textLabel?.text = filteredResults[(indexPath as NSIndexPath).row].title
         cell!.detailTextLabel?.text = filteredResults[(indexPath as NSIndexPath).row].subtitle
@@ -564,6 +573,12 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
         cell!.imageView?.image = filteredResults[(indexPath as NSIndexPath).row].image
         
         cell!.selectionStyle = .none
+
+        //search box shimmy caused by this not being set
+        let frame = cell!.frame
+        cell!.frame = CGRect(origin: frame.origin,
+                             size: CGSize(width:frame.width,
+                                          height:theme.cellHeight))
         
         return cell!
     }
@@ -591,18 +606,21 @@ public struct SearchTextFieldTheme {
     public var cellHeight: CGFloat
     public var bgColor: UIColor
     public var borderColor: UIColor
+    public var borderWidth : CGFloat = 0
     public var separatorColor: UIColor
     public var font: UIFont
     public var fontColor: UIColor
+    public var subtitleFontColor: UIColor
     public var placeholderColor: UIColor?
     
-    init(cellHeight: CGFloat, bgColor:UIColor, borderColor: UIColor, separatorColor: UIColor, font: UIFont, fontColor: UIColor) {
+    init(cellHeight: CGFloat, bgColor:UIColor, borderColor: UIColor, separatorColor: UIColor, font: UIFont, fontColor: UIColor, subtitleFontColor: UIColor? = nil) {
         self.cellHeight = cellHeight
         self.borderColor = borderColor
         self.separatorColor = separatorColor
         self.bgColor = bgColor
         self.font = font
         self.fontColor = fontColor
+        self.subtitleFontColor = subtitleFontColor ?? fontColor
     }
     
     public static func lightTheme() -> SearchTextFieldTheme {
