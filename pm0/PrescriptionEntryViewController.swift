@@ -79,17 +79,30 @@ class PrescriptionEntryViewController: UIViewController {
     return drugs
   }
 
+
+
+  let searchMainTextSize = 20.0 as CGFloat
+
   func configureSearchField(_ field:SearchTextField){
     field.theme = SearchTextFieldTheme.darkTheme()
-    field.theme.font  = UIFont.systemFont(ofSize: 17)
+    field.theme.font  = UIFont.systemFont(ofSize: 20)
+    field.theme.cellHeight = 65
     field.theme.bgColor = popupBackgroundColor
+    field.highlightAttributes =  [
+      NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):
+        UIFont.boldSystemFont(ofSize: searchMainTextSize),
+      NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue):
+        VLColors.warmHighlight,
+    ]
+    field.theme.separatorColor = UIColor.darkGray
   }
 
   func configureHeader(_ field:SearchTextField, withText headerText:String){
     let header = UILabel(frame: CGRect(x: 0, y: 0, width: field.frame.width, height: 30))
-    header.backgroundColor = UIColor.darkGray.withAlphaComponent(1.0)
+    header.backgroundColor = UIColor.darkGray
+    header.textColor = UIColor.white
     header.textAlignment = .center
-    header.font = UIFont.systemFont(ofSize: 14)
+    header.font = UIFont.systemFont(ofSize: searchMainTextSize-2.0)
     header.text = headerText
     field.resultsListHeader = header
   }
@@ -101,7 +114,7 @@ class PrescriptionEntryViewController: UIViewController {
 
   override func viewDidLoad() {
     configureSearchField(medicationNameField)
-    configureHeader(medicationNameField, withText: "Tap to fill-in name")
+    //configureHeader(medicationNameField, withText: "Tap to fill-in name")
 
     updateMedicationSearchItems()
   }

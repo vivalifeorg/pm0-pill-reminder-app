@@ -93,11 +93,19 @@ struct VLColors{
   static var background:UIColor{
     return UIColor.black
   }
+
+  static var sipPorche:UIColor{
+    return UIColor(red:0.92, green:0.60, blue:0.34, alpha:1.00)
+  }
+
+  static var sipPictonBlue:UIColor{
+    return UIColor(red:0.29, green:0.68, blue:0.92, alpha:1.00) //picton blue
+  }
   static var warmHighlight:UIColor{
-    return UIColor(red:0.92, green:0.60, blue:0.34, alpha:1.00) //porche
+    return sipPorche
   }
   static var coolHighlight:UIColor{
-    return UIColor(red:0.29, green:0.68, blue:0.92, alpha:1.00) //picton blue
+    return sipPictonBlue
   }
   static var cellBackground:UIColor{
     return sipTarawera
