@@ -14,10 +14,10 @@ open class SearchTextField: UITextField {
     // Public interface
     
     /// Maximum number of results to be shown in the suggestions list
-    open var maxNumberOfResults = Int.max
+    open var maxNumberOfResults = 0
     
     /// Maximum height of the results list
-    open var maxResultsListHeight = CGFloat.greatestFiniteMagnitude
+    open var maxResultsListHeight = 0
     
     /// Indicate if this field has been interacted with yet
     open var interactedWith = false
@@ -202,7 +202,6 @@ open class SearchTextField: UITextField {
     // Create the filter table and shadow view
     fileprivate func buildSearchTableView() {
         if let tableView = tableView, let shadowView = shadowView {
-            tableView.estimatedRowHeight = theme.cellHeight
             tableView.layer.masksToBounds = true
             tableView.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 0.5
             tableView.dataSource = self
@@ -260,31 +259,35 @@ open class SearchTextField: UITextField {
     
     // Re-set frames and theme colors
     fileprivate func redrawSearchTableView() {
-        guard !inlineMode else {
+        if inlineMode {
             tableView?.isHidden = true
             return
         }
+        
+        if let tableView = tableView {
+            guard let frame = self.superview?.convert(self.frame, to: nil) else { return }
 
-
-        guard let tableView = tableView else{
-            return
-        }
-        tableView.reloadData() //acquires up-to-date tableView size
-
-        guard let frame = self.superview?.convert(self.frame, to: nil) else {
-          return
-
-        }
-            
-        if self.direction == .down {
-
-                let screenHeight = UIScreen.main.bounds.size.height
-                let asFarDownAsWeCouldReasonablyGo = keyboardFrame?.minY ?? screenHeight
-                let tableHeightForLongList = asFarDownAsWeCouldReasonablyGo - frame.minY - tableBottomMargin
-
-                let tableHeight = min(tableHeightForLongList,
-                                      maxResultsListHeight,
-                                      tableView.contentSize.height)
+            //Tableviews use estimated cell heights until they are on-screen,
+            //   so we must set it here otherwise we will get a 44.0 height content size
+            //   where we actually expect a theme.cellHeight content size
+            tableView.estimatedRowHeight = theme.cellHeight
+            if self.direction == .down {
+                
+                var tableHeight: CGFloat = 0
+                if keyboardIsShowing, let keyboardHeight = keyboardFrame?.size.height {
+                    tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - frame.height - keyboardHeight))
+                } else {
+                    tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - frame.height))
+                }
+                
+                if maxResultsListHeight > 0 {
+                    tableHeight = min(tableHeight, CGFloat(maxResultsListHeight))
+                }
+                
+                // Set a bottom margin of 10p
+                if tableHeight < tableView.contentSize.height {
+                    tableHeight -= tableBottomMargin
+                }
                 
                 var tableViewFrame = CGRect(x: 0, y: 0, width: frame.size.width - 4, height: tableHeight)
                 tableViewFrame.origin = self.convert(tableViewFrame.origin, to: nil)
@@ -299,25 +302,28 @@ open class SearchTextField: UITextField {
                 shadowFrame.origin.x += 3
                 shadowFrame.origin.y = tableView.frame.origin.y
                 shadowView!.frame = shadowFrame
-        } else {
-              let tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - theme.cellHeight))
-              UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                  self?.tableView?.frame = CGRect(x: frame.origin.x + 2, y: (frame.origin.y - tableHeight), width: frame.size.width - 4, height: tableHeight)
-                  self?.shadowView?.frame = CGRect(x: frame.origin.x + 3, y: (frame.origin.y + 3), width: frame.size.width - 6, height: 1)
-              })
-        }
+            } else {
+                let tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - theme.cellHeight))
+                UIView.animate(withDuration: 0.2, animations: { [weak self] in
+                    self?.tableView?.frame = CGRect(x: frame.origin.x + 2, y: (frame.origin.y - tableHeight), width: frame.size.width - 4, height: tableHeight)
+                    self?.shadowView?.frame = CGRect(x: frame.origin.x + 3, y: (frame.origin.y + 3), width: frame.size.width - 6, height: 1)
+                })
+            }
             
-        superview?.bringSubview(toFront: tableView)
-        superview?.bringSubview(toFront: shadowView!)
+            superview?.bringSubview(toFront: tableView)
+            superview?.bringSubview(toFront: shadowView!)
             
-        if self.isFirstResponder {
+            if self.isFirstResponder {
                 superview?.bringSubview(toFront: self)
-        }
+            }
             
-        tableView.layer.borderColor = theme.borderColor.cgColor
-        tableView.layer.cornerRadius = tableCornerRadius
-        tableView.separatorColor = theme.separatorColor
-        tableView.backgroundColor = theme.bgColor
+            tableView.layer.borderColor = theme.borderColor.cgColor
+            tableView.layer.cornerRadius = tableCornerRadius
+            tableView.separatorColor = theme.separatorColor
+            tableView.backgroundColor = theme.bgColor
+            
+            tableView.reloadData()
+        }
     }
     
     // Handle keyboard events
@@ -538,7 +544,6 @@ open class SearchTextField: UITextField {
 }
 
 extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
-
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.isHidden = !interactedWith || (filteredResults.count == 0)
         shadowView?.isHidden = !interactedWith || (filteredResults.count == 0)
@@ -573,12 +578,6 @@ extension SearchTextField: UITableViewDelegate, UITableViewDataSource {
         cell!.imageView?.image = filteredResults[(indexPath as NSIndexPath).row].image
         
         cell!.selectionStyle = .none
-
-        //search box shimmy caused by this not being set
-        let frame = cell!.frame
-        cell!.frame = CGRect(origin: frame.origin,
-                             size: CGSize(width:frame.width,
-                                          height:theme.cellHeight))
         
         return cell!
     }
