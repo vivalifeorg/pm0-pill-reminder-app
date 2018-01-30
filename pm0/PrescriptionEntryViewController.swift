@@ -9,10 +9,58 @@
 import UIKit
 import SearchTextField
 
+protocol Listable{
+  var title:String {get}
+  var list:[String] {get}
+  var pluralPrefix:String {get}
+  var singularPrefix:String {get}
+}
+
+extension Listable{
+  var pluralPrefix:String{
+    return ""
+  }
+  var singularPrefix:String{
+    return ""
+  }
+}
+
+extension SearchTextFieldItem{
+  convenience init(listable:Listable){
+    let first = listable.list.first
+    let rest = listable.list.dropFirst()
+    let pluralPrefix = listable.pluralPrefix
+    let singularPrefix = listable.singularPrefix
+
+    switch (first, rest){
+
+    case (nil, nil):
+      self.init(title:listable.title)
+
+    case (_,nil):
+      self.init(title:listable.title,subtitle:"\(singularPrefix)\(first!)")
+
+    default:
+      let first = first ?? ""
+      let subtitle = rest.reduce(first,{orig, next in return "\(pluralPrefix)\(orig), \(next)"})
+      self.init(title:listable.title, subtitle: subtitle)
+    }
+  }
+}
+
 
 struct DisplayDrug{
   var name:String
   var commonUses:[String]
+}
+
+extension DisplayDrug:Listable{
+  var title:String{
+    return name
+  }
+  var list:[String]{
+    return commonUses
+  }
 }
 
 var drugs = [
@@ -21,26 +69,23 @@ var drugs = [
   DisplayDrug(name:"Advair Diskus", commonUses:["Asthma Attack Prevention"]),
   DisplayDrug(name:"Metformin", commonUses:["Diabetes Treatment"])
 ]
-extension DisplayDrug{
-  var searchTextFieldItem:SearchTextFieldItem{
 
-    let first = commonUses.first
-    let rest = commonUses.dropFirst()
-    switch (first, rest){
+var doctors = [
+  DisplayDoctor(name:"Andy Lindorn, MD", specialities:["Podiatry, Orthopedics"]),
+  DisplayDoctor(name:"Rena Patel, MD", specialities:["Hemophilia, Bone Cancer"]),
+  DisplayDoctor(name:"James Jodi, NP", specialities:["General Care"])
+]
 
-      case (nil, nil):
-        return SearchTextFieldItem(title:name)
-
-      case (_,nil):
-        return SearchTextFieldItem(title:name,subtitle:"\(first!)")
-
-      default:
-        let first = commonUses.first!
-        let subtitle = rest.reduce(first,{orig, next in return "\(orig), \(next)"})
-        return SearchTextFieldItem(title:name, subtitle: subtitle)
-    }
-  }
+struct DisplayDoctor{
+  var name:String
+  var specialities:[String]
 }
+
+extension DisplayDoctor:Listable{
+  var title:String{ return name}
+  var list:[String] {return specialities}
+}
+
 
 class PrescriptionEntryViewController: UIViewController {
 
@@ -63,12 +108,10 @@ class PrescriptionEntryViewController: UIViewController {
   @IBOutlet weak var whenTakenHelpButton: UIButton!
 
   @IBAction func doctorContactAddressButtonTapped(_ sender: Any) {
-
   }
 
   @IBAction func pharmacyContactAddressButtonTapped(_ sender: Any) {
   }
-
 
 
   var popupBackgroundColor:UIColor{
@@ -78,8 +121,6 @@ class PrescriptionEntryViewController: UIViewController {
   func drugsForText(str:String?)->[DisplayDrug]{
     return drugs
   }
-
-
 
   let searchMainTextSize = 20.0 as CGFloat
 
@@ -110,16 +151,18 @@ class PrescriptionEntryViewController: UIViewController {
     field.resultsListHeader = header
   }
 
-  func updateMedicationSearchItems(){
-    let medicationNameSearchItems = drugsForText(str: medicationNameField?.text).map{$0.searchTextFieldItem}
-    medicationNameField.filterItems(medicationNameSearchItems)
-  }
-
   override func viewDidLoad() {
     configureSearchField(medicationNameField)
-    //configureHeader(medicationNameField, withText: "Tap to fill-in name")
+    configureHeader(medicationNameField, withText: "Tap to fill-in")
+    medicationNameField.filterItems(
+      drugsForText(str: medicationNameField?.text)
+        .map{SearchTextFieldItem(listable:$0)})
 
-    updateMedicationSearchItems()
+    configureSearchField(prescribingDoctorField)
+    configureHeader(prescribingDoctorField, withText: "Type new name or tap existing")
+    prescribingDoctorField.filterItems(
+      doctors.map{SearchTextFieldItem(listable:$0)})
+
   }
 
   var medicationName:String?{
