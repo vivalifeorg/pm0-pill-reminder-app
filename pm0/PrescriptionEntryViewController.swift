@@ -81,6 +81,16 @@ struct DisplaySchedule{
   var examples:[String]
 }
 
+extension DisplaySchedule:Listable{
+  var title:String{
+    return name
+  }
+
+  var list:[String]{
+    return examples
+  }
+}
+
 var schedules = [
   DisplaySchedule(name:"When I wake up in the morning",
                   examples:["Once per day",
@@ -98,7 +108,13 @@ var schedules = [
   DisplaySchedule(name:"With Breakfast and Dinner",
                   examples:["Twice a day with food",
                             "At least 6 hours apart",
-                            "At least 4 hours apart"])
+                            "At least 4 hours apart"]),
+    DisplaySchedule(name:"Custom",
+                    examples:["Make my own schedule",
+                              "Other",
+                              "Something else",
+                              "Every other day",
+                              "Once a week"," "])
 ]
 
 struct DisplayDoctor{
@@ -188,6 +204,11 @@ class PrescriptionEntryViewController: UIViewController {
     prescribingDoctorField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
 
+
+    configureSearchField(whenIsItTakenField)
+    configureHeader(whenIsItTakenField, withText: "Tap one or type 'Custom'")
+    whenIsItTakenField.filterItems(
+      schedules.map{SearchTextFieldItem(listable:$0)})
   }
 
   var medicationName:String?{
