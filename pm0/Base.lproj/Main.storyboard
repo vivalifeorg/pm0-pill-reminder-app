@@ -111,7 +111,7 @@
                                 <rect key="frame" x="-20" y="68" width="415" height="730"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HqD-3w-ZBL">
-                                        <rect key="frame" x="20" y="0.0" width="375" height="690"/>
+                                        <rect key="frame" x="20" y="0.0" width="375" height="1090"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kub-NR-GQa">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
@@ -322,7 +322,7 @@
                                                 <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSV-mf-oTE">
-                                                <rect key="frame" x="0.0" y="592" width="375" height="98"/>
+                                                <rect key="frame" x="0.0" y="592" width="375" height="498"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aH3-DH-4cO">
                                                         <rect key="frame" x="20" y="14" width="262" height="29"/>
@@ -357,7 +357,7 @@
                                         <constraints>
                                             <constraint firstItem="loc-2P-2ft" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="396" id="Uq4-pj-IjJ"/>
                                             <constraint firstItem="J35-7g-wny" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="298" id="WVG-sw-pe0"/>
-                                            <constraint firstAttribute="height" constant="690" id="cq1-wH-s5S"/>
+                                            <constraint firstAttribute="height" constant="1090" id="cq1-wH-s5S"/>
                                             <constraint firstItem="VC6-T7-EOH" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="494" id="hl9-QA-qTc"/>
                                             <constraint firstItem="KSV-mf-oTE" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="592" id="k5N-C7-m2f"/>
                                             <constraint firstItem="zZY-bt-nQ8" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="200" id="qTP-VR-5sg"/>
