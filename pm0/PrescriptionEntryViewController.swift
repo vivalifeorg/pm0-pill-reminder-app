@@ -76,6 +76,31 @@ var doctors = [
   DisplayDoctor(name:"James Jodi, NP", specialities:["General Care"])
 ]
 
+struct DisplaySchedule{
+  var name:String
+  var examples:[String]
+}
+
+var schedules = [
+  DisplaySchedule(name:"When I wake up in the morning",
+                  examples:["Once per day",
+                            "Immeadiately upon awakening",
+                            "Before breakfast",
+                            "First thing"]),
+  DisplaySchedule(name:"With Breakfast",
+                  examples:["Once a day with food",
+                            "Early in the day with food",
+                            "First thing in the morning with food"]),
+  DisplaySchedule(name:"With Lunch",
+                  examples:["Once a day with food",
+                            "Early in the day with food",
+                            "Avoid taking with alcohol"]),
+  DisplaySchedule(name:"With Breakfast and Dinner",
+                  examples:["Twice a day with food",
+                            "At least 6 hours apart",
+                            "At least 4 hours apart"])
+]
+
 struct DisplayDoctor{
   var name:String
   var specialities:[String]
