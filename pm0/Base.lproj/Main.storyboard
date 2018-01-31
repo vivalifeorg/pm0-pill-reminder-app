@@ -25,10 +25,10 @@
                                 <viewLayoutGuide key="safeArea" id="8Ny-Qm-8uh"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PrescriptionListViewControllerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrescriptionListViewControllerCell" id="Me6-2r-dzt">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me6-2r-dzt" id="RY7-qK-vjw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.098039215686274508" green="0.22745098039215686" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
@@ -411,6 +411,7 @@
                         <outlet property="prescribingDoctorField" destination="QpE-tR-0CB" id="Xl9-M2-LnD"/>
                         <outlet property="prescribingDoctorHelpButton" destination="aow-Lc-bGr" id="Llk-Og-1aK"/>
                         <outlet property="quantityPerDoseHelpButton" destination="AIf-R1-UU3" id="Qxd-fE-8F0"/>
+                        <outlet property="scrollView" destination="xJC-m7-OTm" id="NGv-eR-RT6"/>
                         <outlet property="unitDoseField" destination="iX7-QQ-2Ms" id="ecl-QB-vRO"/>
                         <outlet property="unitDoseHelpButton" destination="mHD-D6-5e3" id="WRf-pg-tBG"/>
                         <outlet property="unitQuantityPerDoseField" destination="yOP-TO-GBc" id="0q7-ET-qa5"/>

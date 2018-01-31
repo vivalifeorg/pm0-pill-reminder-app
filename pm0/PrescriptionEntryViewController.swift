@@ -109,12 +109,12 @@ var schedules = [
                   examples:["Twice a day with food",
                             "At least 6 hours apart",
                             "At least 4 hours apart"]),
-    DisplaySchedule(name:"Custom",
-                    examples:["Make my own schedule",
-                              "Other",
-                              "Something else",
-                              "Every other day",
-                              "Once a week"," "])
+  DisplaySchedule(name:"Custom",
+                  examples:["Make my own schedule",
+                            "Other",
+                            "Something else",
+                            "Every other day",
+                            "Once a week"," "])
 ]
 
 struct DisplayDoctor{
@@ -128,7 +128,7 @@ extension DisplayDoctor:Listable{
 }
 
 
-class PrescriptionEntryViewController: UIViewController {
+class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   @IBOutlet weak var medicationNameField:SearchTextField!
   @IBOutlet weak var unitQuantityPerDoseField:SearchTextField!
@@ -163,6 +163,33 @@ class PrescriptionEntryViewController: UIViewController {
     return drugs
   }
 
+  @IBOutlet weak var scrollView: UIScrollView!
+
+
+  var allSearchFields:[SearchTextField]{
+    return [
+      medicationNameField,
+      unitQuantityPerDoseField,
+      unitDoseField,
+      whenIsItTakenField,
+      prescribingDoctorField,
+      pharmacyField,
+      conditionField
+    ]
+  }
+
+  func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+    allSearchFields.forEach { (field) in
+      field.hideResultsList()
+    }
+  }
+
+  func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    allSearchFields.filter{$0.isFocused}.forEach { (field) in
+        field.layoutSubviews()
+    }
+  }
+
   let searchMainTextSize = 20.0 as CGFloat
 
   func configureSearchField(_ field:SearchTextField){
@@ -193,6 +220,8 @@ class PrescriptionEntryViewController: UIViewController {
   }
 
   override func viewDidLoad() {
+    scrollView.delegate = self
+
     configureSearchField(medicationNameField)
     configureHeader(medicationNameField, withText: "Tap to fill-in")
     medicationNameField.filterItems(
