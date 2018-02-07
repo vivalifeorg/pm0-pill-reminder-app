@@ -219,9 +219,32 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     field.resultsListHeader = header
   }
 
+  @objc open func keyboardWillShow(_ notification: Notification) {
+   // scrollView.contentInset.bottom = notification.keyboard
+  }
+
+  @objc open func keyboardWillHide(_ notification: Notification) {
+    /*
+    if keyboardIsShowing {
+      keyboardIsShowing = false
+      direction = .down
+      redrawSearchTableView()
+    }
+ */
+  }
+
   override func viewDidLoad() {
     scrollView.delegate = self
+/*
+    [[NSNotificationCenter defaultCenter] addObserver:self
+      selector:@selector(keyboardWasShown:)
+      name:UIKeyboardDidShowNotification object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+      selector:@selector(keyboardWillBeHidden:)
+      name:UIKeyboardWillHideNotification object:nil];
+    NotificationCenter.default.addObserver(self, selector: keyboardShow, name: "keyboardWillShow", object: <#T##Any?#>)
+*/
     configureSearchField(medicationNameField)
     configureHeader(medicationNameField, withText: "Tap to fill-in")
     medicationNameField.filterItems(
