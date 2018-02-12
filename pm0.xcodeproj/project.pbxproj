@@ -16,6 +16,8 @@
 		89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */; };
 		89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */; };
 		89F3D9A61FF6AC500081FA77 /* pm0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9A51FF6AC500081FA77 /* pm0Tests.swift */; };
+		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
+		89FF900C2032438A00240DFC /* generated_fda_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FF900B2032438A00240DFC /* generated_fda_list.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		89F3D9A11FF6AC500081FA77 /* pm0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pm0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D9A51FF6AC500081FA77 /* pm0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pm0Tests.swift; sourceTree = "<group>"; };
 		89F3D9A71FF6AC500081FA77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
+		89FF900B2032438A00240DFC /* generated_fda_list.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = generated_fda_list.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +115,7 @@
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
+				89F9C44920323E760072FF7C /* FDA_DB */,
 				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
 				89F3D99C1FF6AC4F0081FA77 /* Info.plist */,
 			);
@@ -124,6 +129,23 @@
 				89F3D9A71FF6AC500081FA77 /* Info.plist */,
 			);
 			path = pm0Tests;
+			sourceTree = "<group>";
+		};
+		89F9C44920323E760072FF7C /* FDA_DB */ = {
+			isa = PBXGroup;
+			children = (
+				89F9C44D20323EA50072FF7C /* FDADatabase.swift */,
+				89F9C44A20323E810072FF7C /* Generated */,
+			);
+			path = FDA_DB;
+			sourceTree = "<group>";
+		};
+		89F9C44A20323E810072FF7C /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				89FF900B2032438A00240DFC /* generated_fda_list.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,8 +325,10 @@
 			files = (
 				89F3D9931FF6AC4F0081FA77 /* UpcomingViewController.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
+				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
+				89FF900C2032438A00240DFC /* generated_fda_list.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
