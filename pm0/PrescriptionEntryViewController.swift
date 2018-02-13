@@ -160,7 +160,13 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   func drugsForText(str:String?)->[DisplayDrug]{
-    return drugs
+    guard let str = str else {
+      return []
+    }
+
+    return namesMatching(str).map{
+      DisplayDrug(name: $0, commonUses: ["Unspecified"])
+    }
   }
 
   @IBOutlet weak var scrollView: UIScrollView!
