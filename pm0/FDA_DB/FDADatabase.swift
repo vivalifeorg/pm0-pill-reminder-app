@@ -7,23 +7,31 @@
 //
 
 import Foundation
+import SQLite
 
-struct Product{
-  let productName:String
-  let availablePackagingOptions:[ProductPackaging]
-}
 
 struct ProductPackaging{
   let productName: String
   let ndcPackageCode: String
   let packageDescription: String
-  let nominalPotency: Int
 }
 
 
-let db = try Connection("path/to/db.sqlite3")
 
-let users = Table("users")
-let id = Expression<Int64>("id")
-let name = Expression<String?>("name")
-let email = Expression<String>("email")
+let drugList = loadDrugDB()
+func loadDrugDB()->[ProductPackaging]{
+  let db = try! Connection(Bundle.main.path(forResource: "fda_drugs", ofType: "db")!)
+  let productPackages = Table("ProductPackage")
+  let productName = Expression<String>("productName")
+  let ndcPackageCode = Expression<String>("ndcPackageCode")
+  let packageDescription = Expression<String>("packageDescription")
+  return try! db.prepare(productPackages).map{ packageInfo in
+    ProductPackaging(productName:packageInfo[productName],
+                     ndcPackageCode:packageInfo[ndcPackageCode],
+                     packageDescription:packageInfo[packageDescription])
+
+  }
+}
+
+
+

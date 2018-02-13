@@ -1,8 +1,12 @@
 PODS:
   - SearchTextField (1.2.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
 
 DEPENDENCIES:
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
+  - SQLite.swift (~> 0.11.4)
 
 EXTERNAL SOURCES:
   SearchTextField:
@@ -16,7 +20,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: 060775f829749b26a3c6427501e12d7716ea9751
+PODFILE CHECKSUM: 93bac6f6053709476d89698c11c443614854ee1e
 
 COCOAPODS: 1.4.0.beta.2
