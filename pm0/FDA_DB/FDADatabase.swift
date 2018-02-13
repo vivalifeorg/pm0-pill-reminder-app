@@ -19,3 +19,11 @@ struct ProductPackaging{
   let packageDescription: String
   let nominalPotency: Int
 }
+
+
+let db = try Connection("path/to/db.sqlite3")
+
+let users = Table("users")
+let id = Expression<Int64>("id")
+let name = Expression<String?>("name")
+let email = Expression<String>("email")
