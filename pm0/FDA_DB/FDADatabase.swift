@@ -24,29 +24,27 @@ extension Array where Element : Hashable {
   }
 }
 
-func namesMatching(_ search:String)->[String]{
-  let productName = Expression<String>("productName")
-  print("Searching for '\(search)'")
-  let query = Table("ProductPackage").filter(productName.like("\(search)%"))
-  let queryResults = try? fdaDbConnection.prepare( query )
-  return queryResults?.map{$0[productName]}.unique ?? []
+func packagesMatching(_ search:String)->[[String:String]]{
+  let query = "SELECT PROPRIETARYNAME,NONPROPRIETARYNAME,PRODUCTNDC,DOSAGEFORMNAME FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? order by length(PROPRIETARYNAME)"
+  let search_space = "% \(search)%"
+  let statement = try! fdaDbConnection.prepare(query)
+  let results = try! statement.run(search_space, search, search_space, search)
+
+  let items:[[String:String]] = results.map{ package in
+    let dict:[String:String] = ["PROPRIETARYNAME":package[0] as? String ?? "",
+      "NONPROPRIETARYNAME":package[1] as? String ?? "",
+      "PRODUCTNDC":package[2] as? String ?? "",
+    "DOSAGEFORMNAME":package[3] as? String ?? ""]
+    return dict
+  }
+  return [[String:String]](items)
 }
 
 
-func packagesMatching(_ search:String)->[ProductPackaging]{
-  let productName = Expression<String>("productName")
-  let ndcPackageCode = Expression<String>("ndcPackageCode")
-  let packageDescription = Expression<String>("packageDescription")
-  //return try! fdaDbConnection.run(Table("ProductPackage").filter(productName.like("%\(search)%")))
+func namesMatching(_ search:String)->[String]{
+  let results = packagesMatching(search)
+  return Array<String>(results.map{"\($0["PROPRIETARYNAME"] ?? "") (\($0["NONPROPRIETARYNAME"] ?? ""))"})
 
-  print("Searching for '\(search)'")
-  let query = Table("ProductPackage").filter(productName.like("%\(search)%"))
-  let queryResults = try? fdaDbConnection.prepare( query )
-  for package in queryResults! {
-    print("Match: \(package[productName]), ndcPackageCode: \(package[ndcPackageCode]),packageDescription: \(package[packageDescription])")
-
-  }
-  return  []
 }
 
 fileprivate let fdaDbConnection = {return try! Connection(Bundle.main.path(forResource: "fda_drugs", ofType: "db")!)}()

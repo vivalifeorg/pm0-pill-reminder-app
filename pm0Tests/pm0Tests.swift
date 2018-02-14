@@ -21,10 +21,23 @@ class pm0Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDBSearch() {
+      let matches = namesMatching("Tyl")
+      XCTAssert(matches.count > 0, "Not finding basic drugs")
     }
+
+  func testDBFrontBackSearch() {
+    let matches = namesMatching("Tyl")
+    var isChildrensThere = false
+    for match in matches{
+      print("--\(match)\n")
+      if match.range(of:"Childrens Tylenol") != nil {
+        isChildrensThere = true
+      }
+    }
+    XCTAssert(isChildrensThere,"Not finding Childrens Tylenol, so front search doesn't work")
+
+  }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
