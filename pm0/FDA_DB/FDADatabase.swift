@@ -29,7 +29,7 @@ func namesMatching(_ search:String)->[String]{
   print("Searching for '\(search)'")
   let query = Table("ProductPackage").filter(productName.like("\(search)%"))
   let queryResults = try? fdaDbConnection.prepare( query )
-  return  queryResults?.map{$0[productName]}.unique ?? []
+  return queryResults?.map{$0[productName]}.unique ?? []
 }
 
 
