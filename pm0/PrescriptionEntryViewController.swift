@@ -161,13 +161,20 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   func namesMatchingAsync(_ str:String, completion:@escaping ([SearchTextFieldItem])->()){
     DispatchQueue.global().async {
-      let matches =  namesMatching(str).map{
-        DisplayDrug(name: $0, commonUses: ["Unspecified"])
+      let rawMatches:[[String:String]] = packagesMatching(str)
+      let matches:[DisplayDrug] =  rawMatches.map{ item in
+        let form = item["DOSAGEFORMNAME"]
+        if form != nil && form != "" {
+          return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "") (\(form!))", commonUses: [item["NONPROPRIETARYNAME"] ?? ""] )
+        }else{
+          return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "")", commonUses: [item["NONPROPRIETARYNAME"] ?? ""] )
+        }
       }
 
-      let numberToKeep = 1000
+      let numberToKeep = 10000
       let numberToDrop = max(matches.count - numberToKeep, 0)
       let possiblyTruncated = matches.dropLast(numberToDrop)
+      debugPrint(rawMatches.first ?? "")
       let listable = possiblyTruncated.map{SearchTextFieldItem(listable:$0)}
       debugPrint("\(listable.count) results for \(str)")
       DispatchQueue.main.async {

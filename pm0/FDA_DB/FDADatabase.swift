@@ -43,6 +43,7 @@ func packagesMatching(_ search:String)->[[String:String]]{
 
 func namesMatching(_ search:String)->[String]{
   let results = packagesMatching(search)
+  debugPrint(results.last ?? "")
   return Array<String>(results.map{"\($0["PROPRIETARYNAME"] ?? "") (\($0["NONPROPRIETARYNAME"] ?? ""))"})
 }
 
