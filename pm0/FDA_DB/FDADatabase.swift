@@ -44,7 +44,6 @@ func packagesMatching(_ search:String)->[[String:String]]{
 func namesMatching(_ search:String)->[String]{
   let results = packagesMatching(search)
   return Array<String>(results.map{"\($0["PROPRIETARYNAME"] ?? "") (\($0["NONPROPRIETARYNAME"] ?? ""))"})
-
 }
 
 fileprivate let fdaDbConnection = {return try! Connection(Bundle.main.path(forResource: "fda_drugs", ofType: "db")!)}()

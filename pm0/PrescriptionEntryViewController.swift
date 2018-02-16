@@ -159,15 +159,23 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     return UIColor(red:0.13, green:0.22, blue:0.30, alpha:1.00)
   }
 
-  func drugsForText(str:String?)->[DisplayDrug]{
-    guard let str = str else {
-      return []
-    }
+  func namesMatchingAsync(_ str:String, completion:@escaping ([SearchTextFieldItem])->()){
+    DispatchQueue.global().async {
+      let matches =  namesMatching(str).map{
+        DisplayDrug(name: $0, commonUses: ["Unspecified"])
+      }
 
-    return namesMatching(str).map{
-      DisplayDrug(name: $0, commonUses: ["Unspecified"])
+      let numberToKeep = 1000
+      let numberToDrop = max(matches.count - numberToKeep, 0)
+      let possiblyTruncated = matches.dropLast(numberToDrop)
+      let listable = possiblyTruncated.map{SearchTextFieldItem(listable:$0)}
+      debugPrint("\(listable.count) results for \(str)")
+      DispatchQueue.main.async {
+        completion(listable)
+      }
     }
   }
+
 
   @IBOutlet weak var scrollView: UIScrollView!
 
@@ -239,6 +247,20 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
  */
   }
 
+  func updateDrugsPopup(){
+    guard let search = medicationNameField?.text else{
+      medicationNameField.filterItems([])
+      return
+    }
+
+    namesMatchingAsync(search){ medications in
+      guard let nameField = self.medicationNameField else{
+        return
+      }
+      nameField.filterItems(medications)
+    }
+  }
+
   override func viewDidLoad() {
     scrollView.delegate = self
 /*
@@ -253,9 +275,11 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 */
     configureSearchField(medicationNameField)
     configureHeader(medicationNameField, withText: "Tap to fill-in")
-    medicationNameField.filterItems(
-      drugsForText(str: medicationNameField?.text)
-        .map{SearchTextFieldItem(listable:$0)})
+
+    updateDrugsPopup()
+    medicationNameField.userStoppedTypingHandler = {
+      self.updateDrugsPopup()
+    }
 
     configureSearchField(prescribingDoctorField)
     configureHeader(prescribingDoctorField, withText: "Type new name or tap existing")
