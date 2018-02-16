@@ -255,6 +255,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   func updateDrugsPopup(){
+    self.medicationNameField.showLoadingIndicator()
     guard let search = medicationNameField?.text else{
       medicationNameField.filterItems([])
       return

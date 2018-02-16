@@ -28,6 +28,7 @@ func packagesMatching(_ search:String)->[[String:String]]{
   let query = "SELECT PROPRIETARYNAME,NONPROPRIETARYNAME,PRODUCTNDC,DOSAGEFORMNAME FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by length(PROPRIETARYNAME)"
   let searchSpace = "% \(search)%"
   let statement = try! fdaDbConnection.prepare(query)
+  debugPrint("searchspace: \(searchSpace)")
   let results = try! statement.run(search, search, searchSpace, searchSpace)
 
   let items:[[String:String]] = results.map{ package in
