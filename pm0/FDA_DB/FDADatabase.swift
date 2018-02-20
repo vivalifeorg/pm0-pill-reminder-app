@@ -25,7 +25,7 @@ extension Array where Element : Hashable {
 }
 
 func packagesMatching(_ search:String)->[[String:String]]{
-  let query = "SELECT PROPRIETARYNAME,NONPROPRIETARYNAME,PRODUCTNDC,DOSAGEFORMNAME FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by length(PROPRIETARYNAME)"
+  let query = "SELECT PROPRIETARYNAME,NONPROPRIETARYNAME,PRODUCTNDC,DOSAGEFORMNAME FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by length(PROPRIETARYNAME) "
   let searchSpace = "% \(search)%"
   let statement = try! fdaDbConnection.prepare(query)
   debugPrint("searchspace: \(searchSpace)")
