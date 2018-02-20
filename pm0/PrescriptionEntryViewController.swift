@@ -163,12 +163,18 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     DispatchQueue.global().async {
       let rawMatches:[[String:String]] = packagesMatching(str)
       let matches:[DisplayDrug] =  rawMatches.map{ item in
-        let form = item["DOSAGEFORMNAME"]
-        if form != nil && form != "" {
-          return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "") (\(form!))", commonUses: [item["NONPROPRIETARYNAME"] ?? ""] )
-        }else{
-          return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "")", commonUses: [item["NONPROPRIETARYNAME"] ?? ""] )
-        }
+        let dosageForm = item["DOSAGEFORMNAME"]
+        let form = dosageForm != "" ?  "(\(dosageForm!))" : ""
+        let nonProp = item["NONPROPRIETARYNAME"] ?? item["PROPRIETARYNAME"] ?? ""
+        let numerator = item["ACTIVE_NUMERATOR_STRENGTH"]
+        let unit = item["ACTIVE_INGRED_UNIT"]
+        let dosage = "\(numerator ?? "") \(unit ?? ""): "
+        let altDosage = ""
+        let prefix = (numerator == "" && unit == "") ? altDosage : dosage
+
+
+        return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "") \(form)", commonUses: [prefix + nonProp ])
+
       }
 
       let numberToKeep = 10000
