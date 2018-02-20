@@ -1,10 +1,12 @@
 PODS:
+  - DZNEmptyDataSet (1.8.1)
   - SearchTextField (1.2.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
 
 DEPENDENCIES:
+  - DZNEmptyDataSet
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
 
@@ -19,9 +21,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/apasccon/SearchTextField
 
 SPEC CHECKSUMS:
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: 93bac6f6053709476d89698c11c443614854ee1e
+PODFILE CHECKSUM: 61cfe815da71c261d52546e5a2d9cfb8c31ee3b6
 
 COCOAPODS: 1.4.0.beta.2

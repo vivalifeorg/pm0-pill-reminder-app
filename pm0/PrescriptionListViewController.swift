@@ -6,6 +6,8 @@
 //  Copyright © 2017 Rowdy Labs. All rights reserved.
 //
 
+
+import DZNEmptyDataSet
 import UIKit
 
 struct DosingSchedule{
@@ -135,8 +137,8 @@ struct VLColors{
 }
 
 
+class PrescriptionListViewController: UIViewController {
 
-class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var tableView: UITableView!
 
   var viewModel = PrescriptionListViewModel()
@@ -161,15 +163,17 @@ class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITab
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
     tableView.sectionHeaderHeight = 40
-  }
-
-  @IBAction func addTapped(_ sender: Any) {
-    //don't do anything here, just show editor for new
+    tableView.emptyDataSetSource = self;
+    tableView.emptyDataSetDelegate = self;
   }
 
   static var cellIdentifier:String{
     return "PrescriptionListViewControllerCell"
   }
+}
+
+
+extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSource{
 
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 40
@@ -214,8 +218,20 @@ class PrescriptionListViewController: UIViewController,UITableViewDelegate,UITab
   func tableView(_ tableView:UITableView, titleForHeaderInSection: Int)->String?{
     return "Prescriptions"
   }
-
- 
-
 }
+
+extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+  func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    return UIImage(named:"EmptyRxList")
+  }
+
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "No Prescriptions (yet)")
+  }
+
+  func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string:"Tap the + button below to add one.")
+  }
+}
+
 
