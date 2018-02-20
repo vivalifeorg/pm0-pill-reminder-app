@@ -154,6 +154,10 @@ class PrescriptionListViewController: UIViewController {
     }
   }
 
+
+  @IBAction func addTapped(_ sender:UIButton){
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -226,7 +230,7 @@ extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "No Prescriptions (yet)")
+    return NSAttributedString(string: "No prescriptions (yet)")
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
