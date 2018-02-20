@@ -59,7 +59,19 @@ func fixDrugName(_ unfixed:String)->String{
 
   switch unfixed{
   default:
-    return unfixed.lowercased().localizedCapitalized
+    let tokens:[String] = unfixed.split(separator: " ").map{String($0)}
+    let words:[String] = tokens.map{
+      if $0.count > 3 {
+        return $0.localizedCapitalized
+      } else {
+        return $0
+      }
+    }
+
+    guard let firstWord = words.first else{
+      return ""
+    }
+    return words.dropFirst().reduce(firstWord){$0 + " " + $1 }
   }
 }
 
