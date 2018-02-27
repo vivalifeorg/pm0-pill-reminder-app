@@ -271,7 +271,10 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       guard let nameField = self.medicationNameField else{
         return
       }
-      nameField.filterItems(medications)
+      DispatchQueue.main.async {
+          self.medicationNameField.stopLoadingIndicator()
+          nameField.filterItems(medications)
+      }
     }
   }
 
