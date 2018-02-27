@@ -49,26 +49,39 @@ extension SearchTextFieldItem{
 }
 
 
-struct DisplayDrug{
-  var name:String
-  var commonUses:[String]
-}
+
 
 extension DisplayDrug:Listable{
+
+  /*
+   let form = dosageForm != "" ?  "(\(dosageForm))" : ""
+   let dosage = "\(numerator ?? "") \(unit ?? ""): "
+   let altDosage = ""
+   let prefix = (numerator == "" && unit == "") ? altDosage : dosage
+
+   self.init(name: "\(item["PROPRIETARYNAME"] ?? "") \(form)",
+   commonUses: [prefix + nonProp ],
+   unit:unit,
+   form:form,
+   numerator:numerator)
+ */
   var title:String{
-    return name
+    let formattedForm = dosageForm.flatMap{ df in
+      df != "" ?  "(\(df))" : ""
+    }
+
+    return "\(name) \(formattedForm ?? "")"
   }
+
   var list:[String]{
-    return commonUses
+    let dosage = "\(activeStrength ?? "") \(unit ?? ""): "
+    let altDosage = ""
+    let prefix = (activeStrength == "" && unit == "") ? altDosage : dosage
+
+    return [prefix+nonPropName]
   }
 }
 
-var drugs = [
-  DisplayDrug(name:"Aspirin", commonUses:["Pain Relief", "Inflammation Reduction", "Anti-clotting"]),
-  DisplayDrug(name:"Lipitor", commonUses:["Cholesterol Control"]),
-  DisplayDrug(name:"Advair Diskus", commonUses:["Asthma Attack Prevention"]),
-  DisplayDrug(name:"Metformin", commonUses:["Diabetes Treatment"])
-]
 
 var doctors = [
   DisplayDoctor(name:"Andy Lindorn, MD", specialities:["Podiatry, Orthopedics"]),
@@ -128,6 +141,24 @@ extension DisplayDoctor:Listable{
 }
 
 
+struct DisplayDrug{
+  var name:String
+  var nonPropName:String
+  var unit:String? = nil
+  var dosageForm:String? = nil
+  var activeStrength:String? = nil
+}
+
+extension DisplayDrug{
+  init(_ item: [String:String]){
+    name = item["PROPRIETARYNAME"] ?? item["NONPROPRIETARYNAME"] ?? ""
+    dosageForm = item["DOSAGEFORMNAME"] ?? ""
+    nonPropName = item["NONPROPRIETARYNAME"] ?? ""
+    activeStrength = item["ACTIVE_NUMERATOR_STRENGTH"]
+    unit = item["ACTIVE_INGRED_UNIT"] ?? ""
+  }
+}
+
 class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   @IBOutlet weak var medicationNameField:SearchTextField!
@@ -159,22 +190,11 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     return UIColor(red:0.13, green:0.22, blue:0.30, alpha:1.00)
   }
 
-  func namesMatchingAsync(_ str:String, completion:@escaping ([SearchTextFieldItem])->()){
+  func pillSizesMatching(name:String, partial:String, completion:@escaping ([SearchTextFieldItem])->()){
     DispatchQueue.global().async {
-      let rawMatches:[[String:String]] = packagesMatching(str)
+      let rawMatches:[[String:String]] = pillSizesMatch(name: name, partial: partial)
       let matches:[DisplayDrug] =  rawMatches.map{ item in
-        let dosageForm = item["DOSAGEFORMNAME"]
-        let form = dosageForm != "" ?  "(\(dosageForm!))" : ""
-        let nonProp = item["NONPROPRIETARYNAME"] ?? item["PROPRIETARYNAME"] ?? ""
-        let numerator = item["ACTIVE_NUMERATOR_STRENGTH"]
-        let unit = item["ACTIVE_INGRED_UNIT"]
-        let dosage = "\(numerator ?? "") \(unit ?? ""): "
-        let altDosage = ""
-        let prefix = (numerator == "" && unit == "") ? altDosage : dosage
-
-
-        return DisplayDrug(name: "\(item["PROPRIETARYNAME"] ?? "") \(form)", commonUses: [prefix + nonProp ])
-
+        return DisplayDrug(item)
       }
 
       let numberToKeep = 10000
@@ -182,9 +202,27 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       let possiblyTruncated = matches.dropLast(numberToDrop)
       debugPrint(rawMatches.first ?? "")
       let listable = possiblyTruncated.map{SearchTextFieldItem(listable:$0)}
-      debugPrint("\(listable.count) results for \(str)")
+      debugPrint("\(listable.count) results for \(name)")
       DispatchQueue.main.async {
         completion(listable)
+      }
+    }
+  }
+
+
+
+  func namesMatchingAsync(_ str:String, completion:@escaping ([DisplayDrug])->()){
+    DispatchQueue.global().async {
+      let rawMatches:[[String:String]] = packagesMatching(str)
+      let numberToKeep = 10000
+      let numberToDrop = max(rawMatches.count - numberToKeep, 0)
+      let truncatedRawMatches = rawMatches.dropLast(numberToDrop)
+      let matches:[DisplayDrug] =  truncatedRawMatches.map{ item in
+        return DisplayDrug(item)
+      }
+
+      DispatchQueue.main.async {
+        completion(matches)
       }
     }
   }
@@ -260,22 +298,57 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
  */
   }
 
+  func updatePillSizePopup(){
+    self.unitDoseField.showLoadingIndicator()
+
+    let search = medicationNameField.text ?? ""
+    let pillSizePartial = unitDoseField.text ?? ""
+    guard !search.isEmpty else{
+      medicationNameField.filterItems([])
+      return
+    }
+
+    pillSizesMatching(name: search, partial: pillSizePartial){ medications in
+      DispatchQueue.main.async {
+        self.unitDoseField?.stopLoadingIndicator()
+        self.unitDoseField?.filterItems(medications)
+      }
+    }
+  }
+
+  var namedDrugs:[DisplayDrug] = [] {
+    didSet{
+      let displayable = namedDrugs.map{SearchTextFieldItem(listable:$0)}
+      self.medicationNameField?.filterItems(displayable)
+    }
+  }
+
   func updateDrugsPopup(){
-    self.medicationNameField.showLoadingIndicator()
-    guard let search = medicationNameField?.text else{
+
+    medicationNameField.showLoadingIndicator()
+
+    let search = medicationNameField.text ?? ""
+    guard !search.isEmpty else{
       medicationNameField.filterItems([])
       return
     }
 
     namesMatchingAsync(search){ medications in
-      guard let nameField = self.medicationNameField else{
-        return
-      }
       DispatchQueue.main.async {
-          self.medicationNameField.stopLoadingIndicator()
-          nameField.filterItems(medications)
+        self.medicationNameField?.stopLoadingIndicator()
+        self.namedDrugs = medications
       }
     }
+  }
+
+  func nameItemSelectionHandler(_ filteredResults: [SearchTextFieldItem], _ index: Int) {
+    let drugSelection = namedDrugs[index]
+    dump(("Drug Selection",drugSelection))
+
+    medicationNameField?.text = drugSelection.name
+    unitDoseField?.text = [drugSelection.activeStrength,
+                           drugSelection.unit,
+                           drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
   }
 
   override func viewDidLoad() {
@@ -293,9 +366,15 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     configureSearchField(medicationNameField)
     configureHeader(medicationNameField, withText: "Tap to fill-in")
 
-    updateDrugsPopup()
+    //updateDrugsPopup()
     medicationNameField.userStoppedTypingHandler = {
       self.updateDrugsPopup()
+    }
+    medicationNameField.itemSelectionHandler = self.nameItemSelectionHandler
+
+
+    unitDoseField.userStoppedTypingHandler = {
+      self.updatePillSizePopup()
     }
 
     configureSearchField(prescribingDoctorField)
