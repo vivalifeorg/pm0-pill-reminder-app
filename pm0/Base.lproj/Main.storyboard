@@ -148,14 +148,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cm7-mI-PaF">
                                                 <rect key="frame" x="0.0" y="102" width="375" height="98"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unit Quantity per Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1O-ZJ-P2s">
-                                                        <rect key="frame" x="20" y="14" width="262" height="29"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Pill/Unit Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1O-ZJ-P2s">
+                                                        <rect key="frame" x="20" y="14" width="275" height="29"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. 2 capsules" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOP-TO-GBc" customClass="SearchTextField" customModule="SearchTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="200 mg Coated Tablet" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOP-TO-GBc" customClass="SearchTextField" customModule="SearchTextField">
                                                         <rect key="frame" x="20" y="48" width="318" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,7 +170,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-R1-UU3">
-                                                        <rect key="frame" x="261" y="17" width="22" height="22"/>
+                                                        <rect key="frame" x="297" y="19" width="22" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </button>
@@ -180,14 +180,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZY-bt-nQ8">
                                                 <rect key="frame" x="0.0" y="200" width="375" height="98"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unit Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIv-D1-Xh6">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number per Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIv-D1-Xh6">
                                                         <rect key="frame" x="20" y="14" width="322" height="29"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. 30 mg" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iX7-QQ-2Ms" customClass="SearchTextField" customModule="SearchTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. 2" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iX7-QQ-2Ms" customClass="SearchTextField" customModule="SearchTextField">
                                                         <rect key="frame" x="20" y="48" width="318" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -202,7 +202,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHD-D6-5e3">
-                                                        <rect key="frame" x="129" y="17" width="22" height="22"/>
+                                                        <rect key="frame" x="208" y="19" width="22" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </button>
@@ -244,7 +244,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loc-2P-2ft">
                                                 <rect key="frame" x="0.0" y="396" width="375" height="98"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prescribing Doctor (or NP)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-hR-Q5y">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prescriber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-hR-Q5y">
                                                         <rect key="frame" x="20" y="14" width="271" height="29"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -274,7 +274,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aow-Lc-bGr">
-                                                        <rect key="frame" x="295" y="18" width="22" height="22"/>
+                                                        <rect key="frame" x="131" y="18" width="22" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </button>
@@ -412,9 +412,9 @@
                         <outlet property="prescribingDoctorHelpButton" destination="aow-Lc-bGr" id="Llk-Og-1aK"/>
                         <outlet property="quantityPerDoseHelpButton" destination="AIf-R1-UU3" id="Qxd-fE-8F0"/>
                         <outlet property="scrollView" destination="xJC-m7-OTm" id="NGv-eR-RT6"/>
-                        <outlet property="unitDoseField" destination="iX7-QQ-2Ms" id="ecl-QB-vRO"/>
+                        <outlet property="unitDoseField" destination="yOP-TO-GBc" id="cY7-C8-b8Q"/>
                         <outlet property="unitDoseHelpButton" destination="mHD-D6-5e3" id="WRf-pg-tBG"/>
-                        <outlet property="unitQuantityPerDoseField" destination="yOP-TO-GBc" id="0q7-ET-qa5"/>
+                        <outlet property="unitQuantityPerDoseField" destination="iX7-QQ-2Ms" id="mmQ-dj-ioG"/>
                         <outlet property="whenIsItTakenField" destination="sAX-da-dAR" id="0wr-rI-E3S"/>
                         <outlet property="whenTakenHelpButton" destination="Grc-Ye-v01" id="Cx7-vd-Uig"/>
                     </connections>
