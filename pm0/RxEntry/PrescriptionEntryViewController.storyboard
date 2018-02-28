@@ -58,7 +58,7 @@
                                                         </constraints>
                                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Number per Dose"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Amount taken at once"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 2"/>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>

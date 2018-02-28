@@ -148,7 +148,9 @@ class PrescriptionListViewController: UIViewController {
     if segue.identifier == "doneEditingPrescription"{
       let prescription = (segue.source as? PrescriptionEntryViewController)?.prescription
       var rx = Prescription()
-      rx.drug = Drug(name:prescription?.name ?? "- Unspecified")
+      let display = "\(prescription?.name ?? prescription?.dosageForm ?? "Drug") \(prescription?.userCount ?? "1") x \(prescription?.drugUnitSummary ?? "dose")"
+
+      rx.drug = Drug(name: display)
       viewModel.prescriptions.append(rx)
       tableView.reloadData()
     }

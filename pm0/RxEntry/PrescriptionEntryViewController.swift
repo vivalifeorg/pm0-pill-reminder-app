@@ -73,12 +73,19 @@ extension DisplayDrug:Listable{
     return "\(name) \(formattedForm ?? "")"
   }
 
-  var list:[String]{
+
+  var decoratedDUS:String{
     let dosage = "\(activeStrength ?? "") \(unit ?? ""): "
     let altDosage = ""
-    let prefix = (activeStrength == "" && unit == "") ? altDosage : dosage
+    return (activeStrength == "" && unit == "") ? altDosage : dosage
+  }
 
-    return [prefix+nonPropName]
+  var drugUnitSummary:String{
+    return "\(activeStrength ?? "") \(unit ?? "")"
+  }
+
+  var list:[String]{
+    return [decoratedDUS+nonPropName]
   }
 }
 
@@ -147,6 +154,8 @@ struct DisplayDrug{
   var unit:String? = nil
   var dosageForm:String? = nil
   var activeStrength:String? = nil
+
+  var userCount:String="1" //todo move this
 }
 
 extension DisplayDrug{
@@ -390,6 +399,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   var prescription:DisplayDrug?{
+    lastSelectedDrug?.userCount = quantityLine.searchTextField.text ?? "1"
     return lastSelectedDrug
   }
 
