@@ -50,18 +50,17 @@ class PrescriptionLineEntry: UIView{
     super.init(coder:aDecoder)
   }
 
-
   override func prepareForInterfaceBuilder() {
     super.prepareForInterfaceBuilder()
     debugPrint("Prep")
     commonSetup(isFromIB: true)
+    contentView?.prepareForInterfaceBuilder()
   }
 
   override func awakeFromNib() {
     commonSetup()
   }
 
-  var loadedViews:[Any]? = nil
   /// Join all init here
   private func commonSetup(isFromIB:Bool = false){
     let bundle = Bundle(for:PrescriptionLineEntry.self)

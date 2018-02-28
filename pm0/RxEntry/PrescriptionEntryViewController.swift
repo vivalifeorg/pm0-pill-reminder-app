@@ -162,24 +162,19 @@ extension DisplayDrug{
 
 class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
-  @IBOutlet weak var medicationNameField:SearchTextField!
-  @IBOutlet weak var unitQuantityPerDoseField:SearchTextField!
-  @IBOutlet weak var unitDoseField:SearchTextField!
-  @IBOutlet weak var whenIsItTakenField:SearchTextField!
-  @IBOutlet weak var prescribingDoctorField:SearchTextField!
-  @IBOutlet weak var pharmacyField:SearchTextField!
-  @IBOutlet weak var conditionField:SearchTextField!
 
 
+  @IBOutlet weak var nameLine: PrescriptionLineEntry!
+  @IBOutlet weak var unitLine: PrescriptionLineEntry!
+  @IBOutlet weak var quantityLine: PrescriptionLineEntry!
+  @IBOutlet weak var scheduleLine: PrescriptionLineEntry!
+  @IBOutlet weak var prescriberLine: PrescriptionLineEntry!
   @IBOutlet weak var pharmacyLine: PrescriptionLineEntry!
+  @IBOutlet weak var conditionLine: PrescriptionLineEntry!
+
+
   
-  @IBOutlet weak var medicationNameHelpButton: UIButton!
-  @IBOutlet weak var quantityPerDoseHelpButton: UIButton!
-  @IBOutlet weak var unitDoseHelpButton: UIButton!
-  @IBOutlet weak var conditionHelpButton: UIButton!
-  @IBOutlet weak var pharmacyHelpButton: UIButton!
-  @IBOutlet weak var prescribingDoctorHelpButton: UIButton!
-  @IBOutlet weak var whenTakenHelpButton: UIButton!
+
 
   @IBAction func doctorContactAddressButtonTapped(_ sender: Any) {
   }
@@ -235,13 +230,13 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   var allSearchFields:[SearchTextField]{
     return [
-      medicationNameField,
-      unitQuantityPerDoseField,
-      unitDoseField,
-      whenIsItTakenField,
-      prescribingDoctorField,
+      nameLine.searchTextField,
+      unitLine.searchTextField,
+      quantityLine.searchTextField,
+      scheduleLine.searchTextField,
+      prescriberLine.searchTextField,
       pharmacyLine.searchTextField,
-      conditionField
+      conditionLine.searchTextField
     ]
   }
 
@@ -301,19 +296,19 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   func updatePillSizePopup(){
-    self.unitDoseField.showLoadingIndicator()
+    self.unitLine.searchTextField.showLoadingIndicator()
 
-    let search = medicationNameField.text ?? ""
-    let pillSizePartial = unitDoseField.text ?? ""
+    let search = nameLine.searchTextField.text ?? ""
+    let pillSizePartial = unitLine.searchTextField.text ?? ""
     guard !search.isEmpty else{
-      medicationNameField.filterItems([])
+      nameLine.searchTextField.filterItems([])
       return
     }
 
     pillSizesMatching(name: search, partial: pillSizePartial){ medications in
       DispatchQueue.main.async {
-        self.unitDoseField?.stopLoadingIndicator()
-        self.unitDoseField?.filterItems(medications)
+        self.unitLine.searchTextField?.stopLoadingIndicator()
+        self.unitLine.searchTextField?.filterItems(medications)
       }
     }
   }
@@ -321,23 +316,23 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   var namedDrugs:[DisplayDrug] = [] {
     didSet{
       let displayable = namedDrugs.map{SearchTextFieldItem(listable:$0)}
-      self.medicationNameField?.filterItems(displayable)
+      self.nameLine.searchTextField?.filterItems(displayable)
     }
   }
 
   func updateDrugsPopup(){
 
-    medicationNameField.showLoadingIndicator()
+    nameLine.searchTextField.showLoadingIndicator()
 
-    let search = medicationNameField.text ?? ""
+    let search = nameLine.searchTextField.text ?? ""
     guard !search.isEmpty else{
-      medicationNameField.filterItems([])
+      nameLine.searchTextField.filterItems([])
       return
     }
 
     namesMatchingAsync(search){ medications in
       DispatchQueue.main.async {
-        self.medicationNameField?.stopLoadingIndicator()
+        self.nameLine.searchTextField?.stopLoadingIndicator()
         self.namedDrugs = medications
       }
     }
@@ -349,8 +344,8 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     let drugSelection = namedDrugs[index]
     dump(("Drug Selection",drugSelection))
 
-    medicationNameField?.text = drugSelection.name
-    unitDoseField?.text = [drugSelection.activeStrength,
+    nameLine.searchTextField?.text = drugSelection.name
+    unitLine.searchTextField?.text = [drugSelection.activeStrength,
                            drugSelection.unit,
                            drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
     lastSelectedDrug = drugSelection
@@ -368,29 +363,29 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       name:UIKeyboardWillHideNotification object:nil];
     NotificationCenter.default.addObserver(self, selector: keyboardShow, name: "keyboardWillShow", object: <#T##Any?#>)
 */
-    configureSearchField(medicationNameField)
-    configureHeader(medicationNameField, withText: "Tap to fill-in")
+    configureSearchField(nameLine.searchTextField)
+    configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 
     //updateDrugsPopup()
-    medicationNameField.userStoppedTypingHandler = {
+    nameLine.searchTextField.userStoppedTypingHandler = {
       self.updateDrugsPopup()
     }
-    medicationNameField.itemSelectionHandler = self.nameItemSelectionHandler
+    nameLine.searchTextField.itemSelectionHandler = self.nameItemSelectionHandler
 
 
-    unitDoseField.userStoppedTypingHandler = {
+    unitLine.searchTextField.userStoppedTypingHandler = {
       self.updatePillSizePopup()
     }
 
-    configureSearchField(prescribingDoctorField)
-    configureHeader(prescribingDoctorField, withText: "Type new name or tap existing")
-    prescribingDoctorField.filterItems(
+    configureSearchField(prescriberLine.searchTextField)
+    configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
+    prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
 
 
-    configureSearchField(whenIsItTakenField)
-    configureHeader(whenIsItTakenField, withText: "Tap one or type 'Custom'")
-    whenIsItTakenField.filterItems(
+    configureSearchField(scheduleLine.searchTextField)
+    configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
+    scheduleLine.searchTextField.filterItems(
       schedules.map{SearchTextFieldItem(listable:$0)})
   }
 
@@ -399,6 +394,6 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   var medicationName:String?{
-    return medicationNameField?.text
+    return nameLine.searchTextField?.text
   }
 }

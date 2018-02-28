@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,252 +18,134 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-Kx-a3v">
-                                <rect key="frame" x="-20" y="68" width="415" height="730"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-Kx-a3v" userLabel="Entry ScrollView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="754"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
-                                        <rect key="frame" x="20" y="0.0" width="375" height="1090"/>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="728" translatesAutoresizingMaskIntoConstraints="NO" id="Xvo-r9-MqT" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ecT-dv-6bJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medication Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oq-Zj-zLt">
-                                                        <rect key="frame" x="23" y="20" width="262" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Aspirin" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="80Q-xv-fWX" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="Medication Name" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="FtV-5b-c2c"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Medication Name"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Tylenol"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKm-gT-F8N">
-                                                        <rect key="frame" x="211" y="21" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMx-mf-plQ">
-                                                <rect key="frame" x="0.0" y="102" width="375" height="98"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Pill/Unit Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZ6-Xc-3BH">
-                                                        <rect key="frame" x="20" y="14" width="275" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="200 mg Coated Tablet" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVy-wG-ivd" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-l7-eVN" userLabel="Single Pill/Unit Description" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="98" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="VbG-3s-fmc"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Single Pill/Unit Description"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 100 mg Capsule"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOx-7w-ySk">
-                                                        <rect key="frame" x="297" y="19" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVc-1y-sab">
-                                                <rect key="frame" x="0.0" y="200" width="375" height="98"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number per Dose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQW-z6-HR9">
-                                                        <rect key="frame" x="20" y="14" width="322" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. 2" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UY0-oy-7BE" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="U6C-P2-pcZ" userLabel="Number per Dose" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="196" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="CqQ-gv-kLG"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Number per Dose"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 2"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omw-GG-iZS">
-                                                        <rect key="frame" x="208" y="19" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oed-hH-feO">
-                                                <rect key="frame" x="0.0" y="298" width="375" height="98"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When should you take it?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVf-i7-yYk">
-                                                        <rect key="frame" x="23" y="18" width="262" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. With Breakfast" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kto-Sw-Jrm" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nay-Fn-ap1" userLabel="When should you take it?" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="294" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="doW-Wq-FuM"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="When should you take it?"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Every day at lunch"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lv8-fJ-eZE">
-                                                        <rect key="frame" x="286" y="21" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfZ-rf-lfl">
-                                                <rect key="frame" x="0.0" y="396" width="375" height="98"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prescriber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cta-zW-OQl">
-                                                        <rect key="frame" x="20" y="14" width="271" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. Jennifer Patel, MD" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9on-3P-UOG" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="name"/>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="xW1-aJ-TRY" userLabel="Prescriber" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="392" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="4Kh-wO-WbH"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Prescriber"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Dr Amy Sharma"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="NO"/>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwF-ES-kJh">
-                                                        <rect key="frame" x="309" y="55" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="doctorContactAddressButtonTapped:" destination="EDi-b0-RD5" eventType="touchUpInside" id="AHG-d6-bNu"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHQ-15-7hA">
-                                                        <rect key="frame" x="131" y="18" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="CaG-bp-2hH" userLabel="Pharmacy" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="490" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="D6e-os-qam"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Pharmacy"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. CVS"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-BM-XKJ" userLabel="Condition" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="588" width="375" height="98"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="98" id="jSj-Be-FrU"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Condition"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Arthritis"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="98" id="ccg-sT-9cD"/>
+                                                    <constraint firstItem="kjZ-DL-Q9x" firstAttribute="width" secondItem="egf-NE-wEK" secondAttribute="width" id="kBr-yn-4mU"/>
                                                 </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="PrescriptionLine" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="494" width="375" height="98"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-qQ-Rvq">
-                                                <rect key="frame" x="0.0" y="592" width="375" height="498"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSd-we-zdv">
-                                                        <rect key="frame" x="20" y="14" width="262" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. Leg Pain" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oD-hV-NDl" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="location"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vI1-H1-UYq">
-                                                        <rect key="frame" x="168" y="16" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
+                                            </stackView>
                                         </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="vVc-1y-sab" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="200" id="1Nb-vS-Fgr"/>
-                                            <constraint firstItem="Oed-hH-feO" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="298" id="5o6-qG-Tl7"/>
-                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="top" secondItem="rfZ-rf-lfl" secondAttribute="bottom" id="7FC-XS-7Fg"/>
-                                            <constraint firstAttribute="height" constant="1090" id="Q2v-Ec-pCC"/>
-                                            <constraint firstItem="kMx-mf-plQ" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="102" id="Qvw-83-GAx"/>
-                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="494" id="d3N-GN-BIQ"/>
-                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="width" secondItem="egf-NE-wEK" secondAttribute="width" id="kBr-yn-4mU"/>
-                                            <constraint firstItem="rfZ-rf-lfl" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="396" id="n9P-cq-sBf"/>
-                                            <constraint firstItem="QVe-qQ-Rvq" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="592" id="vTn-bJ-1Gk"/>
+                                            <constraint firstItem="egf-NE-wEK" firstAttribute="top" secondItem="Xvo-r9-MqT" secondAttribute="top" id="4JM-VO-Q5Z"/>
+                                            <constraint firstAttribute="height" secondItem="egf-NE-wEK" secondAttribute="height" id="Bj9-Z3-eXU"/>
+                                            <constraint firstItem="egf-NE-wEK" firstAttribute="width" secondItem="Xvo-r9-MqT" secondAttribute="width" id="LnC-Rq-38E"/>
+                                            <constraint firstItem="egf-NE-wEK" firstAttribute="leading" secondItem="Xvo-r9-MqT" secondAttribute="leading" id="VXp-7m-BwS"/>
+                                            <constraint firstAttribute="trailing" secondItem="egf-NE-wEK" secondAttribute="trailing" id="fKn-fC-lbP"/>
+                                            <constraint firstAttribute="bottom" secondItem="egf-NE-wEK" secondAttribute="bottom" id="nOE-mz-Y0k"/>
                                         </constraints>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="egf-NE-wEK" firstAttribute="centerX" secondItem="Yto-Kx-a3v" secondAttribute="centerX" id="Gzt-On-Ugv"/>
-                                    <constraint firstAttribute="trailing" secondItem="egf-NE-wEK" secondAttribute="trailing" constant="20" id="IGW-9g-2Nt"/>
-                                    <constraint firstAttribute="bottom" secondItem="egf-NE-wEK" secondAttribute="bottom" id="OCQ-cf-vpA"/>
-                                    <constraint firstItem="egf-NE-wEK" firstAttribute="top" secondItem="Yto-Kx-a3v" secondAttribute="top" id="rTO-Pe-gPB"/>
+                                    <constraint firstItem="Xvo-r9-MqT" firstAttribute="width" secondItem="Yto-Kx-a3v" secondAttribute="width" id="0yF-IZ-s4U"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xvo-r9-MqT" secondAttribute="trailing" id="O8Q-c5-iGC"/>
+                                    <constraint firstItem="Xvo-r9-MqT" firstAttribute="top" secondItem="Yto-Kx-a3v" secondAttribute="top" id="VRU-qp-DMN"/>
+                                    <constraint firstItem="Xvo-r9-MqT" firstAttribute="leading" secondItem="Yto-Kx-a3v" secondAttribute="leading" id="h7P-12-NyT"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xvo-r9-MqT" secondAttribute="bottom" id="iP8-fK-xma"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yto-Kx-a3v" firstAttribute="bottom" secondItem="Kft-9K-NA6" secondAttribute="bottom" constant="20" id="1gj-WN-V5b"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="leading" secondItem="FnW-LM-c7d" secondAttribute="leadingMargin" constant="-36" id="2Sc-pa-9oR"/>
-                            <constraint firstItem="Kft-9K-NA6" firstAttribute="top" secondItem="Yto-Kx-a3v" secondAttribute="top" constant="20" id="GzP-c9-ylv"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="top" secondItem="Kft-9K-NA6" secondAttribute="bottom" constant="-710" id="IvH-ge-xXg"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="leading" secondItem="Kft-9K-NA6" secondAttribute="trailing" constant="-395" id="QSA-Ci-nwB"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="top" secondItem="Kft-9K-NA6" secondAttribute="bottom" constant="-710" id="Qrj-Gy-PaK"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="centerY" secondItem="Kft-9K-NA6" secondAttribute="centerY" id="Wgj-4v-lhs"/>
-                            <constraint firstItem="egf-NE-wEK" firstAttribute="width" secondItem="Kft-9K-NA6" secondAttribute="width" id="fZs-U8-uFr"/>
+                            <constraint firstItem="Kft-9K-NA6" firstAttribute="top" secondItem="Yto-Kx-a3v" secondAttribute="top" constant="44" id="GzP-c9-ylv"/>
+                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="top" secondItem="Kft-9K-NA6" secondAttribute="bottom" id="PrQ-Ye-1hS"/>
+                            <constraint firstAttribute="trailing" secondItem="Yto-Kx-a3v" secondAttribute="trailing" id="hvE-gF-6Pa"/>
                             <constraint firstItem="Yto-Kx-a3v" firstAttribute="centerX" secondItem="FnW-LM-c7d" secondAttribute="centerX" id="rbJ-ba-HsX"/>
+                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="leading" secondItem="FnW-LM-c7d" secondAttribute="leading" id="viy-iz-VCJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kft-9K-NA6"/>
                     </view>
@@ -284,20 +165,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="conditionField" destination="2oD-hV-NDl" id="Q4E-rM-J1p"/>
-                        <outlet property="conditionHelpButton" destination="vI1-H1-UYq" id="GZo-WF-GbO"/>
-                        <outlet property="medicationNameField" destination="80Q-xv-fWX" id="KhZ-zT-9MO"/>
-                        <outlet property="medicationNameHelpButton" destination="fKm-gT-F8N" id="UrP-dV-YPC"/>
-                        <outlet property="pharmacyLine" destination="kjZ-DL-Q9x" id="djK-jn-ORY"/>
-                        <outlet property="prescribingDoctorField" destination="9on-3P-UOG" id="Zs7-fc-kyA"/>
-                        <outlet property="prescribingDoctorHelpButton" destination="pHQ-15-7hA" id="Crn-AJ-jd4"/>
-                        <outlet property="quantityPerDoseHelpButton" destination="TOx-7w-ySk" id="OcP-wB-dXm"/>
+                        <outlet property="conditionLine" destination="gxu-BM-XKJ" id="PEK-5j-HYn"/>
+                        <outlet property="nameLine" destination="kjZ-DL-Q9x" id="0F8-OR-GTs"/>
+                        <outlet property="pharmacyLine" destination="CaG-bp-2hH" id="R5z-Xd-r9R"/>
+                        <outlet property="prescriberLine" destination="xW1-aJ-TRY" id="woP-NR-FdV"/>
+                        <outlet property="quantityLine" destination="U6C-P2-pcZ" id="7Nc-oa-bCG"/>
+                        <outlet property="scheduleLine" destination="Nay-Fn-ap1" id="gHG-Lg-PbD"/>
                         <outlet property="scrollView" destination="Yto-Kx-a3v" id="yOT-vQ-mmV"/>
-                        <outlet property="unitDoseField" destination="HVy-wG-ivd" id="HPv-hn-AE9"/>
-                        <outlet property="unitDoseHelpButton" destination="Omw-GG-iZS" id="8nC-8Q-2Ei"/>
-                        <outlet property="unitQuantityPerDoseField" destination="UY0-oy-7BE" id="BqZ-xl-R92"/>
-                        <outlet property="whenIsItTakenField" destination="Kto-Sw-Jrm" id="MNL-xP-GQ0"/>
-                        <outlet property="whenTakenHelpButton" destination="lv8-fJ-eZE" id="oTi-CB-sCP"/>
+                        <outlet property="unitLine" destination="rVI-l7-eVN" id="QK3-pr-Luv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sKo-T8-yub" userLabel="First Responder" sceneMemberID="firstResponder"/>

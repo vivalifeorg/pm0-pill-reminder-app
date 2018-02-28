@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Title TK"/>
-                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Placeholder TK"/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="addFromContactsButton" destination="zao-0l-6uj" id="90o-4z-3to"/>
                 <outlet property="contentView" destination="zBm-Bq-FJv" id="MLU-S3-7BW"/>
@@ -28,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBm-Bq-FJv" userLabel="ActualView">
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="zBm-Bq-FJv" userLabel="ActualView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleTk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhW-Dp-Hdg">
@@ -37,10 +32,10 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
                             <rect key="frame" x="13" y="50.5" width="349" height="38"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
                                     <rect key="frame" x="4" y="0.0" width="319" height="38"/>
                                     <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -98,17 +93,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="height" secondItem="UeG-qS-CBa" secondAttribute="height" id="GyE-iH-sde"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="UeG-qS-CBa" secondAttribute="bottom" constant="-98" id="HyT-Hw-NNu"/>
-                <constraint firstItem="UeG-qS-CBa" firstAttribute="bottom" secondItem="zBm-Bq-FJv" secondAttribute="bottom" id="LTd-Ru-zUv"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="UeG-qS-CBa" secondAttribute="top" id="OGn-de-WdI"/>
-                <constraint firstItem="UeG-qS-CBa" firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="Zy9-Oz-5pe"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="UeG-qS-CBa" secondAttribute="leading" id="ctM-0K-or3"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="width" secondItem="UeG-qS-CBa" secondAttribute="width" id="cze-R7-ZGX"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="UeG-qS-CBa" secondAttribute="trailing" constant="-375" id="gv6-NK-Hlt"/>
+                <constraint firstAttribute="bottom" secondItem="zBm-Bq-FJv" secondAttribute="bottom" id="LTd-Ru-zUv"/>
+                <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="I3E-bL-yFv" secondAttribute="top" id="OGn-de-WdI"/>
+                <constraint firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="Zy9-Oz-5pe"/>
+                <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="I3E-bL-yFv" secondAttribute="leading" id="ctM-0K-or3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="UeG-qS-CBa"/>
             <point key="canvasLocation" x="126" y="55"/>
         </view>
     </objects>
