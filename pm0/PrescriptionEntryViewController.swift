@@ -341,6 +341,8 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     }
   }
 
+  var lastSelectedDrug:DisplayDrug?
+
   func nameItemSelectionHandler(_ filteredResults: [SearchTextFieldItem], _ index: Int) {
     let drugSelection = namedDrugs[index]
     dump(("Drug Selection",drugSelection))
@@ -349,6 +351,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     unitDoseField?.text = [drugSelection.activeStrength,
                            drugSelection.unit,
                            drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
+    lastSelectedDrug = drugSelection
   }
 
   override func viewDidLoad() {
@@ -387,6 +390,10 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     configureHeader(whenIsItTakenField, withText: "Tap one or type 'Custom'")
     whenIsItTakenField.filterItems(
       schedules.map{SearchTextFieldItem(listable:$0)})
+  }
+
+  var prescription:DisplayDrug?{
+    return lastSelectedDrug
   }
 
   var medicationName:String?{

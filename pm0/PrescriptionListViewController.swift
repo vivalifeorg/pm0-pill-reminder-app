@@ -146,9 +146,9 @@ class PrescriptionListViewController: UIViewController {
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
 
     if segue.identifier == "doneEditingPrescription"{
-      let name = (segue.source as? PrescriptionEntryViewController)?.medicationName ?? "- Unspecified"
+      let prescription = (segue.source as? PrescriptionEntryViewController)?.prescription
       var rx = Prescription()
-      rx.drug = Drug(name:name)
+      rx.drug = Drug(name:prescription?.name ?? "- Unspecified")
       viewModel.prescriptions.append(rx)
       tableView.reloadData()
     }
