@@ -98,8 +98,8 @@
 			children = (
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
 				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
-				896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */,
 				896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */,
+				896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */,
 			);
 			path = RxEntry;
 			sourceTree = "<group>";

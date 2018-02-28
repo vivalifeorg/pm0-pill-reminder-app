@@ -159,6 +159,7 @@ extension DisplayDrug{
   }
 }
 
+
 class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   @IBOutlet weak var medicationNameField:SearchTextField!

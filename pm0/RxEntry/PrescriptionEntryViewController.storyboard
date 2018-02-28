@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,7 +16,7 @@
             <objects>
                 <viewController id="EDi-b0-RD5" customClass="PrescriptionEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FnW-LM-c7d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-Kx-a3v">
@@ -41,7 +41,7 @@
                                                         <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -198,11 +198,6 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="PrescriptionLine" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="494" width="375" height="98"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Pharmacy"/>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAddFromContactsButtonHidden" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. CVS on Ponce De Leon"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-qQ-Rvq">
                                                 <rect key="frame" x="0.0" y="592" width="375" height="498"/>
@@ -240,8 +235,11 @@
                                         <constraints>
                                             <constraint firstItem="vVc-1y-sab" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="200" id="1Nb-vS-Fgr"/>
                                             <constraint firstItem="Oed-hH-feO" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="298" id="5o6-qG-Tl7"/>
+                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="top" secondItem="rfZ-rf-lfl" secondAttribute="bottom" id="7FC-XS-7Fg"/>
                                             <constraint firstAttribute="height" constant="1090" id="Q2v-Ec-pCC"/>
                                             <constraint firstItem="kMx-mf-plQ" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="102" id="Qvw-83-GAx"/>
+                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="494" id="d3N-GN-BIQ"/>
+                                            <constraint firstItem="kjZ-DL-Q9x" firstAttribute="width" secondItem="egf-NE-wEK" secondAttribute="width" id="kBr-yn-4mU"/>
                                             <constraint firstItem="rfZ-rf-lfl" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="396" id="n9P-cq-sBf"/>
                                             <constraint firstItem="QVe-qQ-Rvq" firstAttribute="top" secondItem="egf-NE-wEK" secondAttribute="top" constant="592" id="vTn-bJ-1Gk"/>
                                         </constraints>
@@ -312,7 +310,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PrescriptionEntryNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eVp-Qy-mcs" userLabel="PrescriptionEntryNav" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1PN-9p-2ce">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <textAttributes key="titleTextAttributes">

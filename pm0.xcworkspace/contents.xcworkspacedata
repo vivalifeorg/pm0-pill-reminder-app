@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:pm0/RxEntry/PrescriptionEntryViewController.storyboard">
+      location = "group:/Users/mlangford/Projects/z-Clients/vl-PerscriptionTracker/pm0/pm0/RxEntry/PrescriptionEntryViewController.storyboard">
    </FileRef>
    <FileRef
       location = "group:pm0.xcodeproj">

@@ -9,7 +9,6 @@
 import UIKit
 import SearchTextField
 
-///A single entry area for information on a prescription
 @IBDesignable
 class PrescriptionLineEntry: UIView{
 
@@ -23,51 +22,63 @@ class PrescriptionLineEntry: UIView{
   @IBInspectable
   public var title: String = "Title TK" {
     didSet {
-      titleLabel.text = title
+      titleLabel?.text = title
     }
   }
 
   @IBInspectable
-  public var placeholder: String = "e.g. TK" {
+  public var placeholder: String = "e.g. Placeholder TK" {
     didSet {
-      searchTextField.placeholder = placeholder
+      searchTextField?.placeholder = placeholder
     }
   }
 
   @IBInspectable
-  public var isAddFromContactsButtonHidden: Bool = false {
+  public var plusButtonHidden: Bool = false {
     didSet {
-      addFromContactsButton.isHidden =  isAddFromContactsButtonHidden
+      addFromContactsButton?.isHidden =  plusButtonHidden
     }
   }
 
   /// Init for code
   override init(frame: CGRect) { //code
     super.init(frame: frame)
-    commonInit()
   }
 
   /// Init for InterfaceBuilder
   required init?(coder aDecoder: NSCoder) { //IB
     super.init(coder:aDecoder)
-    commonInit(isFromIB:true)
   }
 
+
+  override func prepareForInterfaceBuilder() {
+    super.prepareForInterfaceBuilder()
+    debugPrint("Prep")
+    commonSetup(isFromIB: true)
+  }
+
+  override func awakeFromNib() {
+    commonSetup()
+  }
+
+  var loadedViews:[Any]? = nil
   /// Join all init here
-  private func commonInit(isFromIB:Bool = false){
-    let loaded = Bundle.main.loadNibNamed("PrescriptionLineEntry", owner: self, options: nil)
-    dump(loaded)
+  private func commonSetup(isFromIB:Bool = false){
+    let bundle = Bundle(for:PrescriptionLineEntry.self)
+    let nib = UINib(nibName: String(describing: PrescriptionLineEntry.self), bundle: bundle)
+    nib.instantiate(withOwner: self, options: nil)
     addSubview(contentView)
     setupConstraints()
 
     //Calls the didset to use the inital values specified in code
     placeholder = {placeholder}()
-    isAddFromContactsButtonHidden = {isAddFromContactsButtonHidden}()
+    plusButtonHidden = {plusButtonHidden}()
     title = {title}()
   }
 
   /// Autolayout setup
   private func setupConstraints(){
+    
     translatesAutoresizingMaskIntoConstraints = false
     let views = ["PrescriptionLineEntry":contentView!]
     let metrics = ["FixedHeight":98.0]
