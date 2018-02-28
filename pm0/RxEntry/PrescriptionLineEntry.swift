@@ -10,6 +10,7 @@ import UIKit
 import SearchTextField
 
 ///A single entry area for information on a prescription
+@IBDesignable
 class PrescriptionLineEntry: UIView{
 
   @IBOutlet var contentView:UIView!

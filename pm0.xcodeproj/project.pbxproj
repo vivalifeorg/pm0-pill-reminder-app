@@ -12,6 +12,7 @@
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		896052BC20470B6400DF502C /* PrescriptionLineEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */; };
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
+		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
@@ -38,6 +39,7 @@
 		890242DF2033941C00B25E99 /* fda_drugs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fda_drugs.db; sourceTree = "<group>"; };
 		896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionLineEntry.xib; sourceTree = "<group>"; };
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
+		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
+				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
 				896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */,
 				896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */,
 			);
@@ -254,6 +257,7 @@
 				89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */,
 				89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */,
 				89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */,
+				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
