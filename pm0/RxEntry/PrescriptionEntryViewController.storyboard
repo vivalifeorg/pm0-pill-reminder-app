@@ -14,20 +14,20 @@
         <scene sceneID="Rry-n2-ucN">
             <objects>
                 <viewController id="EDi-b0-RD5" customClass="PrescriptionEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FnW-LM-c7d">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="FnW-LM-c7d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-Kx-a3v" userLabel="Entry ScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Yto-Kx-a3v" userLabel="Entry ScrollView">
                                 <rect key="frame" x="0.0" y="44" width="375" height="754"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="728" translatesAutoresizingMaskIntoConstraints="NO" id="Xvo-r9-MqT" userLabel="ContentView">
+                                    <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="728" translatesAutoresizingMaskIntoConstraints="NO" id="Xvo-r9-MqT" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="Medication Name" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="Medication Name" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="FtV-5b-c2c"/>
@@ -39,7 +39,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-l7-eVN" userLabel="Single Pill/Unit Description" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-l7-eVN" userLabel="Single Pill/Unit Description" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="98" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="VbG-3s-fmc"/>
@@ -51,7 +51,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="U6C-P2-pcZ" userLabel="Number per Dose" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U6C-P2-pcZ" userLabel="Number per Dose" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="196" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="CqQ-gv-kLG"/>
@@ -63,7 +63,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nay-Fn-ap1" userLabel="When should you take it?" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nay-Fn-ap1" userLabel="When should you take it?" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="294" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="doW-Wq-FuM"/>
@@ -71,11 +71,11 @@
                                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="When should you take it?"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Every day at lunch"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. With Lunch"/>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="xW1-aJ-TRY" userLabel="Prescriber" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xW1-aJ-TRY" userLabel="Prescriber" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="392" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="4Kh-wO-WbH"/>
@@ -87,7 +87,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="NO"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="CaG-bp-2hH" userLabel="Pharmacy" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CaG-bp-2hH" userLabel="Pharmacy" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="490" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="D6e-os-qam"/>
@@ -99,7 +99,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="NO"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-BM-XKJ" userLabel="Condition" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-BM-XKJ" userLabel="Condition" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="588" width="375" height="98"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="98" id="jSj-Be-FrU"/>
