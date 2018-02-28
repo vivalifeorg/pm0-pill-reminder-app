@@ -170,7 +170,8 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   @IBOutlet weak var conditionField:SearchTextField!
 
 
-
+  @IBOutlet weak var pharmacyLine: PrescriptionLineEntry!
+  
   @IBOutlet weak var medicationNameHelpButton: UIButton!
   @IBOutlet weak var quantityPerDoseHelpButton: UIButton!
   @IBOutlet weak var unitDoseHelpButton: UIButton!
@@ -238,7 +239,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       unitDoseField,
       whenIsItTakenField,
       prescribingDoctorField,
-      pharmacyField,
+      pharmacyLine.searchTextField,
       conditionField
     ]
   }

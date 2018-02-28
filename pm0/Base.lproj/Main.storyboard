@@ -25,10 +25,10 @@
                                 <viewLayoutGuide key="safeArea" id="8Ny-Qm-8uh"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PrescriptionListViewControllerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrescriptionListViewControllerCell" id="Me6-2r-dzt">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me6-2r-dzt" id="RY7-qK-vjw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.098039215686274508" green="0.22745098039215686" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
@@ -280,46 +280,12 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="98" id="L0B-qK-zua"/>
+                                                </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VC6-T7-EOH" customClass="SearchTextField" customModule="SearchTextField">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y81-KI-1qL" userLabel="PrescriptionLine" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="494" width="375" height="98"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pharmacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZM-Us-4aj">
-                                                        <rect key="frame" x="20" y="14" width="262" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3h-Ml-Uma" customClass="SearchTextField" customModule="SearchTextField">
-                                                        <rect key="frame" x="20" y="48" width="318" height="38"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="location"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                                <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dja-4L-oHR">
-                                                        <rect key="frame" x="309" y="56" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="pharmacyContactAddressButtonTapped:" destination="wQf-wK-tdJ" eventType="touchUpInside" id="5yp-WC-OFP"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXr-Em-fDp">
-                                                        <rect key="frame" x="128" y="21" width="22" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="tintColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSV-mf-oTE">
                                                 <rect key="frame" x="0.0" y="592" width="375" height="498"/>
@@ -358,7 +324,6 @@
                                             <constraint firstItem="loc-2P-2ft" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="396" id="Uq4-pj-IjJ"/>
                                             <constraint firstItem="J35-7g-wny" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="298" id="WVG-sw-pe0"/>
                                             <constraint firstAttribute="height" constant="1090" id="cq1-wH-s5S"/>
-                                            <constraint firstItem="VC6-T7-EOH" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="494" id="hl9-QA-qTc"/>
                                             <constraint firstItem="KSV-mf-oTE" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="592" id="k5N-C7-m2f"/>
                                             <constraint firstItem="zZY-bt-nQ8" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="200" id="qTP-VR-5sg"/>
                                             <constraint firstItem="Cm7-mI-PaF" firstAttribute="top" secondItem="HqD-3w-ZBL" secondAttribute="top" constant="102" id="sAa-nz-Sux"/>
@@ -377,12 +342,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HqD-3w-ZBL" firstAttribute="width" secondItem="JdD-Ec-oQE" secondAttribute="width" id="FsT-Uy-Xxg"/>
+                            <constraint firstItem="xJC-m7-OTm" firstAttribute="top" secondItem="JdD-Ec-oQE" secondAttribute="bottom" constant="-710" id="NSI-Kd-aXh"/>
                             <constraint firstItem="xJC-m7-OTm" firstAttribute="centerY" secondItem="JdD-Ec-oQE" secondAttribute="centerY" id="OnM-Ae-rLm"/>
                             <constraint firstItem="xJC-m7-OTm" firstAttribute="leading" secondItem="1YJ-US-AZh" secondAttribute="leadingMargin" constant="-36" id="PWa-s5-RXB"/>
                             <constraint firstItem="xJC-m7-OTm" firstAttribute="top" secondItem="JdD-Ec-oQE" secondAttribute="bottom" constant="-710" id="UC5-ld-3Wt"/>
                             <constraint firstItem="JdD-Ec-oQE" firstAttribute="top" secondItem="xJC-m7-OTm" secondAttribute="top" constant="20" id="aIK-Te-ha1"/>
                             <constraint firstItem="xJC-m7-OTm" firstAttribute="bottom" secondItem="JdD-Ec-oQE" secondAttribute="bottom" constant="20" id="cXS-8F-Xof"/>
                             <constraint firstItem="xJC-m7-OTm" firstAttribute="centerX" secondItem="1YJ-US-AZh" secondAttribute="centerX" id="pF9-fY-4W4"/>
+                            <constraint firstItem="xJC-m7-OTm" firstAttribute="leading" secondItem="JdD-Ec-oQE" secondAttribute="trailing" constant="-395" id="xg2-dp-wGC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JdD-Ec-oQE"/>
                     </view>
@@ -406,8 +373,7 @@
                         <outlet property="conditionHelpButton" destination="18T-TZ-aHX" id="2tR-zp-tgf"/>
                         <outlet property="medicationNameField" destination="yIK-4n-MTy" id="En3-to-Dd8"/>
                         <outlet property="medicationNameHelpButton" destination="MPh-ou-Nmu" id="R3J-nV-8a4"/>
-                        <outlet property="pharmacyField" destination="Z3h-Ml-Uma" id="Xd3-t3-71M"/>
-                        <outlet property="pharmacyHelpButton" destination="FXr-Em-fDp" id="1PJ-cf-iaP"/>
+                        <outlet property="pharmacyLine" destination="Y81-KI-1qL" id="lZX-Lj-22c"/>
                         <outlet property="prescribingDoctorField" destination="QpE-tR-0CB" id="Xl9-M2-LnD"/>
                         <outlet property="prescribingDoctorHelpButton" destination="aow-Lc-bGr" id="Llk-Og-1aK"/>
                         <outlet property="quantityPerDoseHelpButton" destination="AIf-R1-UU3" id="Qxd-fE-8F0"/>
