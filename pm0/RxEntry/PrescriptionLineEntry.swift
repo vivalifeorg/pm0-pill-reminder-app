@@ -18,6 +18,28 @@ class PrescriptionLineEntry: UIView{
   @IBOutlet var titleLabel:UILabel!
   @IBOutlet var searchTextField:SearchTextField!
 
+
+  @IBInspectable
+  public var title: String = "Title TK" {
+    didSet {
+      titleLabel.text = title
+    }
+  }
+
+  @IBInspectable
+  public var placeholder: String = "e.g. TK" {
+    didSet {
+      searchTextField.placeholder = placeholder
+    }
+  }
+
+  @IBInspectable
+  public var isAddFromContactsButtonHidden: Bool = false {
+    didSet {
+      addFromContactsButton.isHidden =  isAddFromContactsButtonHidden
+    }
+  }
+
   /// Init for code
   override init(frame: CGRect) { //code
     super.init(frame: frame)
@@ -36,6 +58,11 @@ class PrescriptionLineEntry: UIView{
     dump(loaded)
     addSubview(contentView)
     setupConstraints()
+
+    //Calls the didset to use the inital values specified in code
+    placeholder = {placeholder}()
+    isAddFromContactsButtonHidden = {isAddFromContactsButtonHidden}()
+    title = {title}()
   }
 
   /// Autolayout setup
