@@ -91,7 +91,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Placeholder" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="My Day" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,7 +105,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.062745098039215685" green="0.11372549019607843" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.01943774950255105" green="0.0459266365444993" blue="0.073553473585714249" alpha="0.78997029049295775" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" red="0.95686274509803915" green="0.87058823529411766" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
@@ -120,7 +120,7 @@
     </scenes>
     <resources>
         <image name="BottomAddButton" width="206" height="206"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="first" width="24" height="9"/>
+        <image name="second" width="23" height="13"/>
     </resources>
 </document>
