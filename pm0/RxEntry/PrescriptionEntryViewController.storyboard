@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="754"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="728" translatesAutoresizingMaskIntoConstraints="NO" id="Xvo-r9-MqT" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="784"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1086"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="Medication Name" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -110,6 +110,14 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Arthritis"/>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfz-Nc-uat" userLabel="KeyboardSpacer">
+                                                        <rect key="frame" x="0.0" y="686" width="375" height="400"/>
+                                                        <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="400" id="8JE-UV-yrk"/>
+                                                        </constraints>
+                                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
