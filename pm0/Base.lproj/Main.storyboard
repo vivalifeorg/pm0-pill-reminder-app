@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.01943774950255105" green="0.0459266365444993" blue="0.073553473585714249" alpha="0.78997029049295775" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="selectedImageTintColor" red="0.95686274509803915" green="0.87058823529411766" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.95686274509803915" green="0.72217740293791943" blue="0.49815957633053226" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -120,7 +120,7 @@
     </scenes>
     <resources>
         <image name="BottomAddButton" width="206" height="206"/>
-        <image name="first" width="24" height="9"/>
-        <image name="second" width="23" height="13"/>
+        <image name="first" width="23" height="10"/>
+        <image name="second" width="23" height="16"/>
     </resources>
 </document>
