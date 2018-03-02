@@ -8,14 +8,18 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class UpcomingDayViewController: UITableViewController {
 
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    //print("Drugs Loaded!!! \(drugList[100])")
-    print("namesMatching(Lun):\(namesMatching("Lun"))")
+    tableView.tableFooterView = UIView() //gets rid of excess lines
+    tableView.tableFooterView?.backgroundColor = VLColors.background
+    tableView.backgroundColor = VLColors.background
+    tableView.separatorColor = UIColor.lightGray
+    tableView.sectionHeaderHeight = 40
   }
+
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
