@@ -16,6 +16,7 @@
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */; };
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
+		89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */; };
@@ -45,6 +46,8 @@
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
+		89B4E1CE204DE55B00A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpcomingDay.storyboard; path = "/Users/mlangford/Projects/z-Clients/vl-PerscriptionTracker/ios-pill-app/pm0/New Group/UpcomingDay.storyboard"; sourceTree = "<absolute>"; };
+		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +111,17 @@
 			path = RxEntry;
 			sourceTree = "<group>";
 		};
+		89B4E1CF204DE55F00A09B27 /* UpcomingDay */ = {
+			isa = PBXGroup;
+			children = (
+				89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */,
+				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
+				89B4E1CE204DE55B00A09B27 /* UpcomingDay.storyboard */,
+				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
+			);
+			path = UpcomingDay;
+			sourceTree = "<group>";
+		};
 		89F3D9821FF6AC4F0081FA77 = {
 			isa = PBXGroup;
 			children = (
@@ -133,9 +147,8 @@
 			children = (
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
 				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
-				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
+				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
-				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
 				896052BF20470D9400DF502C /* RxEntry */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
@@ -263,6 +276,7 @@
 				89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */,
 				89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */,
 				89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */,
+				89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */,
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 			);
