@@ -10,73 +10,10 @@
 import DZNEmptyDataSet
 import UIKit
 
-struct DosingSchedule{
-  var periodLength:Int
-  var dosesPerPeriod:Int
-  var isWakeToTake:Bool = false
-  var isOnlyForConsumptionWithFood:Bool = false
-}
-
-struct Doctor{
-
-}
-
-struct DosageForm{
-
-}
-
-struct TakeTime{
-  var hour:Int
-  var minute:Int
-}
-
-struct Potency{
-
-}
-
-struct Drug{
-  var name:String
-
-  var shortName:String{
-    return name
-  }
-
-  func timesTaken(for:Date)->[TakeTime]{
-    return [TakeTime(hour:7, minute:00)]
-  }
-}
-
-struct Condition{
-  var name:String
-
-  var description:String{
-    return name
-  }
-}
-
-struct MedicationSource{
-  var name:String
-  var isPharmacy:Bool
-  var isHospital:Bool
-  var isDoctor:Bool
-  var isOverTheCounter:Bool
-}
-
-struct Prescription{
-  var drug:Drug?
-  var unitStrength:Potency?
-  var dosageForm:DosageForm?
-  var quantityPrescribed:Int?
-  var refillsPrescribed:Int?
-  var writtenDirections:String?
-
-  var obtainedFrom:MedicationSource?
-  var conditionPrescribedFor:Condition?
-}
 
 extension Prescription{
   var title:String{
-    return drug?.shortName ?? "Drug Name"
+    return dosage?.shortName  ?? ""
   }
   var subTitle:String{
     return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
@@ -99,16 +36,16 @@ class PrescriptionListViewController: UIViewController {
 
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
 
-    if segue.identifier == "doneEditingPrescription"{
-      let prescription = (segue.source as? PrescriptionEntryViewController)?.prescription
-      var rx = Prescription()
-      let display = "\(prescription?.name ?? prescription?.dosageForm ?? "Drug") \(prescription?.userCount ?? "1") x \(prescription?.drugUnitSummary ?? "dose")"
-
-      rx.drug = Drug(name: display)
-      viewModel.prescriptions.append(rx)
-      global_allDrugs = viewModel.prescriptions.flatMap{$0.drug}
-      tableView.reloadData()
+    guard segue.identifier == "doneEditingPrescription" else{
+      return
     }
+    guard let rx = (segue.source as? PrescriptionEntryViewController)?.prescription else{
+        return
+    }
+
+    viewModel.prescriptions.append(rx)
+    global_allDrugs = viewModel.prescriptions.flatMap{$0.dosage}
+    tableView.reloadData()
   }
 
 

@@ -8,4 +8,65 @@
 
 import Foundation
 
-var global_allDrugs:[Drug] = []
+var global_allDrugs:[Dosage] = []
+
+
+struct DosingSchedule{
+  var periodLength:Int
+  var dosesPerPeriod:Int
+  var isWakeToTake:Bool = false
+  var isOnlyForConsumptionWithFood:Bool = false
+}
+
+struct Prescriber{
+
+}
+
+struct DosageForm{
+
+}
+
+struct TakeTime{
+  var hour:Int
+  var minute:Int
+}
+
+struct Potency{
+
+}
+
+struct Dosage{
+  var name:String
+  var form:String?
+
+  var shortName:String{
+    return name
+  }
+
+  func timesTaken(for:Date)->[TakeTime]{
+    return [TakeTime(hour:7, minute:00)]
+  }
+}
+
+struct Condition{
+  var name:String
+
+  var description:String{
+    return name
+  }
+}
+
+struct MedicationSource{
+  var name:String
+  var isPharmacy:Bool
+  var isHospital:Bool
+  var isDoctor:Bool
+  var isOverTheCounter:Bool
+}
+
+struct Prescription{
+  var dosage:Dosage?
+  var prescriber:Prescriber?
+  var obtainedFrom:MedicationSource?
+  var conditionPrescribedFor:Condition?
+}

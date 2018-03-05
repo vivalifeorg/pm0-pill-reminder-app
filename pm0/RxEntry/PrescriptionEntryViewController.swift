@@ -398,9 +398,11 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       schedules.map{SearchTextFieldItem(listable:$0)})
   }
 
-  var prescription:DisplayDrug?{
+  var prescription:Prescription?{
+    let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userCount ?? "1") x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
     lastSelectedDrug?.userCount = quantityLine.searchTextField.text ?? "1"
-    return lastSelectedDrug
+    let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm )
+    return Prescription(dosage: dosage, prescriber: nil, obtainedFrom: nil, conditionPrescribedFor: nil)
   }
 
   var medicationName:String?{

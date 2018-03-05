@@ -73,9 +73,9 @@ class UpcomingDayViewController: UITableViewController {
     var medications:[TimeSlotItem]
   }
 
-  var drugs:[Drug]=[] {
+  var scheduledDosages:[Dosage]=[] {
     didSet{
-      let appliedSchedule = scheduleForDate(Date(),drugs:drugs)
+      let appliedSchedule = scheduleForDate(Date(),drugs:scheduledDosages)
       debugPrint(appliedSchedule)
       sections = sectionsForSchedule(timeSlots: appliedSchedule)
     }
@@ -128,8 +128,8 @@ class UpcomingDayViewController: UITableViewController {
     }
   }
 
-  func scheduleForDate(_ date:Date, drugs:[Drug]) -> [TimeSlot] {
-    var times:[Int:[Drug]] = [:]
+  func scheduleForDate(_ date:Date, drugs:[Dosage]) -> [TimeSlot] {
+    var times:[Int:[Dosage]] = [:]
     for dose in drugs{
       for time in dose.timesTaken(for: date){
         var dosesAtTime = times[minuteOffset(hour: time.hour, minute: time.minute)] ?? []
@@ -194,7 +194,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    drugs = global_allDrugs
+    scheduledDosages = global_allDrugs
   }
 
   static let cellIdentifier = "UpcomingDayViewControllerDoseCell"
