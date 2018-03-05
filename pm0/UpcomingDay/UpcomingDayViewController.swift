@@ -8,6 +8,45 @@
 
 import UIKit
 
+
+class UpcomingDayViewControllerDoseCell:UITableViewCell{
+
+  @IBOutlet weak var nextDoseIndicator:UILabel!
+  @IBOutlet weak var doseLabel: PillDisplayLabel!
+
+  enum Opacity{
+    case bright
+    case dim
+  }
+
+  static var defaultReuseIdentifier: String {
+    return NSStringFromClass(self)
+  }
+
+  var isTaken:Bool{
+    get{
+      return accessoryType == .checkmark
+    }
+    set{
+      return accessoryType = newValue ? .checkmark : .none
+    }
+  }
+
+  var opacity:Opacity {
+    set{
+      switch newValue{
+      case .bright:
+        contentView.alpha = 1.0
+      case .dim:
+        contentView.alpha = 0.4
+      }
+    }
+    get{
+      return (doseLabel.alpha < 1.0) ? .dim : .bright
+    }
+  }
+}
+
 class UpcomingDayViewController: UITableViewController {
 
   override func viewDidLoad() {
@@ -17,6 +56,9 @@ class UpcomingDayViewController: UITableViewController {
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
     tableView.sectionHeaderHeight = 40
+
+    tableView.register(UpcomingDayViewControllerDoseCell.self,
+                       forCellReuseIdentifier: UpcomingDayViewControllerDoseCell.defaultReuseIdentifier)
   }
 
   override func didReceiveMemoryWarning() {
@@ -25,17 +67,17 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct Section{
-    var name:String
     var headerText:String
     var footerText:String
     var rowCount:Int{return medications.count}
-    var medications:[Drug]
+    var medications:[TimeSlotItem]
   }
 
   var drugs:[Drug]=[] {
     didSet{
       let appliedSchedule = scheduleForDate(Date(),drugs:drugs)
       debugPrint(appliedSchedule)
+      sections = sectionsForSchedule(timeSlots: appliedSchedule)
     }
   }
 
@@ -47,7 +89,8 @@ class UpcomingDayViewController: UITableViewController {
     let name:String?
     let date:Date
     var items:[TimeSlotItem]
-    var description:String{
+
+    var slotDescription:String{
       let dateFormatter = DateFormatter()
       dateFormatter.timeZone = Calendar.current.timeZone
       dateFormatter.dateStyle = .none
@@ -59,8 +102,12 @@ class UpcomingDayViewController: UITableViewController {
         return "\(time)"
       }
     }
+
+    var description:String{
+      return "\(slotDescription): \(items)"
+    }
     var debugDescription:String{
-      return description + ": " + items.debugDescription
+      return description
     }
   }
 
@@ -69,15 +116,25 @@ class UpcomingDayViewController: UITableViewController {
     var isTaken:Bool
   }
 
+  func calculateSectionFooter(timeSlot:TimeSlot)->String{
+    return "^ X Pills Remaining"
+  }
+
+  func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
+    return timeSlots.map{
+      Section(headerText: $0.slotDescription,
+              footerText: calculateSectionFooter(timeSlot: $0),
+              medications: $0.items)
+    }
+  }
+
   func scheduleForDate(_ date:Date, drugs:[Drug]) -> [TimeSlot] {
-
-
     var times:[Int:[Drug]] = [:]
-    for drug in drugs{
-      for time in drug.timesTaken(for: date){
-        var currentListOfDrugsAtTime = times[minuteOffset(hour: time.hour, minute: time.minute)] ?? []
-        currentListOfDrugsAtTime.append(drug)
-        times[minuteOffset(hour: time.hour, minute: time.minute)] = currentListOfDrugsAtTime
+    for dose in drugs{
+      for time in dose.timesTaken(for: date){
+        var dosesAtTime = times[minuteOffset(hour: time.hour, minute: time.minute)] ?? []
+        dosesAtTime.append(dose)
+        times[minuteOffset(hour: time.hour, minute: time.minute)] = dosesAtTime
       }
     }
 
@@ -129,21 +186,35 @@ class UpcomingDayViewController: UITableViewController {
     ("Dinner","6 pm",18,0),
     ("Bedtime","10 pm",22,0)
   ]
-  var sections:[Section]=[]
+
+  var sections:[Section] = [] {
+    didSet{
+      self.tableView?.reloadData()
+    }
+  }
 
   override func viewDidAppear(_ animated: Bool) {
     drugs = global_allDrugs
   }
+
+  static let cellIdentifier = "UpcomingDayViewControllerDoseCell"
 }
 
 
 //UITableView DataSource
 extension UpcomingDayViewController{
+  func dequeueDoseCellForIndexPath(_ tableView:UITableView, indexPath:IndexPath)->UpcomingDayViewControllerDoseCell{
+    return tableView.dequeueReusableCell(withIdentifier: UpcomingDayViewController.cellIdentifier, for: indexPath) as! UpcomingDayViewControllerDoseCell
+  }
+
   override func tableView(_ tableView: UITableView,
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-    let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingDayViewControllerDoseCell", for: indexPath)
-    cell.textLabel?.text = sections[indexPath.section].medications[indexPath.row].name
-    return UITableViewCell()
+    let cell = dequeueDoseCellForIndexPath(tableView,indexPath:indexPath)
+    let dose = sections[indexPath.section].medications[indexPath.row]
+    cell.doseLabel?.text = dose.name
+    cell.isTaken = dose.isTaken
+    cell.opacity = .bright //TODO set 
+    return cell
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int{
