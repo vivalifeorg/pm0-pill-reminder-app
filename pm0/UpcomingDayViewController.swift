@@ -44,6 +44,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct TimeSlot{
+    let name:String?
     let date:Date
     var items:[TimeSlotItem]
     var description:String{
@@ -51,7 +52,12 @@ class UpcomingDayViewController: UITableViewController {
       dateFormatter.timeZone = Calendar.current.timeZone
       dateFormatter.dateStyle = .none
       dateFormatter.timeStyle = .short
-      return dateFormatter.string(from: date)
+      let time = dateFormatter.string(from: date)
+      if let name = name {
+        return "\(name) @ \(time)"
+      }else{
+        return "\(time)"
+      }
     }
     var debugDescription:String{
       return description + ": " + items.debugDescription
@@ -65,13 +71,8 @@ class UpcomingDayViewController: UITableViewController {
 
   func scheduleForDate(_ date:Date, drugs:[Drug]) -> [TimeSlot] {
 
-    var times:[Int:[Drug]] = [:]
-    for item in hardcodedSectionInfo{
-      let hour = item.2
-      let minute = item.3
-      times[minuteOffset(hour:hour,minute:minute)] = []
-    }
 
+    var times:[Int:[Drug]] = [:]
     for drug in drugs{
       for time in drug.timesTaken(for: date){
         var currentListOfDrugsAtTime = times[minuteOffset(hour: time.hour, minute: time.minute)] ?? []
@@ -88,6 +89,15 @@ class UpcomingDayViewController: UITableViewController {
     thisDay.minute = 0
     thisDay.nanosecond = 0
 
+
+    var names:[Int:String] = [:]
+    for item in hardcodedSectionInfo{
+      let hour = item.2
+      let minute = item.3
+      let offset = minuteOffset(hour:hour,minute:minute)
+      names[offset] = item.0
+    }
+
     var timeSlots:[TimeSlot] = []
     for minuteOffset in times.keys.sorted(){
       let dosesAtTime = times[minuteOffset] ?? []
@@ -99,13 +109,13 @@ class UpcomingDayViewController: UITableViewController {
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
       let displayable = dosesAtTime.map{ TimeSlotItem(name:$0.name,isTaken:false) }
-      let timeSlot = TimeSlot(date:timeSlotDate,
+      let timeSlot = TimeSlot(name:names[minuteOffset],
+                             date:timeSlotDate,
                              items:displayable)
       timeSlots.append(timeSlot)
 
       debugPrint("\(thisTime.hour!):\(thisTime.minute!) \(timeSlot)")
     }
-
 
     return timeSlots
   }
