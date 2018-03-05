@@ -46,7 +46,6 @@
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
-		89B4E1CE204DE55B00A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UpcomingDay.storyboard; path = "/Users/mlangford/Projects/z-Clients/vl-PerscriptionTracker/ios-pill-app/pm0/New Group/UpcomingDay.storyboard"; sourceTree = "<absolute>"; };
 		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 			children = (
 				89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
-				89B4E1CE204DE55B00A09B27 /* UpcomingDay.storyboard */,
 				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 			);
 			path = UpcomingDay;
