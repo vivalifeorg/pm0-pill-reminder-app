@@ -134,7 +134,10 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   func calculateSectionFooter(timeSlot:TimeSlot)->String{
-    return "^ X Pills Remaining"
+    let total = timeSlot.items.reduce(0){
+      $1.isTaken ? $0 : $0 + 1
+    }
+    return "           ^ \(total) remaining"
   }
 
   func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
