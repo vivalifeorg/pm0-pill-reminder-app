@@ -25,6 +25,11 @@ struct DosageForm{
 
 }
 
+struct TakeTime{
+  var hour:Int
+  var minute:Int
+}
+
 struct Potency{
 
 }
@@ -34,6 +39,10 @@ struct Drug{
 
   var shortName:String{
     return name
+  }
+
+  func timesTaken(for:Date)->[TakeTime]{
+    return [TakeTime(hour:7, minute:00)]
   }
 }
 
@@ -152,6 +161,7 @@ class PrescriptionListViewController: UIViewController {
 
       rx.drug = Drug(name: display)
       viewModel.prescriptions.append(rx)
+      global_allDrugs = viewModel.prescriptions.flatMap{$0.drug}
       tableView.reloadData()
     }
   }

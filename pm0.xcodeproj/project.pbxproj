@@ -10,6 +10,7 @@
 		49D7508004021DB8F5EE2728 /* Pods_pm0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */; };
 		890242E02033941C00B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
+		8954AC5F204DCE1B00E97305 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8954AC5E204DCE1B00E97305 /* Models.swift */; };
 		896052BC20470B6400DF502C /* PrescriptionLineEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */; };
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		35B9C2C23FA9874E99DB4672 /* Pods-pm0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.release.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.release.xcconfig"; sourceTree = "<group>"; };
 		890242DF2033941C00B25E99 /* fda_drugs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fda_drugs.db; sourceTree = "<group>"; };
+		8954AC5E204DCE1B00E97305 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionLineEntry.xib; sourceTree = "<group>"; };
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
 				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
+				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
 				896052BF20470D9400DF502C /* RxEntry */,
@@ -355,6 +358,7 @@
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
+				8954AC5F204DCE1B00E97305 /* Models.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
