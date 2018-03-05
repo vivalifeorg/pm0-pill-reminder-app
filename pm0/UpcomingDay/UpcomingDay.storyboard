@@ -77,7 +77,7 @@
                                 <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="44" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="doseLabel" destination="cK1-XL-Ras" id="msT-7j-XvI"/>
+                                    <outlet property="dosageLabel" destination="cK1-XL-Ras" id="msT-7j-XvI"/>
                                     <outlet property="nextDoseIndicator" destination="b5Z-dw-gCY" id="sKx-Ph-qgu"/>
                                 </connections>
                             </tableViewCell>

@@ -12,11 +12,20 @@ import UIKit
 class UpcomingDayViewControllerDoseCell:UITableViewCell{
 
   @IBOutlet weak var nextDoseIndicator:UILabel!
-  @IBOutlet weak var doseLabel: PillDisplayLabel!
+  @IBOutlet weak var dosageLabel: PillDisplayLabel!
 
   enum Opacity{
     case bright
     case dim
+  }
+
+  var isIndicated:Bool{
+    get{
+      return !nextDoseIndicator.isHidden
+    }
+    set{
+      nextDoseIndicator.isHidden = !newValue
+    }
   }
 
   static var defaultReuseIdentifier: String {
@@ -42,7 +51,7 @@ class UpcomingDayViewControllerDoseCell:UITableViewCell{
       }
     }
     get{
-      return (doseLabel.alpha < 1.0) ? .dim : .bright
+      return (dosageLabel.alpha < 1.0) ? .dim : .bright
     }
   }
 }
@@ -71,6 +80,14 @@ class UpcomingDayViewController: UITableViewController {
     var footerText:String
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
+    var firstUntakenItemIndex:Int?{
+      for i in 0..<rowCount{
+        if !(medications[i].isTaken){
+          return i
+        }
+      }
+      return nil
+    }
   }
 
   var scheduledDosages:[Dosage]=[] {
@@ -210,10 +227,12 @@ extension UpcomingDayViewController{
   override func tableView(_ tableView: UITableView,
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     let cell = dequeueDoseCellForIndexPath(tableView,indexPath:indexPath)
-    let dose = sections[indexPath.section].medications[indexPath.row]
-    cell.doseLabel?.text = dose.name
-    cell.isTaken = dose.isTaken
-    cell.opacity = .bright //TODO set 
+    let section = sections[indexPath.section]
+    let dosage = section.medications[indexPath.row]
+    cell.dosageLabel?.text = dosage.name
+    cell.isTaken = dosage.isTaken
+    cell.opacity = .bright //TODO set
+    cell.isIndicated = (section.firstUntakenItemIndex == indexPath.row)
     return cell
   }
 
