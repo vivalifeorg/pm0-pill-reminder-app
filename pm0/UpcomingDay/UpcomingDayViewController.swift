@@ -79,10 +79,12 @@ class UpcomingDayViewController: UITableViewController {
   var firstUntakenItem:IndexPath?{
     for sectionComponent in 0..<sections.count{
       for rowComponent in 0..<sections[sectionComponent].medications.count{
+
         let medication = sections[sectionComponent].medications[rowComponent]
-        if !medication.isTaken {
-          return IndexPath(indexes: [sectionComponent,rowComponent])
-        }
+        guard !medication.isTaken else {continue}
+
+        return IndexPath(indexes: [sectionComponent,rowComponent])
+
       }
     }
     return nil
@@ -93,12 +95,7 @@ class UpcomingDayViewController: UITableViewController {
     var footerText:String
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
-    var activeTimes:[(Date,Date)]
-    var isActiveNow:Bool{
-      let now = Date()
-      return activeTimes[0].0 <= now &&
-        now < activeTimes[0].1
-    }
+    var isActive:(Date)->Bool
   }
 
   var scheduledDosages:[Dosage]=[] {
@@ -153,10 +150,19 @@ class UpcomingDayViewController: UITableViewController {
 
   func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
     return timeSlots.map{
-      Section(headerText: $0.slotDescription,
+      let startTime = $0.date
+      let minutesBefore = 60.0
+      let minutesAfterSlotStart = 30.0
+      let activeStart = startTime.addingTimeInterval(-minutesBefore * 60.0)
+      let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
+      debugPrint("\(activeStart) \(activeStop) for \(startTime)")
+      return Section(headerText: $0.slotDescription,
               footerText: calculateSectionFooter(timeSlot: $0),
               medications: $0.items,
-              activeTimes: [($0.date,$0.date)])
+              isActive:{ (now:Date) in
+                activeStart <= now &&
+                now < activeStop
+              })
     }
   }
 
@@ -238,7 +244,7 @@ extension UpcomingDayViewController{
     let dosage = section.medications[indexPath.row]
     cell.dosageLabel?.text = dosage.name
     cell.isTaken = dosage.isTaken
-    cell.opacity = .bright //TODO set
+    cell.opacity = section.isActive(Date()) ? .bright : .dim
 
     if let firstUntakenItem = firstUntakenItem {
       cell.isIndicated = (firstUntakenItem == indexPath)
