@@ -168,11 +168,11 @@ class UpcomingDayViewController: UITableViewController {
 
 
     var names:[Int:String] = [:]
-    for item in hardcodedSectionInfo{
-      let hour = item.2
-      let minute = item.3
-      let offset = minuteOffset(hour:hour,minute:minute)
-      names[offset] = item.0
+    let defaultEvents = TemporalEvent.defaultEventTimes.keys
+    for item in defaultEvents{
+      guard let name = item.name else{ continue}
+
+      names[minuteOffset(hour: item.hourOffset, minute: item.minuteOffset)] = name
     }
 
     var timeSlots:[TimeSlot] = []
@@ -197,15 +197,7 @@ class UpcomingDayViewController: UITableViewController {
     return timeSlots
   }
 
-  var hardcodedSectionInfo:[(String,String,Int,Int)] = [
-    ("Wake-up","7 am",7,0),
-    ("Breakfast","8 am",8,0),
-    ("Morning Snack", "10 am",10,0),
-    ("Lunch","Noon",12,0),
-    ("Afternoon Snack","3 pm",15,0),
-    ("Dinner","6 pm",18,0),
-    ("Bedtime","10 pm",22,0)
-  ]
+
 
   var sections:[Section] = [] {
     didSet{

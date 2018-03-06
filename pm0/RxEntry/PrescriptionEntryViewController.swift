@@ -129,17 +129,18 @@ struct TemporalEvent:Hashable{
     return nil
   }
 
+  static let defaultEventTimes:[TemporalEvent:(HourOffset,MinuteOffset)] = [
+    DefaultEvents.wakeUp: (7,30),
+    DefaultEvents.breakfast: (8,00),
+    DefaultEvents.morningSnack: (10,30),
+    DefaultEvents.lunch: (12,00),
+    DefaultEvents.afternoonSnack: (14,30),
+    DefaultEvents.dinner: (18,00),
+    DefaultEvents.bedTime: (22,00)
+  ]
   static func timeOffsetsForEvent(_ event:TemporalEvent)->(hour:HourOffset,minute:MinuteOffset){
-    let defaults:[TemporalEvent:(HourOffset,MinuteOffset)] = [
-      DefaultEvents.wakeUp: (7,30),
-      DefaultEvents.breakfast: (8,00),
-      DefaultEvents.morningSnack: (10,30),
-      DefaultEvents.lunch: (12,00),
-      DefaultEvents.afternoonSnack: (14,30),
-      DefaultEvents.dinner: (18,00),
-      DefaultEvents.bedTime: (22,00)
-    ]
-    return userOverridenTimeOffsetFor(event) ?? defaults[event] ?? (9,00)
+
+    return userOverridenTimeOffsetFor(event) ?? defaultEventTimes[event] ?? (9,00)
   }
 
   init(name:String?, eventType:EventType){

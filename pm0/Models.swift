@@ -29,6 +29,7 @@ struct DosageForm{
 struct TakeTime{
   var hour:Int
   var minute:Int
+  var timeName:String?
 }
 
 struct Potency{
@@ -46,7 +47,8 @@ struct Dosage{
   func timesTaken(for:Date)->[TakeTime]{
     return events.map{
       TakeTime(hour:$0.hourOffset,
-               minute:$0.minuteOffset)
+               minute:$0.minuteOffset,
+        timeName: $0.name)
     }
   }
 }
