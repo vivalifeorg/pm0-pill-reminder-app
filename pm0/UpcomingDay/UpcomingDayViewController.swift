@@ -75,18 +75,29 @@ class UpcomingDayViewController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
+
+  var firstUntakenItem:IndexPath?{
+    for sectionComponent in 0..<sections.count{
+      for rowComponent in 0..<sections[sectionComponent].medications.count{
+        let medication = sections[sectionComponent].medications[rowComponent]
+        if !medication.isTaken {
+          return IndexPath(indexes: [sectionComponent,rowComponent])
+        }
+      }
+    }
+    return nil
+  }
+
   struct Section{
     var headerText:String
     var footerText:String
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
-    var firstUntakenItemIndex:Int?{
-      for i in 0..<rowCount{
-        if !(medications[i].isTaken){
-          return i
-        }
-      }
-      return nil
+    var activeTimes:[(Date,Date)]
+    var isActiveNow:Bool{
+      let now = Date()
+      return activeTimes[0].0 <= now &&
+        now < activeTimes[0].1
     }
   }
 
@@ -144,7 +155,8 @@ class UpcomingDayViewController: UITableViewController {
     return timeSlots.map{
       Section(headerText: $0.slotDescription,
               footerText: calculateSectionFooter(timeSlot: $0),
-              medications: $0.items)
+              medications: $0.items,
+              activeTimes: [($0.date,$0.date)])
     }
   }
 
@@ -227,7 +239,13 @@ extension UpcomingDayViewController{
     cell.dosageLabel?.text = dosage.name
     cell.isTaken = dosage.isTaken
     cell.opacity = .bright //TODO set
-    cell.isIndicated = (section.firstUntakenItemIndex == indexPath.row)
+
+    if let firstUntakenItem = firstUntakenItem {
+      cell.isIndicated = (firstUntakenItem == indexPath)
+    }else{
+      cell.isIndicated = false
+    }
+
     return cell
   }
 
