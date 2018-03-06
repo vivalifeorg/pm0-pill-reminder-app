@@ -96,9 +96,97 @@ var doctors = [
   DisplayDoctor(name:"James Jodi, NP", specialities:["General Care"])
 ]
 
+typealias MinuteOffset = Int
+typealias HourOffset = Int
+
+struct TemporalEvent:Hashable{
+  var hashValue: Int {
+      return "\(name ?? "non-named")\(eventType)".hashValue
+  }
+
+  let name:String?
+
+  let eventType:EventType
+
+  var hourOffset:HourOffset {
+    return TemporalEvent.timeOffsetsForEvent(self).hour
+  }
+
+  var minuteOffset:MinuteOffset {
+    return TemporalEvent.timeOffsetsForEvent(self).minute
+  }
+
+  //todo fix broken ==
+  static func ==(lhs:TemporalEvent, rhs:TemporalEvent) -> Bool{
+    return lhs.name == rhs.name &&
+      lhs.eventType == rhs.eventType
+//      &&
+//      lhs.hourOffset == rhs.hourOffset &&
+//      lhs.minuteOffset == rhs.minuteOffset
+  }
+
+  static func userOverridenTimeOffsetFor(_ event:TemporalEvent) -> (hour:HourOffset,minute:MinuteOffset)?{
+    return nil
+  }
+
+  static func timeOffsetsForEvent(_ event:TemporalEvent)->(hour:HourOffset,minute:MinuteOffset){
+    let defaults:[TemporalEvent:(HourOffset,MinuteOffset)] = [
+      DefaultEvents.wakeUp: (7,30),
+      DefaultEvents.breakfast: (8,00),
+      DefaultEvents.morningSnack: (10,30),
+      DefaultEvents.lunch: (12,00),
+      DefaultEvents.afternoonSnack: (14,30),
+      DefaultEvents.dinner: (18,00),
+      DefaultEvents.bedTime: (22,00)
+    ]
+    return userOverridenTimeOffsetFor(event) ?? defaults[event] ?? (9,00)
+  }
+
+  init(name:String?, eventType:EventType){
+    self.name = name
+    self.eventType = eventType
+  }
+}
+
+enum EventType{
+  case meal
+  case sleep
+  case time
+}
+
+enum DefaultEvents{
+  static let breakfast = TemporalEvent(name:"Breakfast",
+                                eventType:.meal)
+
+  static let morningSnack = TemporalEvent(name:"Morning Snack",
+                                   eventType:.meal)
+
+  static let lunch = TemporalEvent(name:"Lunch",
+                            eventType:.meal)
+
+  static let afternoonSnack = TemporalEvent(name:"Afternoon Snack",
+                                     eventType:.meal)
+
+  static let dinner = TemporalEvent(name:"Dinner",
+                             eventType:.meal)
+
+  static let wakeUp = TemporalEvent(name:"Wake-up",
+                                    eventType:.sleep)
+
+  static let bedTime = TemporalEvent(name:"Bedtime",
+                                     eventType:.sleep)
+
+  static var defaultSlot:TemporalEvent {
+    return DefaultEvents.wakeUp
+  }
+}
+
+
+
 struct DisplaySchedule{
   var name:String
   var examples:[String]
+  var events:[TemporalEvent]
 }
 
 extension DisplaySchedule:Listable{
@@ -116,25 +204,25 @@ var schedules = [
                   examples:["Once per day",
                             "Immeadiately upon awakening",
                             "Before breakfast",
-                            "First thing"]),
+                            "First thing"], events: [DefaultEvents.wakeUp]),
   DisplaySchedule(name:"With Breakfast",
                   examples:["Once a day with food",
                             "Early in the day with food",
-                            "First thing in the morning with food"]),
+                            "First thing in the morning with food"], events: [DefaultEvents.breakfast]),
   DisplaySchedule(name:"With Lunch",
                   examples:["Once a day with food",
                             "Early in the day with food",
-                            "Avoid taking with alcohol"]),
+                            "Avoid taking with alcohol"], events: [DefaultEvents.lunch]),
   DisplaySchedule(name:"With Breakfast and Dinner",
                   examples:["Twice a day with food",
                             "At least 6 hours apart",
-                            "At least 4 hours apart"]),
+                            "At least 4 hours apart"], events: [DefaultEvents.breakfast,DefaultEvents.dinner]),
   DisplaySchedule(name:"Custom",
                   examples:["Make my own schedule",
                             "Other",
                             "Something else",
                             "Every other day",
-                            "Once a week"," "])
+                            "Once a week"," "], events: [])
 ]
 
 struct DisplayDoctor{
@@ -168,6 +256,23 @@ extension DisplayDrug{
   }
 }
 
+extension PrescriptionLineEntry{
+  var events:[TemporalEvent] {
+
+    guard let text = self.searchTextField.text else {
+      return []
+    }
+
+    for s in schedules{
+      if s.name == text {
+        return s.events
+      }
+    }
+
+    return [DefaultEvents.defaultSlot]
+  }
+}
+
 
 class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
@@ -182,7 +287,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   @IBOutlet weak var conditionLine: PrescriptionLineEntry!
 
 
-  
+
 
 
   @IBAction func doctorContactAddressButtonTapped(_ sender: Any) {
@@ -401,7 +506,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   var prescription:Prescription?{
     let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userCount ?? "1") x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
     lastSelectedDrug?.userCount = quantityLine.searchTextField.text ?? "1"
-    let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm )
+    let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm, events:scheduleLine.events)
     return Prescription(dosage: dosage, prescriber: nil, obtainedFrom: nil, conditionPrescribedFor: nil)
   }
 

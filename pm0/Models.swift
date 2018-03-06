@@ -38,13 +38,16 @@ struct Potency{
 struct Dosage{
   var name:String
   var form:String?
-
+  var events:[TemporalEvent]
   var shortName:String{
     return name
   }
 
   func timesTaken(for:Date)->[TakeTime]{
-    return [TakeTime(hour:7, minute:00)]
+    return events.map{
+      TakeTime(hour:$0.hourOffset,
+               minute:$0.minuteOffset)
+    }
   }
 }
 
