@@ -65,6 +65,7 @@ class UpcomingDayViewController: UITableViewController {
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
     tableView.sectionHeaderHeight = 40
+    tableView.allowsSelection = true
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
                        forCellReuseIdentifier: UpcomingDayViewControllerDoseCell.defaultReuseIdentifier)
@@ -274,5 +275,13 @@ extension UpcomingDayViewController{
 
 //UITableView Delegate
 extension UpcomingDayViewController{
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let oldIndicatorTarget = firstUntakenItem
+    sections[indexPath.section].medications[indexPath.row].isTaken =
+      !sections[indexPath.section].medications[indexPath.row].isTaken
+    let newIndicatorTarget = firstUntakenItem
+    let toReload = [oldIndicatorTarget,newIndicatorTarget].flatMap{$0?.section}
 
+    tableView.reloadSections(IndexSet(toReload), with: UITableViewRowAnimation.automatic)
+  }
 }
