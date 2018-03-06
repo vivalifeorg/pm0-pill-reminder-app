@@ -152,10 +152,10 @@ class UpcomingDayViewController: UITableViewController {
     return timeSlots.map{
       let startTime = $0.date
       let minutesBefore = 60.0
-      let minutesAfterSlotStart = 30.0
+      let minutesAfterSlotStart = 60.0
       let activeStart = startTime.addingTimeInterval(-minutesBefore * 60.0)
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
-      debugPrint("\(activeStart) \(activeStop) for \(startTime)")
+      //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
       return Section(headerText: $0.slotDescription,
               footerText: calculateSectionFooter(timeSlot: $0),
               medications: $0.items,
