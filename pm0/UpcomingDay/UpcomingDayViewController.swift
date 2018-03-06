@@ -142,11 +142,15 @@ class UpcomingDayViewController: UITableViewController {
     var isTaken:Bool
   }
 
-  func calculateSectionFooter(timeSlot:TimeSlot)->String{
-    let total = timeSlot.items.reduce(0){
+  func calculateSectionFooter(timeSlotItems:[TimeSlotItem])->String{
+    let total = timeSlotItems.reduce(0){
       $1.isTaken ? $0 : $0 + 1
     }
-    return "           ^ \(total) remaining"
+    let leader = "           "
+    if total == 0 {
+      return "\(leader)^Completed!"
+    }
+    return "\(leader)^\(total) remaining"
   }
 
   func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
@@ -158,7 +162,7 @@ class UpcomingDayViewController: UITableViewController {
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
       //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
       return Section(headerText: $0.slotDescription,
-              footerText: calculateSectionFooter(timeSlot: $0),
+              footerText: calculateSectionFooter(timeSlotItems: $0.items),
               medications: $0.items,
               isActive:{ (now:Date) in
                 activeStart <= now &&
@@ -275,6 +279,27 @@ extension UpcomingDayViewController{
 
 //UITableView Delegate
 extension UpcomingDayViewController{
+
+  func updateSections(_ tableView:UITableView,sectionsToUpdate:[Int]){
+     tableView.reloadSections(IndexSet(sectionsToUpdate), with: UITableViewRowAnimation.automatic)
+
+    UIView.setAnimationsEnabled(false)
+    tableView.beginUpdates()
+
+      for sectionIndex in sectionsToUpdate{
+
+        if let containerView = tableView.footerView(forSection: sectionIndex) {
+          let newFooterText = calculateSectionFooter(timeSlotItems: sections[sectionIndex].medications)
+          sections[sectionIndex].footerText = newFooterText
+          containerView.textLabel!.text = newFooterText
+        containerView.sizeToFit()
+      }
+    }
+    tableView.endUpdates()
+    UIView.setAnimationsEnabled(true)
+
+  }
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let oldIndicatorTarget = firstUntakenItem
     sections[indexPath.section].medications[indexPath.row].isTaken =
@@ -282,6 +307,6 @@ extension UpcomingDayViewController{
     let newIndicatorTarget = firstUntakenItem
     let toReload = [oldIndicatorTarget,newIndicatorTarget].flatMap{$0?.section}
 
-    tableView.reloadSections(IndexSet(toReload), with: UITableViewRowAnimation.automatic)
+    updateSections(tableView,sectionsToUpdate: toReload)
   }
 }
