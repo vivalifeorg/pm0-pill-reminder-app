@@ -65,6 +65,8 @@ class PrescriptionListViewController: UIViewController {
     tableView.sectionHeaderHeight = 40
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
+
+    
   }
 
   static var cellIdentifier:String{

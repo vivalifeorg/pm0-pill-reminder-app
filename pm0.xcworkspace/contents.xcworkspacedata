@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:pm0/PrescriptionListViewController.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:pm0.xcodeproj">
    </FileRef>
    <FileRef

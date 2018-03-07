@@ -6,73 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Prescription List-->
-        <scene sceneID="hNz-n2-bh7">
-            <objects>
-                <viewController id="9pv-A4-QxB" userLabel="Prescription List" customClass="PrescriptionListViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="40" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="GEq-Ce-C4F">
-                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <viewLayoutGuide key="safeArea" id="8Ny-Qm-8uh"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PrescriptionListViewControllerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrescriptionListViewControllerCell" id="Me6-2r-dzt">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me6-2r-dzt" id="RY7-qK-vjw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.098039215686274508" green="0.22745098039215686" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0J-k3-GBe">
-                                <rect key="frame" x="87.666666666666686" y="664" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="YG3-tj-0gu"/>
-                                    <constraint firstAttribute="width" constant="200" id="dom-p5-AGa"/>
-                                </constraints>
-                                <state key="normal" image="BottomAddButton"/>
-                                <connections>
-                                    <action selector="addTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7vN-Fa-Ytn"/>
-                                    <segue destination="eME-Ou-gsK" kind="popoverPresentation" popoverAnchorView="q0J-k3-GBe" id="1y7-9p-zf2">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="GEq-Ce-C4F" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="1Is-oH-mNi"/>
-                            <constraint firstItem="q0J-k3-GBe" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="82a-ch-lIz"/>
-                            <constraint firstItem="GEq-Ce-C4F" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="MCH-zP-W88"/>
-                            <constraint firstItem="GEq-Ce-C4F" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="NAz-qa-1M1"/>
-                            <constraint firstItem="GEq-Ce-C4F" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="dgG-mF-Czl"/>
-                            <constraint firstItem="GEq-Ce-C4F" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="du0-hZ-gdj"/>
-                            <constraint firstItem="q0J-k3-GBe" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" constant="135" id="ktN-dR-d0U"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Prescriptions" image="first" id="acW-dT-cKf" userLabel="Prescriptions">
-                        <color key="badgeColor" red="0.76456212999999995" green="0.93386453390000002" blue="0.39310157299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </tabBarItem>
-                    <connections>
-                        <outlet property="tableView" destination="GEq-Ce-C4F" id="xGT-fB-ztX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
-        </scene>
         <!--PrescriptionEntryNav-->
         <scene sceneID="g7P-2x-yp3">
             <objects>
@@ -94,7 +30,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="oCm-gI-AdH" kind="relationship" relationship="viewControllers" id="o3y-mH-1wK"/>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="SvV-ys-2Zl" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -111,9 +47,15 @@
             </objects>
             <point key="canvasLocation" x="882" y="437"/>
         </scene>
+        <!--PrescriptionListViewController-->
+        <scene sceneID="Gv5-AY-87X">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PrescriptionListViewController" id="SvV-ys-2Zl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="jkO-MQ-nwp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEP-5a-p8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+        </scene>
     </scenes>
-    <resources>
-        <image name="BottomAddButton" width="206" height="206"/>
-        <image name="first" width="23" height="10"/>
-    </resources>
 </document>
