@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iMG-cd-WTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wh7-lg-6GR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--My Day-->
         <scene sceneID="97D-1k-ZZY">
             <objects>
-                <tableViewController id="iMG-cd-WTy" customClass="UpcomingDayViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="My Day" id="iMG-cd-WTy" customClass="UpcomingDayViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="6" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4Td-au-hl7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,33 +23,9 @@
                         <color key="sectionIndexColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.16830222310000001" green="0.28917384149999997" blue="0.37265697120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="9Hb-rY-0JR">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73D-G4-3mF">
-                                    <rect key="frame" x="13" y="15" width="138" height="48"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.16830222310000001" green="0.28917384149999997" blue="0.37265697120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstItem="73D-G4-3mF" firstAttribute="leading" secondItem="9Hb-rY-0JR" secondAttribute="leading" constant="13" id="6ca-Xf-eTv"/>
-                                <constraint firstAttribute="bottom" secondItem="73D-G4-3mF" secondAttribute="bottom" constant="17" id="Czn-6o-efe"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="73D-G4-3mF" secondAttribute="trailing" id="WTC-ru-Yor"/>
-                            </constraints>
-                            <viewLayoutGuide key="safeArea" id="ayh-M9-Fda"/>
-                        </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="e96-SF-uE0">
-                            <rect key="frame" x="0.0" y="197.5" width="375" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="UpcomingDayViewControllerDoseCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingDayViewControllerDoseCell" id="IsH-R1-UJa" userLabel="PointedBrightCell" customClass="UpcomingDayViewControllerDoseCell" customModule="pm0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="135.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IsH-R1-UJa" id="XL5-5o-fg5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -91,11 +66,30 @@
                     <tabBarItem key="tabBarItem" title="My Day" image="second" selectedImage="second" id="w8F-di-bVq">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="My Day" largeTitleDisplayMode="always" id="yIv-Fc-fGD"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ek1-gf-gZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="882" y="437"/>
+        </scene>
+        <!--My Day-->
+        <scene sceneID="PtM-Nk-dkL">
+            <objects>
+                <navigationController title="My Day" id="Wh7-lg-6GR" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="HV0-ul-hrL">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="iMG-cd-WTy" kind="relationship" relationship="rootViewController" id="62U-TL-ayB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R9V-so-DyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10" y="456"/>
         </scene>
     </scenes>
     <resources>

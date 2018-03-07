@@ -82,7 +82,7 @@
                     <tabBarItem key="tabBarItem" title="Prescriptions" image="first" id="acW-dT-cKf" userLabel="Prescriptions">
                         <color key="badgeColor" red="0.76456212999999995" green="0.93386453390000002" blue="0.39310157299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Prescriptions" id="7rG-cW-eqS"/>
+                    <navigationItem key="navigationItem" title="Prescriptions" largeTitleDisplayMode="always" id="7rG-cW-eqS"/>
                     <connections>
                         <outlet property="tableView" destination="GEq-Ce-C4F" id="xGT-fB-ztX"/>
                     </connections>

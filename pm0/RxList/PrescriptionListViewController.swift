@@ -117,11 +117,6 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
     return viewModel.prescriptions.count
   }
 
-  func tableView(_ tableView:UITableView, titleForHeaderInSection: Int)->String?{
-    return "Prescriptions"
-  }
-
-
 }
 
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{

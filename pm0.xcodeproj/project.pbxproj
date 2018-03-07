@@ -106,8 +106,8 @@
 		894DBC3E205040460020353F /* RxList */ = {
 			isa = PBXGroup;
 			children = (
-				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
 				894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */,
+				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
 			);
 			path = RxList;
 			sourceTree = "<group>";
