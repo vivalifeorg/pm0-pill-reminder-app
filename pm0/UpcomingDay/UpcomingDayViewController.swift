@@ -154,7 +154,16 @@ class UpcomingDayViewController: UITableViewController {
     }
 
     var headerText:String
-    var footerText:String
+    var footerText:String{
+      let total = medications.reduce(0){
+        $1.isTaken ? $0 : $0 + 1
+      }
+      let leader = "           "
+      if total == 0 {
+        return "\(leader)^Completed!"
+      }
+      return "\(leader)^\(total) remaining"
+    }
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
     var isActive:(Date)->Bool
@@ -223,7 +232,6 @@ class UpcomingDayViewController: UITableViewController {
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
       //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
       return Section(headerText: $0.slotDescription,
-                     footerText: calculateSectionFooter(timeSlotItems: $0.items),
               medications: $0.items,
               isActive:{ (now:Date) in
                 activeStart <= now &&
@@ -343,22 +351,7 @@ extension UpcomingDayViewController{
 extension UpcomingDayViewController{
 
   func updateSections(_ tableView:UITableView,sectionsToUpdate:[Int]){
-     tableView.reloadSections(IndexSet(sectionsToUpdate), with: UITableViewRowAnimation.automatic)
-
-    UIView.setAnimationsEnabled(false)
-    tableView.beginUpdates()
-
-      for sectionIndex in sectionsToUpdate{
-
-        if let containerView = tableView.footerView(forSection: sectionIndex) {
-          let newFooterText = calculateSectionFooter(timeSlotItems: sections[sectionIndex].medications)
-          sections[sectionIndex].footerText = newFooterText
-          containerView.textLabel!.text = newFooterText
-        containerView.sizeToFit()
-      }
-    }
-    tableView.endUpdates()
-    UIView.setAnimationsEnabled(true)
+     tableView.reloadSections(IndexSet(sectionsToUpdate), with: UITableViewRowAnimation.none)
   }
 
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -381,8 +374,12 @@ extension UpcomingDayViewController{
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let oldIndicatorTarget = firstUntakenItem
-    sections[indexPath.section].medications[indexPath.row].isTaken =
-      !sections[indexPath.section].medications[indexPath.row].isTaken
+    let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
+    sections[indexPath.section].medications[indexPath.row].isTaken = !wasPreviouslyChecked
+    if wasPreviouslyChecked {
+      UIImpactFeedbackGenerator().impactOccurred()
+    }
+
     let newIndicatorTarget = firstUntakenItem
     let toReload = [oldIndicatorTarget,newIndicatorTarget].flatMap{$0?.section}
 
