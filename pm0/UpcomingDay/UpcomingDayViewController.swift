@@ -376,8 +376,8 @@ extension UpcomingDayViewController{
     let oldIndicatorTarget = firstUntakenItem
     let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
     sections[indexPath.section].medications[indexPath.row].isTaken = !wasPreviouslyChecked
-    if wasPreviouslyChecked {
-      UIImpactFeedbackGenerator().impactOccurred()
+    if !wasPreviouslyChecked {
+      UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
     }
 
     let newIndicatorTarget = firstUntakenItem
