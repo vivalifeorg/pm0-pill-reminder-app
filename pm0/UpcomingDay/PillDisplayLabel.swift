@@ -12,6 +12,7 @@ class PillDisplayLabel: UILabel{
 
   override func awakeFromNib() {
     layer.cornerRadius = 4
-    clipsToBounds = true 
+    clipsToBounds = true
+    backgroundColor = .clear
   }
 }

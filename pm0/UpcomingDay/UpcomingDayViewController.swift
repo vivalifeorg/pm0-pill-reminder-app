@@ -55,6 +55,56 @@ class UpcomingDayViewControllerDoseCell:UITableViewCell{
     }
   }
 }
+extension UIColor {
+
+  convenience init(hexString : String)
+  {
+    if let rgbValue = UInt(hexString, radix: 16) {
+      let red   =  CGFloat((rgbValue >> 16) & 0xff) / 255
+      let green =  CGFloat((rgbValue >>  8) & 0xff) / 255
+      let blue  =  CGFloat((rgbValue      ) & 0xff) / 255
+      self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    } else {
+      self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    }
+  }
+
+  var colorProxy:ColorProxy{
+    return ColorProxy(self)
+  }
+}
+
+struct ColorProxy:ExpressibleByStringLiteral{
+  typealias StringLiteralType = String
+  var stringColorSpec:String
+
+  init(stringLiteral extendedGraphemeClusterLiteral:String){
+    stringColorSpec = extendedGraphemeClusterLiteral
+  }
+}
+
+extension ColorProxy{
+
+  private static func proxyStringFromUIColor(_ aUIColor:UIColor)->String!{
+    guard let comp =  aUIColor.cgColor.components else{
+      return nil
+    }
+    return String(format:"%02X%02X%02X",comp[0],comp[1],comp[2])
+  }
+
+  init(_ aUIColor:UIColor){
+    stringColorSpec = ColorProxy.proxyStringFromUIColor(aUIColor)
+  }
+
+  var uicolor:UIColor {
+    get{
+      return UIColor.init(hexString: stringColorSpec)
+    }
+    set{
+      stringColorSpec = ColorProxy.proxyStringFromUIColor(newValue)
+    }
+  }
+}
 
 class UpcomingDayViewController: UITableViewController {
 
@@ -92,6 +142,17 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct Section{
+    func footerColorAtTime(_ date:Date)->UIColor {
+
+      let aFewMinutes = 30.0*60.0
+      let isSomewhatLate = date.timeIntervalSinceNow < aFewMinutes
+      let allTaken = medications.reduce(true){$0 && $1.isTaken}
+
+      if allTaken { return VLColors.footerAllGood }
+      if isSomewhatLate { return VLColors.footerMissedMeds }
+      return VLColors.footerInfoPertinent
+    }
+
     var headerText:String
     var footerText:String
     var rowCount:Int{return medications.count}
@@ -162,7 +223,7 @@ class UpcomingDayViewController: UITableViewController {
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
       //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
       return Section(headerText: $0.slotDescription,
-              footerText: calculateSectionFooter(timeSlotItems: $0.items),
+                     footerText: calculateSectionFooter(timeSlotItems: $0.items),
               medications: $0.items,
               isActive:{ (now:Date) in
                 activeStart <= now &&
@@ -298,7 +359,24 @@ extension UpcomingDayViewController{
     }
     tableView.endUpdates()
     UIView.setAnimationsEnabled(true)
+  }
 
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 40
+  }
+
+  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    guard let header = view as? UITableViewHeaderFooterView else { return }
+    header.textLabel?.textColor = VLColors.primaryText
+    header.textLabel?.frame = header.frame
+  }
+
+  override func tableView(_ tableView: UITableView,
+                          willDisplayFooterView view: UIView,
+                          forSection section: Int) {
+    guard let header = view as? UITableViewHeaderFooterView else { return }
+    header.textLabel?.textColor = sections[section].footerColorAtTime(Date())
+    header.textLabel?.frame = header.frame
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -12,6 +12,19 @@ struct VLColors{
   static var primaryText:UIColor{
     return UIColor.white
   }
+
+  static var footerMissedMeds:UIColor{
+    return warmHighlight
+  }
+
+  static var footerInfoPertinent:UIColor{
+    return UIColor.lightGray
+  }
+
+  static var footerAllGood:UIColor{
+    return UIColor.darkGray
+  }
+
   static var highlightedPrimaryText:UIColor{
     return VLColors.sipChathamsBlue
   }

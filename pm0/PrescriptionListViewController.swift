@@ -48,6 +48,8 @@ class PrescriptionListViewController: UIViewController {
     tableView.reloadData()
   }
 
+  
+
 
   @IBAction func addTapped(_ sender:UIButton){
   }
@@ -116,12 +118,16 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
   func tableView(_ tableView:UITableView, titleForHeaderInSection: Int)->String?{
     return "Prescriptions"
   }
+
+
 }
 
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
     return UIImage(named:"RxEmptyState")
   }
+
+  
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     return NSAttributedString(string: "No prescriptions (yet)")
