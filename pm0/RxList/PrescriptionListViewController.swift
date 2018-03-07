@@ -77,17 +77,17 @@ class PrescriptionListViewController: UIViewController {
 
 extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSource{
 
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 40
-  }
-
-  func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-    guard let header = view as? UITableViewHeaderFooterView else { return }
-    header.textLabel?.textColor = VLColors.primaryText
-    header.textLabel?.font = UIFont.boldSystemFont(ofSize: 40)
-    header.textLabel?.frame = header.frame
-    header.textLabel?.text = "Prescriptions"
-  }
+//  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//    return 40
+//  }
+//
+//  func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//    guard let header = view as? UITableViewHeaderFooterView else { return }
+//    header.textLabel?.textColor = VLColors.primaryText
+//    header.textLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+//    header.textLabel?.frame = header.frame
+//    header.textLabel?.text = "Prescriptions"
+//  }
 
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path)
