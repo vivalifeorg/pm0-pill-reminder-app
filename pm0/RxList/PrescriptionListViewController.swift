@@ -26,6 +26,11 @@ struct PrescriptionListViewModel{
   subscript(indexPath:IndexPath)->Prescription{
     return prescriptions[indexPath.row]
   }
+
+  mutating func deleteItemAt(index:Int){
+    prescriptions.remove(at:index)
+    LocalStorage.SavePrescriptions(prescriptions)
+  }
 }
 
 class PrescriptionListViewController: UIViewController {
@@ -49,7 +54,29 @@ class PrescriptionListViewController: UIViewController {
     tableView.reloadData()
   }
 
-  
+
+
+  var alertController :UIAlertController?
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+    let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+      // delete item at indexPath
+      let alert = UIAlertController(title: "Delete Rx?", message: "Are you sure you want to delete \( "foo")?", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: NSLocalizedString("Keep Rx", comment: "Keep Rx"), style: .cancel, handler: { _ in
+      }))
+      alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Rx", comment: "Delete Rx"), style: .destructive, handler: { _ in
+        self.viewModel.deleteItemAt(index: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+      }))
+
+
+      self.alertController = alert
+      self.present(alert, animated: true, completion: nil)
+    }
+
+    return [delete]
+
+  }
 
 
   @IBAction func addTapped(_ sender:UIButton){
