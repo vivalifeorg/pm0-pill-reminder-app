@@ -515,11 +515,17 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   var prescription:Prescription?{
+    get{
     lastSelectedDrug?.userSpecifiedQty = quantityLine.intValue ?? 1
     let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userSpecifiedQty  ?? 1) x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
 
     let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm, events:scheduleLine.events)
     return Prescription(dosage: dosage, prescriber: nil, obtainedFrom: nil, conditionPrescribedFor: nil)
+    }
+
+    set{
+      debugPrint("Will allow Edit") //todo fixme
+    }
   }
 
   var medicationName:String?{

@@ -74,6 +74,12 @@ class PrescriptionListViewController: UIViewController {
       self.present(alert, animated: true, completion: nil)
     }
 
+    let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+      let rxEntry = PrescriptionEntryViewController()
+      rxEntry.prescription = self.viewModel.prescriptions[indexPath.row] //todo,use prepare
+      self.present(rxEntry,animated: true,completion: nil)
+    }
+
     return [delete]
 
   }
