@@ -10,6 +10,7 @@
 		49D7508004021DB8F5EE2728 /* Pods_pm0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */; };
 		890242E02033941C00B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
+		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		8954AC5F204DCE1B00E97305 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8954AC5E204DCE1B00E97305 /* Models.swift */; };
 		896052BC20470B6400DF502C /* PrescriptionLineEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */; };
@@ -19,6 +20,7 @@
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
 		89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */; };
 		89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B4E1D2204DEFC200A09B27 /* VLColors.swift */; };
+		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		35B9C2C23FA9874E99DB4672 /* Pods-pm0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.release.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.release.xcconfig"; sourceTree = "<group>"; };
 		890242DF2033941C00B25E99 /* fda_drugs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fda_drugs.db; sourceTree = "<group>"; };
+		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
 		8954AC5E204DCE1B00E97305 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionLineEntry.xib; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
 		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89B4E1D2204DEFC200A09B27 /* VLColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLColors.swift; sourceTree = "<group>"; };
+		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */,
 				49D7508004021DB8F5EE2728 /* Pods_pm0.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,9 +104,19 @@
 		56847C4877616541105AC1CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89D783DB2051ACB5004F6110 /* KeychainAccess.framework */,
+				894092852051AAE700FA1B9F /* Keychain.framework */,
 				EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		894092832051A9C800FA1B9F /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				894092812051A9C200FA1B9F /* LocalStorage.swift */,
+			);
+			path = DataStorage;
 			sourceTree = "<group>";
 		};
 		894DBC3E205040460020353F /* RxList */ = {
@@ -164,6 +180,7 @@
 				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
 				896052BF20470D9400DF502C /* RxEntry */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
+				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
 				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
 				89F3D99C1FF6AC4F0081FA77 /* Info.plist */,
@@ -346,12 +363,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-pm0/Pods-pm0-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 			);
@@ -383,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */,
+				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,

@@ -1,5 +1,6 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
+  - KeychainAccess (3.1.0)
   - SearchTextField (1.2.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
@@ -7,6 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - DZNEmptyDataSet
+  - KeychainAccess
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
 
@@ -22,9 +24,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: dc774eaba987c87a0f92dc4d3e5bc936f0410e3e
+PODFILE CHECKSUM: 78c9413c9544678414945369861b406ba056e0ac
 
 COCOAPODS: 1.4.0.beta.2
