@@ -6,6 +6,7 @@ target "pm0" do
   pod "SearchTextField", :git => 'https://github.com/apasccon/SearchTextField', :commit => '97cb555c4721cd80257022637ee255dc812eda3a',  :inhibit_warnings => true
   pod 'SQLite.swift', '~> 0.11.4',   :inhibit_warnings => true
   pod 'DZNEmptyDataSet',  :inhibit_warnings => true
+  pod 'Keychain', :inhibit_warnings => true
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334
