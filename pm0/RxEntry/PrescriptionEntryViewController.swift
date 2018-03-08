@@ -244,7 +244,7 @@ struct DisplayDrug{
   var dosageForm:String? = nil
   var activeStrength:String? = nil
 
-  var userCount:String="1" //todo move this
+  var userSpecifiedQty:Int=1 //todo move this
 }
 
 extension DisplayDrug{
@@ -274,6 +274,11 @@ extension PrescriptionLineEntry{
   }
 }
 
+extension PrescriptionLineEntry{
+  var intValue:Int?{
+    return Int(searchTextField?.text ?? "")
+  }
+}
 
 class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
@@ -487,9 +492,14 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     }
     nameLine.searchTextField.itemSelectionHandler = self.nameItemSelectionHandler
 
-
+    configureSearchField(unitLine.searchTextField)
     unitLine.searchTextField.userStoppedTypingHandler = {
       self.updatePillSizePopup()
+    }
+
+    configureSearchField(quantityLine.searchTextField)
+    quantityLine.searchTextField.userStoppedTypingHandler = {
+      //todo
     }
 
     configureSearchField(prescriberLine.searchTextField)
@@ -505,8 +515,9 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   var prescription:Prescription?{
-    let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userCount ?? "1") x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
-    lastSelectedDrug?.userCount = quantityLine.searchTextField.text ?? "1"
+    lastSelectedDrug?.userSpecifiedQty = quantityLine.intValue ?? 1
+    let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userSpecifiedQty  ?? 1) x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
+
     let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm, events:scheduleLine.events)
     return Prescription(dosage: dosage, prescriber: nil, obtainedFrom: nil, conditionPrescribedFor: nil)
   }
