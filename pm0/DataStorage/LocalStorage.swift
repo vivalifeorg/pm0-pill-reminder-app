@@ -59,6 +59,23 @@ enum LocalStorage{
 
 }
 
+protocol LocalStorageWrapper{
+  associatedtype Wrapped
+  var version:String {get}
+}
+
+
+struct PrescriptionWrapper:Codable{
+  enum PrescriptionWrapperVersions:String,Codable{
+    case v0_1_unversioned
+  }
+
+  let wrapped:[Prescription]
+  var version:String{
+    return PrescriptionWrapperVersions.v0_1_unversioned.rawValue
+  }
+}
+
 extension LocalStorage{
 
   static func BlankPrescriptions(){
@@ -76,13 +93,17 @@ extension LocalStorage{
       return []
     }
 
-    let rxs = try? JSONDecoder().decode([Prescription].self, from: dataRx)
-    return rxs ?? []
+    guard let rxs = try? JSONDecoder().decode(PrescriptionWrapper.self, from: dataRx) else{
+      return []
+    }
+
+    return rxs.wrapped
   }
 
   static func SavePrescriptions(_ prescriptions:[Prescription]){
 
-    guard let encodedRx = try? JSONEncoder().encode(prescriptions) else {
+    let wrapped = PrescriptionWrapper(wrapped:prescriptions)
+    guard let encodedRx = try? JSONEncoder().encode(wrapped) else {
       return
     }
 
