@@ -18,11 +18,11 @@ struct DosingSchedule{
   var isOnlyForConsumptionWithFood:Bool = false
 }
 
-struct Prescriber{
+struct Prescriber:Codable{
 
 }
 
-struct DosageForm{
+struct DosageForm:Codable{
 
 }
 
@@ -36,7 +36,7 @@ struct Potency{
 
 }
 
-struct Dosage{
+struct Dosage:Codable{
   var name:String
   var form:String?
   var events:[TemporalEvent]
@@ -53,7 +53,7 @@ struct Dosage{
   }
 }
 
-struct Condition{
+struct Condition:Codable{
   var name:String
 
   var description:String{
@@ -61,7 +61,7 @@ struct Condition{
   }
 }
 
-struct MedicationSource{
+struct MedicationSource:Codable{
   var name:String
   var isPharmacy:Bool
   var isHospital:Bool
@@ -69,7 +69,7 @@ struct MedicationSource{
   var isOverTheCounter:Bool
 }
 
-struct Prescription{
+struct Prescription:Codable{
   var dosage:Dosage?
   var prescriber:Prescriber?
   var obtainedFrom:MedicationSource?

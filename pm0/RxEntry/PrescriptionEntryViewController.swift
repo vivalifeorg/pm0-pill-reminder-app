@@ -99,7 +99,7 @@ var doctors = [
 typealias MinuteOffset = Int
 typealias HourOffset = Int
 
-struct TemporalEvent:Hashable{
+struct TemporalEvent:Hashable,Codable{
   var hashValue: Int {
       return "\(name ?? "non-named")\(eventType)".hashValue
   }
@@ -149,7 +149,7 @@ struct TemporalEvent:Hashable{
   }
 }
 
-enum EventType{
+enum EventType:String,Codable{
   case meal
   case sleep
   case time

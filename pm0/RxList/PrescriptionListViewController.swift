@@ -44,6 +44,7 @@ class PrescriptionListViewController: UIViewController {
     }
 
     viewModel.prescriptions.append(rx)
+    LocalStorage.SavePrescriptions(viewModel.prescriptions)
     global_allDrugs = viewModel.prescriptions.flatMap{$0.dosage}
     tableView.reloadData()
   }
@@ -66,7 +67,7 @@ class PrescriptionListViewController: UIViewController {
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
 
-    
+    viewModel.prescriptions = LocalStorage.LoadPrescriptions()
   }
 
   static var cellIdentifier:String{

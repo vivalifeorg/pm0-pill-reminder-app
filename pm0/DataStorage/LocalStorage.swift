@@ -25,34 +25,69 @@ public typealias KeychainItem = String
 
 var debugKeychain = false
 
+
+enum KeychainKey:String{
+  case userPrescriptions
+}
+
 enum LocalStorage{
-  enum KeychainKey:String{
-    case userPrescriptions
+
+
+  func SaveKeychainItem(_ item:KeychainItem, forKey key:KeychainKey) {
+
+    if debugKeychain {debugPrint("Saving \(item) to keychain for key \(key)")}
+    keychain[string: key.rawValue] = item
   }
 
-func SaveKeychainItem(_ item:KeychainItem, forKey key:KeychainKey) {
+  func ClearKeychainItem(forKey key:KeychainKey) {
+    if debugKeychain {
+      debugPrint("Clearing keychain for key \(key)")
+    }
 
-  if debugKeychain {debugPrint("Saving \(item) to keychain for key \(key)")}
-  keychain[string: key.rawValue] = item
-}
-
-func ClearKeychainItem(forKey key:KeychainKey) {
-  if debugKeychain {
-    debugPrint("Clearing keychain for key \(key)")
+    keychain[string: key.rawValue] = nil
   }
 
-  keychain[string: key.rawValue] = nil
+  func IsKeychainItemPresent(forKey key:KeychainKey) -> Bool {
+    //debugPrint("Checking keychain for key \(key)")
+    return keychain[string: key.rawValue] != nil
+  }
+
+  func LoadKeychainItem(forKey key:KeychainKey) -> KeychainItem {
+    if debugKeychain {debugPrint("Loading item from keychain for key \(key)")}
+    return keychain[string: key.rawValue] ?? ""
+  }
+
 }
 
-func IsKeychainItemPresent(forKey key:KeychainKey) -> Bool {
-  //debugPrint("Checking keychain for key \(key)")
-  return keychain[string: key.rawValue] != nil
-}
+extension LocalStorage{
 
-func LoadKeychainItem(forKey key:KeychainKey) -> KeychainItem {
-  if debugKeychain {debugPrint("Loading item from keychain for key \(key)")}
-  return keychain[string: key.rawValue] ?? ""
-}
+  static func BlankPrescriptions(){
+    let key = KeychainKey.userPrescriptions.rawValue as String
+    keychain[string: key] = nil
+  }
 
+  static func LoadPrescriptions()->[Prescription]{
+    let key = KeychainKey.userPrescriptions.rawValue as String
+    guard let stringRx = keychain[string: key] else {
+      return []
+    }
+
+    guard let dataRx = stringRx.data(using: .utf8) else {
+      return []
+    }
+
+    let rxs = try? JSONDecoder().decode([Prescription].self, from: dataRx)
+    return rxs ?? []
+  }
+
+  static func SavePrescriptions(_ prescriptions:[Prescription]){
+
+    guard let encodedRx = try? JSONEncoder().encode(prescriptions) else {
+      return
+    }
+
+    let key = KeychainKey.userPrescriptions.rawValue as String
+    keychain[string: key] = String(data:encodedRx,encoding:.utf8)
+  }
 }
 
