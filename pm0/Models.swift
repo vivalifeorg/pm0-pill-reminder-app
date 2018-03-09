@@ -37,8 +37,13 @@ struct Potency{
 }
 
 struct Dosage:Codable{
-  var name:String
+  var name:String = "Drug"
+  var unitDescription:String?
   var form:String?
+  var quantity:Int
+  var description:String{
+      return "\(name) \(quantity) × \(unitDescription ?? form ?? "dose")"
+  }
   var events:[TemporalEvent]
   var shortName:String{
     return name
@@ -69,9 +74,43 @@ struct MedicationSource:Codable{
   var isOverTheCounter:Bool
 }
 
+struct EntryInfo:Codable{
+  var name:String?
+  var unitDescription:String?
+  var quantityOfUnits:String?
+  var schedule:String?
+  var scheduleSelection:[TemporalEvent]
+  var prescribingDoctor:String?
+  var pharmacy:String?
+  var condition:String?
+  var drugDBSelection:[String:String]?
+}
+extension EntryInfo{
+  init(){
+    self.init(name:nil,
+              unitDescription:nil,
+              quantityOfUnits:nil,
+              schedule:nil,
+              scheduleSelection:[],prescribingDoctor:nil,pharmacy:nil,condition:nil,drugDBSelection:nil)
+  }
+}
+
 struct Prescription:Codable{
   var dosage:Dosage?
   var prescriber:Prescriber?
   var obtainedFrom:MedicationSource?
   var conditionPrescribedFor:Condition?
+  var editInfo:EntryInfo
+
+  init(info:EntryInfo){
+    editInfo = info
+    dosage = Dosage(name: info.name ?? "Drug",
+                        unitDescription: info.unitDescription,
+                        form: "[PILL]",
+                        quantity: Int(info.quantityOfUnits ?? "") ?? 1,
+                        events: info.scheduleSelection)
+    prescriber = nil
+    obtainedFrom = nil
+    conditionPrescribedFor = nil
+  }
 }

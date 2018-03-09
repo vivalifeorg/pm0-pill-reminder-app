@@ -80,7 +80,10 @@ extension DisplayDrug:Listable{
     return (activeStrength == "" && unit == "") ? altDosage : dosage
   }
 
-  var drugUnitSummary:String{
+  var drugUnitSummary:String?{
+    guard activeStrength != nil || unit != nil else {
+      return nil
+    }
     return "\(activeStrength ?? "") \(unit ?? "")"
   }
 
@@ -243,8 +246,8 @@ struct DisplayDrug{
   var unit:String? = nil
   var dosageForm:String? = nil
   var activeStrength:String? = nil
-
   var userSpecifiedQty:Int=1 //todo move this
+  var raw:[String:String]
 }
 
 extension DisplayDrug{
@@ -254,6 +257,7 @@ extension DisplayDrug{
     nonPropName = item["NONPROPRIETARYNAME"] ?? ""
     activeStrength = item["ACTIVE_NUMERATOR_STRENGTH"]
     unit = item["ACTIVE_INGRED_UNIT"] ?? ""
+    raw = item
   }
 }
 
@@ -514,16 +518,54 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
       schedules.map{SearchTextFieldItem(listable:$0)})
   }
 
+
+  var mapping = [
+    \EntryInfo.name:\PrescriptionEntryViewController.nameLine.searchTextField.text,
+    \EntryInfo.unitDescription:\PrescriptionEntryViewController.unitLine.searchTextField.text,
+    \EntryInfo.quantityOfUnits:\PrescriptionEntryViewController.quantityLine.searchTextField.text,
+    \EntryInfo.schedule:\PrescriptionEntryViewController.scheduleLine.searchTextField.text,
+    \EntryInfo.prescribingDoctor:\PrescriptionEntryViewController.prescriberLine.searchTextField.text,
+    \EntryInfo.pharmacy:\PrescriptionEntryViewController.pharmacyLine.searchTextField.text,
+    \EntryInfo.condition:\PrescriptionEntryViewController.conditionLine.searchTextField.text,
+
+  ]
+
+  var entryInfo:EntryInfo{
+    var entry = EntryInfo()
+    for transform in mapping{
+      entry[keyPath: transform.key] = self[keyPath:transform.value]
+    }
+    entry.scheduleSelection = scheduleLine.events
+    entry.drugDBSelection = lastSelectedDrug?.raw
+    
+    return entry
+    /*
+    return EntryInfo(
+      name:nameLine.searchTextField.text,
+      unitDescription:unitLine.searchTextField.text,
+      quantityOfUnits:quantityLine.searchTextField.text,
+      schedule:scheduleLine.searchTextField.text,
+      scheduleSelection:scheduleLine.events,
+      prescribingDoctor:prescriberLine.searchTextField.text,
+      pharmacy:pharmacyLine.searchTextField.text,
+      condition:conditionLine.searchTextField.text,
+      drugDBSelection:lastSelectedDrug?.raw
+    )
+ */
+  }
+
+  let multiplicationSign = "×"
   var prescription:Prescription?{
     get{
-    lastSelectedDrug?.userSpecifiedQty = quantityLine.intValue ?? 1
-    let display = "\(lastSelectedDrug?.name ?? lastSelectedDrug?.dosageForm ?? "Drug") \(lastSelectedDrug?.userSpecifiedQty  ?? 1) x \(lastSelectedDrug?.drugUnitSummary ?? "dose")"
-
-    let dosage = Dosage( name:display, form: lastSelectedDrug?.dosageForm, events:scheduleLine.events)
-    return Prescription(dosage: dosage, prescriber: nil, obtainedFrom: nil, conditionPrescribedFor: nil)
+      return Prescription(info:entryInfo)
     }
 
     set{
+      guard let rx = newValue else{
+        return
+      }
+
+
       debugPrint("Will allow Edit") //todo fixme
     }
   }
