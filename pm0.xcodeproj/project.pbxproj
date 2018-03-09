@@ -226,6 +226,7 @@
 				89F3D9B01FF6ACE10081FA77 /* Set Build To Date Automatically */,
 				89F3D9881FF6AC4F0081FA77 /* Frameworks */,
 				89F3D9891FF6AC4F0081FA77 /* Resources */,
+				89B685722052D12C00D2406E /* Zero Build Date to fix Source Control */,
 				AC74CBD78C2439E962D213D3 /* [CP] Embed Pods Frameworks */,
 				F95AC5C88A143134E69FE5C4 /* [CP] Copy Pods Resources */,
 			);
@@ -340,6 +341,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		89B685722052D12C00D2406E /* Zero Build Date to fix Source Control */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Zero Build Date to fix Source Control";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "##https://blog.curtisherbert.com/automated-xcode-build-numbers-late-2016-edition/\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion 0\" \"${PRODUCT_SETTINGS_PATH}\"\necho \"Cleared build number in ${PRODUCT_SETTINGS_PATH}\"\n";
 		};
 		89F3D9B01FF6ACE10081FA77 /* Set Build To Date Automatically */ = {
 			isa = PBXShellScriptBuildPhase;
