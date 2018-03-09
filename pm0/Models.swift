@@ -8,8 +8,6 @@
 
 import Foundation
 
-var global_allDrugs:[Dosage] = []
-
 
 struct DosingSchedule{
   var periodLength:Int
@@ -32,9 +30,6 @@ struct TakeTime{
   var timeName:String?
 }
 
-struct Potency{
-
-}
 
 struct Dosage:Codable{
   var name:String = "Drug"

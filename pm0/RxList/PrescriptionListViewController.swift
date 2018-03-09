@@ -177,7 +177,7 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
     cell.textLabel?.highlightedTextColor = VLColors.highlightedPrimaryText
     cell.detailTextLabel?.textColor = VLColors.secondaryText
 
-    cell.backgroundColor = VLColors.cellBackground
+    //cell.backgroundColor = VLColors.cellBackground
     let selectedBG = UIView()
     selectedBG.backgroundColor  = VLColors.selectedCellBackground
     cell.selectedBackgroundView = selectedBG
