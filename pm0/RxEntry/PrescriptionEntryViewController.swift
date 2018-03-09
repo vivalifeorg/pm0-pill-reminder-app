@@ -64,7 +64,7 @@ extension DisplayDrug:Listable{
    unit:unit,
    form:form,
    numerator:numerator)
- */
+   */
   var title:String{
     let formattedForm = dosageForm.flatMap{ df in
       df != "" ?  "(\(df))" : ""
@@ -104,7 +104,7 @@ typealias HourOffset = Int
 
 struct TemporalEvent:Hashable,Codable{
   var hashValue: Int {
-      return "\(name ?? "non-named")\(eventType)".hashValue
+    return "\(name ?? "non-named")\(eventType)".hashValue
   }
 
   let name:String?
@@ -123,9 +123,9 @@ struct TemporalEvent:Hashable,Codable{
   static func ==(lhs:TemporalEvent, rhs:TemporalEvent) -> Bool{
     return lhs.name == rhs.name &&
       lhs.eventType == rhs.eventType
-//      &&
-//      lhs.hourOffset == rhs.hourOffset &&
-//      lhs.minuteOffset == rhs.minuteOffset
+    //      &&
+    //      lhs.hourOffset == rhs.hourOffset &&
+    //      lhs.minuteOffset == rhs.minuteOffset
   }
 
   static func userOverridenTimeOffsetFor(_ event:TemporalEvent) -> (hour:HourOffset,minute:MinuteOffset)?{
@@ -160,19 +160,19 @@ enum EventType:String,Codable{
 
 enum DefaultEvents{
   static let breakfast = TemporalEvent(name:"Breakfast",
-                                eventType:.meal)
+                                       eventType:.meal)
 
   static let morningSnack = TemporalEvent(name:"Morning Snack",
-                                   eventType:.meal)
+                                          eventType:.meal)
 
   static let lunch = TemporalEvent(name:"Lunch",
-                            eventType:.meal)
+                                   eventType:.meal)
 
   static let afternoonSnack = TemporalEvent(name:"Afternoon Snack",
-                                     eventType:.meal)
+                                            eventType:.meal)
 
   static let dinner = TemporalEvent(name:"Dinner",
-                             eventType:.meal)
+                                    eventType:.meal)
 
   static let wakeUp = TemporalEvent(name:"Wake-up",
                                     eventType:.sleep)
@@ -372,7 +372,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
     allSearchFields.filter{$0.isFocused}.forEach { (field) in
-        field.layoutSubviews()
+      field.layoutSubviews()
     }
   }
 
@@ -406,17 +406,17 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
   }
 
   @objc open func keyboardWillShow(_ notification: Notification) {
-   // scrollView.contentInset.bottom = notification.keyboard
+    // scrollView.contentInset.bottom = notification.keyboard
   }
 
   @objc open func keyboardWillHide(_ notification: Notification) {
     /*
-    if keyboardIsShowing {
-      keyboardIsShowing = false
-      direction = .down
-      redrawSearchTableView()
-    }
- */
+     if keyboardIsShowing {
+     keyboardIsShowing = false
+     direction = .down
+     redrawSearchTableView()
+     }
+     */
   }
 
   func updatePillSizePopup(){
@@ -470,23 +470,26 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
     nameLine.searchTextField?.text = drugSelection.name
     unitLine.searchTextField?.text = [drugSelection.activeStrength,
-                           drugSelection.unit,
-                           drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
+                                      drugSelection.unit,
+                                      drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
     lastSelectedDrug = drugSelection
   }
 
   override func viewDidLoad() {
+    if let rx = editRx {
+      entryInfo = rx.editInfo
+    }
     scrollView.delegate = self
-/*
-    [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWasShown:)
-      name:UIKeyboardDidShowNotification object:nil];
+    /*
+     [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(keyboardWasShown:)
+     name:UIKeyboardDidShowNotification object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWillBeHidden:)
-      name:UIKeyboardWillHideNotification object:nil];
-    NotificationCenter.default.addObserver(self, selector: keyboardShow, name: "keyboardWillShow", object: <#T##Any?#>)
-*/
+     [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(keyboardWillBeHidden:)
+     name:UIKeyboardWillHideNotification object:nil];
+     NotificationCenter.default.addObserver(self, selector: keyboardShow, name: "keyboardWillShow", object: <#T##Any?#>)
+     */
     configureSearchField(nameLine.searchTextField)
     configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 
@@ -527,46 +530,46 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     \EntryInfo.prescribingDoctor:\PrescriptionEntryViewController.prescriberLine.searchTextField.text,
     \EntryInfo.pharmacy:\PrescriptionEntryViewController.pharmacyLine.searchTextField.text,
     \EntryInfo.condition:\PrescriptionEntryViewController.conditionLine.searchTextField.text,
-
   ]
 
   var entryInfo:EntryInfo{
-    var entry = EntryInfo()
-    for transform in mapping{
-      entry[keyPath: transform.key] = self[keyPath:transform.value]
-    }
-    entry.scheduleSelection = scheduleLine.events
-    entry.drugDBSelection = lastSelectedDrug?.raw
-    
-    return entry
-    /*
-    return EntryInfo(
-      name:nameLine.searchTextField.text,
-      unitDescription:unitLine.searchTextField.text,
-      quantityOfUnits:quantityLine.searchTextField.text,
-      schedule:scheduleLine.searchTextField.text,
-      scheduleSelection:scheduleLine.events,
-      prescribingDoctor:prescriberLine.searchTextField.text,
-      pharmacy:pharmacyLine.searchTextField.text,
-      condition:conditionLine.searchTextField.text,
-      drugDBSelection:lastSelectedDrug?.raw
-    )
- */
-  }
-
-  let multiplicationSign = "×"
-  var prescription:Prescription?{
     get{
-      return Prescription(info:entryInfo)
-    }
 
+      var entry = EntryInfo()
+      for transform in mapping{
+        entry[keyPath: transform.key] = self[keyPath:transform.value]
+      }
+      entry.scheduleSelection = scheduleLine.events
+      entry.drugDBSelection = lastSelectedDrug?.raw
+
+      return entry
+    }
     set{
-      guard let rx = newValue else{
+      guard nameLine != nil else {
+        //prevents firing from the didSet/prepare handler before view is loaded
         return
       }
 
+      let entry = newValue
+      for transform in mapping{
+        let text = entry[keyPath: transform.key]
+        self[keyPath:transform.value] = text
+      }
+      //scheduleLine.events = entry.scheduleSelection //TODO, do something if it doesn't match one
+      lastSelectedDrug = entry.drugDBSelection.flatMap{DisplayDrug($0)}
+    }
+  }
 
-      debugPrint("Will allow Edit") //todo fixme
+  let multiplicationSign = "×"
+
+
+  var editRx:Prescription? = nil
+  var prescription:Prescription?  {
+    set{
+      editRx = newValue
+    }
+    get{
+      return Prescription(info:entryInfo)
     }
   }
 
