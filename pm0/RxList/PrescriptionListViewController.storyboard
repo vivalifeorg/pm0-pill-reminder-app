@@ -46,8 +46,21 @@
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me6-2r-dzt" id="RY7-qK-vjw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfI-fq-2IR" customClass="PillDisplayLabel" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="12.5" width="279" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.079722485430000004" green="0.1883646876" blue="0.30167410709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="IfI-fq-2IR" firstAttribute="centerY" secondItem="RY7-qK-vjw" secondAttribute="centerY" id="8yP-3e-s6Y"/>
+                                                <constraint firstItem="IfI-fq-2IR" firstAttribute="leading" secondItem="RY7-qK-vjw" secondAttribute="leading" constant="20" id="CH1-ly-RNx"/>
+                                                <constraint firstAttribute="trailing" secondItem="IfI-fq-2IR" secondAttribute="trailing" constant="76" id="tUY-6r-9jC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.079722485430000004" green="0.1883646876" blue="0.30167410709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="-495"/>
+            <point key="canvasLocation" x="693.60000000000002" y="-495.20239880059972"/>
         </scene>
         <!--PrescriptionEntryNav-->
         <scene sceneID="g7P-2x-yp3">

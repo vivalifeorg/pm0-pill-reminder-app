@@ -30,14 +30,13 @@ struct TakeTime{
   var timeName:String?
 }
 
-
 struct Dosage:Codable{
   var name:String = "Drug"
   var unitDescription:String?
   var form:String?
   var quantity:Int
   var description:String{
-      return "\(name) \(quantity) × \(unitDescription ?? form ?? "dose")"
+    return "\(name): \(quantity) × \(unitDescription ?? form ?? "dose")"
   }
   var events:[TemporalEvent]
   var shortName:String{

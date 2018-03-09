@@ -11,9 +11,27 @@ import DZNEmptyDataSet
 import UIKit
 
 
+import UIKit
+extension Dosage{
+  var attributedString:NSAttributedString{
+    let s = NSMutableAttributedString()
+    let font = UIFont(name: "AvenirNext-Medium", size: 10)!
+    let attrs = [NSAttributedStringKey.font: font ]
+    let boldString = NSMutableAttributedString(string: "\(quantity) × \(unitDescription ?? form ?? "dose")", attributes:attrs)
+    s.append(boldString)
+    let normalString = NSMutableAttributedString(string: "\(name)", attributes:[:])
+    s.append(boldString)
+    return s
+  }
+}
+
 extension Prescription{
+
   var title:String{
-    return dosage?.shortName  ?? ""
+    return dosage?.description ?? "Drug"
+  }
+  var attributedTitle:NSAttributedString{
+    return dosage!.attributedString
   }
   var subTitle:String{
     return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
@@ -171,7 +189,7 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
     cell.detailTextLabel?.text = viewModel[path].subTitle
 
     //let isSelected = tableView.indexPathsForSelectedRows?.contains(path) ?? false
-    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
+    cell.textLabel?.font = UIFont.systemFont(ofSize: 20.0)
     cell.textLabel?.textColor = VLColors.primaryText
     cell.textLabel?.highlightedTextColor = VLColors.highlightedPrimaryText
     cell.detailTextLabel?.textColor = VLColors.secondaryText
