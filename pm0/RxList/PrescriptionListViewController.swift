@@ -27,8 +27,20 @@ struct PrescriptionListViewModel{
     return prescriptions[indexPath.row]
   }
 
+  var editingIndex:Int?
+
   mutating func deleteItemAt(index:Int){
+    editingIndex = nil
     prescriptions.remove(at:index)
+    LocalStorage.SavePrescriptions(prescriptions)
+  }
+
+  mutating func receivedPrescription(_ rx:Prescription){
+    if let editingIndex = editingIndex{
+      prescriptions[editingIndex] = rx
+    }else{
+      prescriptions.append(rx)
+    }
     LocalStorage.SavePrescriptions(prescriptions)
   }
 }
@@ -48,42 +60,73 @@ class PrescriptionListViewController: UIViewController {
         return
     }
 
-    viewModel.prescriptions.append(rx)
-    LocalStorage.SavePrescriptions(viewModel.prescriptions)
-    global_allDrugs = viewModel.prescriptions.flatMap{$0.dosage}
+    viewModel.receivedPrescription(rx)
     tableView.reloadData()
   }
 
+  private var alertController :UIAlertController?
+  func deleteRxTableRowAction(_ action:UITableViewRowAction, indexPath:IndexPath){
+    // delete item at indexPath
+    let alert = UIAlertController(title: "Delete Rx?",
+                                  message: "Are you sure you want to delete \( "foo")?",
+                                  preferredStyle: .alert)
 
+    alert.addAction(
+      UIAlertAction(title: NSLocalizedString("Keep Rx",
+                                             comment: "Keep Rx"),
+                    style: .cancel,
+                    handler:nil)
+    )
 
-  var alertController :UIAlertController?
-  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    alert.addAction(
+      UIAlertAction(title: NSLocalizedString("Delete Rx",
+                    comment: "Delete Rx"),
+        style: .destructive){ _ in
+          self.viewModel.deleteItemAt(index: indexPath.row)
+          self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    )
 
-    let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-      // delete item at indexPath
-      let alert = UIAlertController(title: "Delete Rx?", message: "Are you sure you want to delete \( "foo")?", preferredStyle: .alert)
-      alert.addAction(UIAlertAction(title: NSLocalizedString("Keep Rx", comment: "Keep Rx"), style: .cancel, handler: { _ in
-      }))
-      alert.addAction(UIAlertAction(title: NSLocalizedString("Delete Rx", comment: "Delete Rx"), style: .destructive, handler: { _ in
-        self.viewModel.deleteItemAt(index: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-      }))
-
-
-      self.alertController = alert
-      self.present(alert, animated: true, completion: nil)
-    }
-
-    let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-      let rxEntry = PrescriptionEntryViewController()
-      rxEntry.prescription = self.viewModel.prescriptions[indexPath.row] //todo,use prepare
-      self.present(rxEntry,animated: true,completion: nil)
-    }
-
-    return [delete]
-
+    self.alertController = alert
+    self.present(alert, animated: true, completion: nil)
   }
 
+  func showEditRxViewController(){
+    self.performSegue(withIdentifier: "showPrescriptionAddEntry", sender: self)
+  }
+
+  func editRxAction(_ action:UITableViewRowAction, indexPath:IndexPath){
+    viewModel.editingIndex = indexPath.row
+    showEditRxViewController()
+  }
+  
+
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    return [
+      UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteRxTableRowAction),
+      UITableViewRowAction(style: .normal, title: "Edit", handler:editRxAction)
+    ]
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.identifier ?? "" {
+    case "showPrescriptionAddEntry":
+      guard let editIndex = viewModel.editingIndex else{
+        debugPrint("RxEntry")
+        return //aka making new
+      }
+
+      debugPrint("EditingRx \(viewModel.prescriptions[editIndex].title)")
+      let rxEntry = (segue.destination as! UINavigationController).viewControllers.first 
+            as! PrescriptionEntryViewController
+      rxEntry.prescription = viewModel.prescriptions[editIndex]
+    default:
+      debugPrint("Other(rx)")
+      viewModel.editingIndex = nil //clear it when we return, etc
+    }
+  }
+
+  var lastEditSelectionIndex:Int? = nil
 
   @IBAction func addTapped(_ sender:UIButton){
   }

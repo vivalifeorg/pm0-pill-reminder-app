@@ -9,14 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PrescriptionEntryNav-->
-        <scene sceneID="g7P-2x-yp3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="PrescriptionEntryViewController" referencedIdentifier="PrescriptionEntryNav" id="eME-Ou-gsK" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nE3-Dg-79d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1520" y="-319"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -45,7 +37,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h3-GP-4lq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="437"/>
+            <point key="canvasLocation" x="-209" y="412"/>
         </scene>
         <!--PrescriptionListViewController-->
         <scene sceneID="Gv5-AY-87X">
@@ -55,7 +47,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEP-5a-p8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="265" y="413"/>
         </scene>
     </scenes>
 </document>
