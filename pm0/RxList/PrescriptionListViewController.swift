@@ -69,6 +69,8 @@ class PrescriptionListViewController: UIViewController {
 
   var viewModel = PrescriptionListViewModel()
 
+
+  @IBAction func unwindToPrescriptionListCancel(segue:UIStoryboardSegue){}
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
 
     guard segue.identifier == "doneEditingPrescription" else{
