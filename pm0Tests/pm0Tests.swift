@@ -22,17 +22,19 @@ class pm0Tests: XCTestCase {
     }
     
     func testDBSearch() {
-      let matches = namesMatching("Tyl")
-      XCTAssert(matches.count > 0, "Not finding basic drugs")
+      self.measure{
+        let matches = namesMatching("Tylenol")
+        XCTAssert(matches.count > 0, "Not finding basic drugs")
+      }
     }
 
   func testDBFrontBackSearch() {
-    let matches = namesMatching("Tyl")
+    let matches = namesMatching("Tyl*")
     var isChildrensThere = false
     for match in matches{
-      print("--\(match)\n")
       if match.range(of:"Childrens Tylenol") != nil {
         isChildrensThere = true
+        break
       }
     }
     XCTAssert(isChildrensThere,"Not finding Childrens Tylenol, so front search doesn't work")
@@ -40,15 +42,22 @@ class pm0Tests: XCTestCase {
   }
 
   func testDBBuildVirtualTable(){
+    dropVirtualTable()
+    buildVirtualTableIfNeeded()
+  }
+
+  func testDBRaw(){
+    buildVirtualTableIfNeeded()
     self.measure{
-      buildVirtualTableIfNeeded()
+      _ = rawMatch("Tylenol")
     }
   }
 
   func testDBSearchSpeed(){
-   // self.measure{
-      _ = packagesMatchingInVT("T")
-  //  }
+    buildVirtualTableIfNeeded()
+    self.measure{
+      _ = packagesMatchingInVT("Tylenol")
+    }
   }
     
 }

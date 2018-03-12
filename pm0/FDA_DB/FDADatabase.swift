@@ -71,72 +71,74 @@ func fixDrugName(_ unfixed:String)->String{
   }
 }
 
-func buildVirtualTableIfNeeded(){
-  let cv_query = "create virtual table if not exists  fastproductpackages using fts5(otherId,NONPROPRIETARYNAME,PROPRIETARYNAME)"
+func dropVirtualTable(){
+
+  let cv_query = "drop table if exists fastproductpackages"
   let cv_statement = try! fdaDbConnection.prepare(cv_query)
   try! cv_statement.run()
- /*
-   INSERT INTO table2
-   SELECT * FROM table1
-   WHERE condition;
- */
 
-  let itemCountQuery = "SELECT * from fastproductpackages"
-  let statement1 = try! fdaDbConnection.prepare(itemCountQuery)
-  let results1 = try! statement1.run()
-  let count = results1.map{_=$0;return 1}.reduce(0){$0+$1}
+}
 
+func buildVirtualTableIfNeeded(){
+  //make it if needed
+  let cv_query = "create virtual table if not exists fastproductpackages using fts5(PRODUCTID,NONPROPRIETARYNAME,PROPRIETARYNAME)"
+  try! fdaDbConnection.prepare(cv_query).run()
+
+  //leave if it already exists and has stuff
+  let count = try! fdaDbConnection.prepare("SELECT * from fastproductpackages").scalar() as? Int64 ?? 0
   guard count == 0 else {
     return
   }
 
-  let query = "insert into fastproductpackages select productid,NONPROPRIETARYNAME,PROPRIETARYNAME from rawproductpackage"
+  //add stuff if needed
+  let query = "insert into fastproductpackages select PRODUCTID,NONPROPRIETARYNAME,PROPRIETARYNAME from rawproductpackage"
   let statement = try! fdaDbConnection.prepare(query)
   try! statement.run()
 }
 
 
+func rawMatch(_ search:String)->[[String]]{
+  let drugs = try! fdaDbConnection.prepare(
+    "SELECT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where productid in (SELECT productid from fastproductpackages where fastproductpackages match ?)").run(search)
+  return drugs.map{ $0.map{ $0 as? String ?? ""}}
+}
+
 func packagesMatchingInVT(_ search:String)->[[String:String]]{
-
-  //let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME like ?" //took out PRODUCT NDC
-
   buildVirtualTableIfNeeded()
-  let query = "SELECT * from fastproductpackages where fastproductpackages match ?"
-  let statement = try! fdaDbConnection.prepare(query)
-  let results = try! statement.run("'\(search)'")
-
-
-  let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
-  let items:[[String:String]] = coercedToString.map{ package in
-    let dict:[String:String] = ["PROPRIETARYNAME":fixDrugName(package[0]),
-                                "NONPROPRIETARYNAME":fixDrugName(package[1]),]
-                                //"PRODUCTNDC":package[2],
-     // "DOSAGEFORMNAME":fixForm(package[3]),
-     // "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[4]),
-     // "ACTIVE_INGRED_UNIT":fixUnit(package[5]) ]
-    return dict
+  let drugs = rawMatch(search)
+  let items:[[String:String]] = drugs.map{ package in
+    return[
+      "PROPRIETARYNAME":fixDrugName(package[0]),
+      "NONPROPRIETARYNAME":fixDrugName(package[1]),
+      "DOSAGEFORMNAME":fixForm(package[2]),
+      "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[3]),
+      "ACTIVE_INGRED_UNIT":fixUnit(package[4])
+    ]
   }
   return [[String:String]](items)
 }
 
 
 func packagesMatching(_ search:String)->[[String:String]]{
-
-  //let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME like ?" //took out PRODUCT NDC
-
-   let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
+   let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
   let statement = try! fdaDbConnection.prepare(query)
-  let results = try! statement.run("%\(search)%")
+
+  let results = try! statement.run(
+      "%\(search)%",
+        "%\(search)%",
+        "% \(search)%",
+        "% \(search)%"
+  )
 
 
   let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
   let items:[[String:String]] = coercedToString.map{ package in
-    let dict:[String:String] = ["PROPRIETARYNAME":fixDrugName(package[0]),
+    let dict:[String:String] = [
+      "PROPRIETARYNAME":fixDrugName(package[0]),
       "NONPROPRIETARYNAME":fixDrugName(package[1]),
-      //"PRODUCTNDC":package[2],
-    "DOSAGEFORMNAME":fixForm(package[3]),
-    "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[4]),
-    "ACTIVE_INGRED_UNIT":fixUnit(package[5]) ]
+      "DOSAGEFORMNAME":fixForm(package[2]),
+      "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[3]),
+      "ACTIVE_INGRED_UNIT":fixUnit(package[4]) ]
     return dict
   }
   return [[String:String]](items)
@@ -166,8 +168,8 @@ func pillSizesMatch(name:String, partial:String)->[[String:String]]{
 }
 
 func namesMatching(_ search:String)->[String]{
-  let results = packagesMatching(search)
-  debugPrint(results.last ?? "")
+  let results = packagesMatchingInVT(search)
+  //debugPrint(results.last ?? "")
   return Array<String>(results.map{"\($0["PROPRIETARYNAME"] ?? "") (\($0["NONPROPRIETARYNAME"] ?? ""))"})
 }
 

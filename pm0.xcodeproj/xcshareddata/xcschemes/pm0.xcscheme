@@ -38,17 +38,6 @@
                BlueprintName = "pm0Tests"
                ReferencedContainer = "container:pm0.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "pm0Tests/testDBBuildVirtualTable()">
-               </Test>
-               <Test
-                  Identifier = "pm0Tests/testDBFrontBackSearch()">
-               </Test>
-               <Test
-                  Identifier = "pm0Tests/testDBSearch()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

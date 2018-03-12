@@ -19,7 +19,7 @@ extension Dosage{
     let attrs = [NSAttributedStringKey.font: font ]
     let boldString = NSMutableAttributedString(string: "\(quantity) × \(unitDescription ?? form ?? "dose")", attributes:attrs)
     s.append(boldString)
-    let normalString = NSMutableAttributedString(string: "\(name)", attributes:[:])
+    //let normalString = NSMutableAttributedString(string: "\(name)", attributes:[:])
     s.append(boldString)
     return s
   }
