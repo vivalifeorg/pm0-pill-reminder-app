@@ -71,17 +71,65 @@ func fixDrugName(_ unfixed:String)->String{
   }
 }
 
+func buildVirtualTableIfNeeded(){
+  let cv_query = "create virtual table if not exists  fastproductpackages using fts5(otherId,NONPROPRIETARYNAME,PROPRIETARYNAME)"
+  let cv_statement = try! fdaDbConnection.prepare(cv_query)
+  try! cv_statement.run()
+ /*
+   INSERT INTO table2
+   SELECT * FROM table1
+   WHERE condition;
+ */
+
+  let itemCountQuery = "SELECT * from fastproductpackages"
+  let statement1 = try! fdaDbConnection.prepare(itemCountQuery)
+  let results1 = try! statement1.run()
+  let count = results1.map{_=$0;return 1}.reduce(0){$0+$1}
+
+  guard count == 0 else {
+    return
+  }
+
+  let query = "insert into fastproductpackages select productid,NONPROPRIETARYNAME,PROPRIETARYNAME from rawproductpackage"
+  let statement = try! fdaDbConnection.prepare(query)
+  try! statement.run()
+}
+
+
+func packagesMatchingInVT(_ search:String)->[[String:String]]{
+
+  //let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME like ?" //took out PRODUCT NDC
+
+  buildVirtualTableIfNeeded()
+  let query = "SELECT * from fastproductpackages where fastproductpackages match ?"
+  let statement = try! fdaDbConnection.prepare(query)
+  let results = try! statement.run("'\(search)'")
+
+
+  let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
+  let items:[[String:String]] = coercedToString.map{ package in
+    let dict:[String:String] = ["PROPRIETARYNAME":fixDrugName(package[0]),
+                                "NONPROPRIETARYNAME":fixDrugName(package[1]),]
+                                //"PRODUCTNDC":package[2],
+     // "DOSAGEFORMNAME":fixForm(package[3]),
+     // "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[4]),
+     // "ACTIVE_INGRED_UNIT":fixUnit(package[5]) ]
+    return dict
+  }
+  return [[String:String]](items)
+}
+
 
 func packagesMatching(_ search:String)->[[String:String]]{
 
-  let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
-  let searchSpace = "% \(search)%"
+  //let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME like ?" //took out PRODUCT NDC
+
+   let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
   let statement = try! fdaDbConnection.prepare(query)
-  debugPrint("searchspace: \(searchSpace)")
-  let results = try! statement.run(search, search, searchSpace, searchSpace)
+  let results = try! statement.run("%\(search)%")
+
 
   let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
-
   let items:[[String:String]] = coercedToString.map{ package in
     let dict:[String:String] = ["PROPRIETARYNAME":fixDrugName(package[0]),
       "NONPROPRIETARYNAME":fixDrugName(package[1]),
@@ -97,6 +145,7 @@ func packagesMatching(_ search:String)->[[String:String]]{
 func pillSizesMatch(name:String, partial:String)->[[String:String]]{
   let search = name
   let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
+
   let searchSpace = "% \(search)%"
   let statement = try! fdaDbConnection.prepare(query)
   debugPrint("searchspace: \(searchSpace)")

@@ -38,12 +38,17 @@ class pm0Tests: XCTestCase {
     XCTAssert(isChildrensThere,"Not finding Childrens Tylenol, so front search doesn't work")
 
   }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+
+  func testDBBuildVirtualTable(){
+    self.measure{
+      buildVirtualTableIfNeeded()
     }
+  }
+
+  func testDBSearchSpeed(){
+   // self.measure{
+      _ = packagesMatchingInVT("T")
+  //  }
+  }
     
 }
