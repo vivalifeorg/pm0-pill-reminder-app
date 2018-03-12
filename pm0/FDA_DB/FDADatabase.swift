@@ -96,10 +96,19 @@ func buildVirtualTableIfNeeded(){
   try! statement.run()
 }
 
+we have to implement
+
+http://www.sqlite.org/fts3.html#the_compress_and_uncompress_options
+
+to do what
+
+https://blog.kapeli.com/sqlite-fts-contains-and-suffix-matches
+
+does but for prefixes
 
 func rawMatch(_ search:String)->[[String]]{
   let drugs = try! fdaDbConnection.prepare(
-    "SELECT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where productid in (SELECT productid from fastproductpackages where fastproductpackages match ?)").run(search)
+    "SELECT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where productid in (SELECT productid from fastproductpackages where fastproductpackages match ? order by rank limit 100)").run("'\(search)'*")
   return drugs.map{ $0.map{ $0 as? String ?? ""}}
 }
 
@@ -119,30 +128,6 @@ func packagesMatchingInVT(_ search:String)->[[String:String]]{
 }
 
 
-func packagesMatching(_ search:String)->[[String:String]]{
-   let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM RawProductPackage where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
-  let statement = try! fdaDbConnection.prepare(query)
-
-  let results = try! statement.run(
-      "%\(search)%",
-        "%\(search)%",
-        "% \(search)%",
-        "% \(search)%"
-  )
-
-
-  let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
-  let items:[[String:String]] = coercedToString.map{ package in
-    let dict:[String:String] = [
-      "PROPRIETARYNAME":fixDrugName(package[0]),
-      "NONPROPRIETARYNAME":fixDrugName(package[1]),
-      "DOSAGEFORMNAME":fixForm(package[2]),
-      "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[3]),
-      "ACTIVE_INGRED_UNIT":fixUnit(package[4]) ]
-    return dict
-  }
-  return [[String:String]](items)
-}
 
 func pillSizesMatch(name:String, partial:String)->[[String:String]]{
   let search = name

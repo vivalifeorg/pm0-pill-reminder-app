@@ -334,7 +334,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   func namesMatchingAsync(_ str:String, completion:@escaping ([DisplayDrug])->()){
     DispatchQueue.global().async {
-      let rawMatches:[[String:String]] = packagesMatching(str)
+      let rawMatches:[[String:String]] = packagesMatchingInVT(str)
       let numberToKeep = 10000
       let numberToDrop = max(rawMatches.count - numberToKeep, 0)
       let truncatedRawMatches = rawMatches.dropLast(numberToDrop)

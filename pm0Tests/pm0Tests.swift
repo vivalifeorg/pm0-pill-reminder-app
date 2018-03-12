@@ -22,6 +22,7 @@ class pm0Tests: XCTestCase {
     }
     
     func testDBSearch() {
+
       self.measure{
         let matches = namesMatching("Tylenol")
         XCTAssert(matches.count > 0, "Not finding basic drugs")
@@ -52,6 +53,16 @@ class pm0Tests: XCTestCase {
       _ = rawMatch("Tylenol")
     }
   }
+
+  func testDBRawT(){
+    var matches:[[String]] = []
+    buildVirtualTableIfNeeded()
+    self.measure{
+      matches = rawMatch("Tyl")
+    }
+    debugPrint(matches)
+  }
+
 
   func testDBSearchSpeed(){
     buildVirtualTableIfNeeded()
