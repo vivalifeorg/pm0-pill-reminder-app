@@ -22,25 +22,10 @@ class pm0Tests: XCTestCase {
     }
     
     func testDBSearch() {
-
-      self.measure{
-        let matches = namesMatching("Tylenol")
+        let matches = packagesMatchingInVT("Tylenol")
         XCTAssert(matches.count > 0, "Not finding basic drugs")
-      }
+      
     }
-
-  func testDBFrontBackSearch() {
-    let matches = namesMatching("Tyl*")
-    var isChildrensThere = false
-    for match in matches{
-      if match.range(of:"Childrens Tylenol") != nil {
-        isChildrensThere = true
-        break
-      }
-    }
-    XCTAssert(isChildrensThere,"Not finding Childrens Tylenol, so front search doesn't work")
-
-  }
 
   func testDBBuildVirtualTable(){
     dropVirtualTable()
