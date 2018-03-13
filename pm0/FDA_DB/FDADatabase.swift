@@ -23,6 +23,8 @@ extension Array where Element : Hashable {
   }
 }
 
+
+
 func fixUnit(_ unfixed:String)->String{
   switch unfixed{
   case "mg/1":
@@ -71,56 +73,31 @@ func fixDrugName(_ unfixed:String)->String{
   }
 }
 
-func dropVirtualTable(){
 
-  let cv_query = "drop table if exists fastproductpackages"
-  let cv_statement = try! fdaDbConnection.prepare(cv_query)
-  try! cv_statement.run()
-
-}
-
-func buildVirtualTableIfNeeded(){
-  //make it if needed
-  let cv_query = "create virtual table if not exists fastproductpackages using fts5(PRODUCTID,NONPROPRIETARYNAME,PROPRIETARYNAME)"
-  try! fdaDbConnection.prepare(cv_query).run()
-
-  //leave if it already exists and has stuff
-  let count = try! fdaDbConnection.prepare("SELECT * from fastproductpackages").scalar() as? Int64 ?? 0
-  guard count == 0 else {
-    return
-  }
-
-  //add stuff if needed
-  let query = "insert into fastproductpackages select PRODUCTID,NONPROPRIETARYNAME,PROPRIETARYNAME from \(productTableName)"
-  let statement = try! fdaDbConnection.prepare(query)
-  try! statement.run()
-}
-
-/*
-we have to implement
-
-http://www.sqlite.org/fts3.html#the_compress_and_uncompress_options
-
-to do what
-
-https://blog.kapeli.com/sqlite-fts-contains-and-suffix-matches
-
-does but for prefixes
- */
 let productTableName = "Product"
-func rawMatch(_ search:String)->[[String]]{
-//let drugs = try! fdaDbConnection.prepare(
-// "SELECT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM \(productTableName) where productid in (SELECT productid from fastproductpackages where fastproductpackages match ? order by rank limit 100)").run("'\(search)'*")
 
-  let rawMatchQuery =
+fileprivate var cachedNameSearchStatement:Statement?
+fileprivate var nameSearchStatement:Statement{
+  if cachedNameSearchStatement == nil {
+    let rawMatchQuery =
   "SELECT PROPRIETARYNAME, NONPROPRIETARYNAME, DOSAGEFORMNAME, ACTIVE_NUMERATOR_STRENGTH, ACTIVE_INGRED_UNIT,  upper(PROPRIETARYNAME||NONPROPRIETARYNAME) AS nameconcat FROM \(productTableName) where nameconcat like '%'||@medicationName||'%'"
+    cachedNameSearchStatement = try! fdaDbConnection.prepare(rawMatchQuery)
+  }
+  return cachedNameSearchStatement!
+}
+
+func rawMatch(_ search:String)->[[String]]{
+  guard search.count >= 3 else{
+    debugPrint("String too short, aborting")
+    return []
+  }
+  
   debugPrint("Searching for: \(search)")
-  let drugs = try! fdaDbConnection.prepare(rawMatchQuery).run(["@medicationName":search])
+  let drugs = try! nameSearchStatement.run(["@medicationName":search])
   return drugs.map{ $0.map{ $0 as? String ?? ""}}
 }
 
-func packagesMatchingInVT(_ search:String)->[[String:String]]{
-  buildVirtualTableIfNeeded()
+func matchingMedications(_ search:String)->[[String:String]]{
   let drugs = rawMatch(search)
   let items:[[String:String]] = drugs.map{ package in
     return[
@@ -134,41 +111,15 @@ func packagesMatchingInVT(_ search:String)->[[String:String]]{
   return [[String:String]](items)
 }
 
-
-
 func pillSizesMatch(name:String, partial:String)->[[String:String]]{
-  let search = name
-  let query = "SELECT DISTINCT upper(PROPRIETARYNAME),upper(NONPROPRIETARYNAME),DOSAGEFORMNAME,DOSAGEFORMNAME,ACTIVE_NUMERATOR_STRENGTH,ACTIVE_INGRED_UNIT FROM \(productTableName) where NONPROPRIETARYNAME LIKE ? Or PROPRIETARYNAME LIKE ? OR NONPROPRIETARYNAME LIKE ? or PROPRIETARYNAME LIKE ?  order by PROPRIETARYNAME" //took out PRODUCT NDC
-
-  let searchSpace = "% \(search)%"
-  let statement = try! fdaDbConnection.prepare(query)
-  debugPrint("searchspace: \(searchSpace)")
-  let results = try! statement.run(search, search, searchSpace, searchSpace)
-
-  let coercedToString = results.map{ $0.map{ $0 as? String ?? ""}}
-
-  let items:[[String:String]] = coercedToString.map{ package in
-    let dict:[String:String] = ["PROPRIETARYNAME":fixDrugName(package[0]),
-                                "NONPROPRIETARYNAME":fixDrugName(package[1]),
-                                //"PRODUCTNDC":package[2],
-      "DOSAGEFORMNAME":fixForm(package[3]),
-      "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[4]),
-      "ACTIVE_INGRED_UNIT":fixUnit(package[5]) ]
-    return dict
-  }
-  return [[String:String]](items)
+  return matchingMedications(name)
 }
 
-
-
 fileprivate let fdaDbConnection = {try! Connection(Bundle.main.path(forResource: "fda_drugs", ofType: "db")!)}()
-
 
 fileprivate let productPackageTable = {
   return try! fdaDbConnection.prepare(Table("ProductPackage"))
 }()
-
-
 
 fileprivate func loadDrugDB()->[ProductPackaging]{
   return productPackageTable.map { row in

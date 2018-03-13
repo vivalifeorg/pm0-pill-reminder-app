@@ -22,18 +22,12 @@ class pm0Tests: XCTestCase {
     }
     
     func testDBSearch() {
-        let matches = packagesMatchingInVT("Tylenol")
+        let matches = matchingMedications("Tylenol")
         XCTAssert(matches.count > 0, "Not finding basic drugs")
       
     }
 
-  func testDBBuildVirtualTable(){
-    dropVirtualTable()
-    buildVirtualTableIfNeeded()
-  }
-
   func testDBRaw(){
-    buildVirtualTableIfNeeded()
     self.measure{
       _ = rawMatch("Tylenol")
     }
@@ -41,7 +35,14 @@ class pm0Tests: XCTestCase {
 
   func testDBRawT(){
     var matches:[[String]] = []
-    buildVirtualTableIfNeeded()
+    self.measure{
+      matches = rawMatch("T")
+    }
+    debugPrint(matches)
+  }
+
+  func testDBRawTyl(){
+    var matches:[[String]] = []
     self.measure{
       matches = rawMatch("Tyl")
     }
@@ -50,9 +51,8 @@ class pm0Tests: XCTestCase {
 
 
   func testDBSearchSpeed(){
-    buildVirtualTableIfNeeded()
     self.measure{
-      _ = packagesMatchingInVT("Tylenol")
+      _ = matchingMedications("Tylenol")
     }
   }
     
