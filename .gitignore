@@ -2,4 +2,4 @@ pm0.xcworkspace/xcuserdata/*.xcuserdatad/UserInterfaceState.xcuserstate
 fastlane/report.xml
 *.ipa
 *.dSYM.zip
-
+build/*
