@@ -23,11 +23,33 @@
                     <connections>
                         <segue destination="oCm-gI-AdH" kind="relationship" relationship="viewControllers" id="o3y-mH-1wK"/>
                         <segue destination="SvV-ys-2Zl" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="Gqp-oU-mPV" kind="relationship" relationship="viewControllers" id="JC3-6h-TPk"/>
+                        <segue destination="aSQ-xe-HhJ" kind="relationship" relationship="viewControllers" id="pl5-K3-19b"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--DoctorList-->
+        <scene sceneID="rq9-zd-6T4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DoctorList" id="Gqp-oU-mPV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="a8H-9i-LIJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWh-Fe-Zyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="674" y="106"/>
+        </scene>
+        <!--ReleasePaperwork-->
+        <scene sceneID="dbz-uS-pPp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ReleasePaperwork" id="aSQ-xe-HhJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="cZP-je-nu2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ip6-9t-10m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652" y="196"/>
         </scene>
         <!--UpcomingDay-->
         <scene sceneID="Wkj-tt-gSV">

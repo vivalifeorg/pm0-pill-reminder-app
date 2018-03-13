@@ -18,6 +18,8 @@
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */; };
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
+		89A5168D205879ED0069D9AE /* ReleasePaperwork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */; };
+		89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5169220587AA90069D9AE /* DoctorList.storyboard */; };
 		89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */; };
 		89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B4E1D2204DEFC200A09B27 /* VLColors.swift */; };
 		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
@@ -53,6 +55,8 @@
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
+		89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReleasePaperwork.storyboard; sourceTree = "<group>"; };
+		89A5169220587AA90069D9AE /* DoctorList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DoctorList.storyboard; sourceTree = "<group>"; };
 		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89B4E1D2204DEFC200A09B27 /* VLColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLColors.swift; sourceTree = "<group>"; };
 		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +143,22 @@
 			path = RxEntry;
 			sourceTree = "<group>";
 		};
+		89A5168E205879F50069D9AE /* ReleasePaperwork */ = {
+			isa = PBXGroup;
+			children = (
+				89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */,
+			);
+			path = ReleasePaperwork;
+			sourceTree = "<group>";
+		};
+		89A5168F20587A4D0069D9AE /* Doctors */ = {
+			isa = PBXGroup;
+			children = (
+				89A5169220587AA90069D9AE /* DoctorList.storyboard */,
+			);
+			path = Doctors;
+			sourceTree = "<group>";
+		};
 		89B4E1CF204DE55F00A09B27 /* UpcomingDay */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +196,8 @@
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
+				89A5168F20587A4D0069D9AE /* Doctors */,
+				89A5168E205879F50069D9AE /* ReleasePaperwork */,
 				894DBC3E205040460020353F /* RxList */,
 				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
 				896052BF20470D9400DF502C /* RxEntry */,
@@ -307,9 +329,11 @@
 				89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */,
 				89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */,
 				89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */,
+				89A5168D205879ED0069D9AE /* ReleasePaperwork.storyboard in Resources */,
 				894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */,
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
+				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
