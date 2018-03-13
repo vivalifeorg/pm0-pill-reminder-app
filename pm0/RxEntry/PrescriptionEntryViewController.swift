@@ -247,16 +247,16 @@ struct DisplayDrug{
   var dosageForm:String? = nil
   var activeStrength:String? = nil
   var userSpecifiedQty:Int=1 //todo move this
-  var raw:[String:String]
+  var raw:MedicationPackage
 }
 
 extension DisplayDrug{
-  init(_ item: [String:String]){
-    name = item["PROPRIETARYNAME"] ?? item["NONPROPRIETARYNAME"] ?? ""
-    dosageForm = item["DOSAGEFORMNAME"] ?? ""
-    nonPropName = item["NONPROPRIETARYNAME"] ?? ""
-    activeStrength = item["ACTIVE_NUMERATOR_STRENGTH"]
-    unit = item["ACTIVE_INGRED_UNIT"] ?? ""
+  init(_ item: MedicationPackage){
+    name = item.proprietaryName
+    dosageForm = item.dosageForname
+    nonPropName = item.nonProprietaryName
+    activeStrength = item.activeNumerator
+    unit = item.activeIngrediantUnit
     raw = item
   }
 }
@@ -313,7 +313,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   func pillSizesMatching(name:String, partial:String, completion:@escaping ([SearchTextFieldItem])->()){
     DispatchQueue.global().async {
-      let rawMatches:[[String:String]] = pillSizesMatch(name: name, partial: partial)
+      let rawMatches:[MedicationPackage] = pillSizesMatch(name: name, partial: partial)
       let matches:[DisplayDrug] =  rawMatches.map{ item in
         return DisplayDrug(item)
       }
@@ -334,7 +334,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
 
   func namesMatchingAsync(_ str:String, completion:@escaping ([DisplayDrug])->()){
     DispatchQueue.global().async {
-      let rawMatches:[[String:String]] = matchingMedications(str)
+      let rawMatches:[MedicationPackage] = matchingMedications(str)
       let numberToKeep = 10000
       let numberToDrop = max(rawMatches.count - numberToKeep, 0)
       let truncatedRawMatches = rawMatches.dropLast(numberToDrop)

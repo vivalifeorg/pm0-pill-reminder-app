@@ -77,7 +77,7 @@ struct EntryInfo:Codable{
   var prescribingDoctor:String?
   var pharmacy:String?
   var condition:String?
-  var drugDBSelection:[String:String]?
+  var drugDBSelection:MedicationPackage?
 }
 extension EntryInfo{
   init(){

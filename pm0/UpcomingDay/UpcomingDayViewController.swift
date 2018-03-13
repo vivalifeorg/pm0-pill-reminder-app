@@ -277,7 +277,7 @@ class UpcomingDayViewController: UITableViewController {
       thisTime.minute = minuteOffset % 60
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
-      let displayable = dosesAtTime.map{ TimeSlotItem(name:$0.name,isTaken:false) }
+      let displayable = dosesAtTime.map{ TimeSlotItem(name:$0.description,isTaken:false) }
       let timeSlot = TimeSlot(name:names[minuteOffset],
                              date:timeSlotDate,
                              items:displayable)

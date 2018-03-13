@@ -23,27 +23,30 @@ extension Array where Element : Hashable {
   }
 }
 
-
+func fixUnits(_ unfixed:String)->[String]{
+  if unfixed.contains(";"){
+    return unfixed.split(separator: ";").map{ fixUnit(String($0))}
+  }else{
+    return [fixUnit(unfixed)]
+  }
+}
 
 func fixUnit(_ unfixed:String)->String{
   switch unfixed{
   case "mg/1":
     return "mg"
   default:
-    if unfixed.contains(";"){
-      return ""
-    }
     return unfixed
   }
 }
 
-func fixNumerator(_ unfixed:String)->String{
+func fixNumerators(_ unfixed:String)->[String]{
   switch unfixed{
   default:
     if unfixed.contains(";"){
-      return ""
+      return unfixed.split(separator: ";").map{String($0)}
     }
-    return unfixed
+    return [unfixed]
   }
 }
 
@@ -91,41 +94,43 @@ func rawMatch(_ search:String)->[[String]]{
     debugPrint("String too short, aborting")
     return []
   }
-  
+
   debugPrint("Searching for: \(search)")
   let drugs = try! nameSearchStatement.run(["@medicationName":search])
   return drugs.map{ $0.map{ $0 as? String ?? ""}}
 }
 
-func matchingMedications(_ search:String)->[[String:String]]{
-  let drugs = rawMatch(search)
-  let items:[[String:String]] = drugs.map{ package in
-    return[
-      "PROPRIETARYNAME":fixDrugName(package[0]),
-      "NONPROPRIETARYNAME":fixDrugName(package[1]),
-      "DOSAGEFORMNAME":fixForm(package[2]),
-      "ACTIVE_NUMERATOR_STRENGTH":fixNumerator(package[3]),
-      "ACTIVE_INGRED_UNIT":fixUnit(package[4])
-    ]
-  }
-  return [[String:String]](items)
+
+struct MedicationPackage:Codable{
+  let proprietaryName:String
+  let nonProprietaryName:String
+  let dosageForname:String
+  let activeNumerator:String
+  let activeIngrediantUnit:String
+
 }
 
-func pillSizesMatch(name:String, partial:String)->[[String:String]]{
+extension MedicationPackage{
+  init(package:[String]){
+    proprietaryName = fixDrugName(package[0])
+    nonProprietaryName = fixDrugName(package[1])
+    dosageForname = fixForm(package[2])
+    activeNumerator = fixNumerators(package[3]).first!
+    activeIngrediantUnit = fixUnits(package[4]).first!
+  }
+}
+
+func matchingMedications(_ search:String)->[MedicationPackage]{
+  let drugs = rawMatch(search)
+  return drugs.map{MedicationPackage(package:$0)}
+}
+
+func pillSizesMatch(name:String, partial:String)->[MedicationPackage]{
   return matchingMedications(name)
 }
 
 fileprivate let fdaDbConnection = {try! Connection(Bundle.main.path(forResource: "fda_drugs", ofType: "db")!)}()
 
-fileprivate let productPackageTable = {
-  return try! fdaDbConnection.prepare(Table("ProductPackage"))
-}()
-
-fileprivate func loadDrugDB()->[ProductPackaging]{
-  return productPackageTable.map { row in
-    return try! row.decode()
-  }
-}
 
 
 
