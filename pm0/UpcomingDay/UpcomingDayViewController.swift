@@ -172,7 +172,7 @@ class UpcomingDayViewController: UITableViewController {
   var scheduledDosages:[Dosage]=[] {
     didSet{
       let appliedSchedule = scheduleForDate(Date(),drugs:scheduledDosages)
-      debugPrint(appliedSchedule)
+     // debugPrint(appliedSchedule)
       sections = sectionsForSchedule(timeSlots: appliedSchedule)
     }
   }
@@ -283,7 +283,7 @@ class UpcomingDayViewController: UITableViewController {
                              items:displayable)
       timeSlots.append(timeSlot)
 
-      debugPrint("\(thisTime.hour!):\(thisTime.minute!) \(timeSlot)")
+      //debugPrint("\(thisTime.hour!):\(thisTime.minute!) \(timeSlot)")
     }
 
     return timeSlots
