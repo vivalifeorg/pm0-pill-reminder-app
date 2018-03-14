@@ -1,4 +1,7 @@
 PODS:
+  - AWSCore (2.6.12)
+  - AWSLambda (2.6.12):
+    - AWSCore (= 2.6.12)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
   - SearchTextField (1.2.0)
@@ -7,6 +10,7 @@ PODS:
   - SQLite.swift/standard (0.11.4)
 
 DEPENDENCIES:
+  - AWSLambda
   - DZNEmptyDataSet
   - KeychainAccess
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
@@ -23,11 +27,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/apasccon/SearchTextField
 
 SPEC CHECKSUMS:
+  AWSCore: d0d6e4f6831754aaf98058d2306a016ae71510fe
+  AWSLambda: 350629abc6cf0d003bc600c1d2dd4326a99f9498
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: a9cf5674c5354e100066e4e2b59432c78706b97a
+PODFILE CHECKSUM: 7d07398153c7ecde5b80a58493b11d63eecd88a2
 
 COCOAPODS: 1.4.0.beta.2
