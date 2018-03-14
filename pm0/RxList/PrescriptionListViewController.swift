@@ -164,6 +164,10 @@ class PrescriptionListViewController: UIViewController {
     tableView.emptyDataSetDelegate = self;
 
     viewModel.prescriptions = LocalStorage.LoadPrescriptions()
+
+    sendFax(documentPaths: []){ isSuccess,msg in
+      print(msg)
+    }
   }
 
   static var cellIdentifier:String{

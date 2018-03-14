@@ -12,6 +12,7 @@
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
+		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
 		8954AC5F204DCE1B00E97305 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8954AC5E204DCE1B00E97305 /* Models.swift */; };
 		896052BC20470B6400DF502C /* PrescriptionLineEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = 896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */; };
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
@@ -49,6 +50,7 @@
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
+		8951A917205992E50027076E /* Fax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fax.swift; sourceTree = "<group>"; };
 		8954AC5E204DCE1B00E97305 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionLineEntry.xib; sourceTree = "<group>"; };
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */,
+				8951A917205992E50027076E /* Fax.swift */,
 			);
 			path = ReleasePaperwork;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
+				8951A918205992E50027076E /* Fax.swift in Sources */,
 				8954AC5F204DCE1B00E97305 /* Models.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
