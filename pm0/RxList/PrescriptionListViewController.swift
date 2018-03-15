@@ -165,7 +165,7 @@ class PrescriptionListViewController: UIViewController {
 
     viewModel.prescriptions = LocalStorage.LoadPrescriptions()
 
-    sendFax(toNumber:"15535555", documentPaths: []){ isSuccess,msg in
+    sendFax(toNumber:"15535555", documentPaths: ["TestPage1.pdf"]){ isSuccess,msg in
       print(msg)
     }
   }

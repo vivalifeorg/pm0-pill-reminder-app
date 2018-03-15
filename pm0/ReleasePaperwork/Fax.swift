@@ -11,6 +11,14 @@ import Foundation
 
 import AWSLambda
 
+func generateBoundaryString() -> String {
+  return "Boundary-\(NSUUID().uuidString)"
+}
+
+func readFile(fileName: String) -> Data{
+  return try! NSData.init(contentsOfFile:fileName, options:[]) as Data
+}
+
 func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
   let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
   let task = URLSession.shared.dataTask(with: URL(string:faxEndpoint)!) { (data, response, error) in
@@ -25,7 +33,7 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
     do {
         // Convert the data to JSON
       let stringObj = String(data:data,encoding:.utf8)!
-      print(stringObj)
+      //print(stringObj)
 
       guard let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as?  [String:Any] else{
         print("Can't deserialize")
@@ -35,31 +43,58 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
 
       guard let uri = jsonSerialized["uri"] as? String,
             let params = jsonSerialized["postParams"] as? [String],
-            let templatedTerms = jsonSerialized["templatedTerms"] as? [String],
+            //let templatedTerms = jsonSerialized["templatedTerms"] as? [String],
             let key = jsonSerialized["key"] as? String,
-            let secret = jsonSerialized["secret"] as? String ,
-        let vlToken = jsonSerialized["vlToken"] as? String else {
+            let secret = jsonSerialized["secret"] as? String
+        //let vlToken = jsonSerialized["vlToken"] as? String
+        else {
           print("Missing expected params")
           return
       }
 
       var req = URLRequest(url: URL(string:uri)!)
       req.httpMethod = "POST"
+
+
+      let boundary = "---------------------------faxity_faxfaxfaxfax_faxity"
+
+      //define the multipart request type
+
+      req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+
       req.setValue("Basic \(key):\(secret)", forHTTPHeaderField: "Authorization")
       let theFaxNumber = toNumber
       let theFilePath = "/obviouslyFake"
       let preppedParams = params.map{
-        $0.replacingOccurrences(of: "filepath",
-                                with: theFilePath).replacingOccurrences(of: "faxnumber", with: theFaxNumber)
+        $0.replacingOccurrences(of: "{{{filepath}}}",
+                                with: theFilePath).replacingOccurrences(of: "{{{faxnumber}}}", with: theFaxNumber)
       }
-      let body = preppedParams.joined(separator: "\n")
-      req.httpBody = body.data(using: .utf8)
+      let boundaryAndTextType = """
+        \(boundary)
+        Content-Disposition: form-data; name=\"text\"
+
+
+      """
+
+      let body1 = preppedParams.joined(separator: boundaryAndTextType)
+
+      let body2 = documentPaths.flatMap{
+        let fixedFileName = Bundle.main.resourcePath! + "/" + $0
+        let fileContents = readFile(fileName: fixedFileName)
+        return "\(boundary) \nContent-Disposition: form-data; name=\"File\"; filename=\"\($0)\"\n\n\(fileContents.base64EncodedString())"
+      }.joined(separator: "\n")
+      req.httpBody = (body1+body2).data(using: .utf8)
+
+
 
       //todo make this pass the post params with tth efilename
       let task2 = URLSession.shared.dataTask(with: req)   { (data, response, error) in
         debugPrint(data,response,error)
-        debugPrint("=-----")
-        dump(req)
+        debugPrint("=-----1")
+        debugPrint("Response Code: \(response?.description ?? "noResp")")
+        debugPrint("=-----2")
+        debugPrint(String(data:req.httpBody!,encoding:.utf8))
       }
       task2.resume()
 
