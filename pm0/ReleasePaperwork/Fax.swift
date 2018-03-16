@@ -91,7 +91,13 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       let body2 = documentPaths.flatMap{
         let fixedFileName = Bundle.main.resourcePath! + "/" + $0
         let fileContents = readFile(fileName: fixedFileName)
-        return "\(boundary) \nContent-Disposition: form-data; name=\"file\"; filename=\"\($0)\"\n\n\(fileContents.base64EncodedString())"
+        return """
+        \(boundary)
+        Content-Disposition: form-data; name=\"file\"; filename=\"\($0)\"
+
+        \(fileContents.base64EncodedString())
+
+        """
       }.joined(separator: "\n")
       req.httpBody = (body1+body2+"\n"+boundary).data(using: .utf8)
 
