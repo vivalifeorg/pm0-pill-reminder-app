@@ -9,7 +9,7 @@
 import Foundation
 
 
-import AWSLambda
+
 
 func generateBoundaryString() -> String {
   return "Boundary-\(NSUUID().uuidString)"
