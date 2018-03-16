@@ -71,11 +71,12 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       req.httpMethod = "POST"
 
 
-      let boundary = "---------------------------faxity_faxfaxfaxfax_faxity"
+      let boundaryHeader = "------------------------2b1b5a3d9d8f447f"
+      let boundary = "--"+boundaryHeader
 
       //define the multipart request type
 
-      req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      req.setValue("multipart/form-data; boundary=\(boundaryHeader)", forHTTPHeaderField: "Content-Type")
 
       let base64OfKeySecret = "\(key):\(secret)".toBase64()
       req.setValue("Basic \(base64OfKeySecret)", forHTTPHeaderField: "Authorization")
@@ -109,12 +110,12 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         return """
         \(boundary)
         Content-Disposition: form-data; name=\"file\"; filename=\"\($0)\"
+        Content-Type: application/pdf
 
         \(fileContents.base64EncodedString())
-
         """
       }.joined(separator: "\n")
-      req.httpBody = (body1+body2+"\n"+boundary).data(using: .utf8)
+      req.httpBody = (body1+body2+"\n"+boundary+"--").data(using: .utf8)
 
 
 
