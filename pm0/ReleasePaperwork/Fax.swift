@@ -15,6 +15,21 @@ func generateBoundaryString() -> String {
   return "Boundary-\(NSUUID().uuidString)"
 }
 
+extension String {
+
+  func fromBase64() -> String? {
+    guard let data = Data(base64Encoded: self) else {
+      return nil
+    }
+
+    return String(data: data, encoding: .utf8)
+  }
+
+  func toBase64() -> String {
+    return Data(self.utf8).base64EncodedString()
+  }
+}
+
 func readFile(fileName: String) -> Data{
   return try! NSData.init(contentsOfFile:fileName, options:[]) as Data
 }
@@ -62,8 +77,8 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
 
       req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
-
-      req.setValue("\(key):\(secret)", forHTTPHeaderField: "Authorization")
+      let base64OfKeySecret = "\(key):\(secret)".toBase64()
+      req.setValue("Basic \(base64OfKeySecret)", forHTTPHeaderField: "Authorization")
       let theFaxNumber = toNumber
       let theFilePath = "/obviouslyFake"
       let preppedParams = params.map{
