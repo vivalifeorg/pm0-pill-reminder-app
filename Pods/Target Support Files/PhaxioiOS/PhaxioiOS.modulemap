@@ -1,0 +1,6 @@
+framework module PhaxioiOS {
+  umbrella header "PhaxioiOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

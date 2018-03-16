@@ -34,6 +34,20 @@ func readFile(fileName: String) -> Data{
   return try! NSData.init(contentsOfFile:fileName, options:[]) as Data
 }
 
+import PhaxioiOS
+
+
+@objc class PM0PhaxioFaxDelegate:NSObject,FaxDelegate{
+  func sentFax(_ success:Bool, andResponse json:[AnyHashable : Any]){
+    print("Success:\(success) responsse\(json)")
+  }
+}
+
+var useOldPhaxioObjc = false
+
+let faxDelegate = PM0PhaxioFaxDelegate()
+var fax:Fax = Fax.init(fax:()) //Objc Api, sigh
+
 func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
   let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
   let task = URLSession.shared.dataTask(with: URL(string:faxEndpoint)!) { (data, response, error) in
@@ -47,7 +61,7 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
 
     do {
         // Convert the data to JSON
-      let stringObj = String(data:data,encoding:.utf8)!
+     // let stringObj = String(data:data,encoding:.utf8)!
       //print(stringObj)
 
       guard let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as?  [String:Any] else{
@@ -66,6 +80,20 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
           print("Missing expected params")
           return
       }
+
+
+      if(useOldPhaxioObjc)
+      {
+        PhaxioAPI.setAPIKey(key, andSecret: secret)
+        fax = Fax.init(fax: ())
+        fax.delegate = faxDelegate
+        fax.to_phone_numbers = [toNumber]
+        let fixedFileName = Bundle.main.resourcePath! + "/" + documentPaths.first!
+        fax.file = readFile(fileName: fixedFileName) // FAX.FILE assumes JPEG
+        fax.send()
+        return;
+      }
+
 
       var req = URLRequest(url: URL(string:uri)!)
       req.httpMethod = "POST"
@@ -115,7 +143,7 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         \(fileContents.base64EncodedString())
         """
       }.joined(separator: "\n")
-      req.httpBody = (body1+body2+"\n"+boundary+"--").data(using: .utf8)
+      req.httpBody = (body1+body2+"\n"+boundary+"--").replacingOccurrences(of:"\n",with:"\r\n").data(using: .utf8)
 
 
 
@@ -123,9 +151,9 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       let task2 = URLSession.shared.dataTask(with: req)   { (data, response, error) in
         dump(("***",data,response,error,"***"))
         debugPrint("=-----1")
-        debugPrint("Response Code: \(response?.description ?? "noResp")")
-        debugPrint("=-----2")
         debugPrint(String(data:req.httpBody!,encoding:.utf8) ?? "")
+        debugPrint("=-----2")
+        debugPrint("Response Code: \(response?.description ?? "noResp")")
       }
       task2.resume()
 
