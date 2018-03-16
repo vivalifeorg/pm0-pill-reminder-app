@@ -63,38 +63,47 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
 
-      req.setValue("Basic \(key):\(secret)", forHTTPHeaderField: "Authorization")
+      req.setValue("\(key):\(secret)", forHTTPHeaderField: "Authorization")
       let theFaxNumber = toNumber
       let theFilePath = "/obviouslyFake"
       let preppedParams = params.map{
         $0.replacingOccurrences(of: "{{{filepath}}}",
                                 with: theFilePath).replacingOccurrences(of: "{{{faxnumber}}}", with: theFaxNumber)
       }
-      let boundaryAndTextType = """
+
+      let body1 = preppedParams.flatMap{
+        let splitParams = $0.split(separator:"=")
+        let param1 = splitParams.first!
+
+        if param1 == "file[]" {return ""}
+
+        let rest = String(splitParams.dropFirst().joined())
+        let boundaryAndTextType = """
         \(boundary)
-        Content-Disposition: form-data; name=\"text\"
+        Content-Disposition: form-data; name=\"\(param1)\"
 
+        \(rest)
 
-      """
-
-      let body1 = preppedParams.joined(separator: boundaryAndTextType)
+        """
+        return boundaryAndTextType
+      }.joined()
 
       let body2 = documentPaths.flatMap{
         let fixedFileName = Bundle.main.resourcePath! + "/" + $0
         let fileContents = readFile(fileName: fixedFileName)
-        return "\(boundary) \nContent-Disposition: form-data; name=\"File\"; filename=\"\($0)\"\n\n\(fileContents.base64EncodedString())"
+        return "\(boundary) \nContent-Disposition: form-data; name=\"file\"; filename=\"\($0)\"\n\n\(fileContents.base64EncodedString())"
       }.joined(separator: "\n")
-      req.httpBody = (body1+body2).data(using: .utf8)
+      req.httpBody = (body1+body2+"\n"+boundary).data(using: .utf8)
 
 
 
       //todo make this pass the post params with tth efilename
       let task2 = URLSession.shared.dataTask(with: req)   { (data, response, error) in
-        debugPrint(data,response,error)
+        dump(("***",data,response,error,"***"))
         debugPrint("=-----1")
         debugPrint("Response Code: \(response?.description ?? "noResp")")
         debugPrint("=-----2")
-        debugPrint(String(data:req.httpBody!,encoding:.utf8))
+        debugPrint(String(data:req.httpBody!,encoding:.utf8) ?? "")
       }
       task2.resume()
 
