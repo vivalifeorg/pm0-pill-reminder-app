@@ -10,6 +10,7 @@
 		49D7508004021DB8F5EE2728 /* Pods_pm0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */; };
 		890242E02033941C00B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
+		8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		35B9C2C23FA9874E99DB4672 /* Pods-pm0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.release.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.release.xcconfig"; sourceTree = "<group>"; };
 		890242DF2033941C00B25E99 /* fda_drugs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fda_drugs.db; sourceTree = "<group>"; };
+		8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestFaxToDS.pdf; sourceTree = "<group>"; };
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				8951A919205B01F70027076E /* TestPage1.pdf */,
 				8951A91A205B01F70027076E /* TestPage2.pdf */,
+				8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */,
 			);
 			path = TestPages;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
+				8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
