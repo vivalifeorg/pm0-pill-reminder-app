@@ -87,6 +87,14 @@
 @required
 @end
 
+@interface FaxFile: NSObject
+@property (nonatomic, retain) NSData* data;
+@property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSString* mimeTypeName;
+-(instancetype)initWithData:(NSData*) data  name:(NSString*)name  mimeTypeName:(NSString*)mimeTypeName;
+@end
+
+
 @interface Fax : NSObject <PhaxioAPIDelegate>
 {
     /**
@@ -123,9 +131,9 @@
 @property (nonatomic, retain) NSString* fax_id;
 
 /**
- The file associated with the fax (a fax must have either a file or content_url)
+ The files associated with the fax (a fax must have either a file or content_url)
  */
-@property (nonatomic, retain) NSData* file;
+@property (nonatomic, retain) NSArray* files;
 
 /**
  The content url for the fax (a fax must have either a file or content_url)

@@ -8,11 +8,29 @@
 
 #import "Fax.h"
 
+
+@implementation FaxFile
+@synthesize data;
+@synthesize name;
+@synthesize mimeTypeName;
+
+-(instancetype)initWithData:(NSData*) data  name:(NSString*)name  mimeTypeName:(NSString*)mimeTypeName{
+  self = [super init];
+  if(self){
+    self.data = data;
+    self.name = name;
+    self.mimeTypeName = mimeTypeName;
+  }
+  return self;
+}
+
+@end
+
 @implementation Fax
 
 @synthesize to_phone_numbers;
 @synthesize fax_id;
-@synthesize file;
+@synthesize files;
 @synthesize content_url;
 @synthesize header_text;
 
@@ -46,7 +64,7 @@
         error = YES;
     }
     
-    if (file == nil && content_url == nil)
+    if (files == nil && content_url == nil)
     {
         NSMutableDictionary* response = [[NSMutableDictionary alloc] init];
         [response setValue:@"NO" forKey:@"success"];
@@ -69,9 +87,13 @@
         [parameters setValue:toNumbers forKey:@"to[]"];
     }
 
-    if (file != nil)
+    if (files != nil)
     {
-        [parameters setValue:file forKey:@"file"];
+      if (files.count == 1){
+        [parameters setValue:files forKey:@"file"];
+      }else{
+        [parameters setValue:files forKey:@"file[]"];
+      }
     }
     
     if (content_url != nil && ![content_url isEqualToString:@""])

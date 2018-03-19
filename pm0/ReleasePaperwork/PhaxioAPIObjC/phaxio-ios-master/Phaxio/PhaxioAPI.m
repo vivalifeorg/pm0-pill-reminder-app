@@ -7,7 +7,7 @@
 //
 
 #import "PhaxioAPI.h"
-
+#import "Fax.h"
 @implementation PhaxioAPI
 
 @synthesize delegate;
@@ -324,8 +324,7 @@ NSString* api_url = @"https://api.phaxio.com/v2/";
         [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
         
         NSMutableData *mutableData = [NSMutableData data];
-        NSData* photoData = [parameters valueForKey:@"file"];
-        [parameters removeObjectForKey:@"file"];
+
         
         NSArray* parameterArray = [parameters allKeys];
         
@@ -336,13 +335,19 @@ NSString* api_url = @"https://api.phaxio.com/v2/";
             [mutableData appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:parameter]] dataUsingEncoding:NSUTF8StringEncoding]];
         }
         
-        NSString* fileParamConstant = @"file";
-        if (photoData) {
+
+        NSArray* faxFiles = [parameters valueForKey:@"file"];
+        if (faxFiles) {
+          [parameters removeObjectForKey:@"file"];
+
+          NSString* fileParamConstant = faxFiles.count == 1 ? @"file":@"file[]";
+          for (FaxFile* faxFile in faxFiles){
             [mutableData appendData:[[NSString stringWithFormat:@"--%@\r\n", boundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
-            [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n", fileParamConstant] dataUsingEncoding:NSUTF8StringEncoding]];
-            [mutableData appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-            [mutableData appendData:photoData];
+            [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileParamConstant, faxFile.name] dataUsingEncoding:NSUTF8StringEncoding]];
+            [mutableData appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n",faxFile.mimeTypeName] dataUsingEncoding:NSUTF8StringEncoding]];
+            [mutableData appendData:faxFile.data];
             [mutableData appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+          }
         }
         
         [mutableData appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];

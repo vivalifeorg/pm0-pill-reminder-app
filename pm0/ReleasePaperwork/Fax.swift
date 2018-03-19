@@ -96,7 +96,10 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         fax.delegate = faxDelegate
         fax.to_phone_numbers = [toNumber]
         let fixedFileName = Bundle.main.resourcePath! + "/" + documentPaths.first!
-        fax.file = readFile(fileName: fixedFileName) // FAX.FILE assumes JPEG
+        fax.files = [
+          FaxFile(data:readFile(fileName: fixedFileName), name:documentPaths.first!, mimeTypeName:"image/jpg")
+        ]
+       // fax.files = [readFile(fileName: fixedFileName)] // FAX.FILE assumes JPEG
         fax.send()
         return;
       }
