@@ -44,7 +44,12 @@ import PhaxioiOS
   }
 }
 
-var useOldPhaxioObjc = false
+extension String{
+  var CRLFified:String{
+    return replacingOccurrences(of:"\n",with:"\r\n")
+  }
+}
+var useOldPhaxioObjc = true
 var usePhaxioSwiftAlamofire = false
 
 let faxDelegate = PM0PhaxioFaxDelegate()
@@ -163,23 +168,37 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       }.joined()
 
 
-      let body2 = documentPaths.flatMap{
+      let body2Datas:[Data] = documentPaths.flatMap{
         let fixedFileName = Bundle.main.resourcePath! + "/" + $0
         let fileContents = readFile(fileName: fixedFileName)
         let mimeType = "image/jpg"
         let image = UIImage(data:fileContents)!
-        let encoded = fileContents.base64EncodedString()
-
-        return """
+        debugPrint("data: \(image)")
+        var info = """
         \(boundary)
         Content-Disposition: form-data; name=\"file\"; filename=\"\($0)\"
         Content-Type: \(mimeType)
-        Content-Transfer-Encoding: base64
 
-        \(encoded)
-        """
-      }.joined(separator: "\n")
-      req.httpBody = (body1+body2+"\n"+boundary+"--").replacingOccurrences(of:"\n",with:"\r\n").data(using: .utf8)
+        """.CRLFified
+        var infoData = info.data(using:.utf8)!
+
+        infoData.append(fileContents)
+        infoData.append("\r\n".data(using:.utf8)!)
+
+        return infoData
+      }
+
+      let body1Data = body1.CRLFified.data(using:.utf8)!
+      let endData = ("\r\n"+boundary+"--").data(using:.utf8)!
+      var bodyData = Data()
+      bodyData.append(body1Data)
+      for d in body2Datas{
+        bodyData.append(d)
+      }
+      bodyData.append(endData)
+
+      req.httpBody = bodyData
+        //(body1+body2+"\n"+boundary+"--").replacingOccurrences(of:"\n",with:"\r\n").data(using: .utf8)
 
 
 
