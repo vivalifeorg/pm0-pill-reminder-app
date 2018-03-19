@@ -53,7 +53,7 @@ var useOldPhaxioObjc = true
 var usePhaxioSwiftAlamofire = false
 
 let faxDelegate = PM0PhaxioFaxDelegate()
-var fax:Fax = Fax.init(fax:()) //Objc Api, sigh
+var fax:Fax = Fax.init() //Objc Api, sigh
 
 func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
   let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
@@ -92,7 +92,7 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       if(useOldPhaxioObjc)
       {
         PhaxioAPI.setAPIKey(key, andSecret: secret)
-        fax = Fax.init(fax: ())
+        fax = Fax()
         fax.delegate = faxDelegate
         fax.to_phone_numbers = [toNumber]
         let fixedFileName = Bundle.main.resourcePath! + "/" + documentPaths.first!

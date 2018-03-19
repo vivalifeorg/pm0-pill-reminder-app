@@ -16,7 +16,7 @@
 @synthesize content_url;
 @synthesize header_text;
 
--(id)initFax
+-(id)init
 {
     self = [super init];
     if (self)

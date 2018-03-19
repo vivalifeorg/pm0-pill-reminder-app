@@ -140,7 +140,7 @@
 /**
  Initializes a Fax object
  */
--(id)initFax;
+-(id)init;
 
 /**
  Sends the fax with the given parameters, response is returned to the delegate method `- (void)sentFax:(BOOL)success andResponse:(NSDictionary*)json;`
