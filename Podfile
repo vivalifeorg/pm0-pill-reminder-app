@@ -7,7 +7,7 @@ target "pm0" do
   pod 'SQLite.swift', '~> 0.11.4',   :inhibit_warnings => true #SQLite Driver
   pod 'DZNEmptyDataSet',  :inhibit_warnings => true #Shows empty view for UITableView/UICollectionView
   pod 'KeychainAccess', :inhibit_warnings => true #Secure Storage Wrapper
-  pod 'PhaxioiOS', :inhibit_warnings => true #Faxing provider
+  pod 'PhaxioiOS', :path => "pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master", :inhibit_warnings => true #Faxing provider
   pod 'PhaxioSwiftAlamofire', :path => "pm0/ReleasePaperwork/generated/phaxio_swagger_pod/"
 end
 

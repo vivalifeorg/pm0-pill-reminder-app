@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7D6D9B921DCE8EC400DE322C /* Fax.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D9B911DCE8EC400DE322C /* Fax.m */; };
+		7D6D9B951DCE8EEC00DE322C /* PhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D9B941DCE8EEC00DE322C /* PhoneNumber.m */; };
+		7D6D9BF71DF4D7D500DE322C /* PhaxioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6D9BF61DF4D7D500DE322C /* PhaxioTests.m */; };
+		7D6D9BF91DF4D80800DE322C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D6D9BF81DF4D80800DE322C /* Info.plist */; };
+		7D8F980B1DCB8CF40034EC31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F980A1DCB8CF40034EC31 /* main.m */; };
+		7D8F980E1DCB8CF40034EC31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F980D1DCB8CF40034EC31 /* AppDelegate.m */; };
+		7D8F98111DCB8CF40034EC31 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F98101DCB8CF40034EC31 /* ViewController.m */; };
+		7D8F98141DCB8CF40034EC31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F98121DCB8CF40034EC31 /* Main.storyboard */; };
+		7D8F98161DCB8CF50034EC31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F98151DCB8CF50034EC31 /* Assets.xcassets */; };
+		7D8F98191DCB8CF50034EC31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F98171DCB8CF50034EC31 /* LaunchScreen.storyboard */; };
+		7D8F98301DCBEA080034EC31 /* PhaxioAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F982F1DCBEA080034EC31 /* PhaxioAPI.m */; };
+		7D8F98331DCBEA1A0034EC31 /* Phaxio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F98321DCBEA1A0034EC31 /* Phaxio.m */; };
+		7DEA81DC1DFA06A500E2A703 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA81DB1DFA06A500E2A703 /* apple.png */; };
+		DE9EE65D3E899FB6E5A117BD /* libPods-PhaxioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C35241052AB17693AC6B502C /* libPods-PhaxioTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7D8F98201DCB8CF50034EC31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8F97FE1DCB8CF40034EC31 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D8F98051DCB8CF40034EC31;
+			remoteInfo = Phaxio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3085E6A7483E32405BF8AB69 /* Pods-PhaxioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhaxioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhaxioTests/Pods-PhaxioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D6D9B901DCE8EC400DE322C /* Fax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fax.h; sourceTree = "<group>"; };
+		7D6D9B911DCE8EC400DE322C /* Fax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fax.m; sourceTree = "<group>"; };
+		7D6D9B931DCE8EEC00DE322C /* PhoneNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumber.h; sourceTree = "<group>"; };
+		7D6D9B941DCE8EEC00DE322C /* PhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumber.m; sourceTree = "<group>"; };
+		7D6D9BF61DF4D7D500DE322C /* PhaxioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhaxioTests.m; sourceTree = "<group>"; };
+		7D6D9BF81DF4D80800DE322C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PhaxioTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		7D8F98061DCB8CF40034EC31 /* Phaxio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phaxio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8F980A1DCB8CF40034EC31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7D8F980C1DCB8CF40034EC31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7D8F980D1DCB8CF40034EC31 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7D8F980F1DCB8CF40034EC31 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7D8F98101DCB8CF40034EC31 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7D8F98131DCB8CF40034EC31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7D8F98151DCB8CF50034EC31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D8F98181DCB8CF50034EC31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7D8F981A1DCB8CF50034EC31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D8F981F1DCB8CF50034EC31 /* PhaxioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhaxioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8F982E1DCBEA080034EC31 /* PhaxioAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhaxioAPI.h; sourceTree = "<group>"; };
+		7D8F982F1DCBEA080034EC31 /* PhaxioAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhaxioAPI.m; sourceTree = "<group>"; };
+		7D8F98311DCBEA1A0034EC31 /* Phaxio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phaxio.h; sourceTree = "<group>"; };
+		7D8F98321DCBEA1A0034EC31 /* Phaxio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phaxio.m; sourceTree = "<group>"; };
+		7DEA81DB1DFA06A500E2A703 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		C35241052AB17693AC6B502C /* libPods-PhaxioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhaxioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D161B6B2387ECA88F4E69F3F /* Pods-PhaxioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhaxioTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhaxioTests/Pods-PhaxioTests.release.xcconfig"; sourceTree = "<group>"; };
+		F09B1E1C4B44A5853CED4CEC /* libPods-Phaxio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Phaxio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D8F98031DCB8CF40034EC31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8F981C1DCB8CF50034EC31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9EE65D3E899FB6E5A117BD /* libPods-PhaxioTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CB2050738F71BA7CC418C22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F09B1E1C4B44A5853CED4CEC /* libPods-Phaxio.a */,
+				C35241052AB17693AC6B502C /* libPods-PhaxioTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35B28DD4D82A64A38A6402ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3085E6A7483E32405BF8AB69 /* Pods-PhaxioTests.debug.xcconfig */,
+				D161B6B2387ECA88F4E69F3F /* Pods-PhaxioTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7D6D9BF51DF4D78500DE322C /* PhaxioTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D6D9BF61DF4D7D500DE322C /* PhaxioTests.m */,
+				7D6D9BF81DF4D80800DE322C /* Info.plist */,
+			);
+			name = PhaxioTests;
+			path = Phaxio;
+			sourceTree = "<group>";
+		};
+		7D8F97FD1DCB8CF40034EC31 = {
+			isa = PBXGroup;
+			children = (
+				7D8F98081DCB8CF40034EC31 /* Phaxio */,
+				7D6D9BF51DF4D78500DE322C /* PhaxioTests */,
+				7D8F98071DCB8CF40034EC31 /* Products */,
+				35B28DD4D82A64A38A6402ED /* Pods */,
+				1CB2050738F71BA7CC418C22 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7D8F98071DCB8CF40034EC31 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D8F98061DCB8CF40034EC31 /* Phaxio.app */,
+				7D8F981F1DCB8CF50034EC31 /* PhaxioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D8F98081DCB8CF40034EC31 /* Phaxio */ = {
+			isa = PBXGroup;
+			children = (
+				7D8F980C1DCB8CF40034EC31 /* AppDelegate.h */,
+				7D8F980D1DCB8CF40034EC31 /* AppDelegate.m */,
+				7D8F980F1DCB8CF40034EC31 /* ViewController.h */,
+				7D8F98101DCB8CF40034EC31 /* ViewController.m */,
+				7D8F982E1DCBEA080034EC31 /* PhaxioAPI.h */,
+				7D8F982F1DCBEA080034EC31 /* PhaxioAPI.m */,
+				7D8F98311DCBEA1A0034EC31 /* Phaxio.h */,
+				7D8F98321DCBEA1A0034EC31 /* Phaxio.m */,
+				7D6D9B901DCE8EC400DE322C /* Fax.h */,
+				7D6D9B911DCE8EC400DE322C /* Fax.m */,
+				7D6D9B931DCE8EEC00DE322C /* PhoneNumber.h */,
+				7D6D9B941DCE8EEC00DE322C /* PhoneNumber.m */,
+				7D8F98121DCB8CF40034EC31 /* Main.storyboard */,
+				7D8F98151DCB8CF50034EC31 /* Assets.xcassets */,
+				7D8F98171DCB8CF50034EC31 /* LaunchScreen.storyboard */,
+				7D8F981A1DCB8CF50034EC31 /* Info.plist */,
+				7D8F98091DCB8CF40034EC31 /* Supporting Files */,
+			);
+			path = Phaxio;
+			sourceTree = "<group>";
+		};
+		7D8F98091DCB8CF40034EC31 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DEA81DB1DFA06A500E2A703 /* apple.png */,
+				7D8F980A1DCB8CF40034EC31 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7D8F98051DCB8CF40034EC31 /* Phaxio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D8F98281DCB8CF50034EC31 /* Build configuration list for PBXNativeTarget "Phaxio" */;
+			buildPhases = (
+				7D8F98021DCB8CF40034EC31 /* Sources */,
+				7D8F98031DCB8CF40034EC31 /* Frameworks */,
+				7D8F98041DCB8CF40034EC31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Phaxio;
+			productName = Phaxio;
+			productReference = 7D8F98061DCB8CF40034EC31 /* Phaxio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7D8F981E1DCB8CF50034EC31 /* PhaxioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D8F982B1DCB8CF50034EC31 /* Build configuration list for PBXNativeTarget "PhaxioTests" */;
+			buildPhases = (
+				2B3244135EBA52C53FDFE70B /* [CP] Check Pods Manifest.lock */,
+				7D8F981B1DCB8CF50034EC31 /* Sources */,
+				7D8F981C1DCB8CF50034EC31 /* Frameworks */,
+				7D8F981D1DCB8CF50034EC31 /* Resources */,
+				776B2A8BA47A5D7721FCFA5E /* [CP] Embed Pods Frameworks */,
+				EDA9A220A62C5CF458286C5E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D8F98211DCB8CF50034EC31 /* PBXTargetDependency */,
+			);
+			name = PhaxioTests;
+			productName = PhaxioTests;
+			productReference = 7D8F981F1DCB8CF50034EC31 /* PhaxioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D8F97FE1DCB8CF40034EC31 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Phaxio;
+				TargetAttributes = {
+					7D8F98051DCB8CF40034EC31 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					7D8F981E1DCB8CF50034EC31 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7D8F98051DCB8CF40034EC31;
+					};
+				};
+			};
+			buildConfigurationList = 7D8F98011DCB8CF40034EC31 /* Build configuration list for PBXProject "Phaxio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7D8F97FD1DCB8CF40034EC31;
+			productRefGroup = 7D8F98071DCB8CF40034EC31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D8F98051DCB8CF40034EC31 /* Phaxio */,
+				7D8F981E1DCB8CF50034EC31 /* PhaxioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D8F98041DCB8CF40034EC31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D6D9BF91DF4D80800DE322C /* Info.plist in Resources */,
+				7D8F98191DCB8CF50034EC31 /* LaunchScreen.storyboard in Resources */,
+				7D8F98161DCB8CF50034EC31 /* Assets.xcassets in Resources */,
+				7D8F98141DCB8CF40034EC31 /* Main.storyboard in Resources */,
+				7DEA81DC1DFA06A500E2A703 /* apple.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8F981D1DCB8CF50034EC31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B3244135EBA52C53FDFE70B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		776B2A8BA47A5D7721FCFA5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhaxioTests/Pods-PhaxioTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDA9A220A62C5CF458286C5E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhaxioTests/Pods-PhaxioTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D8F98021DCB8CF40034EC31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D8F98111DCB8CF40034EC31 /* ViewController.m in Sources */,
+				7D8F98301DCBEA080034EC31 /* PhaxioAPI.m in Sources */,
+				7D8F980E1DCB8CF40034EC31 /* AppDelegate.m in Sources */,
+				7D6D9B951DCE8EEC00DE322C /* PhoneNumber.m in Sources */,
+				7D6D9B921DCE8EC400DE322C /* Fax.m in Sources */,
+				7D8F980B1DCB8CF40034EC31 /* main.m in Sources */,
+				7D8F98331DCBEA1A0034EC31 /* Phaxio.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8F981B1DCB8CF50034EC31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D6D9BF71DF4D7D500DE322C /* PhaxioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7D8F98211DCB8CF50034EC31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D8F98051DCB8CF40034EC31 /* Phaxio */;
+			targetProxy = 7D8F98201DCB8CF50034EC31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7D8F98121DCB8CF40034EC31 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D8F98131DCB8CF40034EC31 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7D8F98171DCB8CF50034EC31 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D8F98181DCB8CF50034EC31 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7D8F98261DCB8CF50034EC31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7D8F98271DCB8CF50034EC31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7D8F98291DCB8CF50034EC31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Phaxio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = NickSchulze.Phaxio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7D8F982A1DCB8CF50034EC31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Phaxio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = NickSchulze.Phaxio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7D8F982C1DCB8CF50034EC31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3085E6A7483E32405BF8AB69 /* Pods-PhaxioTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PhaxioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = NickSchulze.PhaxioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phaxio.app/Phaxio";
+			};
+			name = Debug;
+		};
+		7D8F982D1DCB8CF50034EC31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D161B6B2387ECA88F4E69F3F /* Pods-PhaxioTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PhaxioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = NickSchulze.PhaxioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phaxio.app/Phaxio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D8F98011DCB8CF40034EC31 /* Build configuration list for PBXProject "Phaxio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D8F98261DCB8CF50034EC31 /* Debug */,
+				7D8F98271DCB8CF50034EC31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D8F98281DCB8CF50034EC31 /* Build configuration list for PBXNativeTarget "Phaxio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D8F98291DCB8CF50034EC31 /* Debug */,
+				7D8F982A1DCB8CF50034EC31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D8F982B1DCB8CF50034EC31 /* Build configuration list for PBXNativeTarget "PhaxioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D8F982C1DCB8CF50034EC31 /* Debug */,
+				7D8F982D1DCB8CF50034EC31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D8F97FE1DCB8CF40034EC31 /* Project object */;
+}

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7CCACB09CC98269336A4CB4A05E76CD7'
+               BlueprintIdentifier = '93B867D50847A71736867B99632B445F'
                BlueprintName = 'PhaxioiOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PhaxioiOS.framework'>
