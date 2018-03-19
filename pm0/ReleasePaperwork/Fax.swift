@@ -8,7 +8,8 @@
 
 import Foundation
 
-
+import PhaxioSwiftAlamofire
+import Alamofire
 
 
 func generateBoundaryString() -> String {
@@ -44,6 +45,7 @@ import PhaxioiOS
 }
 
 var useOldPhaxioObjc = false
+var usePhaxioSwiftAlamofire = false
 
 let faxDelegate = PM0PhaxioFaxDelegate()
 var fax:Fax = Fax.init(fax:()) //Objc Api, sigh
@@ -94,6 +96,35 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         return;
       }
 
+      if usePhaxioSwiftAlamofire{
+        //(to: [String], direction: PhaxioDirection_sendFax? = nil, file: [URL]? = nil, contentUrl: [String]? = nil, headerText: String? = nil, batchDelay: Int? = nil, batchCollisionAvoidance: Bool? = nil, callbackUrl: String? = nil, cancelTimeout: Int? = nil, callerId: String? = nil, testFail: PhaxioTestFail_sendFax? = nil, completion: @escaping ((_ data: PhaxioSendFaxResponse?,_ error: Error?) -> Void))
+        let fixedFileName = Bundle.main.resourcePath! + "/" + documentPaths.first!
+        let fileURL = URL(fileURLWithPath:fixedFileName)
+        let sessionManager = Alamofire.SessionManager.default
+        let base64OfKeySecret = "\(key):\(secret)".toBase64()
+        sessionManager.session.configuration.httpAdditionalHeaders = ["Authorization":"Basic \(base64OfKeySecret)"]
+        let protectionSpace = URLProtectionSpace.init(host: "api.phaxio.com",
+                                                      port: 443,
+                                                      protocol: "https",
+                                                      realm: nil,
+                                                      authenticationMethod: nil)
+        let userCredential = URLCredential(user: key,
+                                           password: secret,
+                                           persistence: URLCredential.Persistence.forSession)
+
+        URLCredentialStorage.shared.setDefaultCredential(userCredential, for: protectionSpace)
+        PhaxioSwiftAlamofireAPI.credential = userCredential
+        PhaxioSwiftAlamofireAPI.customHeaders =  ["Authorization":"Basic \(base64OfKeySecret)"]
+        
+        DefaultAPI.sendFax(to: [toNumber], file: [fileURL], headerText: "Sent via VivaLife"){
+          (_ data: PhaxioSendFaxResponse?,_ error: Error?) in
+          debugPrint("send fax completion: ")
+          debugPrint("error: \(error?.localizedDescription)")
+        }
+
+        return;
+      }
+
 
       var req = URLRequest(url: URL(string:uri)!)
       req.httpMethod = "POST"
@@ -109,10 +140,9 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
       let base64OfKeySecret = "\(key):\(secret)".toBase64()
       req.setValue("Basic \(base64OfKeySecret)", forHTTPHeaderField: "Authorization")
       let theFaxNumber = toNumber
-      let theFilePath = "/obviouslyFake"
       let preppedParams = params.map{
         $0.replacingOccurrences(of: "{{{filepath}}}",
-                                with: theFilePath).replacingOccurrences(of: "{{{faxnumber}}}", with: theFaxNumber)
+                                with: "none").replacingOccurrences(of: "{{{faxnumber}}}", with: theFaxNumber)
       }
 
       let body1 = preppedParams.flatMap{
@@ -132,15 +162,21 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         return boundaryAndTextType
       }.joined()
 
+
       let body2 = documentPaths.flatMap{
         let fixedFileName = Bundle.main.resourcePath! + "/" + $0
         let fileContents = readFile(fileName: fixedFileName)
+        let mimeType = "image/jpg"
+        let image = UIImage(data:fileContents)!
+        let encoded = fileContents.base64EncodedString()
+
         return """
         \(boundary)
         Content-Disposition: form-data; name=\"file\"; filename=\"\($0)\"
-        Content-Type: application/octet-stream
+        Content-Type: \(mimeType)
+        Content-Transfer-Encoding: base64
 
-        \(fileContents.base64EncodedString())
+        \(encoded)
         """
       }.joined(separator: "\n")
       req.httpBody = (body1+body2+"\n"+boundary+"--").replacingOccurrences(of:"\n",with:"\r\n").data(using: .utf8)

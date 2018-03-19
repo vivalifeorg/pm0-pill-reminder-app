@@ -11,6 +11,8 @@
 		890242E02033941C00B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		890242E12033951000B25E99 /* fda_drugs.db in Resources */ = {isa = PBXBuildFile; fileRef = 890242DF2033941C00B25E99 /* fda_drugs.db */; };
 		8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */; };
+		890422D220604BC000817EC2 /* FaxPNG1.png in Resources */ = {isa = PBXBuildFile; fileRef = 890422D120604BC000817EC2 /* FaxPNG1.png */; };
+		890422D42060509200817EC2 /* FaxJPG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 890422D32060509200817EC2 /* FaxJPG1.jpg */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
@@ -51,6 +53,8 @@
 		35B9C2C23FA9874E99DB4672 /* Pods-pm0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.release.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.release.xcconfig"; sourceTree = "<group>"; };
 		890242DF2033941C00B25E99 /* fda_drugs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = fda_drugs.db; sourceTree = "<group>"; };
 		8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestFaxToDS.pdf; sourceTree = "<group>"; };
+		890422D120604BC000817EC2 /* FaxPNG1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FaxPNG1.png; sourceTree = "<group>"; };
+		890422D32060509200817EC2 /* FaxJPG1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FaxJPG1.jpg; sourceTree = "<group>"; };
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 				8951A919205B01F70027076E /* TestPage1.pdf */,
 				8951A91A205B01F70027076E /* TestPage2.pdf */,
 				8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */,
+				890422D120604BC000817EC2 /* FaxPNG1.png */,
+				890422D32060509200817EC2 /* FaxJPG1.jpg */,
 			);
 			path = TestPages;
 			sourceTree = "<group>";
@@ -348,9 +354,11 @@
 				89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */,
 				89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */,
 				89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */,
+				890422D42060509200817EC2 /* FaxJPG1.jpg in Resources */,
 				8951A91C205B01F80027076E /* TestPage2.pdf in Resources */,
 				8951A91B205B01F80027076E /* TestPage1.pdf in Resources */,
 				89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */,
+				890422D220604BC000817EC2 /* FaxPNG1.png in Resources */,
 				89A5168D205879ED0069D9AE /* ReleasePaperwork.storyboard in Resources */,
 				894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */,
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
@@ -424,16 +432,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-pm0/Pods-pm0-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/PhaxioSwiftAlamofire/PhaxioSwiftAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PhaxioiOS/PhaxioiOS.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhaxioSwiftAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhaxioiOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",

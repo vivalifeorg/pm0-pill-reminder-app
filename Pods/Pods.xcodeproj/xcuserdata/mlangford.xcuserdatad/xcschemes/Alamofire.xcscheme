@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '028BBF5CC8C481E2F184307D4E144FBB'
-               BlueprintName = 'KeychainAccess'
+               BlueprintIdentifier = 'AC8E08EAF9C56D559C7E724FCF35C995'
+               BlueprintName = 'Alamofire'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'KeychainAccess.framework'>
+               BuildableName = 'Alamofire.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

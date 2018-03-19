@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '028BBF5CC8C481E2F184307D4E144FBB'
-               BlueprintName = 'KeychainAccess'
+               BlueprintIdentifier = '192E6069C8738CA123F37DABE50848AF'
+               BlueprintName = 'PhaxioSwiftAlamofire'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'KeychainAccess.framework'>
+               BuildableName = 'PhaxioSwiftAlamofire.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

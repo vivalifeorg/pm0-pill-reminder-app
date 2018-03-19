@@ -1,0 +1,23 @@
+{
+  "name": "PhaxioSwiftAlamofire",
+  "platforms": {
+    "ios": "9.0",
+    "osx": "10.11",
+    "tvos": "9.0"
+  },
+  "version": "0.0.1",
+  "source": {
+    "git": "git@github.com:swagger-api/swagger-mustache.git",
+    "tag": "v1.0.0"
+  },
+  "authors": "Swagger Codegen",
+  "license": "Proprietary",
+  "homepage": "localhost",
+  "summary": "Swagger-Codegen-Output-Swift-4-Library-for-Phaxio-Faxing-Service",
+  "source_files": "PhaxioSwiftAlamofire/Classes/**/*.swift",
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.5.0"
+    ]
+  }
+}
