@@ -138,7 +138,7 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         return """
         \(boundary)
         Content-Disposition: form-data; name=\"file\"; filename=\"\($0)\"
-        Content-Type: application/pdf
+        Content-Type: application/octet-stream
 
         \(fileContents.base64EncodedString())
         """

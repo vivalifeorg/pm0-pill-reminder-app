@@ -8,6 +8,7 @@ target "pm0" do
   pod 'DZNEmptyDataSet',  :inhibit_warnings => true #Shows empty view for UITableView/UICollectionView
   pod 'KeychainAccess', :inhibit_warnings => true #Secure Storage Wrapper
   pod 'PhaxioiOS', :inhibit_warnings => true #Faxing provider
+  pod '
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334
