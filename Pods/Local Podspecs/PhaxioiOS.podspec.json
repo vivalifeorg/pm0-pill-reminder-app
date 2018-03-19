@@ -1,0 +1,23 @@
+{
+  "name": "PhaxioiOS",
+  "version": "0.1.0",
+  "summary": "Build apps that talk fax.",
+  "description": "Build apps that talk fax. Send and receive fax through our advanced, best-in-class API.",
+  "homepage": "https://github.com/phaxio/phaxio-ios",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Nick Schulze": "nschulze16@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/phaxio/phaxio-ios.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Phaxio/**/*.{h,m}",
+  "public_header_files": "Phaxio/**/*.h"
+}
