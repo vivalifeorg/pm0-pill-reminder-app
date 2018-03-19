@@ -1,0 +1,774 @@
+swagger: '2.0'
+
+info:
+  title: Phaxio API
+  description: API Definition for Phaxio
+  version: "2.0.0"
+
+host: "api.phaxio.com"
+schemes:
+- https
+basePath: /v2
+produces:
+  - application/json
+securityDefinitions:
+  UserSecurity:
+    type: basic
+security:
+  - UserSecurity: []
+
+definitions:
+  # this is a trick for reusable enums, which aren't supported by swagger, but YAML provides a way
+  Status:
+    type: string
+    enum: &statuses
+      - queued
+      - pendingbatch
+      - inprogress
+      - success
+      - failure
+      - partialsuccess
+  Error:
+    type: string
+    # this would be nice but unfortunately we can't use it since there are no nullable enums.
+    enum: &errors
+      - documentConversionError
+      - lineError
+      - faxError
+      - fatalError
+      - generalError
+  OperationStatus:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+  FaxInfo:
+    type: object
+    properties:
+      id:
+        type: integer
+      direction:
+        type: string
+        enum: [ "sent", "received" ]
+      num_pages:
+        type: integer
+      cost:
+        type: integer
+      status:
+        type: string
+        enum: *statuses
+      is_test:
+        type: boolean
+      created_at:
+        type: string
+        format: date-time
+      from_number:
+        type: string
+      to_number:
+        type: string
+      recipients:
+        type: array
+        items:
+          $ref: '#/definitions/Recipient'
+      tags:
+        type: object
+        additionalProperties:
+          type: string
+      error_type:
+        type: string
+        #enum: *errors
+      error_message:
+        type: string
+      error_id:
+        type: integer
+      completed_at:
+        type: string
+        format: date-time
+  GetFaxInfoResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        $ref: '#/definitions/FaxInfo'
+  Recipient:
+    type: object
+    properties:
+      phone_number:
+        type: string
+      status:
+        type: string
+        #enum: *statuses
+      completed_at:
+        type: string
+        format: date-time
+      bitrate:
+        type: integer
+      resolution:
+        type: integer
+      error_type:
+        type: string
+      error_message:
+        type: string
+      error_id:
+        type: integer
+  SendFaxResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+        properties:
+          id:
+            type: integer
+  AccountStatus:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+        properties:
+          balance:
+            type: integer
+          faxes_today:
+            type: integer
+          faxes_this_month:
+            type: integer
+  Paging:
+    type: object
+    properties:
+      total:
+        type: integer
+      per_page:
+        type: integer
+      page:
+        type: integer
+  GetFaxesResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/FaxInfo'
+      paging:
+        $ref: '#/definitions/Paging'
+  PhoneNumber:
+    type: object
+    properties:
+      phone_number:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      cost:
+        type: integer
+      last_billed_at:
+        type: string
+        format: date-time
+      provisioned_at:
+        type: string
+        format: date-time
+      callback_url:
+        type: string
+  PhoneNumberResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        $ref: '#/definitions/PhoneNumber'
+  ListPhoneNumbersResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/PhoneNumber'
+  GeneratePhaxCodeJsonResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+        properties:
+          identifier:
+            type: string
+  PhaxCode:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+        properties:
+          created_at:
+            type: string
+            format: date-time
+          identifier:
+            type: string
+          metadata:
+            type: string
+  Country:
+    type: object
+    properties:
+      name:
+        type: string
+      alpha2:
+        type: string
+      country_code:
+        type: integer
+      price_per_page:
+        type: integer
+      send_support:
+        type: string
+      receive_support:
+        type: string
+  GetCountriesResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Country'
+      paging:
+        $ref: '#/definitions/Paging'
+  AreaCode:
+    type: object
+    properties:
+      country_code:
+        type: integer
+      area_code:
+        type: integer
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      toll_free:
+        type: boolean
+  GetAreaCodesResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/AreaCode'
+      paging:
+        $ref: '#/definitions/Paging'
+
+parameters:
+  pageParam:
+    name: per_page
+    in: query
+    type: integer
+    required: false
+    description: How many records to return per page
+  perPageParam:
+    name: page
+    in: query
+    type: integer
+    required: false
+    description: Page number to return
+
+paths:
+  /faxes/{faxId}:
+    get:
+      operationId: get_fax
+      summary: Get Fax
+      produces:
+        - application/json
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/GetFaxInfoResponse'
+    delete:
+      operationId: delete_fax
+      summary: Delete a fax
+      produces:
+        - application/json
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/OperationStatus'
+  /faxes/{faxId}/file:
+    get:
+      operationId: get_fax_file
+      summary: Get fax content file or thumbnail
+      produces:
+        - application/octet-stream
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+        - name: thumbnail
+          in: query
+          description: if set, request a thumbnail only in specified size
+          required: false
+          type: string
+          enum: [ "l", "s" ]
+      responses:
+        '200':
+          description: success response
+          schema:
+            type: file
+    delete:
+      operationId: delete_fax_file
+      summary: Delete a fax file
+      produces:
+        - application/json
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/OperationStatus'
+  /faxes/{faxId}/cancel:
+    post:
+      operationId: cancel_fax
+      summary: Cancel a Fax
+      produces:
+        - application/json
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/SendFaxResponse'
+  /faxes/{faxId}/resend:
+    post:
+      operationId: resend_fax
+      summary: Resend a Fax
+      produces:
+        - application/json
+      parameters:
+        - name: faxId
+          in: path
+          description: Fax ID
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/SendFaxResponse'
+  /faxes:
+    get:
+      operationId: query_faxes
+      summary: List faxes in date range
+      produces:
+        - application/json
+      parameters:
+        - name: created_before
+          in: query
+          type: string
+          required: false
+          description: End of the range
+        - name: created_after
+          in: query
+          type: string
+          required: false
+          description: Beginning of the range
+        - name: direction
+          in: query
+          type: string
+          enum: [ "sent", "received" ]
+          required: false
+          description: Limits results to faxes with the specified direction
+        - name: status
+          in: query
+          type: string
+          enum: *statuses
+          required: false
+          description: Limits results to faxes with the specified status
+        - name: phone_number
+          in: query
+          type: string
+          required: false
+          description: A phone number in E.164 format that you want to use to filter results.
+          # NOTE: tags as specified in the Phaxio are not supported by OpenAPI because there is no way to declare
+          # a parameter that has no defined name known at build time like tag[SOMETHING]=VALUE. Instead, I modified
+          # the python templates to allow passing extra parameters directly all the way through.
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/perPageParam'
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/GetFaxesResponse'
+    post:
+      operationId: send_fax
+      summary: Create and Send a Fax
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: to[]
+          in: formData
+          type: array
+          items:
+            type: string
+          collectionFormat: "multi"
+          required: true
+          description: phone number
+        - name: direction
+          in: query
+          type: string
+          enum: [ "received" ]
+          required: false
+          description: Set to 'received' to receive test fax.
+        - name: file[]
+          in: formData
+          type: array
+          items:
+            type: file
+          collectionFormat: "multi"
+          required: false
+          description: file to send
+        - name: content_url[]
+          in: formData
+          type: array
+          items:
+            type: string
+          collectionFormat: "multi"
+          required: false
+          description: url of file to send
+        - name: header_text
+          in: formData
+          type: string
+          required: false
+          description: Text that appears at the top of each page
+        - name: batch_delay
+          in: formData
+          type: integer
+          required: false
+          description: Number of seconds to wait before sending batch
+        - name: batch_collision_avoidance
+          in: formData
+          type: boolean
+          required: false
+          description: When batch_delay is set, fax will be blocked until the receiving machine is no longer busy
+        - name: callback_url
+          in: formData
+          type: string
+          required: false
+          description: Overrides global callback URL
+        - name: cancel_timeout
+          in: formData
+          type: integer
+          required: false
+          description: Number of minutes to wait for successful send before cancelling fax
+          # See above note about how we support tags
+        - name: caller_id
+          in: formData
+          type: string
+          required: false
+          description: Number to use for caller ID
+        - name: test_fail
+          in: formData
+          type: string
+          enum: *errors
+          required: false
+          description: When sending a test fax, if this is set it will simulate the failure type specified
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/SendFaxResponse'
+  /account/status:
+    get:
+      operationId: get_account_status
+      summary: Get account status
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/AccountStatus'
+  /phone_numbers:
+    post:
+      operationId: provision_phone_number
+      summary: Provision a number
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: country_code
+          in: formData
+          type: integer
+          required: true
+          description: The country code (E.164) of the number you'd like to provision
+        - name: area_code
+          in: formData
+          type: integer
+          required: true
+          description: The area code of the number you'd like to provision
+        - name: callback_url
+          in: formData
+          type: string
+          required: false
+          description: A callback URL that we'll post to when a fax is received by this number
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/PhoneNumberResponse'
+    get:
+      operationId: query_phone_numbers
+      summary: List numbers
+      produces:
+        - application/json
+      parameters:
+        - name: country_code
+          in: query
+          type: integer
+          required: false
+          description: A country code you'd like to filter by
+        - name: area_code
+          in: query
+          type: integer
+          required: false
+          description: An area code you'd like to filter by
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/perPageParam'
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/ListPhoneNumbersResponse'
+  /phone_numbers/{number}:
+    get:
+      operationId: get_phone_number
+      summary: Get number info
+      produces:
+        - application/json
+      parameters:
+        - name: number
+          in: path
+          type: string
+          required: true
+          description: phone number
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/PhoneNumberResponse'
+    delete:
+      operationId: release_phone_number
+      summary: Release a phone number you no longer need
+      produces:
+        - application/json
+      parameters:
+        - name: number
+          in: path
+          type: string
+          required: true
+          description: phone number
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/OperationStatus'
+  /phax_codes:
+    post:
+      operationId: create_phax_code_json
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: metadata
+          type: string
+          in: formData
+          required: true
+          description: json file containing the phax code metadata
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/GeneratePhaxCodeJsonResponse'
+  /phax_codes.png:
+    post:
+      operationId: create_phax_code_png
+      consumes:
+        - multipart/form-data
+      produces:
+        - image/png
+      parameters:
+        - name: metadata
+          type: string
+          in: formData
+          required: true
+          description: json file containing the phax code metadata
+      responses:
+        '200':
+          description: success response
+          schema:
+            type: file
+  /phax_codes/{phax_code_id}:
+    get:
+      operationId: get_phax_code
+      produces:
+        - application/json
+      parameters:
+        - name: phax_code_id
+          in: path
+          type: string
+          required: true
+          description: identifier for the phax code
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/PhaxCode'
+  /phax_codes/{phax_code_id}.png:
+    get:
+      operationId: get_phax_code_png
+      produces:
+        - image/png
+      parameters:
+        - name: phax_code_id
+          in: path
+          type: string
+          required: true
+          description: identifier for the phax code
+      responses:
+        '200':
+          description: success response
+          schema:
+            type: file
+  /phax_code:
+    get:
+      operationId: get_default_phax_code
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/PhaxCode'
+  /phax_code.png:
+    get:
+      operationId: get_default_phax_code_png
+      produces:
+        - image/png
+      responses:
+        '200':
+          description: success response
+          schema:
+            type: file
+  /public/countries:
+    get:
+      operationId: get_countries
+      security: []
+      summary: Returns a list of supported countries for sending and receiving faxes
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/perPageParam'
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/GetCountriesResponse'
+  /public/area_codes:
+    get:
+      operationId: get_area_codes
+      security: []
+      summary: List area codes available for purchasing numbers
+      produces:
+        - application/json
+      parameters:
+        - name: toll_free
+          in: query
+          type: boolean
+          required: false
+          description: If set to `true`, only toll free area codes will be returned. If specified and set to `false`, only non-toll free area codes will be returned.
+        - name: country_code
+          in: query
+          type: integer
+          required: false
+          description: A country code (E.164) you'd like to filter by
+        - name: country
+          in: query
+          type: string
+          required: false
+          description: A country code (E.164) you'd like to filter by
+        - name: state
+          in: query
+          type: string
+          required: false
+          description: A two character state or province abbreviation (ISO 3166; e.g. `IL` or `YT`) you'd like to filter by. When using this parameter, `country_code` or `country` must also be provided.
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/perPageParam'
+      responses:
+        '200':
+          description: success response
+          schema:
+            $ref: '#/definitions/GetAreaCodesResponse'
