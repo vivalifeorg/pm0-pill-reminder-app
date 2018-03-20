@@ -104,6 +104,7 @@ func samplePDF() -> String {
   let standardVerticalSpace:CGFloat = 8.0
 //  let halfStandardVerticalSpace:CGFloat = 8.0/2.0
   let topMargin:CGFloat = 13.0
+  let bottomMargin:CGFloat = topMargin * 2.0
   var runningVerticalOffset = topMargin
   let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
   let titleViewHeight:CGFloat = 20.0
@@ -173,6 +174,32 @@ func samplePDF() -> String {
   if debugBounding { providersView.showBlackBorder() }
   providersView.font = faxBodyFont
   backgroundView.addSubview(providersView)
+  runningVerticalOffset += providersView.frame.size.height
+  runningVerticalOffset += standardVerticalSpace
+
+  let signatureInText =
+  """
+
+
+
+  Patient: _________________________________________________________________________        Date: {{{dateSigned}}}
+            {{{patient}}}
+
+  Document Identifier: {{{DOCU}}}
+
+  """
+  let signatureAreaHeight:CGFloat = signatureInText.heightEstimate
+  let signatureText = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureAreaHeight + bottomMargin)),
+           size: CGSize(width:standardFullWidth, height: signatureAreaHeight)))
+  signatureText.numberOfLines = 0
+  signatureText.font = faxBodyFont
+  if debugBounding { signatureText.showBlackBorder() }
+  signatureText.text = signatureInText
+  backgroundView.addSubview(signatureText)
+  runningVerticalOffset += signatureText.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
 
 
 
