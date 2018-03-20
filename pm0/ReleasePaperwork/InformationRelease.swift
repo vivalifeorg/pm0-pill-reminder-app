@@ -44,8 +44,10 @@ struct Patient{
 
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
-let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: 7)!
-let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size:10)!
+let faxBodyFontSize = 8
+let faxHeaderFontSize = 12
+let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
+let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
 
 
 extension UILabel{
@@ -96,14 +98,15 @@ let debugBounding = false
 
 func samplePDF() -> String {
   let pageSize = FaxSizes.hyperFine
+
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
-  backgroundView.showBlackBorder(0.33)
+  backgroundView.showBlackBorder(0.5)
 
-  let horizontalMargin:CGFloat = 10.0
-  let standardVerticalSpace:CGFloat = 8.0
+  let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
+  let standardVerticalSpace:CGFloat = 0.8 * CGFloat(faxHeaderFontSize)
 //  let halfStandardVerticalSpace:CGFloat = 8.0/2.0
-  let topMargin:CGFloat = 13.0
+  let topMargin:CGFloat = CGFloat(faxHeaderFontSize * 3)
   let bottomMargin:CGFloat = topMargin * 2.0
   var runningVerticalOffset = topMargin
   let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
@@ -133,7 +136,7 @@ func samplePDF() -> String {
 
   You have the right to revoke this Consent by sending a signed notice, in writing. Revocation shall not affect any disclosures already made in reliance on your prior Consent.
 
-  You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you chose from a list of restrictions you could impose on the use of your protected health information. You agree that this form represents your indicated selections.
+  You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you chose from a list of restrictions you could impose on the use of your protected health information. You agree that this form represents your indicated restrictions.
 
   Restrictions:
      \("✔️ No Additional Restrictions on Use")
@@ -148,7 +151,7 @@ func samplePDF() -> String {
   mainText.numberOfLines = 0
   mainText.font = faxBodyFont
   if debugBounding { mainText.showBlackBorder() }
-  mainText.text = bodyText
+  mainText.setTextAndAdjustSize(bodyText)
   backgroundView.addSubview(mainText)
   runningVerticalOffset += mainText.frame.size.height
   runningVerticalOffset += standardVerticalSpace/2
@@ -166,39 +169,78 @@ func samplePDF() -> String {
 
   let heightEstimate:CGFloat =  allProviderText.heightEstimate
   let providersView = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
+    CGRect(origin:CGPoint(x:horizontalMargin*1.3, y: runningVerticalOffset),
            size: CGSize(width:standardFullWidth, height: heightEstimate)))
   providersView.adjustsFontSizeToFitWidth = true
   providersView.numberOfLines = 0
-  providersView.text = allProviderText
+  providersView.setTextAndAdjustSize( allProviderText)
   if debugBounding { providersView.showBlackBorder() }
   providersView.font = faxBodyFont
   backgroundView.addSubview(providersView)
   runningVerticalOffset += providersView.frame.size.height
   runningVerticalOffset += standardVerticalSpace
 
-  let signatureInText =
+
+  let vivaLifeIconHeight:CGFloat = 273.0/4
+  let vivaIconStart = pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin)
+
+  let iconView = UIImageView(frame:
+    CGRect(origin:CGPoint(x:pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin), y: pageSize.height-(vivaLifeIconHeight)-(0.5 * bottomMargin)),
+           size: CGSize(width:vivaLifeIconHeight, height: vivaLifeIconHeight)))
+  iconView.image = UIImage(named:"linkToApp")!
+  iconView.contentMode = .scaleAspectFit
+  backgroundView.addSubview(iconView)
+
+  let signatureSuffixText =
+  """
+  ______________________________________________________________        Date: {{{dateSigned}}}
+    {{{patient}}}
+
+
+  Patient Phone Number: {{{phoneNumber}}}
+
   """
 
-
-
-  Patient: _________________________________________________________________________        Date: {{{dateSigned}}}
-            {{{patient}}}
-
-  Document Identifier: {{{DOCU}}}
-
-  """
-  let signatureAreaHeight:CGFloat = signatureInText.heightEstimate
-  let signatureText = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureAreaHeight + bottomMargin)),
-           size: CGSize(width:standardFullWidth, height: signatureAreaHeight)))
-  signatureText.numberOfLines = 0
-  signatureText.font = faxBodyFont
-  if debugBounding { signatureText.showBlackBorder() }
-  signatureText.text = signatureInText
-  backgroundView.addSubview(signatureText)
-  runningVerticalOffset += signatureText.frame.size.height
+  let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
+  let signatureSuffixLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
+           size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureSuffixHeight)))
+  signatureSuffixLabel.minimumScaleFactor = 1.0
+  signatureSuffixLabel.numberOfLines = 0
+  signatureSuffixLabel.font = faxBodyFont
+  if debugBounding { signatureSuffixLabel.showBlackBorder() }
+  signatureSuffixLabel.text = signatureSuffixText
+  backgroundView.addSubview(signatureSuffixLabel)
+  runningVerticalOffset += signatureSuffixLabel.frame.size.height
   runningVerticalOffset += standardVerticalSpace/2
+
+  let signatureHeight:CGFloat = 273.0/4
+  let signatureImageView = UIImageView(frame:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureSuffixLabel.frame.origin.y - signatureHeight),
+           size: CGSize(width:vivaLifeIconHeight, height: signatureHeight)))
+  signatureImageView.image = UIImage(named:"ExampleFaxSignature")!
+  signatureImageView.contentMode = .scaleAspectFit
+  backgroundView.addSubview(signatureImageView)
+
+  let signatureHeaderLabelText = "Patient Signature:"
+  let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
+  let signatureHeaderLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureImageView.frame.origin.y - signatureHeaderHeight),
+           size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureHeaderHeight)))
+  signatureHeaderLabel.minimumScaleFactor = 1.0
+  signatureHeaderLabel.numberOfLines = 0
+  signatureHeaderLabel.font = faxBodyFont
+  if debugBounding { signatureHeaderLabel.showBlackBorder() }
+  signatureHeaderLabel.text = signatureHeaderLabelText
+  backgroundView.addSubview(signatureHeaderLabel)
+  runningVerticalOffset += signatureHeaderLabel.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
+
+
+
+
+
 
 
 
