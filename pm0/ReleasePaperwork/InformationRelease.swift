@@ -53,13 +53,19 @@ let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSi
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
 
 
+let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}"),
+                 Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}")]
+//let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
+
+let patient = Patient(name:"Josh Ditel", phoneNumber:"(555) 555-5555")
+
 extension String{
   var lineCount:Int{
     return split(separator:"\n").count
   }
 
   var heightEstimate:CGFloat{
-    return faxBodyFont.pointSize * 1.3 * CGFloat(self.lineCount)
+    return faxBodyFont.pointSize * 1.5 * CGFloat(self.lineCount)
   }
 }
 
@@ -99,7 +105,7 @@ func samplePDF() -> String {
   runningVerticalOffset += standardVerticalSpace
 
 
-  let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
+
   let bodyText  =
   """
   This consent form goes over the Health Insurance Portability & Accountability Act of 1996, known as HIPAA. This law specifies how protected health information about you, \(patient.name), may be used and shared.
@@ -131,9 +137,6 @@ func samplePDF() -> String {
   runningVerticalOffset += standardVerticalSpace/2
 
 
-  let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}"),
-                   Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}")]
-
 
   let allProviderText:String = "Authorized Providers: \n\n " + providers.map{ provider in
     let providerText =
@@ -146,7 +149,7 @@ func samplePDF() -> String {
 
   let heightEstimate:CGFloat =  allProviderText.heightEstimate
   let providersView = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin*1.3, y: runningVerticalOffset),
+    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
            size: CGSize(width:standardFullWidth, height: heightEstimate)))
   providersView.adjustsFontSizeToFitWidth = true
   providersView.numberOfLines = 0
@@ -205,7 +208,7 @@ func samplePDF() -> String {
   frame.size.width += buffer * 2
   frame.size.height += buffer * 2
   let signatureBufferView = UIView(frame: frame)
-  signatureBufferView.layer.borderWidth = 0.5
+  signatureBufferView.layer.borderWidth = 0.25
   signatureBufferView.layer.borderColor = UIColor.black.cgColor
   signatureBufferView.addSubview(signatureImageView)
   signatureImageView.frame = CGRect(origin:CGPoint(x:buffer, y:buffer),size:signatureImageView.frame.size)
@@ -213,12 +216,13 @@ func samplePDF() -> String {
   signatureBufferView.isOpaque = false
   backgroundView.addSubview(signatureBufferView)
 
-  let signatureHeaderLabelText = "Patient Signature (\(patient.name)):"
+  let signatureHeaderLabelText = "▼ Patient Signature (\(patient.name)) ▼ "
   let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
   let signatureHeaderLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: signatureBufferView.frame.origin.y - signatureHeaderHeight - standardVerticalSpace),
            size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureHeaderHeight)))
   signatureHeaderLabel.minimumScaleFactor = 1.0
+  signatureHeaderLabel.layer.borderWidth = 0
   signatureHeaderLabel.numberOfLines = 0
   signatureHeaderLabel.font = faxBodyFont
   if debugBounding { signatureHeaderLabel.showBlackBorder() }
