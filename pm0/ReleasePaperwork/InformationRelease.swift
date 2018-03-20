@@ -138,12 +138,13 @@ func samplePDF() -> String {
 
 
 
-  let allProviderText:String = "Authorized Providers: \n\n " + providers.map{ provider in
+  let allProviderText:String = "\n\nAuthorized Providers: \n\n" + providers.map{ provider in
     let providerText =
-      "Provider: \t\(provider.name)\n" +
-        "Fax: \t\(provider.fax)\n" +
-      "Phone: \t\(provider.phone)\n" +
-    "Address: \t\(provider.address)\n\n"
+    " \(provider.name)\n" +
+    "   Address: \(provider.address)\n" +
+    "   Phone: \t\(provider.phone)\n" +
+    "   Fax: \t\(provider.fax)\n\n"
+
     return providerText
     }.joined()
 
