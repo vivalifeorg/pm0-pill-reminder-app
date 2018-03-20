@@ -24,6 +24,7 @@ extension UILabel{
     self.init(frame:frameForPDF)
     self.backgroundColor = VLColors.faxBackgroundColor
     self.adjustsFontSizeToFitWidth = true
+    self.font = faxBodyFont
   }
 
   func setTextAndAdjustSize(_ text:String){
@@ -36,46 +37,21 @@ struct Provider{
   let fax:String
   let name:String
   let address:String
+  let phone:String
 }
 
 struct Patient{
   let name:String
+  let phoneNumber:String
 }
 
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
-let faxBodyFontSize = 8
+let faxBodyFontSize = 4
 let faxHeaderFontSize = 12
 let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
 
-
-extension UILabel{
-  var neededSize:CGSize{
-    let maxLabelWidth: CGFloat = frame.width
-    let neededSize = sizeThatFits(CGSize(width: maxLabelWidth, height: CGFloat.greatestFiniteMagnitude))
-    return neededSize
-  }
-
-  var actualFontSize:CGFloat{
-    let fullSizeLabel = UILabel()
-    fullSizeLabel.font = self.font
-    fullSizeLabel.text = self.text
-    fullSizeLabel.sizeToFit()
-
-    var actualFontSize = self.font.pointSize * (self.bounds.size.width / fullSizeLabel.bounds.size.width);
-
-    //correct, if new font size bigger than initial
-    actualFontSize = actualFontSize < self.font.pointSize ? actualFontSize : self.font.pointSize;
-    return actualFontSize
-  }
-
-  var heightEstimate:CGFloat{
-    return (font.pointSize+CGFloat(2.0)) * CGFloat((text ?? "").split(separator: "\n").count)
-  }
-
-
-}
 
 extension String{
   var lineCount:Int{
@@ -101,13 +77,13 @@ func samplePDF() -> String {
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
-  backgroundView.showBlackBorder(0.5)
+  //backgroundView.showBlackBorder(0.5)
 
   let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
   let standardVerticalSpace:CGFloat = 0.8 * CGFloat(faxHeaderFontSize)
 //  let halfStandardVerticalSpace:CGFloat = 8.0/2.0
-  let topMargin:CGFloat = CGFloat(faxHeaderFontSize * 3)
-  let bottomMargin:CGFloat = topMargin * 2.0
+  let topMargin:CGFloat = 4
+  let bottomMargin:CGFloat = 4
   var runningVerticalOffset = topMargin
   let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
   let titleViewHeight:CGFloat = 20.0
@@ -123,7 +99,7 @@ func samplePDF() -> String {
   runningVerticalOffset += standardVerticalSpace
 
 
-  let patient = Patient(name:"{{{patient}}}")
+  let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
   let bodyText  =
   """
   This consent form goes over the Health Insurance Portability & Accountability Act of 1996, known as HIPAA. This law specifies how protected health information about you, \(patient.name), may be used and shared.
@@ -140,8 +116,6 @@ func samplePDF() -> String {
 
   Restrictions:
      \("✔️ No Additional Restrictions on Use")
-
-  Providers authorized under this form are:
   """
 
   let mainTextHeight:CGFloat = bodyText.heightEstimate
@@ -157,12 +131,15 @@ func samplePDF() -> String {
   runningVerticalOffset += standardVerticalSpace/2
 
 
-  let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}"),
-                   Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}")]
-  let allProviderText:String = providers.map{ provider in
+  let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}"),
+                   Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}")]
+
+
+  let allProviderText:String = "Authorized Providers: \n\n " + providers.map{ provider in
     let providerText =
       "Provider: \t\(provider.name)\n" +
         "Fax: \t\(provider.fax)\n" +
+      "Phone: \t\(provider.phone)\n" +
     "Address: \t\(provider.address)\n\n"
     return providerText
     }.joined()
@@ -187,25 +164,24 @@ func samplePDF() -> String {
   let iconView = UIImageView(frame:
     CGRect(origin:CGPoint(x:pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin), y: pageSize.height-(vivaLifeIconHeight)-(0.5 * bottomMargin)),
            size: CGSize(width:vivaLifeIconHeight, height: vivaLifeIconHeight)))
-  iconView.image = UIImage(named:"linkToApp")!
+  //iconView.image = UIImage(named:"linkToApp")!
   iconView.contentMode = .scaleAspectFit
   backgroundView.addSubview(iconView)
 
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateStyle = .medium
+  let signingDate = dateFormatter.string(from: Date())
   let signatureSuffixText =
   """
-  ______________________________________________________________        Date: {{{dateSigned}}}
-    {{{patient}}}
+  Date: \(signingDate)
 
-
-  Patient Phone Number: {{{phoneNumber}}}
-
+  DocumentId: \("EXAMPLE-1-A")
   """
 
   let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
   let signatureSuffixLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
-           size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureSuffixHeight)))
-  signatureSuffixLabel.minimumScaleFactor = 1.0
+           size: CGSize(width:232, height: signatureSuffixHeight)))
   signatureSuffixLabel.numberOfLines = 0
   signatureSuffixLabel.font = faxBodyFont
   if debugBounding { signatureSuffixLabel.showBlackBorder() }
@@ -214,18 +190,33 @@ func samplePDF() -> String {
   runningVerticalOffset += signatureSuffixLabel.frame.size.height
   runningVerticalOffset += standardVerticalSpace/2
 
-  let signatureHeight:CGFloat = 273.0/4
+  let signatureHeight:CGFloat = 50
+  let signatureImageX = horizontalMargin * 1.25
   let signatureImageView = UIImageView(frame:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureSuffixLabel.frame.origin.y - signatureHeight),
-           size: CGSize(width:vivaLifeIconHeight, height: signatureHeight)))
+    CGRect(origin:CGPoint(x:signatureImageX, y: signatureSuffixLabel.frame.origin.y - (1.0 * signatureHeight) - standardVerticalSpace),
+           size: CGSize(width:116, height: signatureHeight)))
   signatureImageView.image = UIImage(named:"ExampleFaxSignature")!
   signatureImageView.contentMode = .scaleAspectFit
-  backgroundView.addSubview(signatureImageView)
+  signatureImageView.backgroundColor = .clear
+  let buffer = standardVerticalSpace/2
+  var frame = signatureImageView.frame
+  frame.origin.x -= buffer
+  frame.origin.y -= buffer
+  frame.size.width += buffer * 2
+  frame.size.height += buffer * 2
+  let signatureBufferView = UIView(frame: frame)
+  signatureBufferView.layer.borderWidth = 0.5
+  signatureBufferView.layer.borderColor = UIColor.black.cgColor
+  signatureBufferView.addSubview(signatureImageView)
+  signatureImageView.frame = CGRect(origin:CGPoint(x:buffer, y:buffer),size:signatureImageView.frame.size)
+  signatureBufferView.backgroundColor = .clear
+  signatureBufferView.isOpaque = false
+  backgroundView.addSubview(signatureBufferView)
 
-  let signatureHeaderLabelText = "Patient Signature:"
+  let signatureHeaderLabelText = "Patient Signature (\(patient.name)):"
   let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
   let signatureHeaderLabel = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureImageView.frame.origin.y - signatureHeaderHeight),
+    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureBufferView.frame.origin.y - signatureHeaderHeight - standardVerticalSpace),
            size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureHeaderHeight)))
   signatureHeaderLabel.minimumScaleFactor = 1.0
   signatureHeaderLabel.numberOfLines = 0
@@ -235,12 +226,6 @@ func samplePDF() -> String {
   backgroundView.addSubview(signatureHeaderLabel)
   runningVerticalOffset += signatureHeaderLabel.frame.size.height
   runningVerticalOffset += standardVerticalSpace/2
-
-
-
-
-
-
 
 
 
