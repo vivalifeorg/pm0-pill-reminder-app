@@ -47,7 +47,7 @@ struct Patient{
 
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
-let faxBodyFontSize = 4
+let faxBodyFontSize = 8
 let faxHeaderFontSize = 12
 let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
