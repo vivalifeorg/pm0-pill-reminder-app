@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PDFGenerator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PhaxioSwiftAlamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>

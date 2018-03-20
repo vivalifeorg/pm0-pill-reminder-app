@@ -23,6 +23,9 @@
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */; };
+		898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */; };
+		898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93B206139CA006ED4CF /* FaxHandRolled.swift */; };
+		898BC93E206139EB006ED4CF /* FaxObjcLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93D206139EB006ED4CF /* FaxObjcLib.swift */; };
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
 		89A5168D205879ED0069D9AE /* ReleasePaperwork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */; };
 		89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5169220587AA90069D9AE /* DoctorList.storyboard */; };
@@ -66,6 +69,9 @@
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
+		898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxGeneratedSwagger.swift; sourceTree = "<group>"; };
+		898BC93B206139CA006ED4CF /* FaxHandRolled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxHandRolled.swift; sourceTree = "<group>"; };
+		898BC93D206139EB006ED4CF /* FaxObjcLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxObjcLib.swift; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
 		89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReleasePaperwork.storyboard; sourceTree = "<group>"; };
 		89A5169220587AA90069D9AE /* DoctorList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DoctorList.storyboard; sourceTree = "<group>"; };
@@ -172,6 +178,9 @@
 			children = (
 				89A5168C205879ED0069D9AE /* ReleasePaperwork.storyboard */,
 				8951A917205992E50027076E /* Fax.swift */,
+				898BC93D206139EB006ED4CF /* FaxObjcLib.swift */,
+				898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */,
+				898BC93B206139CA006ED4CF /* FaxHandRolled.swift */,
 			);
 			path = ReleasePaperwork;
 			sourceTree = "<group>";
@@ -435,6 +444,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/PDFGenerator/PDFGenerator.framework",
 				"${BUILT_PRODUCTS_DIR}/PhaxioSwiftAlamofire/PhaxioSwiftAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PhaxioiOS/PhaxioiOS.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
@@ -445,6 +455,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDFGenerator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhaxioSwiftAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhaxioiOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
@@ -487,7 +498,10 @@
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
+				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
+				898BC93E206139EB006ED4CF /* FaxObjcLib.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
+				898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

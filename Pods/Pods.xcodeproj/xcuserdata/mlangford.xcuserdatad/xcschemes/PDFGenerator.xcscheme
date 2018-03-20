@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5BB998D92156F6C4E28476323BD53F02'
-               BlueprintName = 'SearchTextField'
+               BlueprintIdentifier = '64C64BD904CF2B1931CA50D4460D3EA0'
+               BlueprintName = 'PDFGenerator'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SearchTextField.framework'>
+               BuildableName = 'PDFGenerator.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

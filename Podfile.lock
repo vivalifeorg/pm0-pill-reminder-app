@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.5.1)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
+  - PDFGenerator (2.1)
   - PhaxioiOS (0.1.0)
   - PhaxioSwiftAlamofire (0.0.1):
     - Alamofire (~> 4.5.0)
@@ -13,6 +14,7 @@ PODS:
 DEPENDENCIES:
   - DZNEmptyDataSet
   - KeychainAccess
+  - PDFGenerator (~> 2.1)
   - PhaxioiOS (from `pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master`)
   - PhaxioSwiftAlamofire (from `pm0/ReleasePaperwork/generated/phaxio_swagger_pod/`)
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
@@ -36,11 +38,12 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  PDFGenerator: 4fd5db4972465679f4846a9a36d53e8826536a6d
   PhaxioiOS: 6622fa5ed57dba8db71e67d92ebbd4a4541447f0
   PhaxioSwiftAlamofire: b3ae79c0e45443d943d8282a8bdccb662f722f63
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: 5a3cd1332b9a8f9ef30c031f68da4aef47d5c9ad
+PODFILE CHECKSUM: bc935c38101eea1a3bc1fc9baf7dce1adae4de8b
 
 COCOAPODS: 1.4.0.beta.2

@@ -8,7 +8,8 @@ target "pm0" do
   pod 'DZNEmptyDataSet',  :inhibit_warnings => true #Shows empty view for UITableView/UICollectionView
   pod 'KeychainAccess', :inhibit_warnings => true #Secure Storage Wrapper
   pod 'PhaxioiOS', :path => "pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master", :inhibit_warnings => true #Faxing provider
-  pod 'PhaxioSwiftAlamofire', :path => "pm0/ReleasePaperwork/generated/phaxio_swagger_pod/"
+  pod 'PhaxioSwiftAlamofire', :path => "pm0/ReleasePaperwork/generated/phaxio_swagger_pod/" #faxing provider generated API
+  pod 'PDFGenerator', '~> 2.1', :inhibit_warnings => true #PDF making lib
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334
