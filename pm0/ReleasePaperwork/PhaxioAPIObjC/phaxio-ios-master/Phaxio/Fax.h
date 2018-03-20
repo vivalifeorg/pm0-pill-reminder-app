@@ -89,8 +89,8 @@
 
 @interface FaxFile: NSObject
 @property (nonatomic, retain) NSData* data;
-@property (nonatomic, retain) NSString* name;
-@property (nonatomic, retain) NSString* mimeTypeName;
+@property (nonatomic, copy) NSString* filename;
+@property (nonatomic, copy) NSString* mimeTypeName;
 -(instancetype)initWithData:(NSData*) data  name:(NSString*)name  mimeTypeName:(NSString*)mimeTypeName;
 @end
 

@@ -11,14 +11,14 @@
 
 @implementation FaxFile
 @synthesize data;
-@synthesize name;
+@synthesize filename;
 @synthesize mimeTypeName;
 
 -(instancetype)initWithData:(NSData*) data  name:(NSString*)name  mimeTypeName:(NSString*)mimeTypeName{
   self = [super init];
   if(self){
     self.data = data;
-    self.name = name;
+    self.filename = name;
     self.mimeTypeName = mimeTypeName;
   }
   return self;

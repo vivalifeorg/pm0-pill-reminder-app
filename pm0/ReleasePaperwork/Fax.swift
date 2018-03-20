@@ -55,6 +55,19 @@ var usePhaxioSwiftAlamofire = false
 let faxDelegate = PM0PhaxioFaxDelegate()
 var fax:Fax = Fax.init() //Objc Api, sigh
 
+func mimeTypeName(_ filename:String)->String{
+  switch String(filename.split(separator:".").last ?? "").lowercased(){
+  case "jpg":
+    return "image/jpg"
+  case "png":
+    return "image/png"
+  case "pdf":
+    return "application/pdf"
+  default:
+    return "application/octet"
+  }
+}
+
 func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
   let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
   let task = URLSession.shared.dataTask(with: URL(string:faxEndpoint)!) { (data, response, error) in
@@ -95,9 +108,13 @@ func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,
         fax = Fax()
         fax.delegate = faxDelegate
         fax.to_phone_numbers = [toNumber]
-        let fixedFileName = Bundle.main.resourcePath! + "/" + documentPaths.first!
+        let shortFilename = documentPaths.first!
+        let mimeType = mimeTypeName(shortFilename)
+        let fixedFileName = Bundle.main.resourcePath! + "/" + shortFilename
+
+        debugPrint("\(shortFilename) is a \(mimeType)")
         fax.files = [
-          FaxFile(data:readFile(fileName: fixedFileName), name:documentPaths.first!, mimeTypeName:"image/jpg")
+          FaxFile(data:readFile(fileName: fixedFileName), name:shortFilename, mimeTypeName:mimeType)
         ]
        // fax.files = [readFile(fileName: fixedFileName)] // FAX.FILE assumes JPEG
         fax.send()

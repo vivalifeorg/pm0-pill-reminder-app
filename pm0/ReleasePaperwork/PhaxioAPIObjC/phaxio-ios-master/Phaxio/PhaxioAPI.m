@@ -343,7 +343,32 @@ NSString* api_url = @"https://api.phaxio.com/v2/";
           NSString* fileParamConstant = faxFiles.count == 1 ? @"file":@"file[]";
           for (FaxFile* faxFile in faxFiles){
             [mutableData appendData:[[NSString stringWithFormat:@"--%@\r\n", boundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
-            [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileParamConstant, faxFile.name] dataUsingEncoding:NSUTF8StringEncoding]];
+            [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileParamConstant, faxFile.filename] dataUsingEncoding:NSUTF8StringEncoding]];
+
+            /*
+            fix;  osition: form-da
+            000000a0  74 61 3b 20 6e 61 6d 65 3d 22 66 69 6c 65 22 3b   ta; name="file";
+            000000b0  20 66 69 6c 65 6e 61 6d 65 3d 22 54 65 73 74 50    filename="TestP
+            000000c0  61 67 65 31 2e 70 64 66 22 0d 0a 43 6f 6e 74 65   age1.pdf"  Conte
+            000000d0  6e 74 2d 54 79 70 65 3a 20 61 70 70 6c 69 63 61   nt-Type: applica
+            000000e0  74 69 6f 6e 2f 70 64 66 0d 0a 0d 0a 25 50 44 46   tion/p
+
+            vs
+
+            732iv9hr0qifl1bp
+            000000e0  0d 0a 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 56 32     ------------V2
+            000000f0  6e 42 73 49 48 73 30 31 63 45 73 31 36 69 53 75   nBsIHs01cEs16iSu
+            00000100  39 31 69 61 0d 0a 43 6f 6e 74 65 6e 74 2d 44 69   91ia  Content-Di
+            00000110  73 70 6f 73 69 74 69 6f 6e 3a 20 66 6f 72 6d 2d   sposition: form-
+            00000120  64 61 74 61 3b 20 6e 61 6d 65 3d 22 66 69 6c 65   data; name="file
+            00000130  22 0d 0a 0d 0a 28 0a 20 20 20 20 22 3c 46 61 78   "    (     "<Fax
+            00000140  46 69 6c 65 3a 20 30 78 36 30 30 30 30 30 30 32   File: 0x60000002
+            00000150  66 38 38 30 3e 22 0a 29 0d 0a 2d 2d 2d 2d 2d 2d   f880>" )  -
+
+
+            May already be fixed, try again and check
+            */
+
             [mutableData appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n",faxFile.mimeTypeName] dataUsingEncoding:NSUTF8StringEncoding]];
             [mutableData appendData:faxFile.data];
             [mutableData appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];

@@ -17,7 +17,7 @@ else:
 
 api = phaxio.PhaxioApi(os.environ['API_KEY'], os.environ['API_SECRET'])
 response = api.Fax.send(to=['18558237571'],
-    files='../pm0/TestPages/FaxJPG1.jpg')
+    files='../pm0/TestPages/TestPage1.pdf')
 print(response.data.id)
 
 
