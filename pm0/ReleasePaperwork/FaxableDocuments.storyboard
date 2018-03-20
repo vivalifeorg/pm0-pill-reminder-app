@@ -117,6 +117,9 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="smW-cT-elK">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="AhF-eP-G8m">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="export:" destination="hgT-1R-QPE" id="m1L-Ge-qB9"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>

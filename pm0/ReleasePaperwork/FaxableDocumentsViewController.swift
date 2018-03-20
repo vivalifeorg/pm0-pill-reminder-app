@@ -9,26 +9,25 @@
 import UIKit
 import PDFKit
 
-class FaxableDocumentsViewController:UITableViewController{
+class FaxableDocumentsViewController:UITableViewController,UIDocumentInteractionControllerDelegate{
 
-  func showPDF(){
-    let pdfView = PDFView()
-    pdfView.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(pdfView)
+  var documentInteractionController:UIDocumentInteractionController? = nil
 
-    pdfView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    pdfView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    pdfView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    pdfView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+  @IBAction func export(_ sender: Any) {
 
-    if let document = PDFDocument(url: URL(fileURLWithPath:samplePDF())) {
-      pdfView.document = document
+    let sample = samplePDF()
+    let url = URL(fileURLWithPath: sample)
+    self.documentInteractionController = UIDocumentInteractionController(url: url)
+    self.documentInteractionController?.delegate = self
+    self.documentInteractionController?.presentPreview(animated: true )
+  }
+
+
+  func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+      return self
     }
-  }
 
-  override func viewDidLoad() {
-   // showPDF()
-  }
+
 
 
   var alert = UIAlertController()
