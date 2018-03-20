@@ -24,7 +24,7 @@ func mimeTypeName(_ filename:String)->String{
 
 
 let phaxioObjcFaxService = FaxService(provider: PhaxioObjcFaxProvider())
-struct PhaxioObjcFaxProvider:FaxServiceProvider{
+class PhaxioObjcFaxProvider:FaxServiceProvider{
 
   func sendFax(authentication:FaxService.Credentials,
                otherInfo:FaxService.OtherSenderInfo,
@@ -41,9 +41,9 @@ struct PhaxioObjcFaxProvider:FaxServiceProvider{
       let mimeType = mimeTypeName(shortFilename)
       return FaxFile(data:readFile(fileName: $0), name:shortFilename, mimeTypeName:mimeType)
     }
+    self.completion = completion
     fax.send()
   }
-
 
   let apiDelegate: PhaxioObjcApiDelegate
   init(){
@@ -51,8 +51,9 @@ struct PhaxioObjcFaxProvider:FaxServiceProvider{
     apiDelegate.callbackDelegate = doneSending
   }
 
+  var completion:((Bool,String)->())? = nil
   func doneSending(success:Bool,json:[AnyHashable : Any]) {
-
+    completion!(success, json["message"] as! String)
   }
 
 
