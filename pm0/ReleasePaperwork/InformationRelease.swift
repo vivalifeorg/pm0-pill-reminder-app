@@ -97,7 +97,7 @@ extension String {
   }
 }
 
-func addStandardText(text body:String, backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+func addStandardText(text body:String, view:UIView, y offset:CGFloat) -> CGFloat{
   let bodyHeight:CGFloat = body.height(withConstrainedWidth: standardFullWidth,
                                            font:faxBodyFont)
   let label = UILabel(frameForPDF:
@@ -108,7 +108,7 @@ func addStandardText(text body:String, backgroundView:UIView, y offset:CGFloat) 
   if debugBounding { label.showBlackBorder() }
   label.minimumScaleFactor = CGFloat(faxBodyFontSize)/CGFloat(faxBodyMinimumSize)
   label.setTextAndAdjustSize(body)
-  backgroundView.addSubview(label)
+  view.addSubview(label)
 
 
   var offset = offset
@@ -118,11 +118,11 @@ func addStandardText(text body:String, backgroundView:UIView, y offset:CGFloat) 
   return offset
 }
 
-func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+func addHipaaText(view:UIView, y offset:CGFloat) -> CGFloat{
 
   let body = "IMPORTANT: This facsimile transmission contains confidential information, some or all of which may be protected health information as defined by the federal Health Insurance Portability & Accountability Act (HIPAA) Privacy Rule. This transmission is intended for the exclusive use of the individual or entity to whom it is addressed and may contain information that is proprietary, privileged, confidential and/or exempt from disclosure under applicable law. If you are not the intended recipient (or an employee or agent responsible for delivering this facsimile transmission to the intended recipient), you are hereby notified that any disclosure, dissemination, distribution or copying of this information is strictly prohibited and may be subject to legal restriction or sanction. Please notify the sender by telephone (number listed above) to arrange the return or destruction of the information and all copies."
 
-  return addStandardText(text: body, backgroundView: backgroundView, y: offset)
+  return addStandardText(text: body, view: view, y: offset)
 }
 
 let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
@@ -132,7 +132,7 @@ let standardVerticalSpace:CGFloat = 8
 let standardFullWidth = pageSize.width-CGFloat( 2.0 * horizontalMargin)
 let pageSize = FaxSizes.hyperFine
 
-func addSubheader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
+func addSubheader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
 
   var runningVerticalOffset = offset
   runningVerticalOffset += standardVerticalSpace/2 //#subheaders almost always are in the middle but need space
@@ -146,7 +146,7 @@ func addSubheader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFl
   titleView.font = faxSubHeaderFont
   titleView.numberOfLines = 0
   titleView.setTextAndAdjustSize(text)
-  backgroundView.addSubview(titleView)
+  view.addSubview(titleView)
 
   runningVerticalOffset += titleViewHeight
   runningVerticalOffset += standardVerticalSpace/2
@@ -154,7 +154,7 @@ func addSubheader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFl
   return runningVerticalOffset
 }
 
-func addHeader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
+func addHeader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
 
   let titleViewHeight:CGFloat = text.height(withConstrainedWidth: standardFullWidth, font: faxBigHeaderFont)
   let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
@@ -165,7 +165,7 @@ func addHeader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat
   titleView.font = faxBigHeaderFont
   titleView.numberOfLines = 0
   titleView.setTextAndAdjustSize(text)
-  backgroundView.addSubview(titleView)
+  view.addSubview(titleView)
 
   var runningVerticalOffset = offset
   runningVerticalOffset += titleViewHeight
@@ -181,7 +181,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
   var runningVerticalOffset:CGFloat = topMargin
-  runningVerticalOffset = addHeader("Cover Page\n\nDo not return fax to this number", backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addHeader("Cover Page", view: backgroundView, y: runningVerticalOffset)
 
   let appBannerInfo = "VivALife: https://www.vivalife.care"
   let bodyText  =
@@ -212,8 +212,11 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
 
   """
 
-  runningVerticalOffset = addStandardText(text: bodyText, backgroundView: backgroundView, y: runningVerticalOffset)
-  runningVerticalOffset = addHipaaText(backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
+
+  runningVerticalOffset = addSubheader("Do not send a return fax to this number", view: backgroundView, y: runningVerticalOffset)
+
+  runningVerticalOffset = addHipaaText(view: backgroundView, y: runningVerticalOffset)
 
   return fileOfPDFForView(backgroundView,fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
 }
@@ -246,7 +249,7 @@ func samplePDF() -> String {
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
   let title = "Patient Information Disclosure Consent Form"
-  var runningVerticalOffset = addHeader(title, backgroundView: backgroundView, y: topMargin)
+  var runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
 
   let bodyText  =
   """
@@ -262,19 +265,19 @@ func samplePDF() -> String {
 
   You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you chose from a list of restrictions you could impose on the use of your protected health information. You agree that this form represents your indicated restrictions.
   """
-  runningVerticalOffset = addStandardText(text: bodyText, backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
 
-  runningVerticalOffset = addSubheader("Restrictions", backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addSubheader("Restrictions", view: backgroundView, y: runningVerticalOffset)
   let restrictions =
   """
   \("✔️ No Additional Restrictions on Use")
   """
   runningVerticalOffset = addStandardText(text: restrictions,
-                                          backgroundView: backgroundView,
+                                          view: backgroundView,
                                           y: runningVerticalOffset)
 
   runningVerticalOffset = addSubheader("Authorized Providers",
-                                       backgroundView: backgroundView,
+                                       view: backgroundView,
                                        y: runningVerticalOffset)
 
   let allProviderText:String = providers.map{ provider in
@@ -287,7 +290,7 @@ func samplePDF() -> String {
     return providerText
     }.joined()
 
-  runningVerticalOffset = addStandardText(text: allProviderText, backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addStandardText(text: allProviderText, view: backgroundView, y: runningVerticalOffset)
 
 
 
