@@ -49,6 +49,7 @@ let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
 let faxBodyFontSize = 8
 let faxHeaderFontSize = 12
+let faxBodyMinimumSize = 8
 let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
 
@@ -78,18 +79,32 @@ extension UIView{
 
 let debugBounding = false
 
+extension String {
+  func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+    let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+    let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
 
-func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+    return ceil(boundingBox.height)
+  }
 
-  let body = "IMPORTANT: This facsimile transmission contains confidential information, some or all of which may be protected health information as defined by the federal Health Insurance Portability & Accountability Act (HIPAA) Privacy Rule. This transmission is intended for the exclusive use of the individual or entity to whom it is addressed and may contain information that is proprietary, privileged, confidential and/or exempt from disclosure under applicable law. If you are not the intended recipient (or an employee or agent responsible for delivering this facsimile transmission to the intended recipient), you are hereby notified that any disclosure, dissemination, distribution or copying of this information is strictly prohibited and may be subject to legal restriction or sanction. Please notify the sender by telephone (number listed above) to arrange the return or destruction of the information and all copies."
+  func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+    let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+    let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
 
-  let mainTextHeight:CGFloat = body.heightEstimate
+    return ceil(boundingBox.width)
+  }
+}
+
+func addStandardText(text body:String, backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+  let bodyHeight:CGFloat = body.height(withConstrainedWidth: standardFullWidth,
+                                           font:faxBodyFont)
   let label = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: offset),
-           size: CGSize(width:standardFullWidth, height: mainTextHeight)))
+           size: CGSize(width:standardFullWidth, height: bodyHeight)))
   label.numberOfLines = 0
   label.font = faxBodyFont
   if debugBounding { label.showBlackBorder() }
+  label.minimumScaleFactor = CGFloat(faxBodyFontSize)/CGFloat(faxBodyMinimumSize)
   label.setTextAndAdjustSize(body)
   backgroundView.addSubview(label)
 
@@ -101,25 +116,24 @@ func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
   return offset
 }
 
+func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+
+  let body = "IMPORTANT: This facsimile transmission contains confidential information, some or all of which may be protected health information as defined by the federal Health Insurance Portability & Accountability Act (HIPAA) Privacy Rule. This transmission is intended for the exclusive use of the individual or entity to whom it is addressed and may contain information that is proprietary, privileged, confidential and/or exempt from disclosure under applicable law. If you are not the intended recipient (or an employee or agent responsible for delivering this facsimile transmission to the intended recipient), you are hereby notified that any disclosure, dissemination, distribution or copying of this information is strictly prohibited and may be subject to legal restriction or sanction. Please notify the sender by telephone (number listed above) to arrange the return or destruction of the information and all copies."
+
+  return addStandardText(text: body, backgroundView: backgroundView, y: offset)
+}
+
 let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
 let topMargin:CGFloat = 4
 let standardVerticalSpace:CGFloat = 8
 let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
 let pageSize = FaxSizes.hyperFine
 
-func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> String {
+func addTitleText(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
 
-
-  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-  backgroundView.backgroundColor = VLColors.faxBackgroundColor
-  //backgroundView.showBlackBorder(0.5)
-  var runningVerticalOffset:CGFloat = 0.0
-
-
-  let text = "Cover Page\n\nDo not return fax to this number"
-  let titleViewHeight:CGFloat = 24.0 * CGFloat(text.lineCount)
+  let titleViewHeight:CGFloat = text.height(withConstrainedWidth: standardFullWidth, font: faxBigHeaderFont)
   let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
-                                                             y:topMargin),
+                                                             y:offset),
                                               size:CGSize(width:standardFullWidth,
                                                           height:titleViewHeight)))
 
@@ -128,45 +142,58 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
   titleView.setTextAndAdjustSize(text)
   backgroundView.addSubview(titleView)
 
+  var runningVerticalOffset = offset
   runningVerticalOffset += titleViewHeight
   runningVerticalOffset += standardVerticalSpace
 
+  return runningVerticalOffset
+}
 
-  let appName = "VivALife"
+func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> String {
+
+
+  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  backgroundView.backgroundColor = VLColors.faxBackgroundColor
+
+  var runningVerticalOffset:CGFloat = topMargin
+  runningVerticalOffset = addTitleText("Cover Page\n\nDo not return fax to this number", backgroundView: backgroundView, y: runningVerticalOffset)
+
+  let appBannerInfo = "VivALife: https://www.vivalife.care"
   let bodyText  =
   """
   To:
+
     \(to)
 
+
   From:
+
     \(from)
 
+
   For Patient:
+
     \(forPatient)
 
+
   Sent with:
-    \(appName)
+
+    \(appBannerInfo)
+
   """
 
-  let mainTextHeight:CGFloat = bodyText.heightEstimate
-  let mainText = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
-           size: CGSize(width:standardFullWidth, height: mainTextHeight)))
-  mainText.numberOfLines = 0
-  mainText.font = faxBodyFont
-  if debugBounding { mainText.showBlackBorder() }
-  mainText.setTextAndAdjustSize(bodyText)
-  backgroundView.addSubview(mainText)
-  runningVerticalOffset += mainText.frame.size.height
-  runningVerticalOffset += standardVerticalSpace/2
-
+  runningVerticalOffset = addStandardText(text: bodyText, backgroundView: backgroundView, y: runningVerticalOffset)
   runningVerticalOffset = addHipaaText(backgroundView: backgroundView, y: runningVerticalOffset)
 
-  let path = NSTemporaryDirectory().appending("coverPage.pdf")
+  return fileOfPDFForView(backgroundView,fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
+}
+
+func fileOfPDFForView(_ view:UIView,fileSuffix:String)->String{
+  let path = NSTemporaryDirectory().appending(fileSuffix)
   let dst = URL(fileURLWithPath: path)
   // outputs as Data
   do {
-    let data = try PDFGenerator.generated(by: [backgroundView])
+    let data = try PDFGenerator.generated(by: [view])
     try! data.write(to: dst, options: .atomic)
   } catch (let error) {
     print(error)
@@ -174,12 +201,10 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
 
   // writes to Disk directly.
   do {
-    try PDFGenerator.generate([backgroundView], to: dst)
+    try PDFGenerator.generate([view], to: dst)
   } catch (let error) {
     print(error)
   }
-
-  debugPrint("path: \(path)")
 
   return path
 }
@@ -189,11 +214,9 @@ func samplePDF() -> String {
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
-  //backgroundView.showBlackBorder(0.5)
 
   let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
   let standardVerticalSpace:CGFloat = 0.8 * CGFloat(faxHeaderFontSize)
-//  let halfStandardVerticalSpace:CGFloat = 8.0/2.0
   let topMargin:CGFloat = 4
   let bottomMargin:CGFloat = 4
   var runningVerticalOffset = topMargin
@@ -341,24 +364,5 @@ func samplePDF() -> String {
 
 
 
-  let path = NSTemporaryDirectory().appending("sample1.pdf")
-  let dst = URL(fileURLWithPath: path)
-  // outputs as Data
-  do {
-    let data = try PDFGenerator.generated(by: [backgroundView])
-    try! data.write(to: dst, options: .atomic)
-  } catch (let error) {
-    print(error)
-  }
-
-  // writes to Disk directly.
-  do {
-    try PDFGenerator.generate([backgroundView], to: dst)
-  } catch (let error) {
-    print(error)
-  }
-
-  debugPrint("path: \(path)")
-
-  return path
+  return fileOfPDFForView(backgroundView, fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
 }
