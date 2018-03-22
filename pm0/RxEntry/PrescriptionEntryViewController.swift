@@ -8,6 +8,7 @@
 
 import UIKit
 import SearchTextField
+import Down
 
 protocol Listable{
   var title:String {get}
@@ -508,8 +509,22 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
     configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 
     //updateDrugsPopup()
+
+    let nameHelpText =
+    """
+    # Naming your medication
+
+    Enter in a *short* memorable name for your medication.
+
+    The search box may suggest something much longer than is needed for your daily use.
+
+    There is nothing stopping you from picking an entirely different name for the drug if you want to. However, make sure it's something you and your doctor can identify. It may be used in reports you choose to send to your doctor.
+    """
+    let nameHelpTextAttributed = try! Down(markdownString: nameHelpText).toAttributedString()
+
+
     nameLine.searchTextField.userStoppedTypingHandler = updateDrugsPopup
-    nameLine.helpInfo = NSAttributedString(string: "NameHelpTest")
+    nameLine.helpInfo = nameHelpTextAttributed
     nameLine.searchTextField.itemSelectionHandler = nameItemSelectionHandler
     nameLine.helper = self
 
