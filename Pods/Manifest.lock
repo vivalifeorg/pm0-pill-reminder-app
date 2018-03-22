@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
+  - Down (0.4.2)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
   - PDFGenerator (2.1)
@@ -12,6 +13,7 @@ PODS:
   - SQLite.swift/standard (0.11.4)
 
 DEPENDENCIES:
+  - Down
   - DZNEmptyDataSet
   - KeychainAccess
   - PDFGenerator (~> 2.1)
@@ -36,6 +38,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PDFGenerator: 4fd5db4972465679f4846a9a36d53e8826536a6d
@@ -44,6 +47,6 @@ SPEC CHECKSUMS:
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: bc935c38101eea1a3bc1fc9baf7dce1adae4de8b
+PODFILE CHECKSUM: 191fecebed86a673faa99ad5b4f2bcdd2350b09a
 
 COCOAPODS: 1.4.0.beta.2

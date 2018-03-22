@@ -10,6 +10,7 @@ target "pm0" do
   pod 'PhaxioiOS', :path => "pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master", :inhibit_warnings => true #Faxing provider
   pod 'PhaxioSwiftAlamofire', :path => "pm0/ReleasePaperwork/generated/phaxio_swagger_pod/" #faxing provider generated API
   pod 'PDFGenerator', '~> 2.1', :inhibit_warnings => true #PDF making lib
+  pod 'Down', :inhibit_warnings => true #markdown renderer
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334
