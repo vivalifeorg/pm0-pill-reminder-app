@@ -42,9 +42,11 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   var pdfPreview = UIAlertController()
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
+      let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: "Dr Ableton's Office", from: "Patient Directly (Marv Jones)", forPatient: "Marv Jones")
       let pdf = samplePDF()
+
       
-      sendFax(toNumber:"+18558237571", documentPaths: [pdf]){ isSuccess,msg in
+      sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
         self.showSuccessfulFax(message:msg)
       }
     }

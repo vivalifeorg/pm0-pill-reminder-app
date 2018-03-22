@@ -309,13 +309,15 @@ NSString* api_url = @"https://api.phaxio.com/v2/";
     [self makeGetRequest:url apiMethod:ACCOUNT_STATUS];
 }
 
+
+const NSString* fileKey = @"file[]";
 -(void)makePostRequest:(NSString*)url postParameters:(NSMutableDictionary*)parameters apiMethod:(int)api_method
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     
-    if ([parameters valueForKey:@"file"] != nil)
+    if ([parameters valueForKey:fileKey] != nil)
     {
         NSString *boundaryConstant = @"----------V2nBsIHs01cEs16iSu91ia";
         
@@ -327,18 +329,20 @@ NSString* api_url = @"https://api.phaxio.com/v2/";
 
         
         NSArray* parameterArray = [parameters allKeys];
-        
+
         for (int i = 0; i < [parameterArray count]; i++) {
             NSString* parameter = [parameterArray objectAtIndex:i];
+          if (parameter == fileKey) { continue; }
+
             [mutableData appendData:[[NSString stringWithFormat:@"--%@\r\n", boundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
             [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", parameter] dataUsingEncoding:NSUTF8StringEncoding]];
             [mutableData appendData:[[NSString stringWithFormat:@"%@\r\n", [parameters objectForKey:parameter]] dataUsingEncoding:NSUTF8StringEncoding]];
         }
         
 
-        NSArray* faxFiles = [parameters valueForKey:@"file"];
+        NSArray* faxFiles = [parameters valueForKey:@"file[]"];
         if (faxFiles) {
-          [parameters removeObjectForKey:@"file"];
+          [parameters removeObjectForKey:@"file[]"];
 
           NSString* fileParamConstant = faxFiles.count == 1 ? @"file":@"file[]";
           for (FaxFile* faxFile in faxFiles){

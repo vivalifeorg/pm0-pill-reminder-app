@@ -78,6 +78,112 @@ extension UIView{
 
 let debugBounding = false
 
+
+func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
+
+  let body = "IMPORTANT: This facsimile transmission contains confidential information, some or all of which may be protected health information as defined by the federal Health Insurance Portability & Accountability Act (HIPAA) Privacy Rule. This transmission is intended for the exclusive use of the individual or entity to whom it is addressed and may contain information that is proprietary, privileged, confidential and/or exempt from disclosure under applicable law. If you are not the intended recipient (or an employee or agent responsible for delivering this facsimile transmission to the intended recipient), you are hereby notified that any disclosure, dissemination, distribution or copying of this information is strictly prohibited and may be subject to legal restriction or sanction. Please notify the sender by telephone (number listed above) to arrange the return or destruction of the information and all copies."
+
+  let mainTextHeight:CGFloat = body.heightEstimate
+  let label = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: offset),
+           size: CGSize(width:standardFullWidth, height: mainTextHeight)))
+  label.numberOfLines = 0
+  label.font = faxBodyFont
+  if debugBounding { label.showBlackBorder() }
+  label.setTextAndAdjustSize(body)
+  backgroundView.addSubview(label)
+
+
+  var offset = offset
+  offset += label.frame.size.height
+  offset += standardVerticalSpace/2
+
+  return offset
+}
+
+let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
+let topMargin:CGFloat = 4
+let standardVerticalSpace:CGFloat = 8
+let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
+let pageSize = FaxSizes.hyperFine
+
+func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> String {
+
+
+  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  backgroundView.backgroundColor = VLColors.faxBackgroundColor
+  //backgroundView.showBlackBorder(0.5)
+  var runningVerticalOffset:CGFloat = 0.0
+
+
+  let text = "Cover Page\n\nDo not return fax to this number"
+  let titleViewHeight:CGFloat = 24.0 * CGFloat(text.lineCount)
+  let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
+                                                             y:topMargin),
+                                              size:CGSize(width:standardFullWidth,
+                                                          height:titleViewHeight)))
+
+  titleView.font = faxBigHeaderFont
+  titleView.numberOfLines = 0
+  titleView.setTextAndAdjustSize(text)
+  backgroundView.addSubview(titleView)
+
+  runningVerticalOffset += titleViewHeight
+  runningVerticalOffset += standardVerticalSpace
+
+
+  let appName = "VivALife"
+  let bodyText  =
+  """
+  To:
+    \(to)
+
+  From:
+    \(from)
+
+  For Patient:
+    \(forPatient)
+
+  Sent with:
+    \(appName)
+  """
+
+  let mainTextHeight:CGFloat = bodyText.heightEstimate
+  let mainText = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
+           size: CGSize(width:standardFullWidth, height: mainTextHeight)))
+  mainText.numberOfLines = 0
+  mainText.font = faxBodyFont
+  if debugBounding { mainText.showBlackBorder() }
+  mainText.setTextAndAdjustSize(bodyText)
+  backgroundView.addSubview(mainText)
+  runningVerticalOffset += mainText.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
+  runningVerticalOffset = addHipaaText(backgroundView: backgroundView, y: runningVerticalOffset)
+
+  let path = NSTemporaryDirectory().appending("coverPage.pdf")
+  let dst = URL(fileURLWithPath: path)
+  // outputs as Data
+  do {
+    let data = try PDFGenerator.generated(by: [backgroundView])
+    try! data.write(to: dst, options: .atomic)
+  } catch (let error) {
+    print(error)
+  }
+
+  // writes to Disk directly.
+  do {
+    try PDFGenerator.generate([backgroundView], to: dst)
+  } catch (let error) {
+    print(error)
+  }
+
+  debugPrint("path: \(path)")
+
+  return path
+}
+
 func samplePDF() -> String {
   let pageSize = FaxSizes.hyperFine
 
