@@ -47,11 +47,13 @@ struct Patient{
 
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
-let faxBodyFontSize = 8
+let faxBodyFontSize = 6
 let faxHeaderFontSize = 12
+let faxSubHeaderFontSize = 10
 let faxBodyMinimumSize = 8
 let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
+let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHeaderFontSize))!
 
 
 let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}"),
@@ -125,11 +127,34 @@ func addHipaaText(backgroundView:UIView, y offset:CGFloat) -> CGFloat{
 
 let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
 let topMargin:CGFloat = 4
+let bottomMargin:CGFloat = 4
 let standardVerticalSpace:CGFloat = 8
-let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
+let standardFullWidth = pageSize.width-CGFloat( 2.0 * horizontalMargin)
 let pageSize = FaxSizes.hyperFine
 
-func addTitleText(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
+func addSubheader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
+
+  var runningVerticalOffset = offset
+  runningVerticalOffset += standardVerticalSpace/2 //#subheaders almost always are in the middle but need space
+
+  let titleViewHeight:CGFloat = text.height(withConstrainedWidth: standardFullWidth, font: faxSubHeaderFont)
+  let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
+                                                             y:runningVerticalOffset),
+                                              size:CGSize(width:standardFullWidth,
+                                                          height:titleViewHeight)))
+
+  titleView.font = faxSubHeaderFont
+  titleView.numberOfLines = 0
+  titleView.setTextAndAdjustSize(text)
+  backgroundView.addSubview(titleView)
+
+  runningVerticalOffset += titleViewHeight
+  runningVerticalOffset += standardVerticalSpace/2
+
+  return runningVerticalOffset
+}
+
+func addHeader(_ text:String, backgroundView: UIView, y offset:CGFloat)->CGFloat{
 
   let titleViewHeight:CGFloat = text.height(withConstrainedWidth: standardFullWidth, font: faxBigHeaderFont)
   let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
@@ -156,11 +181,16 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
   var runningVerticalOffset:CGFloat = topMargin
-  runningVerticalOffset = addTitleText("Cover Page\n\nDo not return fax to this number", backgroundView: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addHeader("Cover Page\n\nDo not return fax to this number", backgroundView: backgroundView, y: runningVerticalOffset)
 
   let appBannerInfo = "VivALife: https://www.vivalife.care"
   let bodyText  =
   """
+  Total Pages:
+
+    \(pageCount)
+
+
   To:
 
     \(to)
@@ -215,25 +245,8 @@ func samplePDF() -> String {
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
-  let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
-  let standardVerticalSpace:CGFloat = 0.8 * CGFloat(faxHeaderFontSize)
-  let topMargin:CGFloat = 4
-  let bottomMargin:CGFloat = 4
-  var runningVerticalOffset = topMargin
-  let standardFullWidth = pageSize.width-CGFloat(2.0*horizontalMargin)
-  let titleViewHeight:CGFloat = 20.0
-  let titleView = UILabel(frameForPDF: CGRect(origin:CGPoint(x:horizontalMargin,
-                                                             y:runningVerticalOffset),
-                                              size:CGSize(width:standardFullWidth,
-                                                          height:titleViewHeight)))
-
-  titleView.font = faxBigHeaderFont
-  titleView.setTextAndAdjustSize("Patient Information Disclosure Consent Form")
-  backgroundView.addSubview(titleView)
-  runningVerticalOffset += titleViewHeight
-  runningVerticalOffset += standardVerticalSpace
-
-
+  let title = "Patient Information Disclosure Consent Form"
+  var runningVerticalOffset = addHeader(title, backgroundView: backgroundView, y: topMargin)
 
   let bodyText  =
   """
@@ -248,47 +261,35 @@ func samplePDF() -> String {
   You have the right to revoke this Consent by sending a signed notice, in writing. Revocation shall not affect any disclosures already made in reliance on your prior Consent.
 
   You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you chose from a list of restrictions you could impose on the use of your protected health information. You agree that this form represents your indicated restrictions.
-
-  Restrictions:
-     \("✔️ No Additional Restrictions on Use")
   """
+  runningVerticalOffset = addStandardText(text: bodyText, backgroundView: backgroundView, y: runningVerticalOffset)
 
-  let mainTextHeight:CGFloat = bodyText.heightEstimate
-  let mainText = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
-           size: CGSize(width:standardFullWidth, height: mainTextHeight)))
-  mainText.numberOfLines = 0
-  mainText.font = faxBodyFont
-  if debugBounding { mainText.showBlackBorder() }
-  mainText.setTextAndAdjustSize(bodyText)
-  backgroundView.addSubview(mainText)
-  runningVerticalOffset += mainText.frame.size.height
-  runningVerticalOffset += standardVerticalSpace/2
+  runningVerticalOffset = addSubheader("Restrictions", backgroundView: backgroundView, y: runningVerticalOffset)
+  let restrictions =
+  """
+  \("✔️ No Additional Restrictions on Use")
+  """
+  runningVerticalOffset = addStandardText(text: restrictions,
+                                          backgroundView: backgroundView,
+                                          y: runningVerticalOffset)
 
+  runningVerticalOffset = addSubheader("Authorized Providers",
+                                       backgroundView: backgroundView,
+                                       y: runningVerticalOffset)
 
-
-  let allProviderText:String = "\n\nAuthorized Providers: \n\n" + providers.map{ provider in
+  let allProviderText:String = providers.map{ provider in
     let providerText =
-    " \(provider.name)\n" +
-    "   Address: \(provider.address)\n" +
-    "   Phone: \t\(provider.phone)\n" +
-    "   Fax: \t\(provider.fax)\n\n"
+    "\(provider.name)\n" +
+    "    Address: \(provider.address)\n" +
+    "    Phone: \t\(provider.phone)\n" +
+    "    Fax: \t\(provider.fax)\n\n"
 
     return providerText
     }.joined()
 
-  let heightEstimate:CGFloat =  allProviderText.heightEstimate
-  let providersView = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: runningVerticalOffset),
-           size: CGSize(width:standardFullWidth, height: heightEstimate)))
-  providersView.adjustsFontSizeToFitWidth = true
-  providersView.numberOfLines = 0
-  providersView.setTextAndAdjustSize( allProviderText)
-  if debugBounding { providersView.showBlackBorder() }
-  providersView.font = faxBodyFont
-  backgroundView.addSubview(providersView)
-  runningVerticalOffset += providersView.frame.size.height
-  runningVerticalOffset += standardVerticalSpace
+  runningVerticalOffset = addStandardText(text: allProviderText, backgroundView: backgroundView, y: runningVerticalOffset)
+
+
 
 
   let vivaLifeIconHeight:CGFloat = 273.0/4
