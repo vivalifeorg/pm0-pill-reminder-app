@@ -27,6 +27,13 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="egf-NE-wEK">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1086"/>
                                                 <subviews>
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RG-bZ-ykg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <segue destination="9rV-5f-FxO" kind="show" identifier="showPrescriptionHelp" id="cxg-vF-Lpv"/>
+                                                        </connections>
+                                                    </button>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="kjZ-DL-Q9x" userLabel="Medication Name" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                                         <constraints>
@@ -158,7 +165,7 @@
                         <viewLayoutGuide key="safeArea" id="Kft-9K-NA6"/>
                     </view>
                     <navigationItem key="navigationItem" title="Prescription" largeTitleDisplayMode="always" id="fK4-A7-ryE">
-                        <barButtonItem key="backBarButtonItem" title="℞" id="dOz-y5-Nsl"/>
+                        <barButtonItem key="backBarButtonItem" title="Prescription" id="dOz-y5-Nsl"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5Gk-Kg-khf">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -187,6 +194,62 @@
                 <exit id="TtV-2q-sqi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2858" y="-440"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="Jcb-lh-JBR">
+            <objects>
+                <viewController title="Help" id="9rV-5f-FxO" customClass="PrescriptionEntryHelpViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rqo-UX-t3r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zns-Th-wzv">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-hh-neT">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-ue-RON">
+                                                <rect key="frame" x="8" y="7.9999999999999982" width="35.666666666666664" height="20.333333333333329"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HR6-ue-RON" secondAttribute="trailing" constant="8" id="2Xa-to-9ek"/>
+                                            <constraint firstAttribute="bottom" secondItem="HR6-ue-RON" secondAttribute="bottom" constant="8" id="SfF-ux-r3Q"/>
+                                            <constraint firstItem="HR6-ue-RON" firstAttribute="leading" secondItem="ca0-hh-neT" secondAttribute="leading" constant="8" id="V05-9Z-lc9"/>
+                                            <constraint firstItem="HR6-ue-RON" firstAttribute="top" secondItem="ca0-hh-neT" secondAttribute="top" constant="8" id="p16-eg-4HB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ca0-hh-neT" secondAttribute="width" id="0kp-bZ-2Hs"/>
+                                    <constraint firstItem="ca0-hh-neT" firstAttribute="leading" secondItem="zns-Th-wzv" secondAttribute="leading" id="C5w-GZ-Uil"/>
+                                    <constraint firstItem="ca0-hh-neT" firstAttribute="top" secondItem="zns-Th-wzv" secondAttribute="top" id="L5g-NU-hBN"/>
+                                    <constraint firstAttribute="bottom" secondItem="ca0-hh-neT" secondAttribute="bottom" id="eV2-Mk-RtR"/>
+                                    <constraint firstAttribute="trailing" secondItem="ca0-hh-neT" secondAttribute="trailing" id="ghC-4M-JeY"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16830222310000001" green="0.28917384149999997" blue="0.37265697120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="R9i-0j-fHW" firstAttribute="bottom" secondItem="zns-Th-wzv" secondAttribute="bottom" id="CpM-mF-ikA"/>
+                            <constraint firstItem="R9i-0j-fHW" firstAttribute="leading" secondItem="zns-Th-wzv" secondAttribute="leading" id="DsN-Ej-www"/>
+                            <constraint firstItem="R9i-0j-fHW" firstAttribute="trailing" secondItem="zns-Th-wzv" secondAttribute="trailing" id="LER-9e-tS9"/>
+                            <constraint firstItem="R9i-0j-fHW" firstAttribute="top" secondItem="zns-Th-wzv" secondAttribute="top" id="lsx-11-tX6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R9i-0j-fHW"/>
+                    </view>
+                    <connections>
+                        <outlet property="helpLabel" destination="HR6-ue-RON" id="3kZ-gM-JYd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4eM-e4-VPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3677.5999999999999" y="-437.4384236453202"/>
         </scene>
         <!--PrescriptionEntryNav-->
         <scene sceneID="kqF-Jp-tzc">
