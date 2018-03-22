@@ -9,6 +9,25 @@
 import UIKit
 import SearchTextField
 
+protocol LineHelper{
+  func showHelp(_ helpInfo:NSAttributedString)
+}
+
+
+extension UIView {
+  var parentViewController: UIViewController? {
+    var parentResponder: UIResponder? = self
+    while parentResponder != nil {
+      parentResponder = parentResponder!.next
+      if let viewController = parentResponder as? UIViewController {
+        return viewController
+      }
+    }
+    return nil
+  }
+}
+
+
 @IBDesignable
 class PrescriptionLineEntry: UIView{
 
@@ -18,6 +37,17 @@ class PrescriptionLineEntry: UIView{
   @IBOutlet var titleLabel:UILabel!
   @IBOutlet var searchTextField:SearchTextField!
 
+
+  var helpInfo:NSAttributedString? = NSAttributedString(string:"TK")
+  var helper:LineHelper!
+
+  @IBAction func helpWasTapped(sender:Any){
+    guard let helpInfo = helpInfo else {
+      return
+    }
+
+    helper.showHelp(helpInfo)
+  }
 
   @IBInspectable
   public var title: String = "Title TK" {

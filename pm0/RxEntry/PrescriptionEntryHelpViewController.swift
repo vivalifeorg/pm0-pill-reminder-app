@@ -9,4 +9,14 @@ import UIKit
 
 class PrescriptionEntryHelpViewController:UIViewController {
   @IBOutlet weak var helpLabel:UILabel!
+
+  var helpText:NSAttributedString = NSAttributedString() {
+    didSet{
+      helpLabel?.attributedText = helpText
+    }
+  }
+
+  override func viewDidLoad() {
+    helpLabel.attributedText = helpText
+  }
 }

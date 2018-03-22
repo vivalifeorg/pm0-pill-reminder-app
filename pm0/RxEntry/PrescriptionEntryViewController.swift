@@ -284,7 +284,7 @@ extension PrescriptionLineEntry{
   }
 }
 
-class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
+class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,LineHelper {
 
 
 
@@ -475,6 +475,20 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     lastSelectedDrug = drugSelection
   }
 
+  let showPrescriptionHelpSegue = "showPrescriptionHelp"
+
+  func showHelp(_ helpInfo:NSAttributedString){
+    self.helpInfo = helpInfo
+    performSegue(withIdentifier: showPrescriptionHelpSegue, sender: self)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == showPrescriptionHelpSegue{
+      let dst = segue.destination as! PrescriptionEntryHelpViewController
+      dst.helpText = helpInfo!
+    }
+  }
+  var helpInfo:NSAttributedString? = nil
   override func viewDidLoad() {
     if let rx = editRx {
       entryInfo = rx.editInfo
@@ -494,31 +508,43 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate {
     configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 
     //updateDrugsPopup()
-    nameLine.searchTextField.userStoppedTypingHandler = {
-      self.updateDrugsPopup()
-    }
-    nameLine.searchTextField.itemSelectionHandler = self.nameItemSelectionHandler
+    nameLine.searchTextField.userStoppedTypingHandler = updateDrugsPopup
+    nameLine.helpInfo = NSAttributedString(string: "NameHelpTest")
+    nameLine.searchTextField.itemSelectionHandler = nameItemSelectionHandler
+    nameLine.helper = self
 
     configureSearchField(unitLine.searchTextField)
-    unitLine.searchTextField.userStoppedTypingHandler = {
-      self.updatePillSizePopup()
-    }
+    unitLine.searchTextField.userStoppedTypingHandler = updatePillSizePopup
+    unitLine.helpInfo = NSAttributedString(string: "Unit Information")
+    unitLine.helper = self
 
     configureSearchField(quantityLine.searchTextField)
     quantityLine.searchTextField.userStoppedTypingHandler = {
       //todo
     }
+    quantityLine.helpInfo = NSAttributedString(string: "quantity line information")
+    quantityLine.helper = self
 
     configureSearchField(prescriberLine.searchTextField)
     configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
     prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
+    prescriberLine.helpInfo = NSAttributedString(string: "prescriber help")
+    prescriberLine.helper = self
 
 
     configureSearchField(scheduleLine.searchTextField)
     configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
     scheduleLine.searchTextField.filterItems(
       schedules.map{SearchTextFieldItem(listable:$0)})
+    scheduleLine.helpInfo = NSAttributedString(string: "Schedule Help")
+    scheduleLine.helper = self
+
+    pharmacyLine.helpInfo = NSAttributedString(string: "Pharmacy Help")
+    pharmacyLine.helper = self
+
+    conditionLine.helpInfo = NSAttributedString(string: "Condition Help")
+    conditionLine.helper = self
   }
 
 
