@@ -73,6 +73,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cross" width="11" height="11"/>
+        <image name="Cross" width="23" height="23"/>
     </resources>
 </document>

@@ -196,7 +196,6 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
     cell.detailTextLabel?.text = viewModel[path].subTitle
 
     //let isSelected = tableView.indexPathsForSelectedRows?.contains(path) ?? false
-    cell.textLabel?.font = UIFont.systemFont(ofSize: 20.0)
     cell.textLabel?.textColor = VLColors.primaryText
     cell.textLabel?.highlightedTextColor = VLColors.highlightedPrimaryText
     cell.detailTextLabel?.textColor = VLColors.secondaryText
