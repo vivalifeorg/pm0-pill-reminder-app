@@ -168,6 +168,8 @@ class PrescriptionListViewController: UIViewController {
     //sendFax(toNumber:"+18558237571", documentPaths: ["TestPage1.pdf"]){ isSuccess,msg in print(msg) }
   
   }
+  
+
 
   static var cellIdentifier:String{
     return "PrescriptionListViewControllerCell"

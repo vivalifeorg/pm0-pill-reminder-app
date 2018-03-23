@@ -22,7 +22,6 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
     self.documentInteractionController?.presentPreview(animated: true )
   }
 
-
   func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
       return self
     }
