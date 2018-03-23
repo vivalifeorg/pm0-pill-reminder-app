@@ -10,10 +10,61 @@ import UIKit
 import SearchTextField
 import Down
 
+struct VLFonts{
+  static var body:UIFont{
+    return UIFont.preferredFont(forTextStyle: .body)
+  }
+  static var h1:UIFont{
+    return UIFont.preferredFont(forTextStyle: .largeTitle)
+  }
+  static var h2:UIFont{
+    return UIFont.preferredFont(forTextStyle: .title1)
+  }
+  static var h3:UIFont{
+    return UIFont.preferredFont(forTextStyle: .title2)
+  }
+  static var h4:UIFont{
+    return UIFont.preferredFont(forTextStyle: .title3)
+  }
+}
+
 extension String{
   var renderMarkdownAsAttributedString:NSAttributedString{
     let rendered = Down(markdownString: self) as DownAttributedStringRenderable
-    let styles = "* {font-family: Helvetica; color: white} code, pre { font-family: Menlo }"
+    let styles =
+    """
+    * {
+      font-family: "\(VLFonts.body.familyName)";
+      font-size: \(VLFonts.body.pointSize);
+      line-height: 140%;
+      color: white
+    }
+
+    h1 {
+      font-family: "\(VLFonts.h1.familyName)";
+      font-size: \(VLFonts.h1.pointSize)
+    }
+
+    h2 {
+      font-family: "\(VLFonts.h2.familyName)";
+      font-size: \(VLFonts.h2.pointSize)
+    }
+
+    h3 {
+      font-family: \(VLFonts.h3.familyName);
+      font-size: \(VLFonts.h3.pointSize)
+    }
+
+    h4 {
+      font-family: \(VLFonts.h4.familyName);
+      font-size: \(VLFonts.h4.pointSize)
+    }
+    
+    code, pre {
+      font-family: Menlo
+    }
+    """
+    debugPrint(styles)
     return try! rendered.toAttributedString(
       DownOptions.default,
       stylesheet: styles)
