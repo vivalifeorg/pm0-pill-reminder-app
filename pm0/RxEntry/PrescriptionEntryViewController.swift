@@ -56,11 +56,16 @@ extension String{
     }
 
     strong {
+      color: #f2f2f2;
       font-weight: bolder
     }
 
     em {
       font-style: italic
+    }
+
+    hr {
+      color: white
     }
 
     code, pre {
