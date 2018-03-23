@@ -131,19 +131,6 @@ extension SearchTextFieldItem{
 
 
 extension DisplayDrug:Listable{
-
-  /*
-   let form = dosageForm != "" ?  "(\(dosageForm))" : ""
-   let dosage = "\(numerator ?? "") \(unit ?? ""): "
-   let altDosage = ""
-   let prefix = (numerator == "" && unit == "") ? altDosage : dosage
-
-   self.init(name: "\(item["PROPRIETARYNAME"] ?? "") \(form)",
-   commonUses: [prefix + nonProp ],
-   unit:unit,
-   form:form,
-   numerator:numerator)
-   */
   var title:String{
     let formattedForm = dosageForm.flatMap{ df in
       df != "" ?  "(\(df))" : ""
@@ -594,9 +581,7 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
 
     Enter in a *short* memorable name for your medication.
 
-    The search box may suggest something much longer than is needed for your daily use.
-
-    There is nothing stopping you from picking an entirely different name for the drug if you want to. However, make sure it's something you and your doctor can identify. It may be used in reports you choose to send to your doctor.
+    Feel free to shorten the text the search box inserted for you if you selected one from the list that shows up after you start typing. Selecting an item from that list will also insert starting values in the quantity and unit fields.
     """
     
 
@@ -613,9 +598,10 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
 
     Describe what a *single* pill looks like. You will input quantity later.
 
-    ### Examples:
+    For example, if you take two orange 200mg pills every six hours, put "**200mg orange pill**" here.
 
-     - Orange, 20mg
+    ### Other Examples:
+
      - 40mg Square Blue Pill
      - 100mg Capsule
 
@@ -625,9 +611,9 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
 
     Some types of medications do not come as pills.
 
-     - For prepackaged single use items, type **kit**.
-     - If your medication is something liquid or powdered you measure, put the unit you measure it in (e.g. **ml**).
-     - If your medication is in an inhaler, type **puff**.
+     - For prepackaged, single-use items, put "**kit**" here.
+     - If your medication is something liquid or powdered, put "**g**" or "**ml**" or whatever unit measurement uses.
+     - If your medication is in an inhaler, put **puff** here.
     """
 
     configureSearchField(unitLine.searchTextField)
@@ -635,30 +621,73 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
     unitLine.helpInfo = unitHelpText.renderMarkdownAsAttributedString
     unitLine.helper = self
 
+
+    let quantityHelpText =
+    """
+    # Quantity
+
+    For most medications, this is the number of pills you take at once.
+
+    For example, if you take two 200mg pills every six hours, you put "**2**" here, as that's how much you take at a single time.
+
+    If you take a liquid, take how many "units" of that medication you take. So if you take 10ml of a tylenol solution, put "**10**" here.
+    """
     configureSearchField(quantityLine.searchTextField)
     quantityLine.searchTextField.userStoppedTypingHandler = {}
-    quantityLine.helpInfo = "TBD".renderMarkdownAsAttributedString
+    quantityLine.helpInfo = quantityHelpText.renderMarkdownAsAttributedString
     quantityLine.helper = self
 
+
+    let prescriberHelpText =
+    """
+    # Prescriber
+
+    This is the person who wrote your prescription. They are typically a doctor or nurse practitioner. This will be on the medication bottle and prescription.
+
+    Tap the circled plus button to select a doctor formerly entered into the app.
+    """
     configureSearchField(prescriberLine.searchTextField)
     configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
     prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
-    prescriberLine.helpInfo = "TBD".renderMarkdownAsAttributedString
+    prescriberLine.helpInfo = prescriberHelpText.renderMarkdownAsAttributedString
     prescriberLine.helper = self
 
+    let scheduleHelpText =
+    """
+    # Describe when you take it
 
+    Start typing how and when you need to take the medication. We will show you some patterns of possible matchups that fit common times of day that people use to remember to take their medications.
+
+    You can select any of those shown as you type, or tap "Custom" to build your own.
+    """
     configureSearchField(scheduleLine.searchTextField)
     configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
     scheduleLine.searchTextField.filterItems(
       schedules.map{SearchTextFieldItem(listable:$0)})
-    scheduleLine.helpInfo = "TBD".renderMarkdownAsAttributedString
+    scheduleLine.helpInfo = scheduleHelpText.renderMarkdownAsAttributedString
     scheduleLine.helper = self
 
-    pharmacyLine.helpInfo = "TBD".renderMarkdownAsAttributedString
+    let pharmacyHelpText =
+    """
+    # Who Fills this Prescription
+
+    Write where you pick up this medication from. If an over the counter drug, feel free to leave this blank.
+
+    Tap the circled plus button to select a pharmacy formerly entered into the app.
+    """
+    pharmacyLine.helpInfo = pharmacyHelpText.renderMarkdownAsAttributedString
     pharmacyLine.helper = self
 
-    conditionLine.helpInfo = "TBD".renderMarkdownAsAttributedString
+    let conditionHelpText =
+    """
+    # Condition
+
+    Write what condition or impairment that motivates you to take this medication. This helps you discuss your entire treatment plan with every doctor trying to help you.
+
+    This also helps you clean up after recovering from something like a surgery or other intermittant occasion where you will not need many of the medications long term.
+    """
+    conditionLine.helpInfo = conditionHelpText.renderMarkdownAsAttributedString
     conditionLine.helper = self
   }
 
