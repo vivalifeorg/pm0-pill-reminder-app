@@ -31,6 +31,8 @@ struct VLFonts{
   }
 }
 
+
+let debugMarkdown = false
 extension String{
   var renderMarkdownAsAttributedString:NSAttributedString{
     let rendered = Down(markdownString: self) as DownAttributedStringRenderable
@@ -72,10 +74,14 @@ extension String{
       font-family: Menlo
     }
     """
-    debugPrint(styles)
-    debugPrint("----")
-    if true {debugPrint(try! rendered.toHTML(DownOptions.default))}
-    debugPrint("--endhtml---")
+
+    if debugMarkdown {
+      debugPrint("--css--")
+      debugPrint(styles)
+      debugPrint("--css -> html--")
+      debugPrint(try! rendered.toHTML(DownOptions.default))
+      debugPrint("--endhtml---")
+    }
     return try! rendered.toAttributedString(
       DownOptions.default,
       stylesheet: styles)
