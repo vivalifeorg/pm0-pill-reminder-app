@@ -155,14 +155,14 @@ class UpcomingDayViewController: UITableViewController {
 
     var headerText:String
     var footerText:String{
-      let total = medications.reduce(0){
+      let remaining = medications.reduce(0){
         $1.isTaken ? $0 : $0 + 1
       }
       let leader = "           "
-      if total == 0 {
-        return "\(leader)^Completed!"
+      if remaining == 0 {
+        return "\(leader)Completed!"
       }
-      return "\(leader)^\(total) remaining"
+      return "\(leader)(\(remaining)/\(medications.count) remaining)"
     }
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
@@ -212,16 +212,7 @@ class UpcomingDayViewController: UITableViewController {
     var isTaken:Bool
   }
 
-  func calculateSectionFooter(timeSlotItems:[TimeSlotItem])->String{
-    let total = timeSlotItems.reduce(0){
-      $1.isTaken ? $0 : $0 + 1
-    }
-    let leader = "           "
-    if total == 0 {
-      return "\(leader)^Completed!"
-    }
-    return "\(leader)^\(total) remaining"
-  }
+
 
   func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
     return timeSlots.map{
@@ -342,11 +333,11 @@ extension UpcomingDayViewController{
   }
 
   override func tableView(_ tableView:UITableView, titleForHeaderInSection sectionIndex: Int) -> String{
-    return sections[sectionIndex].headerText
+    return sections[sectionIndex].headerText + (sections[sectionIndex].footerText)
   }
 
   override func tableView(_ tableView:UITableView, titleForFooterInSection sectionIndex: Int) -> String{
-    return sections[sectionIndex].footerText
+    return "" //sections[sectionIndex].footerText
   }
 }
 
