@@ -15,16 +15,19 @@ struct VLFonts{
     return UIFont.preferredFont(forTextStyle: .body)
   }
   static var h1:UIFont{
-    return UIFont.preferredFont(forTextStyle: .largeTitle)
-  }
-  static var h2:UIFont{
     return UIFont.preferredFont(forTextStyle: .title1)
   }
-  static var h3:UIFont{
+  static var h2:UIFont{
     return UIFont.preferredFont(forTextStyle: .title2)
   }
-  static var h4:UIFont{
+  static var h3:UIFont{
     return UIFont.preferredFont(forTextStyle: .title3)
+  }
+  static var bold:UIFont{
+    return UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .bold)
+  }
+  static var italic:UIFont{
+    return UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
   }
 }
 
@@ -34,37 +37,40 @@ extension String{
     let styles =
     """
     * {
-      font-family: "\(VLFonts.body.familyName)";
+      font-family: system-ui;
       font-size: \(VLFonts.body.pointSize);
       line-height: 140%;
       color: white
     }
 
     h1 {
-      font-family: "\(VLFonts.h1.familyName)";
       font-size: \(VLFonts.h1.pointSize)
     }
 
     h2 {
-      font-family: "\(VLFonts.h2.familyName)";
       font-size: \(VLFonts.h2.pointSize)
     }
 
     h3 {
-      font-family: \(VLFonts.h3.familyName);
       font-size: \(VLFonts.h3.pointSize)
     }
 
-    h4 {
-      font-family: \(VLFonts.h4.familyName);
-      font-size: \(VLFonts.h4.pointSize)
+    strong {
+      font-weight: bolder
     }
-    
+
+    em {
+      font-style: italic
+    }
+
     code, pre {
       font-family: Menlo
     }
     """
     debugPrint(styles)
+    debugPrint("----")
+    if true {debugPrint(try! rendered.toHTML(DownOptions.default))}
+    debugPrint("--endhtml---")
     return try! rendered.toAttributedString(
       DownOptions.default,
       stylesheet: styles)
@@ -594,45 +600,40 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
     """
     # Describing a "Unit"
 
-    Describe what a *single* pill looks like.
+    Describe what a *single* pill looks like. You will input quantity later.
 
-    Do this even if you have to take several of them at a time
-
-    Examples:
+    ### Examples:
 
      - Orange, 20mg
      - 40mg Square Blue Pill
      - 100mg Capsule
 
-    ### Things that aren't pills
+    *****
 
-    If your medication is something injectable that is prepackaged per injection, say "kit".
+    # Things that aren't pills
 
-    If it's a liquid you measure out, say the name of the unit you measure it out in (e.g. ml).
+    Some types of medications do not come as pills.
 
-    If your medication is in an inhaler, say "puff".
-
-    This is to tell your own medications from one another.
-
-    This is also important to ensure diffrent doctors understand what you are taking. If you plan to send this information to them, please name the medications in a manner they will understand what they are.
+     - For prepackaged single use items, type **kit**.
+     - If your medication is something liquid or powdered you measure, put the unit you measure it in (e.g. **ml**).
+     - If your medication is in an inhaler, type **puff**.
     """
-    let unitHelpTextAttributed = try! Down(markdownString: unitHelpText).toAttributedString()
 
     configureSearchField(unitLine.searchTextField)
     unitLine.searchTextField.userStoppedTypingHandler = updatePillSizePopup
-    unitLine.helpInfo = unitHelpTextAttributed
+    unitLine.helpInfo = unitHelpText.renderMarkdownAsAttributedString
     unitLine.helper = self
 
     configureSearchField(quantityLine.searchTextField)
     quantityLine.searchTextField.userStoppedTypingHandler = {}
-    quantityLine.helpInfo = NSAttributedString(string: "quantity line information")
+    quantityLine.helpInfo = "TBD".renderMarkdownAsAttributedString
     quantityLine.helper = self
 
     configureSearchField(prescriberLine.searchTextField)
     configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
     prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
-    prescriberLine.helpInfo = NSAttributedString(string: "prescriber help")
+    prescriberLine.helpInfo = "TBD".renderMarkdownAsAttributedString
     prescriberLine.helper = self
 
 
@@ -640,13 +641,13 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
     configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
     scheduleLine.searchTextField.filterItems(
       schedules.map{SearchTextFieldItem(listable:$0)})
-    scheduleLine.helpInfo = NSAttributedString(string: "Schedule Help")
+    scheduleLine.helpInfo = "TBD".renderMarkdownAsAttributedString
     scheduleLine.helper = self
 
-    pharmacyLine.helpInfo = NSAttributedString(string: "Pharmacy Help")
+    pharmacyLine.helpInfo = "TBD".renderMarkdownAsAttributedString
     pharmacyLine.helper = self
 
-    conditionLine.helpInfo = NSAttributedString(string: "Condition Help")
+    conditionLine.helpInfo = "TBD".renderMarkdownAsAttributedString
     conditionLine.helper = self
   }
 

@@ -26,7 +26,7 @@
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="zBm-Bq-FJv" userLabel="ActualView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleTk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhW-Dp-Hdg">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleTk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhW-Dp-Hdg">
                             <rect key="frame" x="13" y="14" width="73.5" height="31.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,6 +85,7 @@
                     <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="qCr-3N-Olw" firstAttribute="leading" secondItem="zBm-Bq-FJv" secondAttribute="leading" constant="13" id="1c1-pB-B7a"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jCG-bP-sfA" secondAttribute="trailing" constant="13" id="65G-jT-wy6"/>
                         <constraint firstItem="dhW-Dp-Hdg" firstAttribute="top" secondItem="zBm-Bq-FJv" secondAttribute="top" constant="14" id="BDh-cI-b92"/>
                         <constraint firstItem="jCG-bP-sfA" firstAttribute="leading" secondItem="dhW-Dp-Hdg" secondAttribute="trailing" constant="8" id="IYM-dq-qAd"/>
                         <constraint firstItem="qCr-3N-Olw" firstAttribute="top" secondItem="dhW-Dp-Hdg" secondAttribute="bottom" constant="5" id="VDw-me-u0k"/>
