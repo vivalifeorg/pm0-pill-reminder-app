@@ -27,7 +27,9 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
       return self
     }
 
-
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+      return UITableViewAutomaticDimension
+  }
 
 
   var alert = UIAlertController()
