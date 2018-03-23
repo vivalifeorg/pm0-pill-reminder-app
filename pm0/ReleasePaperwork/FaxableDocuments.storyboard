@@ -114,7 +114,8 @@
                             <outlet property="delegate" destination="hgT-1R-QPE" id="U5E-Ur-p82"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="smW-cT-elK">
+                    <tabBarItem key="tabBarItem" title="Faxing" image="Faxing" id="x5S-1w-lvN"/>
+                    <navigationItem key="navigationItem" title="Faxing" id="smW-cT-elK">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="AhF-eP-G8m">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -122,6 +123,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZz-ag-3jM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,4 +147,7 @@
             <point key="canvasLocation" x="-873" y="168"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Faxing" width="18" height="23"/>
+    </resources>
 </document>

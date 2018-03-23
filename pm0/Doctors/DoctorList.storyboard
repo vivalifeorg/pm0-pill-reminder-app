@@ -100,11 +100,13 @@
                             <outlet property="delegate" destination="Gfu-gL-nO8" id="j4t-Sh-R51"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Doctors" image="Cross" id="lGO-1U-1b1"/>
                     <navigationItem key="navigationItem" title="Doctors" id="XP5-pS-Axq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jx5-51-5st">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zky-Et-1c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -128,4 +130,7 @@
             <point key="canvasLocation" x="-1819" y="37"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Cross" width="23" height="23"/>
+    </resources>
 </document>
