@@ -157,7 +157,6 @@
                         <constraints>
                             <constraint firstItem="Yto-Kx-a3v" firstAttribute="bottom" secondItem="Kft-9K-NA6" secondAttribute="bottom" constant="20" id="1gj-WN-V5b"/>
                             <constraint firstItem="Kft-9K-NA6" firstAttribute="top" secondItem="Yto-Kx-a3v" secondAttribute="top" constant="44" id="GzP-c9-ylv"/>
-                            <constraint firstItem="Yto-Kx-a3v" firstAttribute="top" secondItem="Kft-9K-NA6" secondAttribute="bottom" id="PrQ-Ye-1hS"/>
                             <constraint firstAttribute="trailing" secondItem="Yto-Kx-a3v" secondAttribute="trailing" id="hvE-gF-6Pa"/>
                             <constraint firstItem="Yto-Kx-a3v" firstAttribute="centerX" secondItem="FnW-LM-c7d" secondAttribute="centerX" id="rbJ-ba-HsX"/>
                             <constraint firstItem="Yto-Kx-a3v" firstAttribute="leading" secondItem="FnW-LM-c7d" secondAttribute="leading" id="viy-iz-VCJ"/>
