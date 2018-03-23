@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
-  - Down (0.4.2)
+  - Down (0.5.1)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
   - PDFGenerator (2.1)
@@ -13,7 +13,7 @@ PODS:
   - SQLite.swift/standard (0.11.4)
 
 DEPENDENCIES:
-  - Down
+  - Down (from `https://github.com/iwasrobbed/Down`, commit `4082c8d9432eb37ba6d7a4c379e714828238d061`)
   - DZNEmptyDataSet
   - KeychainAccess
   - PDFGenerator (~> 2.1)
@@ -23,6 +23,9 @@ DEPENDENCIES:
   - SQLite.swift (~> 0.11.4)
 
 EXTERNAL SOURCES:
+  Down:
+    :commit: 4082c8d9432eb37ba6d7a4c379e714828238d061
+    :git: https://github.com/iwasrobbed/Down
   PhaxioiOS:
     :path: pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master
   PhaxioSwiftAlamofire:
@@ -32,13 +35,16 @@ EXTERNAL SOURCES:
     :git: https://github.com/apasccon/SearchTextField
 
 CHECKOUT OPTIONS:
+  Down:
+    :commit: 4082c8d9432eb37ba6d7a4c379e714828238d061
+    :git: https://github.com/iwasrobbed/Down
   SearchTextField:
     :commit: 97cb555c4721cd80257022637ee255dc812eda3a
     :git: https://github.com/apasccon/SearchTextField
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Down: 92efba7c95a8efdb84b7114e365db4a37f3df76e
+  Down: 7c70e306ec1917f6539e69ddd4113d246c5a2448
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PDFGenerator: 4fd5db4972465679f4846a9a36d53e8826536a6d
@@ -47,6 +53,6 @@ SPEC CHECKSUMS:
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: 191fecebed86a673faa99ad5b4f2bcdd2350b09a
+PODFILE CHECKSUM: ebab2caca58f6f061774a9eb5cb9dd72668d9685
 
 COCOAPODS: 1.4.0.beta.2

@@ -10,6 +10,16 @@ import UIKit
 import SearchTextField
 import Down
 
+extension String{
+  var renderMarkdownAsAttributedString:NSAttributedString{
+    let rendered = Down(markdownString: self) as DownAttributedStringRenderable
+    let styles = "* {font-family: Helvetica; color: white} code, pre { font-family: Menlo }"
+    return try! rendered.toAttributedString(
+      DownOptions.default,
+      stylesheet: styles)
+  }
+}
+
 protocol Listable{
   var title:String {get}
   var list:[String] {get}
@@ -520,23 +530,50 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
 
     There is nothing stopping you from picking an entirely different name for the drug if you want to. However, make sure it's something you and your doctor can identify. It may be used in reports you choose to send to your doctor.
     """
-    let nameHelpTextAttributed = try! Down(markdownString: nameHelpText).toAttributedString()
+    
 
 
     nameLine.searchTextField.userStoppedTypingHandler = updateDrugsPopup
-    nameLine.helpInfo = nameHelpTextAttributed
+    nameLine.helpInfo = nameHelpText.renderMarkdownAsAttributedString
     nameLine.searchTextField.itemSelectionHandler = nameItemSelectionHandler
     nameLine.helper = self
 
+
+    let unitHelpText =
+    """
+    # Describing a "Unit"
+
+    Describe what a *single* pill looks like.
+
+    Do this even if you have to take several of them at a time
+
+    Examples:
+
+     - Orange, 20mg
+     - 40mg Square Blue Pill
+     - 100mg Capsule
+
+    ### Things that aren't pills
+
+    If your medication is something injectable that is prepackaged per injection, say "kit".
+
+    If it's a liquid you measure out, say the name of the unit you measure it out in (e.g. ml).
+
+    If your medication is in an inhaler, say "puff".
+
+    This is to tell your own medications from one another.
+
+    This is also important to ensure diffrent doctors understand what you are taking. If you plan to send this information to them, please name the medications in a manner they will understand what they are.
+    """
+    let unitHelpTextAttributed = try! Down(markdownString: unitHelpText).toAttributedString()
+
     configureSearchField(unitLine.searchTextField)
     unitLine.searchTextField.userStoppedTypingHandler = updatePillSizePopup
-    unitLine.helpInfo = NSAttributedString(string: "Unit Information")
+    unitLine.helpInfo = unitHelpTextAttributed
     unitLine.helper = self
 
     configureSearchField(quantityLine.searchTextField)
-    quantityLine.searchTextField.userStoppedTypingHandler = {
-      //todo
-    }
+    quantityLine.searchTextField.userStoppedTypingHandler = {}
     quantityLine.helpInfo = NSAttributedString(string: "quantity line information")
     quantityLine.helper = self
 
