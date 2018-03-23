@@ -15,6 +15,7 @@
 		890422D42060509200817EC2 /* FaxJPG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 890422D32060509200817EC2 /* FaxJPG1.jpg */; };
 		890CD2FC206458DE009DF10A /* PrescriptionEntryHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */; };
 		890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FD20658538009DF10A /* RXEntryHelpText.swift */; };
+		890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FF20658E35009DF10A /* DoctorListViewController.swift */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
@@ -65,6 +66,7 @@
 		890422D32060509200817EC2 /* FaxJPG1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FaxJPG1.jpg; sourceTree = "<group>"; };
 		890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryHelpViewController.swift; sourceTree = "<group>"; };
 		890CD2FD20658538009DF10A /* RXEntryHelpText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXEntryHelpText.swift; sourceTree = "<group>"; };
+		890CD2FF20658E35009DF10A /* DoctorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorListViewController.swift; sourceTree = "<group>"; };
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				89A5169220587AA90069D9AE /* DoctorList.storyboard */,
+				890CD2FF20658E35009DF10A /* DoctorListViewController.swift */,
 			);
 			path = Doctors;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				898BC94420619633006ED4CF /* ReleasePaperworkViewController.swift in Sources */,
 				890CD2FC206458DE009DF10A /* PrescriptionEntryHelpViewController.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
+				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
 				898BC93E206139EB006ED4CF /* PhaxioObjcFaxProvider.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
