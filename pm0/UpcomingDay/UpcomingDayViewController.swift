@@ -327,7 +327,7 @@ extension UpcomingDayViewController{
     let dosage = section.medications[indexPath.row]
     cell.dosageLabel?.text = dosage.name
     cell.isTaken = dosage.isTaken
-    cell.opacity = section.isActive(Date()) ? .bright : .dim
+    //cell.opacity = section.isActive(Date()) ? .bright : .dim
     cell.selectionStyle = .none
 
     if let firstUntakenItem = firstUntakenItem {
@@ -371,8 +371,6 @@ extension UpcomingDayViewController{
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 40
   }
-
-
 
   override func tableView(_ tableView: UITableView,
                           willDisplayFooterView view: UIView,
