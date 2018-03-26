@@ -8,6 +8,9 @@
 
 import UIKit
 
-class ReleasePaperworkViewController:UITableView {
-
+class ReleasePaperworkViewController:UITableViewController {
+  override func viewDidLoad(){
+    super.viewDidLoad()
+    tableView.tableFooterView = UIView()
+  }
 }

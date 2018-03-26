@@ -13,6 +13,11 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
   var documentInteractionController:UIDocumentInteractionController? = nil
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.tableFooterView = UIView()
+  }
+
   @IBAction func export(_ sender: Any) {
 
     let sample = samplePDF()
