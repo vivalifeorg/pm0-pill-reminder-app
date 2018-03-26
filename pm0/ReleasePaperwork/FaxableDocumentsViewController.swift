@@ -38,6 +38,14 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
   var alert = UIAlertController()
   func showSuccessfulFax(message:String){
+    guard presentedViewController == nil else {
+      presentedViewController?.dismiss(animated: false){
+        self.showSuccessfulFax(message:message)
+      }
+      return
+    }
+
+
     alert = UIAlertController(title: "Fax Status", message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
       self.alert.dismiss(animated: true, completion: nil)
@@ -45,9 +53,18 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
     self.present(alert,animated: true)
   }
 
+
+  func showStartFax(){
+    alert = UIAlertController(title: "Compiling Fax...", message: "Assembling paperwork and uploading", preferredStyle: .alert)
+    self.present(alert,animated: true)
+  }
+
   var pdfPreview = UIAlertController()
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
+
+      showStartFax()
+
       let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: "Dr Ableton's Office", from: "Patient Directly (Marv Jones)", forPatient: "Marv Jones")
       let pdf = samplePDF()
 
