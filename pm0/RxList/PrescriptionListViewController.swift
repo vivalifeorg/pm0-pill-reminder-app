@@ -90,7 +90,7 @@ class PrescriptionListViewController: UIViewController {
   func deleteRxTableRowAction(_ action:UITableViewRowAction, indexPath:IndexPath){
     // delete item at indexPath
     let alert = UIAlertController(title: "Delete Rx?",
-                                  message: "Are you sure you want to delete \( "foo")?",
+                                  message: "Are you sure you want to delete this Rx?",
                                   preferredStyle: .alert)
 
     alert.addAction(
@@ -161,7 +161,7 @@ class PrescriptionListViewController: UIViewController {
     tableView.delegate = self
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
-    tableView.sectionHeaderHeight = 40
+    tableView.sectionHeaderHeight = 0
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
 
