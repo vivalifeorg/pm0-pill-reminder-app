@@ -59,6 +59,14 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
     self.present(alert,animated: true)
   }
 
+  func showUnimplemented(){
+    alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+      self.alert.dismiss(animated: true, completion: nil)
+    }))
+    self.present(alert,animated: true)
+  }
+
   var pdfPreview = UIAlertController()
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
@@ -72,6 +80,9 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
       sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
         self.showSuccessfulFax(message:msg)
       }
+    }
+    else{
+      showUnimplemented()
     }
   }
 }
