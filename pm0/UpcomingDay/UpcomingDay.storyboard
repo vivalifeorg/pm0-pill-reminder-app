@@ -37,7 +37,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;&gt;" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5Z-dw-gCY">
-                                            <rect key="frame" x="8" y="0.0" width="25" height="24"/>
+                                            <rect key="frame" x="8" y="5" width="25" height="24"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <color key="textColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                         <constraint firstItem="wfh-9G-AdQ" firstAttribute="leading" secondItem="XL5-5o-fg5" secondAttribute="leading" constant="38" id="0Or-l7-v8Q"/>
                                         <constraint firstItem="b5Z-dw-gCY" firstAttribute="leading" secondItem="XL5-5o-fg5" secondAttribute="leading" constant="8" id="VRZ-Ng-kgj"/>
                                         <constraint firstAttribute="bottom" secondItem="wfh-9G-AdQ" secondAttribute="bottom" id="g7Q-pT-5oX"/>
-                                        <constraint firstItem="b5Z-dw-gCY" firstAttribute="top" secondItem="wfh-9G-AdQ" secondAttribute="top" id="mSx-1u-GTu"/>
+                                        <constraint firstItem="b5Z-dw-gCY" firstAttribute="top" secondItem="wfh-9G-AdQ" secondAttribute="top" constant="5" id="mSx-1u-GTu"/>
                                         <constraint firstItem="wfh-9G-AdQ" firstAttribute="top" secondItem="XL5-5o-fg5" secondAttribute="top" id="w7z-b1-Qf7"/>
                                         <constraint firstAttribute="trailing" secondItem="wfh-9G-AdQ" secondAttribute="trailing" id="zGx-9m-Tlc"/>
                                     </constraints>
