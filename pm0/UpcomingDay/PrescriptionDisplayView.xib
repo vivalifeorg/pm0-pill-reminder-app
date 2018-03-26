@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrescriptionDisplayView" customModule="pm0" customModuleProvider="target">
+            <connections>
+                <outlet property="body" destination="pWg-Xf-aX9" id="CJj-vz-3XA"/>
+                <outlet property="title" destination="Z8E-6i-udn" id="Z8a-19-shn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fuY-Ip-330">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="105"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="105"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8E-6i-udn" userLabel="Header">
+                            <rect key="frame" x="5" y="5" width="43.5" height="21"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" name="vlTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWg-Xf-aX9" userLabel="Body">
+                            <rect key="frame" x="5" y="30" width="42" height="21"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <color key="textColor" name="vlTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                    <constraints>
+                        <constraint firstItem="Z8E-6i-udn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="a20-TW-q99"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z8E-6i-udn" secondAttribute="trailing" constant="8" id="gqz-5D-gjV"/>
+                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="top" secondItem="Z8E-6i-udn" secondAttribute="bottom" constant="4" id="iVU-mU-Srq"/>
+                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="leading" secondItem="Z8E-6i-udn" secondAttribute="leading" id="ozQ-qe-Y9T"/>
+                        <constraint firstItem="Z8E-6i-udn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="rn7-Ua-CdY"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerX" secondItem="TTa-XY-izP" secondAttribute="centerX" id="XV8-xp-O0l"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="TTa-XY-izP" secondAttribute="top" id="dZn-o6-9OM"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="TTa-XY-izP" secondAttribute="leading" id="kFa-Ax-lMI"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerY" secondItem="TTa-XY-izP" secondAttribute="centerY" id="zLg-GF-25m"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="TTa-XY-izP"/>
+            <point key="canvasLocation" x="-81" y="-690.5"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

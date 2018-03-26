@@ -24,7 +24,7 @@ class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
 class UpcomingDayViewControllerDoseCell:UITableViewCell{
 
   @IBOutlet weak var nextDoseIndicator:UILabel!
-  @IBOutlet weak var dosageLabel: PillDisplayLabel!
+  @IBOutlet weak var prescriptionView:PrescriptionDisplayView!
 
   enum Opacity{
     case bright
@@ -53,19 +53,7 @@ class UpcomingDayViewControllerDoseCell:UITableViewCell{
     }
   }
 
-  var opacity:Opacity {
-    set{
-      switch newValue{
-      case .bright:
-        contentView.alpha = 1.0
-      case .dim:
-        contentView.alpha = 0.4
-      }
-    }
-    get{
-      return (dosageLabel.alpha < 1.0) ? .dim : .bright
-    }
-  }
+
 }
 extension UIColor {
 
@@ -223,7 +211,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct TimeSlotItem{
-    let name:String
+    var item:Dosage
     var isTaken:Bool
   }
 
@@ -283,7 +271,7 @@ class UpcomingDayViewController: UITableViewController {
       thisTime.minute = minuteOffset % 60
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
-      let displayable = dosesAtTime.map{ TimeSlotItem(name:$0.description,isTaken:false) }
+      let displayable = dosesAtTime.map{ TimeSlotItem(item:$0,isTaken:false) }
       let timeSlot = TimeSlot(name:names[minuteOffset],
                              date:timeSlotDate,
                              items:displayable)
@@ -325,7 +313,9 @@ extension UpcomingDayViewController{
     let cell = dequeueDoseCellForIndexPath(tableView,indexPath:indexPath)
     let section = sections[indexPath.section]
     let dosage = section.medications[indexPath.row]
-    cell.dosageLabel?.text = dosage.name
+
+    cell.prescriptionView?.title.attributedText = "# Drug".renderMarkdownAsAttributedString
+    cell.prescriptionView?.body.attributedText = dosage.item.attributedString
     cell.isTaken = dosage.isTaken
     cell.selectionStyle = .none
 
@@ -361,6 +351,10 @@ extension UpcomingDayViewController{
 
   override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
     return 40
+  }
+
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 20
   }
 }
 

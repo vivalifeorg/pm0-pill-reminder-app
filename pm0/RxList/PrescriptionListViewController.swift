@@ -14,14 +14,9 @@ import UIKit
 import UIKit
 extension Dosage{
   var attributedString:NSAttributedString{
-    let s = NSMutableAttributedString()
-    let font = UIFont(name: "AvenirNext-Medium", size: 10)!
-    let attrs = [NSAttributedStringKey.font: font ]
-    let boldString = NSMutableAttributedString(string: "\(quantity) × \(unitDescription ?? form ?? "dose")", attributes:attrs)
-    s.append(boldString)
-    //let normalString = NSMutableAttributedString(string: "\(name)", attributes:[:])
-    s.append(boldString)
-    return s
+    let str =
+      "**\(name)**<br/>\(quantity) × \(unitDescription ?? form ?? "dose")".renderMarkdownAsAttributedString
+    return str
   }
 }
 

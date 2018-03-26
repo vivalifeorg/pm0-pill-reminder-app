@@ -19,6 +19,9 @@
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		894FEC0620696E8D00E48ECA /* MyDayTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */; };
+		894FEC0820697F6A00E48ECA /* PrescriptionDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894FEC0720697F6A00E48ECA /* PrescriptionDisplayView.xib */; };
+		894FEC0A2069804E00E48ECA /* PrescriptionDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894FEC092069804E00E48ECA /* PrescriptionDisplayView.swift */; };
+		894FEC0C2069845800E48ECA /* NibLoaderViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894FEC0B2069845800E48ECA /* NibLoaderViewExtension.swift */; };
 		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
 		8951A91B205B01F80027076E /* TestPage1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8951A919205B01F70027076E /* TestPage1.pdf */; };
 		8951A91C205B01F80027076E /* TestPage2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8951A91A205B01F70027076E /* TestPage2.pdf */; };
@@ -72,6 +75,9 @@
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
 		894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDayTableSectionHeaderView.xib; sourceTree = "<group>"; };
+		894FEC0720697F6A00E48ECA /* PrescriptionDisplayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrescriptionDisplayView.xib; sourceTree = "<group>"; };
+		894FEC092069804E00E48ECA /* PrescriptionDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionDisplayView.swift; sourceTree = "<group>"; };
+		894FEC0B2069845800E48ECA /* NibLoaderViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoaderViewExtension.swift; sourceTree = "<group>"; };
 		8951A917205992E50027076E /* Fax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fax.swift; sourceTree = "<group>"; };
 		8951A919205B01F70027076E /* TestPage1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestPage1.pdf; sourceTree = "<group>"; };
 		8951A91A205B01F70027076E /* TestPage2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestPage2.pdf; sourceTree = "<group>"; };
@@ -219,6 +225,9 @@
 				89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
 				894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */,
+				894FEC0720697F6A00E48ECA /* PrescriptionDisplayView.xib */,
+				894FEC092069804E00E48ECA /* PrescriptionDisplayView.swift */,
+				894FEC0B2069845800E48ECA /* NibLoaderViewExtension.swift */,
 				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 			);
 			path = UpcomingDay;
@@ -395,6 +404,7 @@
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
+				894FEC0820697F6A00E48ECA /* PrescriptionDisplayView.xib in Resources */,
 				8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */,
+				894FEC0C2069845800E48ECA /* NibLoaderViewExtension.swift in Sources */,
 				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
@@ -520,6 +531,7 @@
 				8951A918205992E50027076E /* Fax.swift in Sources */,
 				898BC946206196DA006ED4CF /* FaxableDocumentsViewController.swift in Sources */,
 				8954AC5F204DCE1B00E97305 /* Models.swift in Sources */,
+				894FEC0A2069804E00E48ECA /* PrescriptionDisplayView.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */,
