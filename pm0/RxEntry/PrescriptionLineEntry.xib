@@ -92,6 +92,7 @@
                         <constraint firstAttribute="trailing" secondItem="qCr-3N-Olw" secondAttribute="trailing" constant="13" id="b1A-bx-9Ne"/>
                         <constraint firstItem="dhW-Dp-Hdg" firstAttribute="leading" secondItem="qCr-3N-Olw" secondAttribute="leading" id="blP-tw-0zH"/>
                         <constraint firstItem="jCG-bP-sfA" firstAttribute="centerY" secondItem="dhW-Dp-Hdg" secondAttribute="centerY" id="nji-sO-wCT"/>
+                        <constraint firstAttribute="bottom" secondItem="qCr-3N-Olw" secondAttribute="bottom" constant="9.5" id="pHs-eg-2n5"/>
                     </constraints>
                 </view>
             </subviews>
