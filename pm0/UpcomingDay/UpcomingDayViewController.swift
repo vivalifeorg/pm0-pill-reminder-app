@@ -8,6 +8,18 @@
 
 import UIKit
 
+class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
+
+  @IBOutlet weak var titleLabel:UILabel!
+  @IBOutlet weak var remainingLabel:UILabel!
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    let backgroundView = UIView(frame: bounds)
+    backgroundView.backgroundColor = VLColors.tableViewSectionHeaderBackgroundColor
+    self.backgroundView = backgroundView
+  }
+}
 
 class UpcomingDayViewControllerDoseCell:UITableViewCell{
 
@@ -114,11 +126,15 @@ class UpcomingDayViewController: UITableViewController {
     tableView.tableFooterView?.backgroundColor = VLColors.background
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
-    tableView.sectionHeaderHeight = 40
     tableView.allowsSelection = true
+
+
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
                        forCellReuseIdentifier: UpcomingDayViewControllerDoseCell.defaultReuseIdentifier)
+
+    tableView.register(UINib(nibName: "MyDayTableSectionHeaderView", bundle: nil),
+                       forHeaderFooterViewReuseIdentifier: "MyDayTableSectionHeaderView")
   }
 
   override func didReceiveMemoryWarning() {
@@ -332,6 +348,23 @@ extension UpcomingDayViewController{
     return sections[sectionIndex].rowCount
   }
 
+  override func tableView(_ tableView: UITableView,
+                          willDisplayHeaderView view: UIView,
+                          forSection section: Int){
+    let customHeader = view as! MyDayTableSectionHeaderView
+    customHeader.titleLabel.text = sections[section].headerText
+    customHeader.remainingLabel.text = sections[section].footerText
+  }
+
+  override func tableView(_ tableView:UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView{
+    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyDayTableSectionHeaderView") as! MyDayTableSectionHeaderView
+    return header
+  }
+
+  override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    return 40
+  }
+
   override func tableView(_ tableView:UITableView, titleForHeaderInSection sectionIndex: Int) -> String{
     return sections[sectionIndex].headerText + (sections[sectionIndex].footerText)
   }
@@ -352,11 +385,7 @@ extension UpcomingDayViewController{
     return 40
   }
 
-  override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-    guard let header = view as? UITableViewHeaderFooterView else { return }
-    header.textLabel?.textColor = VLColors.primaryText
-    header.textLabel?.frame = header.frame
-  }
+
 
   override func tableView(_ tableView: UITableView,
                           willDisplayFooterView view: UIView,

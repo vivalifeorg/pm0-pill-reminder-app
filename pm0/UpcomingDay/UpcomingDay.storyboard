@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="878" y="455"/>
         </scene>
-        <!--My Day-->
+        <!--Nav for My Day-->
         <scene sceneID="PtM-Nk-dkL">
             <objects>
-                <navigationController title="My Day" id="Wh7-lg-6GR" sceneMemberID="viewController">
+                <navigationController title="My Day" id="Wh7-lg-6GR" userLabel="Nav for My Day" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="HV0-ul-hrL">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>

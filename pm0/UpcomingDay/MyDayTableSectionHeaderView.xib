@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyDayTableSectionHeaderView" customModule="pm0" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="MyDayTableSectionHeaderView" id="7LT-VF-JtO" userLabel="MyDayHeaderView" customClass="MyDayTableSectionHeaderView" customModule="pm0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-co-YEh" userLabel="TitleLabel">
+                    <rect key="frame" x="36" y="10" width="43.5" height="20.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <color key="textColor" name="vlTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvh-Xu-xAr" userLabel="RemainingLabel">
+                    <rect key="frame" x="320" y="10" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ukv-uv-qgs" firstAttribute="trailing" secondItem="cvh-Xu-xAr" secondAttribute="trailing" constant="13" id="BaA-9T-Zv2"/>
+                <constraint firstItem="cvh-Xu-xAr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jqw-co-YEh" secondAttribute="trailing" constant="8" id="CAp-jH-giw"/>
+                <constraint firstItem="jqw-co-YEh" firstAttribute="leading" secondItem="Ukv-uv-qgs" secondAttribute="leading" constant="36" id="PPB-Sn-Jct"/>
+                <constraint firstItem="cvh-Xu-xAr" firstAttribute="baseline" secondItem="jqw-co-YEh" secondAttribute="baseline" id="k0V-hW-xxr"/>
+                <constraint firstItem="jqw-co-YEh" firstAttribute="centerY" secondItem="Ukv-uv-qgs" secondAttribute="centerY" id="sF7-ij-DFh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Ukv-uv-qgs"/>
+            <connections>
+                <outlet property="remainingLabel" destination="cvh-Xu-xAr" id="Yhq-yk-8zE"/>
+                <outlet property="titleLabel" destination="jqw-co-YEh" id="jVF-NZ-Gnv"/>
+            </connections>
+            <point key="canvasLocation" x="876.5" y="34"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

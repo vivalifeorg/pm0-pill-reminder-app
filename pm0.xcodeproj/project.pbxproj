@@ -18,6 +18,7 @@
 		890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FF20658E35009DF10A /* DoctorListViewController.swift */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
+		894FEC0620696E8D00E48ECA /* MyDayTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */; };
 		8951A918205992E50027076E /* Fax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951A917205992E50027076E /* Fax.swift */; };
 		8951A91B205B01F80027076E /* TestPage1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8951A919205B01F70027076E /* TestPage1.pdf */; };
 		8951A91C205B01F80027076E /* TestPage2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8951A91A205B01F70027076E /* TestPage2.pdf */; };
@@ -70,6 +71,7 @@
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
+		894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDayTableSectionHeaderView.xib; sourceTree = "<group>"; };
 		8951A917205992E50027076E /* Fax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fax.swift; sourceTree = "<group>"; };
 		8951A919205B01F70027076E /* TestPage1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestPage1.pdf; sourceTree = "<group>"; };
 		8951A91A205B01F70027076E /* TestPage2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestPage2.pdf; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */,
 				89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */,
+				894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */,
 				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 			);
 			path = UpcomingDay;
@@ -379,6 +382,7 @@
 			files = (
 				896052BC20470B6400DF502C /* PrescriptionLineEntry.xib in Resources */,
 				89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */,
+				894FEC0620696E8D00E48ECA /* MyDayTableSectionHeaderView.xib in Resources */,
 				89F3D9981FF6AC4F0081FA77 /* Assets.xcassets in Resources */,
 				89F3D9961FF6AC4F0081FA77 /* Main.storyboard in Resources */,
 				890422D42060509200817EC2 /* FaxJPG1.jpg in Resources */,

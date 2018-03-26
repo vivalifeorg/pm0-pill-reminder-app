@@ -60,6 +60,9 @@ struct VLColors{
     return UIColor(red:0.06, green:0.11, blue:0.15, alpha:1.00)
   }
 
+  static var tableViewSectionHeaderBackgroundColor:UIColor{
+    return UIColor.darkGray
+  }
 //  static var sipTarawera:UIColor{
  //   return UIColor(red:0.13, green:0.22, blue:0.30, alpha:1.00)
   //}
