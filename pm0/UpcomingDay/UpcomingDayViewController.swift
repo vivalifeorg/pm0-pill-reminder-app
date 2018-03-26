@@ -188,7 +188,6 @@ class UpcomingDayViewController: UITableViewController {
   var scheduledDosages:[Dosage]=[] {
     didSet{
       let appliedSchedule = scheduleForDate(Date(),drugs:scheduledDosages)
-     // debugPrint(appliedSchedule)
       sections = sectionsForSchedule(timeSlots: appliedSchedule)
     }
   }
@@ -369,10 +368,6 @@ extension UpcomingDayViewController{
 //UITableView Delegate
 extension UpcomingDayViewController{
 
-  func updateSections(_ tableView:UITableView,sectionsToUpdate:[Int]){
-     tableView.reloadSections(IndexSet(sectionsToUpdate), with: UITableViewRowAnimation.none)
-  }
-
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 40
   }
@@ -388,16 +383,10 @@ extension UpcomingDayViewController{
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let oldIndicatorTarget = firstUntakenItem
     let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
     sections[indexPath.section].medications[indexPath.row].isTaken = !wasPreviouslyChecked
     if !wasPreviouslyChecked {
       UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
     }
-
-    let newIndicatorTarget = firstUntakenItem
-    let toReload = [oldIndicatorTarget,newIndicatorTarget].flatMap{$0?.section}
-
-    updateSections(tableView,sectionsToUpdate: toReload)
   }
 }
