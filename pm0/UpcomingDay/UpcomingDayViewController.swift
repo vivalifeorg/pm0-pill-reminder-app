@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
 
@@ -117,6 +118,8 @@ class UpcomingDayViewController: UITableViewController {
     tableView.allowsSelection = true
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 44
+    tableView.emptyDataSetSource = self;
+    tableView.emptyDataSetDelegate = self;
 
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
@@ -377,3 +380,31 @@ extension UpcomingDayViewController{
     }
   }
 }
+
+
+extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+  func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    return UIImage(named:"RxEmptyState")
+  }
+
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "No prescriptions (yet)")
+  }
+
+  func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string:"Tap the + button on the Prescriptions tab to add some")
+  }
+
+  func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
+    return -110
+  }
+
+  func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+    return true
+  }
+
+  func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+    debugPrint("Tapped")
+  }
+}
+

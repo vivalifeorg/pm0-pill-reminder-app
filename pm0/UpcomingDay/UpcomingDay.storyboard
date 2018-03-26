@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,6 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="1gA-SM-H3m"/>
                         <color key="separatorColor" red="0.86274509799999999" green="0.89019607840000003" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
