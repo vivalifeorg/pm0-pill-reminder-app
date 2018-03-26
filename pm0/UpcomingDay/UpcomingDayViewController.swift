@@ -169,8 +169,8 @@ class UpcomingDayViewController: UITableViewController {
       return VLColors.footerInfoPertinent
     }
 
-    var headerText:String
-    var footerText:String{
+    var title:String
+    var remaining:String{
       let remaining = medications.reduce(0){
         $1.isTaken ? $0 : $0 + 1
       }
@@ -178,7 +178,7 @@ class UpcomingDayViewController: UITableViewController {
       if remaining == 0 {
         return "\(leader)Completed!"
       }
-      return "\(leader)(\(remaining)/\(medications.count) remaining)"
+      return "\(leader)(\(remaining)/\(medications.count))"
     }
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
@@ -238,7 +238,7 @@ class UpcomingDayViewController: UITableViewController {
       let activeStart = startTime.addingTimeInterval(-minutesBefore * 60.0)
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
       //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
-      return Section(headerText: $0.slotDescription,
+      return Section(title: $0.slotDescription,
               medications: $0.items,
               isActive:{ (now:Date) in
                 activeStart <= now &&
@@ -352,8 +352,8 @@ extension UpcomingDayViewController{
                           willDisplayHeaderView view: UIView,
                           forSection section: Int){
     let customHeader = view as! MyDayTableSectionHeaderView
-    customHeader.titleLabel.text = sections[section].headerText
-    customHeader.remainingLabel.text = sections[section].footerText
+    customHeader.titleLabel.text = sections[section].title
+    customHeader.remainingLabel.text = sections[section].remaining
   }
 
   override func tableView(_ tableView:UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView{
@@ -363,14 +363,6 @@ extension UpcomingDayViewController{
 
   override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
     return 40
-  }
-
-  override func tableView(_ tableView:UITableView, titleForHeaderInSection sectionIndex: Int) -> String{
-    return sections[sectionIndex].headerText + (sections[sectionIndex].footerText)
-  }
-
-  override func tableView(_ tableView:UITableView, titleForFooterInSection sectionIndex: Int) -> String{
-    return "" //sections[sectionIndex].footerText
   }
 }
 
