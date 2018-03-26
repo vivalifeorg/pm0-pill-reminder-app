@@ -28,6 +28,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Me6-2r-dzt" id="RY7-qK-vjw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sy2-aH-npp" customClass="PrescriptionDisplayView" customModule="pm0">
+                                                    <rect key="frame" x="10" y="0.0" width="365" height="43.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sy2-aH-npp" secondAttribute="trailing" id="1bf-lB-AEs"/>
+                                                <constraint firstAttribute="bottom" secondItem="sy2-aH-npp" secondAttribute="bottom" id="KCR-LX-Ct4"/>
+                                                <constraint firstItem="sy2-aH-npp" firstAttribute="leading" secondItem="RY7-qK-vjw" secondAttribute="leading" constant="10" id="cgk-JY-wha"/>
+                                                <constraint firstItem="sy2-aH-npp" firstAttribute="top" secondItem="RY7-qK-vjw" secondAttribute="top" id="hQ2-uK-vBa"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.098039215686274508" green="0.22745098039215686" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>

@@ -178,6 +178,13 @@ class PrescriptionListViewController: UIViewController {
   }
 }
 
+class PrescriptionListViewControllerCell:UITableViewCell{
+  @IBOutlet weak var prescriptionDisplayView:PrescriptionDisplayView!
+
+
+}
+
+
 
 extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSource{
 
@@ -193,9 +200,9 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
 
 
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
-    let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path)
-    cell.textLabel?.text = viewModel[path].title
-    cell.detailTextLabel?.text = viewModel[path].subTitle
+    let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path) as! PrescriptionListViewControllerCell
+    cell.prescriptionDisplayView?.dosage = viewModel[path].dosage
+
 
     //let isSelected = tableView.indexPathsForSelectedRows?.contains(path) ?? false
     cell.textLabel?.textColor = VLColors.primaryText
