@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyDayTableSectionHeaderView" customModule="pm0" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="MyDayTableSectionHeaderView" id="7LT-VF-JtO" userLabel="MyDayHeaderView" customClass="MyDayTableSectionHeaderView" customModule="pm0" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyDayTableSectionHeaderView" id="7LT-VF-JtO" userLabel="MyDayHeaderView" customClass="MyDayTableSectionHeaderView" customModule="pm0" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
