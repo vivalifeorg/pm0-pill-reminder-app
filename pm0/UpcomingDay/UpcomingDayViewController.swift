@@ -115,7 +115,8 @@ class UpcomingDayViewController: UITableViewController {
     tableView.backgroundColor = VLColors.background
     tableView.separatorColor = UIColor.lightGray
     tableView.allowsSelection = true
-
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 44
 
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
@@ -211,7 +212,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct TimeSlotItem{
-    var item:Dosage
+    var dosage:Dosage
     var isTaken:Bool
   }
 
@@ -271,7 +272,7 @@ class UpcomingDayViewController: UITableViewController {
       thisTime.minute = minuteOffset % 60
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
-      let displayable = dosesAtTime.map{ TimeSlotItem(item:$0,isTaken:false) }
+      let displayable = dosesAtTime.map{ TimeSlotItem(dosage:$0,isTaken:false) }
       let timeSlot = TimeSlot(name:names[minuteOffset],
                              date:timeSlotDate,
                              items:displayable)
@@ -312,11 +313,10 @@ extension UpcomingDayViewController{
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell{
     let cell = dequeueDoseCellForIndexPath(tableView,indexPath:indexPath)
     let section = sections[indexPath.section]
-    let dosage = section.medications[indexPath.row]
+    let timeSlotItem = section.medications[indexPath.row]
 
-    cell.prescriptionView?.title.attributedText = "# Drug".renderMarkdownAsAttributedString
-    cell.prescriptionView?.body.attributedText = dosage.item.attributedString
-    cell.isTaken = dosage.isTaken
+    cell.prescriptionView?.dosage = timeSlotItem.dosage
+    cell.isTaken = timeSlotItem.isTaken
     cell.selectionStyle = .none
 
     if let firstUntakenItem = firstUntakenItem {
@@ -351,10 +351,6 @@ extension UpcomingDayViewController{
 
   override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
     return 40
-  }
-
-  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 20
   }
 }
 

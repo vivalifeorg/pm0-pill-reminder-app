@@ -11,6 +11,24 @@ class PrescriptionDisplayView:UIView{
   @IBOutlet weak var title:UILabel!
   @IBOutlet weak var body:UILabel!
 
+  override func awakeFromNib(){
+    super.awakeFromNib()
+    updateLabels()
+  }
+
+  private func updateLabels(){
+    guard title != nil, body != nil else {return}
+
+    title?.attributedText = dosage?.attributedTitle
+    body?.attributedText = dosage?.attributedBody
+  }
+
+  var dosage:Dosage? = nil{
+    didSet{
+      updateLabels()
+    }
+  }
+
   override init(frame: CGRect) {
     super.init(frame:frame)
     xibSetup()

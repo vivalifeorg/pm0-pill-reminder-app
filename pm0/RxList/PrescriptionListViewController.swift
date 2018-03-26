@@ -18,6 +18,13 @@ extension Dosage{
       "**\(name)**<br/>\(quantity) × \(unitDescription ?? form ?? "dose")".renderMarkdownAsAttributedString
     return str
   }
+  var attributedTitle:NSAttributedString{
+    return NSAttributedString(string:"\(name)")
+  }
+
+  var attributedBody:NSAttributedString{
+    return NSAttributedString(string:"\(quantity) × \(unitDescription ?? form ?? "dose")")
+  }
 }
 
 extension Prescription{
