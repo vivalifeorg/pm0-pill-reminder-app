@@ -327,7 +327,6 @@ extension UpcomingDayViewController{
     let dosage = section.medications[indexPath.row]
     cell.dosageLabel?.text = dosage.name
     cell.isTaken = dosage.isTaken
-    //cell.opacity = section.isActive(Date()) ? .bright : .dim
     cell.selectionStyle = .none
 
     if let firstUntakenItem = firstUntakenItem {
