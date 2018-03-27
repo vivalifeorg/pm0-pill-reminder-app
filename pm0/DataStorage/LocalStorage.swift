@@ -26,140 +26,116 @@ public typealias KeychainItem = String
 var debugKeychain = false
 
 
-enum KeychainKey:String{
-  case userPrescriptions
-  case userDoctors
-}
 
 enum LocalStorage{
-
-
-  func SaveKeychainItem(_ item:KeychainItem, forKey key:KeychainKey) {
-
-    if debugKeychain {debugPrint("Saving \(item) to keychain for key \(key)")}
-    keychain[string: key.rawValue] = item
+  enum KeychainKey:String{
+    case userPrescriptions
+    case userDoctors
   }
 
-  func ClearKeychainItem(forKey key:KeychainKey) {
-    if debugKeychain {
-      debugPrint("Clearing keychain for key \(key)")
-    }
-
-    keychain[string: key.rawValue] = nil
+  static var prescriptions:Loadable<Prescription>{
+    return Loadable(key:.userPrescriptions)
   }
-
-  func IsKeychainItemPresent(forKey key:KeychainKey) -> Bool {
-    //debugPrint("Checking keychain for key \(key)")
-    return keychain[string: key.rawValue] != nil
+  static var doctors:Loadable<DoctorInfo>{
+    return Loadable(key:.userDoctors)
   }
-
-  func LoadKeychainItem(forKey key:KeychainKey) -> KeychainItem {
-    if debugKeychain {debugPrint("Loading item from keychain for key \(key)")}
-    return keychain[string: key.rawValue] ?? ""
-  }
-
 }
 
 protocol LocalStorageWrapper{
   associatedtype Wrapped
+  associatedtype Wrapper
+  static var key:LocalStorage.KeychainKey {get}
   var version:String {get}
+}
+
+struct Loadable<T:Codable>{
+  var key:LocalStorage.KeychainKey
+  func blank(){
+    BlankLocal(key: key)
+  }
+  func load()->[T]{
+    return LoadLocal(key: key)
+  }
+  func save(_ items:[T]){
+    SaveLocal(items, key: key)
+  }
 }
 
 extension LocalStorage{
 
   static func BlankPrescriptions(){
-    let key = KeychainKey.userPrescriptions.rawValue as String
-    keychain[string: key] = nil
+    BlankLocal(key: .userPrescriptions)
   }
 
   static func LoadPrescriptions()->[Prescription]{
-    let key = KeychainKey.userPrescriptions.rawValue as String
-    guard let stringRx = keychain[string: key] else {
-      return []
-    }
-
-    guard let dataRx = stringRx.data(using: .utf8) else {
-      return []
-    }
-
-    guard let rxs = try? JSONDecoder().decode(PrescriptionWrapper.self, from: dataRx) else{
-      return []
-    }
-
-    return rxs.wrapped
+   return LoadLocal(key: .userPrescriptions)
   }
 
   static func SavePrescriptions(_ prescriptions:[Prescription]){
-
-    let wrapped = PrescriptionWrapper(wrapped:prescriptions)
-    guard let encodedRx = try? JSONEncoder().encode(wrapped) else {
-      return
-    }
-
-    let key = KeychainKey.userPrescriptions.rawValue as String
-    keychain[string: key] = String(data:encodedRx,encoding:.utf8)
+    SaveLocal(prescriptions, key: .userPrescriptions)
   }
 }
-
-struct PrescriptionWrapper:Codable{
-  enum PrescriptionWrapperVersions:String,Codable{
-    case v0_1_unversioned
-  }
-
-  let wrapped:[Prescription]
-  var version:String{
-    return PrescriptionWrapperVersions.v0_1_unversioned.rawValue
-  }
-}
-
-
 
 extension LocalStorage{
 
   static func BlankDoctors(){
-    let key = KeychainKey.userDoctors.rawValue as String
-    keychain[string: key] = nil
+    BlankLocal(key: LocalStorage.KeychainKey.userDoctors)
   }
 
   static func LoadDoctors()->[DoctorInfo]{
-    let key = KeychainKey.userDoctors.rawValue as String
-    guard let stringDr = keychain[string: key] else {
-      return []
-    }
-
-    guard let dataDr = stringDr.data(using: .utf8) else {
-      return []
-    }
-
-    guard let docs = try? JSONDecoder().decode(DoctorWrapper.self, from: dataDr) else{
-      return []
-    }
-
-    return docs.wrapped
+    return LoadLocal(key: LocalStorage.KeychainKey.userDoctors)
   }
 
   static func SaveDoctors(_ doctors:[DoctorInfo]){
-
-    let wrapped = DoctorWrapper(wrapped:doctors)
-    guard let doctorsEncoded = try? JSONEncoder().encode(wrapped) else {
-      return
-    }
-
-    let key = KeychainKey.userDoctors.rawValue as String
-    keychain[string: key] = String(data:doctorsEncoded,encoding:.utf8)
+    SaveLocal(doctors, key: LocalStorage.KeychainKey.userDoctors)
   }
 }
 
-struct DoctorWrapper:Codable{
-  enum DoctorWrapperVersions:String,Codable{
+private func BlankLocal(key:LocalStorage.KeychainKey){
+  let key = key.rawValue as String
+  keychain[string: key] = nil
+}
+
+private func LoadLocal<T:Codable>(key:LocalStorage.KeychainKey)->[T]{
+  guard let stringT = keychain[string: key.rawValue] else {
+    return []
+  }
+
+  guard let dataT = stringT.data(using: .utf8) else {
+    return []
+  }
+
+  guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
+    return []
+  }
+
+  return items.wrapped
+}
+
+
+struct Wrapper<T:Codable>:Codable{
+  enum WrapperVersions:String,Codable{
     case v0_1_unversioned
   }
 
-  let wrapped:[DoctorInfo]
+  let wrapped:[T]
   var version:String{
-    return DoctorWrapperVersions.v0_1_unversioned.rawValue
+    return WrapperVersions.v0_1_unversioned.rawValue
   }
 }
+
+private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
+  let wrapped = Wrapper<T>(wrapped:items)
+  guard let encoded = try? JSONEncoder().encode(wrapped) else {
+    return
+  }
+
+  keychain[string: key.rawValue] = String(data:encoded,encoding:.utf8)
+}
+
+
+
+
 
 
 

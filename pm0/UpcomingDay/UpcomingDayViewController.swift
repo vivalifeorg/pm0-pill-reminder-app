@@ -299,7 +299,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   override func viewDidAppear(_ animated: Bool) {
-    scheduledDosages = LocalStorage.LoadPrescriptions().flatMap{$0.dosage}
+    scheduledDosages = LocalStorage.prescriptions.load().flatMap{$0.dosage}
   }
 
   static let cellIdentifier = "UpcomingDayViewControllerDoseCell"

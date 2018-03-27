@@ -52,7 +52,7 @@ struct PrescriptionListViewModel{
   mutating func deleteItemAt(index:Int){
     editingIndex = nil
     prescriptions.remove(at:index)
-    LocalStorage.SavePrescriptions(prescriptions)
+    LocalStorage.prescriptions.save(prescriptions)
   }
 
   mutating func receivedPrescription(_ rx:Prescription){
@@ -61,7 +61,7 @@ struct PrescriptionListViewModel{
     }else{
       prescriptions.append(rx)
     }
-    LocalStorage.SavePrescriptions(prescriptions)
+    LocalStorage.prescriptions.save(prescriptions)
   }
 }
 
@@ -165,9 +165,7 @@ class PrescriptionListViewController: UIViewController {
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
 
-    viewModel.prescriptions = LocalStorage.LoadPrescriptions()
-
-    //sendFax(toNumber:"+18558237571", documentPaths: ["TestPage1.pdf"]){ isSuccess,msg in print(msg) }
+    viewModel.prescriptions = LocalStorage.prescriptions.load()
   
   }
   
