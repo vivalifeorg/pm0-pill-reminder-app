@@ -33,7 +33,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" placeholderIntrinsicWidth="347" placeholderIntrinsicHeight="38" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" placeholderIntrinsicWidth="347" placeholderIntrinsicHeight="38" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
                             <rect key="frame" x="15" y="50.5" width="347" height="38"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
@@ -42,7 +42,7 @@
                                     <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="location"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="location"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                             <color key="value" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

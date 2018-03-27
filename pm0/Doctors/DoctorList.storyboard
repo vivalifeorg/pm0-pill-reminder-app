@@ -255,9 +255,10 @@
                 <navigationController id="bCe-qK-oba" userLabel="Nav for doctor entry" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="PbF-3e-qtX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="PbF-3e-qtX">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="k31-AD-THS" kind="relationship" relationship="rootViewController" id="1u3-36-L89"/>
@@ -271,7 +272,7 @@
         <scene sceneID="xpX-C8-vCV">
             <objects>
                 <tableViewController id="k31-AD-THS" userLabel="Doctor Entry" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfM-zy-NcE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfM-zy-NcE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
@@ -321,7 +322,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Specialty"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Podiatry"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Podiatry or Podiatrist"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -598,6 +599,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Skw-uX-SM4"/>
+        <segue reference="1u3-36-L89"/>
     </inferredMetricsTieBreakers>
 </document>
