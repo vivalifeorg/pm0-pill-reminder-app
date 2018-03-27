@@ -34,8 +34,16 @@ class DoctorListViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    showUnimplemented()
+    //showUnimplemented()
   }
 
+  @IBAction func unwindToDoctorList(segue:UIStoryboardSegue){
+
+    guard segue.identifier == "doneEditingPrescription" else{
+      return
+    }
+    
+    tableView.reloadData()
+  }
 
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,17 +27,17 @@
                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="zBm-Bq-FJv" userLabel="ActualView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleTk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhW-Dp-Hdg">
-                            <rect key="frame" x="13" y="14" width="73.5" height="31.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TitleTk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhW-Dp-Hdg">
+                            <rect key="frame" x="15" y="14" width="73.5" height="31.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
-                            <rect key="frame" x="13" y="50.5" width="349" height="38"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" placeholderIntrinsicWidth="347" placeholderIntrinsicHeight="38" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
+                            <rect key="frame" x="15" y="50.5" width="347" height="38"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
-                                    <rect key="frame" x="4" y="0.0" width="319" height="38"/>
+                                    <rect key="frame" x="4" y="0.0" width="317" height="38"/>
                                     <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="textColor" red="0.78823529410000004" green="0.89019607840000003" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,7 +50,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zao-0l-6uj">
-                                    <rect key="frame" x="323" y="8" width="22" height="22"/>
+                                    <rect key="frame" x="321" y="8" width="22" height="22"/>
                                     <accessibility key="accessibilityConfiguration" label="AddFrom"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="22" id="LEt-iI-WoZ"/>
@@ -62,7 +63,10 @@
                             <constraints>
                                 <constraint firstItem="kxi-XH-alT" firstAttribute="leading" secondItem="qCr-3N-Olw" secondAttribute="leading" constant="4" id="1NM-jA-T0L"/>
                                 <constraint firstAttribute="trailing" secondItem="zao-0l-6uj" secondAttribute="trailing" constant="4" id="1cL-ph-Klt"/>
+                                <constraint firstAttribute="trailing" secondItem="kxi-XH-alT" secondAttribute="trailing" constant="26" id="3IT-oU-MCQ"/>
+                                <constraint firstAttribute="bottom" secondItem="kxi-XH-alT" secondAttribute="bottom" id="CgK-0r-XxL"/>
                                 <constraint firstItem="zao-0l-6uj" firstAttribute="centerY" secondItem="kxi-XH-alT" secondAttribute="centerY" id="F3l-ih-ddr"/>
+                                <constraint firstItem="kxi-XH-alT" firstAttribute="top" secondItem="qCr-3N-Olw" secondAttribute="top" id="aOW-pf-Yxv"/>
                                 <constraint firstItem="kxi-XH-alT" firstAttribute="height" secondItem="qCr-3N-Olw" secondAttribute="height" id="bSr-sn-gFB"/>
                                 <constraint firstAttribute="height" constant="38" id="dyh-xk-5al"/>
                                 <constraint firstItem="zao-0l-6uj" firstAttribute="leading" secondItem="kxi-XH-alT" secondAttribute="trailing" id="gfg-5m-bx7"/>
@@ -70,7 +74,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCG-bP-sfA">
-                            <rect key="frame" x="94.5" y="19.5" width="22" height="22"/>
+                            <rect key="frame" x="96.5" y="19.5" width="22" height="22"/>
                             <accessibility key="accessibilityConfiguration" label="Help"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="8Ue-Ig-Msf"/>
@@ -82,12 +86,13 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.098039215690000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                     <constraints>
-                        <constraint firstItem="qCr-3N-Olw" firstAttribute="leading" secondItem="zBm-Bq-FJv" secondAttribute="leading" constant="13" id="1c1-pB-B7a"/>
+                        <constraint firstItem="qCr-3N-Olw" firstAttribute="leading" secondItem="zBm-Bq-FJv" secondAttribute="leading" constant="15" id="1c1-pB-B7a"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jCG-bP-sfA" secondAttribute="trailing" constant="13" id="65G-jT-wy6"/>
                         <constraint firstItem="dhW-Dp-Hdg" firstAttribute="top" secondItem="zBm-Bq-FJv" secondAttribute="top" constant="14" id="BDh-cI-b92"/>
                         <constraint firstItem="jCG-bP-sfA" firstAttribute="leading" secondItem="dhW-Dp-Hdg" secondAttribute="trailing" constant="8" id="IYM-dq-qAd"/>
+                        <constraint firstAttribute="bottom" secondItem="kxi-XH-alT" secondAttribute="bottom" constant="9.5" id="U99-h3-sKv"/>
                         <constraint firstItem="qCr-3N-Olw" firstAttribute="top" secondItem="dhW-Dp-Hdg" secondAttribute="bottom" constant="5" id="VDw-me-u0k"/>
                         <constraint firstAttribute="trailing" secondItem="qCr-3N-Olw" secondAttribute="trailing" constant="13" id="b1A-bx-9Ne"/>
                         <constraint firstItem="dhW-Dp-Hdg" firstAttribute="leading" secondItem="qCr-3N-Olw" secondAttribute="leading" id="blP-tw-0zH"/>
@@ -96,8 +101,12 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="zBm-Bq-FJv" secondAttribute="bottom" id="2Nj-r0-zwA"/>
+                <constraint firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="E9w-W9-nSR"/>
+                <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="I3E-bL-yFv" secondAttribute="leading" id="GlJ-6Y-LcX"/>
+                <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="I3E-bL-yFv" secondAttribute="top" id="LOJ-OH-WCn"/>
                 <constraint firstAttribute="bottom" secondItem="zBm-Bq-FJv" secondAttribute="bottom" id="LTd-Ru-zUv"/>
                 <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="I3E-bL-yFv" secondAttribute="top" id="OGn-de-WdI"/>
                 <constraint firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="Zy9-Oz-5pe"/>
@@ -107,4 +116,9 @@
             <point key="canvasLocation" x="126" y="55"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

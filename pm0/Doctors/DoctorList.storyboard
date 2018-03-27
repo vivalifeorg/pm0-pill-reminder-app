@@ -235,20 +235,321 @@
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="plusTapped:" destination="Gfu-gL-nO8" id="lUj-Lz-6Nq"/>
+                                <segue destination="bCe-qK-oba" kind="presentation" identifier="newDoctorSegue" modalPresentationStyle="overFullScreen" id="UEg-kG-JVr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <connections>
+                        <segue destination="k31-AD-THS" kind="showDetail" identifier="editDoctorSegue" id="Skw-uX-SM4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zky-Et-1c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-867" y="37"/>
         </scene>
-        <!--Doctors-->
+        <!--Nav for doctor entry-->
+        <scene sceneID="1z4-jJ-ltF">
+            <objects>
+                <navigationController id="bCe-qK-oba" userLabel="Nav for doctor entry" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="PbF-3e-qtX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="k31-AD-THS" kind="relationship" relationship="rootViewController" id="1u3-36-L89"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egH-0t-Q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172" y="-800"/>
+        </scene>
+        <!--Doctor Entry-->
+        <scene sceneID="xpX-C8-vCV">
+            <objects>
+                <tableViewController id="k31-AD-THS" userLabel="Doctor Entry" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfM-zy-NcE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <sections>
+                            <tableViewSection id="WvD-4T-Fnp">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="Q3e-j1-99V">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q3e-j1-99V" id="5cS-Hb-z8c">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q6w-C5-J8f" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Name"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Dr Arha Sharma or Peachtree Podiatry"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q6w-C5-J8f" firstAttribute="leading" secondItem="5cS-Hb-z8c" secondAttribute="leading" id="2OZ-VU-FYL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q6w-C5-J8f" secondAttribute="trailing" id="2bN-P0-b1L"/>
+                                                <constraint firstItem="Q6w-C5-J8f" firstAttribute="top" secondItem="5cS-Hb-z8c" secondAttribute="top" id="2qz-4t-1cN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q6w-C5-J8f" secondAttribute="trailing" id="5fh-87-aoO"/>
+                                                <constraint firstItem="Q6w-C5-J8f" firstAttribute="leading" secondItem="5cS-Hb-z8c" secondAttribute="leading" id="dv3-dV-oLE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q6w-C5-J8f" secondAttribute="bottom" id="nEK-zj-lcj"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q6w-C5-J8f" secondAttribute="bottom" id="oVt-gb-q1i"/>
+                                                <constraint firstItem="Q6w-C5-J8f" firstAttribute="top" secondItem="5cS-Hb-z8c" secondAttribute="top" id="xMF-JO-EBF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="Mo7-Ys-TRH">
+                                        <rect key="frame" x="0.0" y="98" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mo7-Ys-TRH" id="Pri-XI-uJT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="K6C-rV-eFo" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Specialty"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Podiatry"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="K6C-rV-eFo" firstAttribute="top" secondItem="Pri-XI-uJT" secondAttribute="top" id="P5k-j5-lZ7"/>
+                                                <constraint firstItem="K6C-rV-eFo" firstAttribute="leading" secondItem="Pri-XI-uJT" secondAttribute="leading" id="Vxa-fR-V7b"/>
+                                                <constraint firstAttribute="trailing" secondItem="K6C-rV-eFo" secondAttribute="trailing" id="YZW-OD-msE"/>
+                                                <constraint firstItem="K6C-rV-eFo" firstAttribute="leading" secondItem="Pri-XI-uJT" secondAttribute="leading" id="cYo-aS-DG3"/>
+                                                <constraint firstAttribute="bottom" secondItem="K6C-rV-eFo" secondAttribute="bottom" id="nE1-0b-hor"/>
+                                                <constraint firstItem="K6C-rV-eFo" firstAttribute="top" secondItem="Pri-XI-uJT" secondAttribute="top" id="ojb-Q4-MXd"/>
+                                                <constraint firstAttribute="trailing" secondItem="K6C-rV-eFo" secondAttribute="trailing" id="paI-Ln-L25"/>
+                                                <constraint firstAttribute="bottom" secondItem="K6C-rV-eFo" secondAttribute="bottom" id="sfy-kS-fzP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="XhK-DF-Xzv">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XhK-DF-Xzv" id="1d2-g8-oVB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="7bX-oB-Fwn" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Fax Number"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 404-555-5555"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="7bX-oB-Fwn" secondAttribute="trailing" id="7XF-Ls-dy6"/>
+                                                <constraint firstItem="7bX-oB-Fwn" firstAttribute="top" secondItem="1d2-g8-oVB" secondAttribute="top" id="AQk-2g-1wt"/>
+                                                <constraint firstAttribute="trailing" secondItem="7bX-oB-Fwn" secondAttribute="trailing" id="AeY-FT-ZD3"/>
+                                                <constraint firstAttribute="bottom" secondItem="7bX-oB-Fwn" secondAttribute="bottom" id="Kmz-eS-YVN"/>
+                                                <constraint firstItem="7bX-oB-Fwn" firstAttribute="leading" secondItem="1d2-g8-oVB" secondAttribute="leading" id="OdC-tb-jf6"/>
+                                                <constraint firstItem="7bX-oB-Fwn" firstAttribute="leading" secondItem="1d2-g8-oVB" secondAttribute="leading" id="hsW-Gj-KtZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="7bX-oB-Fwn" secondAttribute="bottom" id="sN4-ag-Vz0"/>
+                                                <constraint firstItem="7bX-oB-Fwn" firstAttribute="top" secondItem="1d2-g8-oVB" secondAttribute="top" id="yoS-x3-Oj2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="He5-my-gVk">
+                                        <rect key="frame" x="0.0" y="294" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="He5-my-gVk" id="cfK-ms-Mgc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="CBi-IM-qjh" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Phone Number"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 404-555-5556"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="CBi-IM-qjh" secondAttribute="trailing" id="4sU-rr-XAJ"/>
+                                                <constraint firstItem="CBi-IM-qjh" firstAttribute="top" secondItem="cfK-ms-Mgc" secondAttribute="top" id="HFK-7a-B7s"/>
+                                                <constraint firstAttribute="bottom" secondItem="CBi-IM-qjh" secondAttribute="bottom" id="SXy-jv-K22"/>
+                                                <constraint firstAttribute="trailing" secondItem="CBi-IM-qjh" secondAttribute="trailing" id="Vpz-cl-dE1"/>
+                                                <constraint firstItem="CBi-IM-qjh" firstAttribute="leading" secondItem="cfK-ms-Mgc" secondAttribute="leading" id="YCn-Gy-R9f"/>
+                                                <constraint firstItem="CBi-IM-qjh" firstAttribute="leading" secondItem="cfK-ms-Mgc" secondAttribute="leading" id="bwL-a8-aeT"/>
+                                                <constraint firstAttribute="bottom" secondItem="CBi-IM-qjh" secondAttribute="bottom" id="dpq-NB-rlB"/>
+                                                <constraint firstItem="CBi-IM-qjh" firstAttribute="top" secondItem="cfK-ms-Mgc" secondAttribute="top" id="jb4-0O-xQf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="9CV-RP-Ew2">
+                                        <rect key="frame" x="0.0" y="392" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9CV-RP-Ew2" id="x3p-rV-R6s">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="rCJ-Ve-UfB" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Street Address "/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 1234 Street A"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="rCJ-Ve-UfB" secondAttribute="bottom" id="Ea2-2t-8j6"/>
+                                                <constraint firstItem="rCJ-Ve-UfB" firstAttribute="top" secondItem="x3p-rV-R6s" secondAttribute="top" id="NDN-xT-Ii7"/>
+                                                <constraint firstItem="rCJ-Ve-UfB" firstAttribute="leading" secondItem="x3p-rV-R6s" secondAttribute="leading" id="b5I-kn-WQA"/>
+                                                <constraint firstItem="rCJ-Ve-UfB" firstAttribute="leading" secondItem="x3p-rV-R6s" secondAttribute="leading" id="cj9-SS-Ode"/>
+                                                <constraint firstAttribute="trailing" secondItem="rCJ-Ve-UfB" secondAttribute="trailing" id="fJK-uS-8RY"/>
+                                                <constraint firstAttribute="bottom" secondItem="rCJ-Ve-UfB" secondAttribute="bottom" id="h1h-B1-gzP"/>
+                                                <constraint firstItem="rCJ-Ve-UfB" firstAttribute="top" secondItem="x3p-rV-R6s" secondAttribute="top" id="iyk-Kv-Kxt"/>
+                                                <constraint firstAttribute="trailing" secondItem="rCJ-Ve-UfB" secondAttribute="trailing" id="sEx-aS-osW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="q9n-gl-kv1">
+                                        <rect key="frame" x="0.0" y="490" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q9n-gl-kv1" id="Qnx-7i-adl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="j58-Nw-BeP" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Street Address (Cont)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Suite 500"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="j58-Nw-BeP" secondAttribute="trailing" id="9pC-Ly-P1g"/>
+                                                <constraint firstItem="j58-Nw-BeP" firstAttribute="leading" secondItem="Qnx-7i-adl" secondAttribute="leading" id="KTT-zB-E8G"/>
+                                                <constraint firstItem="j58-Nw-BeP" firstAttribute="leading" secondItem="Qnx-7i-adl" secondAttribute="leading" id="N70-pQ-40H"/>
+                                                <constraint firstAttribute="bottom" secondItem="j58-Nw-BeP" secondAttribute="bottom" id="YDF-7e-bqo"/>
+                                                <constraint firstItem="j58-Nw-BeP" firstAttribute="top" secondItem="Qnx-7i-adl" secondAttribute="top" id="iVc-ff-ICe"/>
+                                                <constraint firstItem="j58-Nw-BeP" firstAttribute="top" secondItem="Qnx-7i-adl" secondAttribute="top" id="lJ8-Hg-cy7"/>
+                                                <constraint firstAttribute="trailing" secondItem="j58-Nw-BeP" secondAttribute="trailing" id="vIe-b6-fQE"/>
+                                                <constraint firstAttribute="bottom" secondItem="j58-Nw-BeP" secondAttribute="bottom" id="z1X-bW-OrA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="RR5-mG-kq1">
+                                        <rect key="frame" x="0.0" y="588" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RR5-mG-kq1" id="6X2-DN-6CU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vyk-DK-glM" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="State"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Georgia"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vyk-DK-glM" firstAttribute="top" secondItem="6X2-DN-6CU" secondAttribute="top" id="0Fb-Xr-EPN"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vyk-DK-glM" secondAttribute="bottom" id="MNe-zV-bTH"/>
+                                                <constraint firstItem="Vyk-DK-glM" firstAttribute="top" secondItem="6X2-DN-6CU" secondAttribute="top" id="PYf-OJ-Kf7"/>
+                                                <constraint firstItem="Vyk-DK-glM" firstAttribute="leading" secondItem="6X2-DN-6CU" secondAttribute="leading" id="Q4D-lv-XYq"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vyk-DK-glM" secondAttribute="bottom" id="VTr-5y-ppD"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vyk-DK-glM" secondAttribute="trailing" id="X1r-3F-hGP"/>
+                                                <constraint firstItem="Vyk-DK-glM" firstAttribute="leading" secondItem="6X2-DN-6CU" secondAttribute="leading" id="ZEZ-Yo-kQc"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vyk-DK-glM" secondAttribute="trailing" id="zW3-tH-wJz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="aKe-dF-qM1">
+                                        <rect key="frame" x="0.0" y="686" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aKe-dF-qM1" id="dfo-xI-Cak">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="pfL-DF-uag" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="ZIP Code"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 30309"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pfL-DF-uag" firstAttribute="top" secondItem="dfo-xI-Cak" secondAttribute="top" id="2og-pm-gfZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="pfL-DF-uag" secondAttribute="bottom" id="Gid-nO-9Qv"/>
+                                                <constraint firstAttribute="trailing" secondItem="pfL-DF-uag" secondAttribute="trailing" id="JgL-Oq-INS"/>
+                                                <constraint firstAttribute="trailing" secondItem="pfL-DF-uag" secondAttribute="trailing" id="KFU-eg-74Y"/>
+                                                <constraint firstItem="pfL-DF-uag" firstAttribute="leading" secondItem="dfo-xI-Cak" secondAttribute="leading" id="Rqd-DE-i07"/>
+                                                <constraint firstAttribute="bottom" secondItem="pfL-DF-uag" secondAttribute="bottom" id="Xs4-pg-Isj"/>
+                                                <constraint firstItem="pfL-DF-uag" firstAttribute="top" secondItem="dfo-xI-Cak" secondAttribute="top" id="rta-L0-bYg"/>
+                                                <constraint firstItem="pfL-DF-uag" firstAttribute="leading" secondItem="dfo-xI-Cak" secondAttribute="leading" id="yP7-dN-boP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="k31-AD-THS" id="bhD-vV-F5a"/>
+                            <outlet property="delegate" destination="k31-AD-THS" id="KyW-FX-KYW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Doctor" largeTitleDisplayMode="always" id="Uli-0d-ST0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7fV-zY-jSc">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="Gbe-eJ-rgB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="gm2-aY-QAI">
+                            <connections>
+                                <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="A1o-kS-g2g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G31-qo-iAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uXa-ke-TRQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="479" y="64"/>
+        </scene>
+        <!--Doctor Nav-->
         <scene sceneID="Um7-uI-roG">
             <objects>
-                <navigationController storyboardIdentifier="DoctorListNav" title="Doctors" useStoryboardIdentifierAsRestorationIdentifier="YES" id="18p-Q8-jOg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DoctorListNav" title="Doctors" useStoryboardIdentifierAsRestorationIdentifier="YES" id="18p-Q8-jOg" userLabel="Doctor Nav" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="bbv-Aw-mhY">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -268,8 +569,35 @@
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Skw-uX-SM4"/>
+    </inferredMetricsTieBreakers>
 </document>
