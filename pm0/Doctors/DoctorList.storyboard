@@ -534,7 +534,7 @@
                                 <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="Gbe-eJ-rgB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="gm2-aY-QAI">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="gm2-aY-QAI">
                             <connections>
                                 <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="A1o-kS-g2g"/>
                             </connections>
