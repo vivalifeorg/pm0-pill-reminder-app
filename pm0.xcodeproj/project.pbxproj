@@ -30,6 +30,7 @@
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */; };
+		8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8982757A206A86760058A6E8 /* DoctorEntryViewController.swift */; };
 		898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */; };
 		898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93B206139CA006ED4CF /* FaxHandRolled.swift */; };
 		898BC93E206139EB006ED4CF /* PhaxioObjcFaxProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93D206139EB006ED4CF /* PhaxioObjcFaxProvider.swift */; };
@@ -85,6 +86,7 @@
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
+		8982757A206A86760058A6E8 /* DoctorEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorEntryViewController.swift; sourceTree = "<group>"; };
 		898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxGeneratedSwagger.swift; sourceTree = "<group>"; };
 		898BC93B206139CA006ED4CF /* FaxHandRolled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxHandRolled.swift; sourceTree = "<group>"; };
 		898BC93D206139EB006ED4CF /* PhaxioObjcFaxProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaxioObjcFaxProvider.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				89A5169220587AA90069D9AE /* DoctorList.storyboard */,
 				890CD2FF20658E35009DF10A /* DoctorListViewController.swift */,
+				8982757A206A86760058A6E8 /* DoctorEntryViewController.swift */,
 			);
 			path = Doctors;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
+				8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */,
 				898BC93E206139EB006ED4CF /* PhaxioObjcFaxProvider.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
 				898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */,
