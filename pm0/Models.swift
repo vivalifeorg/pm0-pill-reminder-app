@@ -108,3 +108,42 @@ struct Prescription:Codable{
     conditionPrescribedFor = nil
   }
 }
+
+
+///Doctors
+
+struct Address:Codable{
+  var street:String
+  var streetCont:String
+  var state:String
+  var ZIP:String
+}
+
+struct PhoneNumber:Codable{
+  var number:String
+}
+
+struct FaxNumber:Codable{
+  var number:String
+}
+
+struct DoctorInfo:Codable{
+  var name:String
+  var specialty:String
+  var address:Address
+  var fax:FaxNumber
+  var phone:PhoneNumber
+}
+
+extension DoctorInfo{
+  ///Default blank
+  init(){
+    name = ""
+    specialty = ""
+    address = Address(street: "", streetCont: "", state: "", ZIP: "")
+    fax = FaxNumber(number:"")
+    phone = PhoneNumber(number:"")
+  }
+}
+
+///End doctors

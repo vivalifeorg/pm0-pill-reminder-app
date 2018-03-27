@@ -28,6 +28,7 @@ var debugKeychain = false
 
 enum KeychainKey:String{
   case userPrescriptions
+  case userDoctors
 }
 
 enum LocalStorage{
@@ -62,18 +63,6 @@ enum LocalStorage{
 protocol LocalStorageWrapper{
   associatedtype Wrapped
   var version:String {get}
-}
-
-
-struct PrescriptionWrapper:Codable{
-  enum PrescriptionWrapperVersions:String,Codable{
-    case v0_1_unversioned
-  }
-
-  let wrapped:[Prescription]
-  var version:String{
-    return PrescriptionWrapperVersions.v0_1_unversioned.rawValue
-  }
 }
 
 extension LocalStorage{
@@ -111,4 +100,66 @@ extension LocalStorage{
     keychain[string: key] = String(data:encodedRx,encoding:.utf8)
   }
 }
+
+struct PrescriptionWrapper:Codable{
+  enum PrescriptionWrapperVersions:String,Codable{
+    case v0_1_unversioned
+  }
+
+  let wrapped:[Prescription]
+  var version:String{
+    return PrescriptionWrapperVersions.v0_1_unversioned.rawValue
+  }
+}
+
+
+
+extension LocalStorage{
+
+  static func BlankDoctors(){
+    let key = KeychainKey.userDoctors.rawValue as String
+    keychain[string: key] = nil
+  }
+
+  static func LoadDoctors()->[DoctorInfo]{
+    let key = KeychainKey.userDoctors.rawValue as String
+    guard let stringDr = keychain[string: key] else {
+      return []
+    }
+
+    guard let dataDr = stringDr.data(using: .utf8) else {
+      return []
+    }
+
+    guard let docs = try? JSONDecoder().decode(DoctorWrapper.self, from: dataDr) else{
+      return []
+    }
+
+    return docs.wrapped
+  }
+
+  static func SaveDoctors(_ doctors:[DoctorInfo]){
+
+    let wrapped = DoctorWrapper(wrapped:doctors)
+    guard let doctorsEncoded = try? JSONEncoder().encode(wrapped) else {
+      return
+    }
+
+    let key = KeychainKey.userDoctors.rawValue as String
+    keychain[string: key] = String(data:doctorsEncoded,encoding:.utf8)
+  }
+}
+
+struct DoctorWrapper:Codable{
+  enum DoctorWrapperVersions:String,Codable{
+    case v0_1_unversioned
+  }
+
+  let wrapped:[DoctorInfo]
+  var version:String{
+    return DoctorWrapperVersions.v0_1_unversioned.rawValue
+  }
+}
+
+
 

@@ -9,50 +9,18 @@
 import UIKit
 
 
-struct Address{
-  var street:String
-  var streetCont:String
-  var state:String
-  var ZIP:String
-}
-
-struct PhoneNumber{
-  var number:String
-}
-
-struct FaxNumber{
-  var number:String
-}
-
-struct DoctorInfo{
-  var name:String
-  var specialty:String
-  var address:Address
-  var fax:FaxNumber
-  var phone:PhoneNumber
-}
-
-extension DoctorInfo{
-  ///Default blank
-  init(){
-    name = ""
-    specialty = ""
-    address = Address(street: "", streetCont: "", state: "", ZIP: "")
-    fax = FaxNumber(number:"")
-    phone = PhoneNumber(number:"")
-  }
-}
-
 class DoctorListViewController:UITableViewController{
 
-  var doctorInfo = [DoctorInfo]()
+  var doctors = [DoctorInfo]()
   let editSegueIdentifier = "editDoctorSegue"
   var lastTappedDoctorIndex:Int? = nil
 
+  override func viewWillAppear(_ animated: Bool) {
+    doctors = LocalStorage.LoadDoctors()
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //remove excess lines
-    doctorInfo = (1..<2).map{_ in DoctorInfo()}
   }
 
   @IBAction func plusTapped(_ sender: Any) {
@@ -76,7 +44,7 @@ class DoctorListViewController:UITableViewController{
           let doctorEntryViewController = segue.destination as? DoctorEntryViewController else {
       return
     }
-    doctorEntryViewController.doctor = doctorInfo[doctorInfoAtIndex]
+    doctorEntryViewController.doctor = doctors[doctorInfoAtIndex]
   }
 
 
@@ -98,15 +66,15 @@ class DoctorListViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return doctorInfo.count
+    return doctors.count
   }
 
   static var cellIdentifier = "DoctorSubtitleCell"
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: DoctorListViewController.cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: DoctorListViewController.cellIdentifier)
 
-    cell.textLabel?.text = doctorInfo[indexPath.row].name
-    cell.detailTextLabel?.text = doctorInfo[indexPath.row].specialty
+    cell.textLabel?.text = doctors[indexPath.row].name
+    cell.detailTextLabel?.text = doctors[indexPath.row].specialty
     return cell
   }
 
@@ -121,11 +89,11 @@ class DoctorListViewController:UITableViewController{
     }
     let doctorItem = (segue.source as! DoctorEntryViewController).doctor
     if let lastTappedDoctorIndex = lastTappedDoctorIndex {
-      doctorInfo[lastTappedDoctorIndex] = doctorItem
+      doctors[lastTappedDoctorIndex] = doctorItem
     } else {
-      doctorInfo.append(doctorItem)
+      doctors.append(doctorItem)
     }
-
+    LocalStorage.SaveDoctors(doctors)
     tableView.reloadData()
   }
 
