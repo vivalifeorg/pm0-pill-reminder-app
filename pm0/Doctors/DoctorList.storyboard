@@ -89,6 +89,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="k31-AD-THS" kind="relationship" relationship="rootViewController" id="Yzj-WG-7ZG"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egH-0t-Q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,4 +411,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Yzj-WG-7ZG"/>
+    </inferredMetricsTieBreakers>
 </document>
