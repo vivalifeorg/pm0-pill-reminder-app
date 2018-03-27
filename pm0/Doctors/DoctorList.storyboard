@@ -242,7 +242,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
-                        <segue destination="k31-AD-THS" kind="showDetail" identifier="editDoctorSegue" id="Skw-uX-SM4"/>
+                        <segue destination="k31-AD-THS" kind="show" identifier="editDoctorSegue" id="ubs-K7-yKP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zky-Et-1c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,9 +260,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="k31-AD-THS" kind="relationship" relationship="rootViewController" id="1u3-36-L89"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egH-0t-Q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,7 +268,7 @@
         <!--Doctor Entry-->
         <scene sceneID="xpX-C8-vCV">
             <objects>
-                <tableViewController id="k31-AD-THS" userLabel="Doctor Entry" sceneMemberID="viewController">
+                <tableViewController id="k31-AD-THS" userLabel="Doctor Entry" customClass="DoctorEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfM-zy-NcE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,12 +528,12 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7fV-zY-jSc">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="Gbe-eJ-rgB"/>
+                                <segue destination="uXa-ke-TRQ" kind="unwind" identifier="canceledDoctorUnwind" unwindAction="unwindToDoctorListWithSegue:" id="s2I-Fg-vca"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="gm2-aY-QAI">
                             <connections>
-                                <segue destination="uXa-ke-TRQ" kind="unwind" unwindAction="unwindToDoctorListWithSegue:" id="A1o-kS-g2g"/>
+                                <segue destination="uXa-ke-TRQ" kind="unwind" identifier="savedDoctorEditOrNew" unwindAction="unwindToDoctorListWithSegue:" id="A1o-kS-g2g"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -574,7 +571,4 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="1u3-36-L89"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,14 @@
 
 import UIKit
 
-class DoctorEntryViewController:UIViewController{
+class DoctorEntryViewController:UITableViewController{
+  var doctor:DoctorInfo = DoctorInfo() {
+    didSet{
+      guard isViewLoaded else{
+        return
+      }
 
+      //todo move doctor values to here
+    }
+  }
 }
