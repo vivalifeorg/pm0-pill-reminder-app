@@ -52,7 +52,7 @@ class DoctorListViewController:UITableViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //remove excess lines
-    doctorInfo = (1..<10).map{_ in DoctorInfo()}
+    doctorInfo = (1..<2).map{_ in DoctorInfo()}
   }
 
   @IBAction func plusTapped(_ sender: Any) {
@@ -73,10 +73,9 @@ class DoctorListViewController:UITableViewController{
 
   func prepareToEdit(segue:UIStoryboardSegue, doctorInfoAtIndex:Int){
     guard segue.identifier == editSegueIdentifier,
-          let doctorEntryViewController = segue.destination as? DoctorEntryViewController else{
+          let doctorEntryViewController = segue.destination as? DoctorEntryViewController else {
       return
     }
-
     doctorEntryViewController.doctor = doctorInfo[doctorInfoAtIndex]
   }
 
@@ -92,6 +91,23 @@ class DoctorListViewController:UITableViewController{
     else{
       lastTappedDoctorIndex = nil
     }
+  }
+
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return doctorInfo.count
+  }
+
+  static var cellIdentifier = "DoctorSubtitleCell"
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: DoctorListViewController.cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: DoctorListViewController.cellIdentifier)
+
+    cell.textLabel?.text = doctorInfo[indexPath.row].name
+    cell.detailTextLabel?.text = doctorInfo[indexPath.row].specialty
+    return cell
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
