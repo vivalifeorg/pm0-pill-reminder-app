@@ -371,12 +371,14 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <connections>
-                        <outlet property="addressContLabel" destination="CBi-IM-qjh" id="QTC-W4-G4T"/>
-                        <outlet property="addressLabel" destination="7bX-oB-Fwn" id="ab7-bb-X6g"/>
+                        <outlet property="addressContLabel" destination="j58-Nw-BeP" id="guk-ym-jKx"/>
+                        <outlet property="addressLabel" destination="rCJ-Ve-UfB" id="lVc-Ce-hLw"/>
+                        <outlet property="faxLabel" destination="7bX-oB-Fwn" id="VqW-a4-CrJ"/>
                         <outlet property="nameLabel" destination="Q6w-C5-J8f" id="4V1-tw-oks"/>
+                        <outlet property="phoneLabel" destination="CBi-IM-qjh" id="IbP-Nm-gc7"/>
                         <outlet property="specialtyLabel" destination="K6C-rV-eFo" id="ZpR-sJ-yS8"/>
-                        <outlet property="stateLabel" destination="rCJ-Ve-UfB" id="yEG-A6-zav"/>
-                        <outlet property="zipLabel" destination="j58-Nw-BeP" id="Vik-3R-0dg"/>
+                        <outlet property="stateLabel" destination="Vyk-DK-glM" id="vWz-MR-ct0"/>
+                        <outlet property="zipLabel" destination="pfL-DF-uag" id="NAk-gp-ya0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G31-qo-iAv" userLabel="First Responder" sceneMemberID="firstResponder"/>

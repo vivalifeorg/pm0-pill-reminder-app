@@ -115,6 +115,7 @@ struct Prescription:Codable{
 struct Address:Codable{
   var street:String
   var streetCont:String
+  var city:String
   var state:String
   var ZIP:String
 }
@@ -140,7 +141,7 @@ extension DoctorInfo{
   init(){
     name = ""
     specialty = ""
-    address = Address(street: "", streetCont: "", state: "", ZIP: "")
+    address = Address(street: "", streetCont: "", city: "", state: "", ZIP: "")
     fax = FaxNumber(number:"")
     phone = PhoneNumber(number:"")
   }

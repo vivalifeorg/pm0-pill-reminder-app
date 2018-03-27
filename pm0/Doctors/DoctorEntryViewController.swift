@@ -15,6 +15,8 @@ class DoctorEntryViewController:UITableViewController{
   @IBOutlet weak var addressContLabel:PrescriptionLineEntry!
   @IBOutlet weak var stateLabel:PrescriptionLineEntry!
   @IBOutlet weak var zipLabel:PrescriptionLineEntry!
+  @IBOutlet weak var phoneLabel:PrescriptionLineEntry!
+  @IBOutlet weak var faxLabel:PrescriptionLineEntry!
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     updateDoctorItem()
@@ -50,6 +52,8 @@ class DoctorEntryViewController:UITableViewController{
     newDoctor.address.streetCont = addressContLabel?.searchTextField.text ?? ""
     newDoctor.address.state = stateLabel?.searchTextField.text ?? ""
     newDoctor.address.ZIP = zipLabel?.searchTextField.text ?? ""
+    newDoctor.phone.number = phoneLabel?.searchTextField.text ?? ""
+    newDoctor.fax.number = faxLabel?.searchTextField.text ?? ""
     doctor = newDoctor
   }
 }

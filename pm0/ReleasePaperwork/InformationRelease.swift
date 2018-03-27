@@ -33,12 +33,7 @@ extension UILabel{
   }
 }
 
-struct Provider{
-  let fax:String
-  let name:String
-  let address:String
-  let phone:String
-}
+
 
 struct Patient{
   let name:String
@@ -56,8 +51,7 @@ let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeader
 let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHeaderFontSize))!
 
 
-let providers = [Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}"),
-                 Provider(fax: "{{{fax}}}", name: "{{{name}}}", address: "{{{address}}}", phone: "{{{phone}}}")]
+let providers = LocalStorage.doctors.load()
 //let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
 
 let patient = Patient(name:"Josh Ditel", phoneNumber:"(555) 555-5555")
@@ -286,9 +280,11 @@ func samplePDF() -> String {
   let allProviderText:String = providers.map{ provider in
     let providerText =
     "\(provider.name)\n" +
-    "    Address: \(provider.address)\n" +
-    "    Phone: \t\(provider.phone)\n" +
-    "    Fax: \t\(provider.fax)\n\n"
+    "    \(provider.address.street)\n" +
+    "    \(provider.address.streetCont)\n" +
+    "    \(provider.address.city), \(provider.address.state). \(provider.address.ZIP)\n" +
+    "    Phone: \t\(provider.phone.number)\n" +
+    "    Fax: \t\(provider.fax.number)\n\n"
 
     return providerText
     }.joined()

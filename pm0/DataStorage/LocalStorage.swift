@@ -25,19 +25,17 @@ public typealias KeychainItem = String
 
 var debugKeychain = false
 
-
-
 enum LocalStorage{
   enum KeychainKey:String{
     case userPrescriptions
     case userDoctors
   }
 
-  static var prescriptions:Loadable<Prescription>{
-    return Loadable(key:.userPrescriptions)
+  static var prescriptions:Persistor<Prescription>{
+    return Persistor(key:.userPrescriptions)
   }
-  static var doctors:Loadable<DoctorInfo>{
-    return Loadable(key:.userDoctors)
+  static var doctors:Persistor<DoctorInfo>{
+    return Persistor(key:.userDoctors)
   }
 }
 
@@ -48,7 +46,7 @@ protocol LocalStorageWrapper{
   var version:String {get}
 }
 
-struct Loadable<T:Codable>{
+struct Persistor<T:Codable>{
   var key:LocalStorage.KeychainKey
   func blank(){
     BlankLocal(key: key)
@@ -58,36 +56,6 @@ struct Loadable<T:Codable>{
   }
   func save(_ items:[T]){
     SaveLocal(items, key: key)
-  }
-}
-
-extension LocalStorage{
-
-  static func BlankPrescriptions(){
-    BlankLocal(key: .userPrescriptions)
-  }
-
-  static func LoadPrescriptions()->[Prescription]{
-   return LoadLocal(key: .userPrescriptions)
-  }
-
-  static func SavePrescriptions(_ prescriptions:[Prescription]){
-    SaveLocal(prescriptions, key: .userPrescriptions)
-  }
-}
-
-extension LocalStorage{
-
-  static func BlankDoctors(){
-    BlankLocal(key: LocalStorage.KeychainKey.userDoctors)
-  }
-
-  static func LoadDoctors()->[DoctorInfo]{
-    return LoadLocal(key: LocalStorage.KeychainKey.userDoctors)
-  }
-
-  static func SaveDoctors(_ doctors:[DoctorInfo]){
-    SaveLocal(doctors, key: LocalStorage.KeychainKey.userDoctors)
   }
 }
 
