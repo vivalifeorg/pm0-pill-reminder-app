@@ -11,6 +11,7 @@ PODS:
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
+  - SwiftGen (5.2.1)
 
 DEPENDENCIES:
   - Down (from `https://github.com/iwasrobbed/Down`, commit `4082c8d9432eb37ba6d7a4c379e714828238d061`)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - PhaxioSwiftAlamofire (from `pm0/ReleasePaperwork/generated/phaxio_swagger_pod/`)
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
+  - SwiftGen
 
 EXTERNAL SOURCES:
   Down:
@@ -52,7 +54,8 @@ SPEC CHECKSUMS:
   PhaxioSwiftAlamofire: b3ae79c0e45443d943d8282a8bdccb662f722f63
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
 
-PODFILE CHECKSUM: 457852278b78eafcdda215e7b3c065a76287f4e2
+PODFILE CHECKSUM: b705ee45d2cd168de3a6b3935d9f202b9d934e26
 
 COCOAPODS: 1.4.0.beta.2

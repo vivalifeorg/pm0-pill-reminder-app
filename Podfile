@@ -11,6 +11,7 @@ target "pm0" do
   pod 'PhaxioSwiftAlamofire', :path => "pm0/ReleasePaperwork/generated/phaxio_swagger_pod/" #faxing provider generated API
   pod 'PDFGenerator', '~> 2.1', :inhibit_warnings => true #PDF making lib
   pod 'Down', :inhibit_warnings => true, :git => 'https://github.com/iwasrobbed/Down', :commit => '4082c8d9432eb37ba6d7a4c379e714828238d061'  #markdown renderer
+  pod 'SwiftGen', :inhibit_warnings => true
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334

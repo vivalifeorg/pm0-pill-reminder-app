@@ -384,7 +384,7 @@ extension UpcomingDayViewController{
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return UIImage(named:"MyDayEmpty")
+    return UIImage(named:"Empty-MyDay")
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

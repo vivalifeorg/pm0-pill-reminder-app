@@ -30,6 +30,7 @@
 		896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */; };
 		896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */; };
 		8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */; };
+		897223DF206C12CF0008F80A /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 897223DE206C12CF0008F80A /* swiftgen.yml */; };
 		8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8982757A206A86760058A6E8 /* DoctorEntryViewController.swift */; };
 		898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */; };
 		898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93B206139CA006ED4CF /* FaxHandRolled.swift */; };
@@ -86,6 +87,7 @@
 		896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionLineEntry.swift; sourceTree = "<group>"; };
 		896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionEntryViewController.storyboard; sourceTree = "<group>"; };
 		8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDisplayLabel.swift; sourceTree = "<group>"; };
+		897223DE206C12CF0008F80A /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = swiftgen.yml; path = ../swiftgen.yml; sourceTree = "<group>"; };
 		8982757A206A86760058A6E8 /* DoctorEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorEntryViewController.swift; sourceTree = "<group>"; };
 		898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxGeneratedSwagger.swift; sourceTree = "<group>"; };
 		898BC93B206139CA006ED4CF /* FaxHandRolled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxHandRolled.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		89F3D98D1FF6AC4F0081FA77 /* pm0 */ = {
 			isa = PBXGroup;
 			children = (
+				897223DE206C12CF0008F80A /* swiftgen.yml */,
 				8951A91D205B01FE0027076E /* TestPages */,
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
@@ -316,6 +319,7 @@
 				89B685722052D12C00D2406E /* Zero Build Date to fix Source Control */,
 				AC74CBD78C2439E962D213D3 /* [CP] Embed Pods Frameworks */,
 				F95AC5C88A143134E69FE5C4 /* [CP] Copy Pods Resources */,
+				897223DD206C128F0008F80A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -402,6 +406,7 @@
 				89A5168D205879ED0069D9AE /* FaxableDocuments.storyboard in Resources */,
 				894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */,
 				896052C12047266D00DF502C /* PrescriptionEntryViewController.storyboard in Resources */,
+				897223DF206C12CF0008F80A /* swiftgen.yml in Resources */,
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
 				894FEC0820697F6A00E48ECA /* PrescriptionDisplayView.xib in Resources */,
@@ -437,6 +442,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		897223DD206C128F0008F80A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
 		};
 		89B685722052D12C00D2406E /* Zero Build Date to fix Source Control */ = {
 			isa = PBXShellScriptBuildPhase;
