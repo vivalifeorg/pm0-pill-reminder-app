@@ -105,7 +105,7 @@ class DoctorListViewController:UITableViewController{
 import DZNEmptyDataSet
 extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return UIImage(named:"DoctorMap")
+    return Asset.emptyDoc.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -113,7 +113,7 @@ extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelega
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string:"Get Directions, Send Documents")
+    return NSAttributedString(string:"Get Directions, Send Documents.\n\nTap '+' in the upper right corner to add yours now.")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{

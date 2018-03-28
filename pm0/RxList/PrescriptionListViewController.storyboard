@@ -97,7 +97,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Prescriptions" image="first" id="acW-dT-cKf" userLabel="Prescriptions">
+                    <tabBarItem key="tabBarItem" title="Prescriptions" image="Tab-Rx" id="acW-dT-cKf" userLabel="Prescriptions">
                         <color key="badgeColor" red="0.76456212999999995" green="0.93386453390000002" blue="0.39310157299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Prescriptions" largeTitleDisplayMode="always" id="7rG-cW-eqS"/>
@@ -122,7 +122,7 @@
     </scenes>
     <resources>
         <image name="BottomAddButton" width="206" height="206"/>
-        <image name="first" width="23" height="10"/>
+        <image name="Tab-Rx" width="23" height="10"/>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

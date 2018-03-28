@@ -2,4 +2,5 @@ xcassets:
  paths:
  - pm0/Assets.xcassets
  templateName: swift4
- output: SwiftgenOutput/Assets.swift
+ output: pm0/SwiftgenOutput/Assets.swift
+

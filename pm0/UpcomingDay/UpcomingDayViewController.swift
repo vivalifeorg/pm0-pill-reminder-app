@@ -384,15 +384,15 @@ extension UpcomingDayViewController{
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return UIImage(named:"Empty-MyDay")
+    return Asset.emptyMyDay.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "No prescriptions (yet)")
+    return NSAttributedString(string: "Your Daily Medication Schedule")
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string:"Tap the + button on the Prescriptions tab to add some")
+    return NSAttributedString(string:"Add some prescriptions to see a schedule here. Do so on the 'Prescriptions' tab below.")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{

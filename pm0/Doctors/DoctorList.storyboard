@@ -58,7 +58,7 @@
                             <outlet property="delegate" destination="Gfu-gL-nO8" id="j4t-Sh-R51"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Doctors" image="Cross" id="lGO-1U-1b1"/>
+                    <tabBarItem key="tabBarItem" title="Doctors" image="Tab-Doc" id="lGO-1U-1b1"/>
                     <navigationItem key="navigationItem" title="Doctors" largeTitleDisplayMode="always" id="XP5-pS-Axq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jx5-51-5st">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -405,7 +405,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cross" width="23" height="23"/>
+        <image name="Tab-Doc" width="23" height="23"/>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -414,6 +414,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yzj-WG-7ZG"/>
+        <segue reference="ubs-K7-yKP"/>
     </inferredMetricsTieBreakers>
 </document>

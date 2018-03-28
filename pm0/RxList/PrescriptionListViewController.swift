@@ -228,10 +228,12 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
 
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return UIImage(named:"RxEmptyState")
+    return Asset.emptyRx.image
   }
 
-  
+  func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
+    return 0
+  }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
     return NSAttributedString(string: "No prescriptions (yet)")

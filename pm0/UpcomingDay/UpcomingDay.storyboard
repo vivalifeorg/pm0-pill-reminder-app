@@ -79,7 +79,7 @@
                             <outlet property="delegate" destination="iMG-cd-WTy" id="hE3-3T-8Qq"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="My Day" image="second" selectedImage="second" id="w8F-di-bVq">
+                    <tabBarItem key="tabBarItem" title="My Day" image="Tab-MyDay" id="w8F-di-bVq">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="My Day" largeTitleDisplayMode="always" id="yIv-Fc-fGD"/>
@@ -109,7 +109,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="23" height="16"/>
+        <image name="Tab-MyDay" width="23" height="16"/>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

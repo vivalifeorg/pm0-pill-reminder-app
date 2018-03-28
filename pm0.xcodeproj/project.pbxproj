@@ -16,6 +16,7 @@
 		890CD2FC206458DE009DF10A /* PrescriptionEntryHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */; };
 		890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FD20658538009DF10A /* RXEntryHelpText.swift */; };
 		890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FF20658E35009DF10A /* DoctorListViewController.swift */; };
+		890D425A206C16A800C20F82 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890D4259206C16A800C20F82 /* Assets.swift */; };
 		894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894092812051A9C200FA1B9F /* LocalStorage.swift */; };
 		894DBC40205040640020353F /* PrescriptionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */; };
 		894FEC0620696E8D00E48ECA /* MyDayTableSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 894FEC0520696E8D00E48ECA /* MyDayTableSectionHeaderView.xib */; };
@@ -72,6 +73,7 @@
 		890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryHelpViewController.swift; sourceTree = "<group>"; };
 		890CD2FD20658538009DF10A /* RXEntryHelpText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXEntryHelpText.swift; sourceTree = "<group>"; };
 		890CD2FF20658E35009DF10A /* DoctorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorListViewController.swift; sourceTree = "<group>"; };
+		890D4259206C16A800C20F82 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		894092812051A9C200FA1B9F /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		894092852051AAE700FA1B9F /* Keychain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Keychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PrescriptionListViewController.storyboard; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 				EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		890D4258206C16A800C20F82 /* SwiftgenOutput */ = {
+			isa = PBXGroup;
+			children = (
+				890D4259206C16A800C20F82 /* Assets.swift */,
+			);
+			path = SwiftgenOutput;
 			sourceTree = "<group>";
 		};
 		894092832051A9C800FA1B9F /* DataStorage */ = {
@@ -258,7 +268,6 @@
 		89F3D98D1FF6AC4F0081FA77 /* pm0 */ = {
 			isa = PBXGroup;
 			children = (
-				897223DE206C12CF0008F80A /* swiftgen.yml */,
 				8951A91D205B01FE0027076E /* TestPages */,
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
@@ -273,7 +282,9 @@
 				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
 				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
+				897223DE206C12CF0008F80A /* swiftgen.yml */,
 				89F3D99C1FF6AC4F0081FA77 /* Info.plist */,
+				890D4258206C16A800C20F82 /* SwiftgenOutput */,
 			);
 			path = pm0;
 			sourceTree = "<group>";
@@ -541,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */,
+				890D425A206C16A800C20F82 /* Assets.swift in Sources */,
 				894FEC0C2069845800E48ECA /* NibLoaderViewExtension.swift in Sources */,
 				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
