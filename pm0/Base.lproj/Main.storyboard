@@ -35,7 +35,7 @@
         <scene sceneID="rq9-zd-6T4">
             <objects>
                 <viewControllerPlaceholder storyboardName="DoctorList" id="Gqp-oU-mPV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="Cross" id="a8H-9i-LIJ"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="Tab-Doc" id="a8H-9i-LIJ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWh-Fe-Zyu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,6 +73,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cross" width="23" height="23"/>
+        <image name="Tab-Doc" width="23" height="23"/>
     </resources>
 </document>

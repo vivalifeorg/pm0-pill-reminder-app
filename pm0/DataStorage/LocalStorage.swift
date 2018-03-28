@@ -16,7 +16,7 @@
 
 import Foundation
 import KeychainAccess
-
+import Yams
 
 
 fileprivate var keychain = Keychain(service:"com.vivalife.app.pm0.prescription-tracking")
@@ -91,17 +91,27 @@ struct Wrapper<T:Codable>:Codable{
   let key:LocalStorage.KeychainKey
 }
 
-import Yams
 
 let yamlEncoder = YAMLEncoder()
 let shouldExportToYamlForTesting = true
 
-func yamlize<T:Codable>(_ toEncode:T, key:LocalStorage.KeychainKey)->String{
-  guard let yaml = try? yamlEncoder.encode(toEncode) else{
-    return "<CANNOT ENCODE"
+let operatingSystemName = UIDevice.current.systemName
+let operatingSystemVersion = UIDevice.current.systemVersion
+
+extension Bundle {
+  var releaseVersionNumber: String! {
+    return infoDictionary?["CFBundleShortVersionString"] as? String
   }
-  print(yaml)
-  return yaml
+  var buildVersionNumber: String! {
+    return infoDictionary?["CFBundleVersion"] as? String
+  }
+  var compositeVersionNumber: String{
+    return "\(releaseVersionNumber!) (\(buildVersionNumber!))"
+  }
+}
+
+func yamlize<T:Codable>(_ toEncode:T, key:LocalStorage.KeychainKey)->String!{
+  return try? yamlEncoder.encode(toEncode)
 }
 
 private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
@@ -111,7 +121,14 @@ private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
   }
 
   if shouldExportToYamlForTesting {
-    yamlize(wrapped, key:key)
+    print("# ==== Storage Key: \(key.rawValue) ====")
+    print("# ==== Exporting OS Name: \(operatingSystemName) ====")
+    print("# ==== Exporting OS Version: \(operatingSystemVersion) ====")
+    print("# ==== Exporting App Version: \(Bundle.main.compositeVersionNumber) ====")
+    print("# ==== Export Date: \(Date()) ====")
+    print("# ==== \(key.rawValue) BEGIN ====")
+    print(yamlize(wrapped, key:key))
+    print("# ==== \(key.rawValue) END ====")
   }
 
   keychain[string: key.rawValue] = String(data:encoded,encoding:.utf8)
