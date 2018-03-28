@@ -16,12 +16,11 @@
             <objects>
                 <tableViewController id="Gfu-gL-nO8" customClass="DoctorListViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CTx-GB-Z6B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <viewLayoutGuide key="safeArea" id="E0L-HS-O3f"/>
                         <color key="separatorColor" name="vlTextColor"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSubtitleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DoctorSubtitleCell" textLabel="Fyu-FA-wNN" detailTextLabel="IRq-TH-IuQ" style="IBUITableViewCellStyleSubtitle" id="euR-Vp-vx2">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -68,7 +67,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <segue destination="k31-AD-THS" kind="show" identifier="editDoctorSegue" id="ubs-K7-yKP"/>
@@ -391,6 +390,7 @@
             <objects>
                 <navigationController storyboardIdentifier="DoctorListNav" title="Doctors" useStoryboardIdentifierAsRestorationIdentifier="YES" id="18p-Q8-jOg" userLabel="Doctor Nav" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="bbv-Aw-mhY">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
