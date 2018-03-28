@@ -22,8 +22,20 @@ class DoctorEntryViewController:UITableViewController{
     updateDoctorItem()
   }
 
+
+  func hideHelpers(){
+    let entryLabels = [
+      nameLabel,specialtyLabel,addressLabel,addressContLabel,stateLabel,
+      zipLabel,phoneLabel,faxLabel
+    ]
+    for entry in entryLabels{
+      entry?.showHelpButton.isHidden = true
+    }
+  }
+
   override func viewDidLoad() {
     updateView()
+    hideHelpers()
   }
 
   var doctor:DoctorInfo = DoctorInfo() {
