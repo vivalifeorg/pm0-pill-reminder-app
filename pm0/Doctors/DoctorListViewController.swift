@@ -84,7 +84,7 @@ class DoctorListViewController:UITableViewController{
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     lastTappedDoctorIndex = indexPath.row
-    performSegue(withIdentifier: editSegueIdentifier, sender: self)
+    performSegue(withIdentifier: "showDoctor", sender: self)
   }
 
   func clearSelection(){

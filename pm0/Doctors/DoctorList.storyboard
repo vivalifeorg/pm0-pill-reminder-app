@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,6 +72,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <segue destination="k31-AD-THS" kind="show" identifier="editDoctorSegue" id="ubs-K7-yKP"/>
+                        <segue destination="jTf-49-tD4" kind="show" identifier="showDoctor" id="Y6o-w7-1WF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zky-Et-1c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +97,303 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egH-0t-Q28" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="172" y="-800"/>
+        </scene>
+        <!--Doctor-->
+        <scene sceneID="Lqs-KI-n6T">
+            <objects>
+                <tableViewController title="Doctor" id="jTf-49-tD4" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K9Z-pJ-9K8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <sections>
+                            <tableViewSection id="rxb-ju-u0s">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="164" id="Mgj-D9-c6n">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mgj-D9-c6n" id="kJv-9u-lwj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="163.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Yi-nm-dos">
+                                                    <rect key="frame" x="19" y="11" width="180" height="128"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="7Yi-nm-dos" secondAttribute="height" multiplier="180:128" id="39i-Cy-9in"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="128" id="b0g-Is-nqP"/>
+                                                    </constraints>
+                                                </mapView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Xah-FX-jt8">
+                                                    <rect key="frame" x="211" y="10" width="154" height="33"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <state key="normal" title="  Driving Directions  "/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Xah-FX-jt8" firstAttribute="top" secondItem="kJv-9u-lwj" secondAttribute="top" constant="10" id="126-71-OCA"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xah-FX-jt8" secondAttribute="trailing" constant="10" id="8qw-Kw-fCo"/>
+                                                <constraint firstItem="7Yi-nm-dos" firstAttribute="top" secondItem="kJv-9u-lwj" secondAttribute="top" constant="11" id="DNb-6U-pNV"/>
+                                                <constraint firstItem="Xah-FX-jt8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Yi-nm-dos" secondAttribute="trailing" constant="8" id="ERu-TS-vG6"/>
+                                                <constraint firstItem="7Yi-nm-dos" firstAttribute="leading" secondItem="kJv-9u-lwj" secondAttribute="leading" constant="19" id="Mco-gO-zQ0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="Fr8-et-jH1" detailTextLabel="aEC-k5-6L5" style="IBUITableViewCellStyleValue1" id="NqU-Co-yDz">
+                                        <rect key="frame" x="0.0" y="164" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NqU-Co-yDz" id="ZqL-yV-Uvw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fr8-et-jH1">
+                                                    <rect key="frame" x="16" y="10" width="51.5" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aEC-k5-6L5">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="KaZ-NA-23a" detailTextLabel="Ghb-2A-Jrb" style="IBUITableViewCellStyleValue1" id="Y0f-1q-Wa8">
+                                        <rect key="frame" x="0.0" y="208" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y0f-1q-Wa8" id="1e1-ou-heu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Speciality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KaZ-NA-23a">
+                                                    <rect key="frame" x="16" y="10" width="85" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ghb-2A-Jrb">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="bJS-To-SO6" detailTextLabel="qG8-fE-Dle" style="IBUITableViewCellStyleValue1" id="R1g-0J-Zsx">
+                                        <rect key="frame" x="0.0" y="252" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1g-0J-Zsx" id="oWl-MH-9UV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bJS-To-SO6">
+                                                    <rect key="frame" x="16" y="10" width="72" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qG8-fE-Dle">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="nBn-Fr-auR" detailTextLabel="0nr-nr-oAH" style="IBUITableViewCellStyleValue1" id="xgy-AL-TEU">
+                                        <rect key="frame" x="0.0" y="296" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xgy-AL-TEU" id="a4q-OA-lT5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Address (cont)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nBn-Fr-auR">
+                                                    <rect key="frame" x="16" y="10" width="128.5" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0nr-nr-oAH">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="irz-iX-EIG" detailTextLabel="x4w-4N-Ibj" style="IBUITableViewCellStyleValue1" id="LL5-8H-bgA">
+                                        <rect key="frame" x="0.0" y="340" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LL5-8H-bgA" id="Qyg-n4-nDN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="irz-iX-EIG">
+                                                    <rect key="frame" x="16" y="10" width="56" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4w-4N-Ibj">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Egj-dx-b9B" detailTextLabel="kY4-Ek-jop" style="IBUITableViewCellStyleValue1" id="Pz4-Jt-Xa9">
+                                        <rect key="frame" x="0.0" y="384" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pz4-Jt-Xa9" id="asl-Qj-Pcu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Egj-dx-b9B">
+                                                    <rect key="frame" x="16" y="10" width="30.5" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kY4-Ek-jop">
+                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="114" id="j1K-jp-YGp">
+                                        <rect key="frame" x="0.0" y="428" width="375" height="114"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j1K-jp-YGp" id="zcq-Sl-6gO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-Em-hAq">
+                                                    <rect key="frame" x="23" y="61" width="339" height="33"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <state key="normal" title="Fax: Medication Log"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XnW-gD-T4p">
+                                                    <rect key="frame" x="196.5" y="20" width="165.5" height="33"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <state key="normal" title="Fax: Patient History"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="smL-co-8ki">
+                                                    <rect key="frame" x="23" y="20" width="165.5" height="33"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <state key="normal" title="Fax: HIPAA Release"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="gfp-Em-hAq" firstAttribute="leading" secondItem="zcq-Sl-6gO" secondAttribute="leading" constant="23" id="IrO-w6-kcS"/>
+                                                <constraint firstItem="smL-co-8ki" firstAttribute="leading" secondItem="zcq-Sl-6gO" secondAttribute="leading" constant="23" id="M7p-AN-Kz8"/>
+                                                <constraint firstItem="XnW-gD-T4p" firstAttribute="leading" secondItem="smL-co-8ki" secondAttribute="trailing" constant="8" id="RAN-AA-Twy"/>
+                                                <constraint firstItem="gfp-Em-hAq" firstAttribute="top" secondItem="smL-co-8ki" secondAttribute="bottom" constant="8" id="SAl-uR-d5U"/>
+                                                <constraint firstItem="smL-co-8ki" firstAttribute="width" secondItem="XnW-gD-T4p" secondAttribute="width" id="SKh-UX-fap"/>
+                                                <constraint firstAttribute="bottom" secondItem="gfp-Em-hAq" secondAttribute="bottom" constant="20" id="X9Y-cW-F9G"/>
+                                                <constraint firstItem="smL-co-8ki" firstAttribute="top" secondItem="XnW-gD-T4p" secondAttribute="top" id="Ysh-44-F0S"/>
+                                                <constraint firstAttribute="trailing" secondItem="XnW-gD-T4p" secondAttribute="trailing" constant="13" id="co1-OB-OU1"/>
+                                                <constraint firstAttribute="trailing" secondItem="gfp-Em-hAq" secondAttribute="trailing" constant="13" id="fCe-IX-22n"/>
+                                                <constraint firstItem="gfp-Em-hAq" firstAttribute="height" secondItem="smL-co-8ki" secondAttribute="height" id="pbW-4W-99x"/>
+                                                <constraint firstItem="gfp-Em-hAq" firstAttribute="height" secondItem="XnW-gD-T4p" secondAttribute="height" id="uIc-QI-JkC"/>
+                                                <constraint firstItem="smL-co-8ki" firstAttribute="top" secondItem="zcq-Sl-6gO" secondAttribute="top" constant="20" id="wYp-fZ-mZD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="jTf-49-tD4" id="EQw-7s-Smf"/>
+                            <outlet property="delegate" destination="jTf-49-tD4" id="2dO-aa-nwJ"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Alice Sharm" largeTitleDisplayMode="always" id="zBY-I0-vgq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="y5z-Ga-0vr">
+                            <connections>
+                                <segue destination="k31-AD-THS" kind="show" id="GLq-ic-OTj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMb-mc-fTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="120.8" y="106.59670164917542"/>
         </scene>
         <!--Doctor Entry-->
         <scene sceneID="xpX-C8-vCV">
@@ -383,7 +682,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G31-qo-iAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="uXa-ke-TRQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="479" y="64"/>
+            <point key="canvasLocation" x="958" y="60"/>
         </scene>
         <!--Doctor Nav-->
         <scene sceneID="Um7-uI-roG">
@@ -407,13 +706,55 @@
     <resources>
         <image name="Tab-Doc" width="23" height="23"/>
         <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ubs-K7-yKP"/>
+        <segue reference="GLq-ic-OTj"/>
     </inferredMetricsTieBreakers>
 </document>
