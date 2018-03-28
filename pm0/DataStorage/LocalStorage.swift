@@ -26,7 +26,7 @@ public typealias KeychainItem = String
 var debugKeychain = false
 
 enum LocalStorage{
-  enum KeychainKey:String{
+  enum KeychainKey:String,Codable{
     case userPrescriptions
     case userDoctors
   }
@@ -87,15 +87,31 @@ struct Wrapper<T:Codable>:Codable{
   }
 
   let wrapped:[T]
-  var version:String{
-    return WrapperVersions.v0_1_unversioned.rawValue
+  let version:String = WrapperVersions.v0_1_unversioned.rawValue
+  let key:LocalStorage.KeychainKey
+}
+
+import Yams
+
+let yamlEncoder = YAMLEncoder()
+let shouldExportToYamlForTesting = true
+
+func yamlize<T:Codable>(_ toEncode:T, key:LocalStorage.KeychainKey)->String{
+  guard let yaml = try? yamlEncoder.encode(toEncode) else{
+    return "<CANNOT ENCODE"
   }
+  print(yaml)
+  return yaml
 }
 
 private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
-  let wrapped = Wrapper<T>(wrapped:items)
+  let wrapped = Wrapper<T>(wrapped:items,key:key)
   guard let encoded = try? JSONEncoder().encode(wrapped) else {
     return
+  }
+
+  if shouldExportToYamlForTesting {
+    yamlize(wrapped, key:key)
   }
 
   keychain[string: key.rawValue] = String(data:encoded,encoding:.utf8)
