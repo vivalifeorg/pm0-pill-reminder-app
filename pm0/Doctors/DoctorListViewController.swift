@@ -87,7 +87,13 @@ class DoctorListViewController:UITableViewController{
     performSegue(withIdentifier: editSegueIdentifier, sender: self)
   }
 
+  func clearSelection(){
+    if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
+      self.tableView.deselectRow(at: selectionIndexPath, animated: false)
+    }
+  }
   @IBAction func unwindToDoctorList(segue:UIStoryboardSegue){
+    clearSelection()
     guard segue.identifier == "savedDoctorEditOrNew" else{
       return
     }
