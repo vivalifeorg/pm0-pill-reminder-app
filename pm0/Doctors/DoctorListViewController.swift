@@ -9,6 +9,8 @@
 import UIKit
 
 
+//Add empty screen here for doctors, draw art for doctors and my day
+
 class DoctorListViewController:UITableViewController{
 
   var doctors = [DoctorInfo]()
@@ -21,6 +23,8 @@ class DoctorListViewController:UITableViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //remove excess lines
+    tableView.emptyDataSetSource = self;
+    tableView.emptyDataSetDelegate = self;
   }
 
   @IBAction func plusTapped(_ sender: Any) {
@@ -97,4 +101,30 @@ class DoctorListViewController:UITableViewController{
     tableView.reloadData()
   }
 
+}
+import DZNEmptyDataSet
+extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+  func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    return UIImage(named:"DoctorMap")
+  }
+
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "Your Doctors Centralized")
+  }
+
+  func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string:"Get Directions, Send Documents")
+  }
+
+  func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
+    return 0
+  }
+
+  func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+    return true
+  }
+
+  func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
+    debugPrint("Tapped")
+  }
 }

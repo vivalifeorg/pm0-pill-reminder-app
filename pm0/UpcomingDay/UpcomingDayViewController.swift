@@ -22,7 +22,7 @@ class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
   }
 }
 
-class UpcomingDayViewControllerDoseCell:UITableViewCell{
+@objc class UpcomingDayViewControllerDoseCell:UITableViewCell{
 
   @IBOutlet weak var nextDoseIndicator:UILabel!
   @IBOutlet weak var prescriptionView:PrescriptionDisplayView!
@@ -384,7 +384,7 @@ extension UpcomingDayViewController{
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return UIImage(named:"RxEmptyState")
+    return UIImage(named:"MyDayEmpty")
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
