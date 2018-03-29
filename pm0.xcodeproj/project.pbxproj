@@ -44,6 +44,7 @@
 		89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */; };
 		89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B4E1D2204DEFC200A09B27 /* VLColors.swift */; };
 		89C66829206D7478004A0731 /* HelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C66828206D7478004A0731 /* HelpViewController.storyboard */; };
+		89C6682B206D7ED8004A0731 /* VivaButtonA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6682A206D7ED8004A0731 /* VivaButtonA.swift */; };
 		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
@@ -103,6 +104,7 @@
 		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89B4E1D2204DEFC200A09B27 /* VLColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLColors.swift; sourceTree = "<group>"; };
 		89C66828206D7478004A0731 /* HelpViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HelpViewController.storyboard; sourceTree = "<group>"; };
+		89C6682A206D7ED8004A0731 /* VivaButtonA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaButtonA.swift; sourceTree = "<group>"; };
 		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
+				89C6682A206D7ED8004A0731 /* VivaButtonA.swift */,
 				89A5168F20587A4D0069D9AE /* Doctors */,
 				89A5168E205879F50069D9AE /* ReleasePaperwork */,
 				894DBC3E205040460020353F /* RxList */,
@@ -564,6 +567,7 @@
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
+				89C6682B206D7ED8004A0731 /* VivaButtonA.swift in Sources */,
 				8951A918205992E50027076E /* Fax.swift in Sources */,
 				898BC946206196DA006ED4CF /* FaxableDocumentsViewController.swift in Sources */,
 				8954AC5F204DCE1B00E97305 /* Models.swift in Sources */,

@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Prescription-->
+        <!--Medication-->
         <scene sceneID="LH0-pk-eQA">
             <objects>
                 <tableViewController id="O6b-de-CLH" customClass="PrescriptionEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
@@ -213,7 +213,7 @@
                             <outlet property="delegate" destination="O6b-de-CLH" id="8OY-En-vSe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Prescription" largeTitleDisplayMode="always" id="7E3-fv-fif">
+                    <navigationItem key="navigationItem" title="Medication" largeTitleDisplayMode="always" id="7E3-fv-fif">
                         <barButtonItem key="backBarButtonItem" title="Prescription" id="Ed6-hH-BlW"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YFU-5I-Vwj">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>

@@ -86,7 +86,7 @@
                         <color key="badgeColor" red="0.76456212999999995" green="0.93386453390000002" blue="0.39310157299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Prescriptions" largeTitleDisplayMode="always" id="7rG-cW-eqS">
+                    <navigationItem key="navigationItem" title="Medications" largeTitleDisplayMode="always" id="7rG-cW-eqS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CGB-pa-nGB">
                             <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

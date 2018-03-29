@@ -240,7 +240,7 @@ extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return emptyStateAttributedString("Your Prescriptions in One Place")
+    return emptyStateAttributedString("Your Medications in One Place")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
@@ -248,7 +248,7 @@ extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
   }
   
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return emptyStateAttributedString("To enter your first Rx, tap on '+' in the upper right corner of the screen.")
+    return emptyStateAttributedString("To enter a Medication, tap the '+' in the upper right corner of the screen.")
   }
 
   func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {

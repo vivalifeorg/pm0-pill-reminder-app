@@ -82,7 +82,13 @@
                     <tabBarItem key="tabBarItem" title="My Day" image="Tab-MyDay" id="w8F-di-bVq">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="My Day" largeTitleDisplayMode="always" id="yIv-Fc-fGD"/>
+                    <navigationItem key="navigationItem" title="My Day" largeTitleDisplayMode="always" id="yIv-Fc-fGD">
+                        <barButtonItem key="leftBarButtonItem" title="Help" id="MSz-UJ-0p3">
+                            <connections>
+                                <segue destination="aVp-Yo-x0x" kind="show" id="D9l-uN-37P"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -92,6 +98,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ek1-gf-gZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="877.60000000000002" y="454.72263868065971"/>
+        </scene>
+        <!--HelpViewController-->
+        <scene sceneID="XM2-Lt-NXW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HelpViewController" id="aVp-Yo-x0x" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vds-o9-V5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1412" y="0.0"/>
         </scene>
         <!--PrescriptionEntryNav-->
         <scene sceneID="qLq-fE-61N">

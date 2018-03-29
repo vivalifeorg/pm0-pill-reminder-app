@@ -397,6 +397,29 @@ extension UpcomingDayViewController{
     }
   }
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let helpVC = segue.destination as? HelpViewController {
+      helpVC.helpText =
+        """
+          This screen is a checklist of doses to take. Here is how to ensure you take all your medication as the day goes on:
+
+          As you take each dose, tap the dose here to check it off. If you tap the wrong one, tap again to uncheck it.
+
+          The >>> indicator points at your next dose today. If you have a lot of doses, this helps you keep track that you didn't miss one early on.
+
+          Each time of day says how many items are remaining for that time.
+
+          ## Related Screens
+
+          More medications and prescriptions can be added in the Medications tab.
+
+          These logs can be exported in the Faxing tab.
+        """.renderMarkdownAsAttributedString
+      helpVC.title = "\(tabBarItem.title ?? "") Tab Help"
+      return
+    }
+  }
+
 
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
     //If we're getting this, it's from the inital onboarding add, so we need to tell the user to add further elsewhere.
@@ -464,7 +487,7 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
   }
 
   func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
-    return emptyStateButtonText("Add Prescription")
+    return emptyStateButtonText("Add Medication")
   }
 
   func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
@@ -490,7 +513,7 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return emptyStateAttributedString("Your daily todo list of medications is shown here. Add prescriptions to see it by tapping the button here")
+    return emptyStateAttributedString("Your daily checklist of medications is shown here after you've added a medication to the app")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
