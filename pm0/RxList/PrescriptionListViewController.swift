@@ -75,14 +75,14 @@ class PrescriptionListViewController: UIViewController {
   @IBAction func unwindToPrescriptionListCancel(segue:UIStoryboardSegue){}
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
 
-    guard segue.identifier == "doneEditingPrescription" else{
-      return
-    }
     guard let rx = (segue.source as? PrescriptionEntryViewController)?.prescription else{
         return
     }
 
     viewModel.receivedPrescription(rx)
+    guard isViewLoaded else {
+      return
+    }
     tableView.reloadData()
   }
 
@@ -180,9 +180,7 @@ class PrescriptionListViewControllerCell:UITableViewCell{
 
 
 extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSource{
-
- 
-
+  
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path) as! PrescriptionListViewControllerCell
     cell.prescriptionDisplayView?.dosage = viewModel[path].dosage
@@ -212,21 +210,43 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
 
 }
 
+
+func colorizedAttributedString(_ string:String, color:UIColor)->NSAttributedString{
+  let attributedString = NSMutableAttributedString(string:string)
+  let range = attributedString.mutableString.range(of: string)
+  attributedString.addAttribute(.foregroundColor,
+                                value: color,
+                                range:range )
+  return attributedString
+}
+
+func emptyStateButtonText(_ string:String)->NSAttributedString{
+  return colorizedAttributedString(string, color:Asset.Colors.vlWarmTintColor.color)
+}
+
+func emptyStateAttributedString(_ string:String)->NSAttributedString{
+  return colorizedAttributedString(string, color:Asset.Colors.vlEmptyStateText.color)
+}
+
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return Asset.EmptyScreenIcons.emptyRx.image
+    return Asset.Empty.emptyRx.image
+  }
+
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return emptyStateAttributedString("Your Prescriptions in One Place")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
     return 0
   }
-
-  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "Your Prescriptions in One Place")
+  
+  func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return emptyStateAttributedString("To enter your first Rx, tap on '+' in the upper right corner of the screen.")
   }
 
-  func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string:"To enter your first Rx, tap on '+' in the upper right corner of the screen.")
+  func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+    performSegue(withIdentifier: "addPrescriptionSegue", sender: self)
   }
 }
 

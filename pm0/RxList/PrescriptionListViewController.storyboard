@@ -125,4 +125,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="ArH-QU-DXS"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="vlWarmTintColor"/>
 </document>

@@ -377,7 +377,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   }
 
 
-  @IBOutlet weak var scrollView: UIScrollView!
 
 
   var allSearchFields:[SearchTextField]{
@@ -518,12 +517,13 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       dst.helpText = helpInfo!
     }
   }
+  
   var helpInfo:NSAttributedString? = nil
   override func viewDidLoad() {
     if let rx = editRx {
       entryInfo = rx.editInfo
     }
-    scrollView.delegate = self
+
     /*
      [[NSNotificationCenter defaultCenter] addObserver:self
      selector:@selector(keyboardWasShown:)

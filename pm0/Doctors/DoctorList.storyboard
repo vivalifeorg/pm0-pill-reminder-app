@@ -757,4 +757,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="GLq-ic-OTj"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="vlWarmTintColor"/>
 </document>

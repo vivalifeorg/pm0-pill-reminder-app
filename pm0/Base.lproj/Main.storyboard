@@ -75,4 +75,5 @@
     <resources>
         <image name="Tab-Doc" width="23" height="23"/>
     </resources>
+    <color key="tintColor" name="vlWarmTintColor"/>
 </document>

@@ -14,7 +14,7 @@
         <!--Prescription-->
         <scene sceneID="LH0-pk-eQA">
             <objects>
-                <tableViewController id="O6b-de-CLH" sceneMemberID="viewController">
+                <tableViewController id="O6b-de-CLH" customClass="PrescriptionEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hHF-d6-0rk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,6 +36,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Medication Name"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Tylenol"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -62,6 +63,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Single Pill/Unit Description"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 100 mg Capsule"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -87,6 +89,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Amount taken at once"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 2"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -112,6 +115,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="When should you take it?"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. With Lunch"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -187,6 +191,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Condition"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Arthritis"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -224,6 +229,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="conditionLine" destination="gxu-BM-XKJ" id="ueI-mH-BhS"/>
+                        <outlet property="nameLine" destination="kjZ-DL-Q9x" id="Fk9-Ut-AxQ"/>
+                        <outlet property="pharmacyLine" destination="CaG-bp-2hH" id="cvy-CP-g8p"/>
+                        <outlet property="prescriberLine" destination="xW1-aJ-TRY" id="81f-1C-KRM"/>
+                        <outlet property="quantityLine" destination="U6C-P2-pcZ" id="PEF-pQ-rNj"/>
+                        <outlet property="scheduleLine" destination="Nay-Fn-ap1" id="Ydc-QV-Hxj"/>
+                        <outlet property="unitLine" destination="rVI-l7-eVN" id="bvh-Xx-Zji"/>
                         <segue destination="9rV-5f-FxO" kind="show" identifier="showPrescriptionHelp" id="Z0u-bR-ne3"/>
                     </connections>
                 </tableViewController>
@@ -244,10 +256,10 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-hh-neT">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36.666666666666664"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-ue-RON">
-                                                <rect key="frame" x="8" y="7.9999999999999982" width="35.666666666666664" height="20.333333333333329"/>
+                                                <rect key="frame" x="8" y="8.0000000000000018" width="35.666666666666664" height="20.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -320,4 +332,5 @@
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <color key="tintColor" name="vlWarmTintColor"/>
 </document>

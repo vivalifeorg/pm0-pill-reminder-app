@@ -35,7 +35,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfh-9G-AdQ" customClass="PrescriptionDisplayView" customModule="pm0" customModuleProvider="target">
-                                            <rect key="frame" x="38" y="0.0" width="337" height="0.5"/>
+                                            <rect key="frame" x="38" y="0.0" width="562" height="0.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;&gt;" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5Z-dw-gCY">
@@ -85,10 +85,21 @@
                     <navigationItem key="navigationItem" title="My Day" largeTitleDisplayMode="always" id="yIv-Fc-fGD"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="cc0-qn-vis" kind="presentation" identifier="addPrescriptionSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="BAi-Cb-IXX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ek1-gf-gZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="877.60000000000002" y="454.72263868065971"/>
+        </scene>
+        <!--PrescriptionEntryNav-->
+        <scene sceneID="qLq-fE-61N">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PrescriptionEntryViewController" referencedIdentifier="PrescriptionEntryNav" id="cc0-qn-vis" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSs-xl-Prr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1737" y="461"/>
         </scene>
         <!--Nav for My Day-->
         <scene sceneID="PtM-Nk-dkL">
@@ -114,4 +125,5 @@
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <color key="tintColor" name="vlWarmTintColor"/>
 </document>

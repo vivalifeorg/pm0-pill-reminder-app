@@ -56,7 +56,7 @@
                                         <constraint firstAttribute="height" constant="22" id="LEt-iI-WoZ"/>
                                         <constraint firstAttribute="width" constant="22" id="spd-Lm-GPw"/>
                                     </constraints>
-                                    <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" name="vlWarmTintColor"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,6 +115,9 @@
     <resources>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

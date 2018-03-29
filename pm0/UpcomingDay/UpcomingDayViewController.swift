@@ -134,6 +134,7 @@ class UpcomingDayViewController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  var onboardingAlert:UIAlertController! = nil
 
   var firstUntakenItem:IndexPath?{
     for sectionComponent in 0..<sections.count{
@@ -298,8 +299,12 @@ class UpcomingDayViewController: UITableViewController {
     }
   }
 
-  override func viewDidAppear(_ animated: Bool) {
+  func loadDosages(){
     scheduledDosages = LocalStorage.prescriptions.load().flatMap{$0.dosage}
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    loadDosages()
   }
 
   static let cellIdentifier = "UpcomingDayViewControllerDoseCell"
@@ -355,6 +360,7 @@ extension UpcomingDayViewController{
   override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
     return 40
   }
+
 }
 
 //UITableView Delegate
@@ -379,32 +385,125 @@ extension UpcomingDayViewController{
       UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
     }
   }
+
+  func alertUserOfFirstSave(){
+    onboardingAlert = UIAlertController(title: "You've added your first Rx", message: "This checklist shows when to take your medications each day. As you take each medication, tap the dose here to check it off. \n\nTo add more prescriptions, tap the 'Prescriptions' tab on the bottom", preferredStyle: .alert)
+    onboardingAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+      self.onboardingAlert.dismiss(animated:true)
+    }))
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+      //get past wierdness with unwind segue timing
+      self.present(self.onboardingAlert, animated: true, completion: nil)
+    }
+  }
+
+
+  @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
+    //If we're getting this, it's from the inital onboarding add, so we need to tell the user to add further elsewhere.
+    alertUserOfFirstSave()
+
+
+    let rxEntryVC = segue.source as! PrescriptionEntryViewController
+    var prescriptions = LocalStorage.prescriptions.load()
+    prescriptions.append(rxEntryVC.prescription!)
+    LocalStorage.prescriptions.save(prescriptions)
+
+    loadDosages()
+  }
 }
 
+extension UIImage {
+  static func from(color: UIColor) -> UIImage {
+    let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+    UIGraphicsBeginImageContext(rect.size)
+    let context = UIGraphicsGetCurrentContext()
+    context!.setFillColor(color.cgColor)
+    context!.fill(rect)
+    let img = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return img!
+  }
+
+  func drawBorder(color:UIColor){
+    let context = UIGraphicsGetCurrentContext()!
+
+    /// Rectangle
+    let rectangle = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size.width, height: 60), cornerRadius: 8)
+    context.saveGState()
+    context.translateBy(x: 0, y: 0)
+    context.saveGState()
+    rectangle.lineWidth = 1
+    context.beginPath()
+    context.addPath(rectangle.cgPath)
+    context.clip(using: .evenOdd)
+    color.setStroke()
+    rectangle.stroke()
+    context.restoreGState()
+  }
+}
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return Asset.EmptyScreenIcons.emptyMyDay.image
+    return Asset.Empty.emptyMyDay.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "Your Daily Medication Schedule")
+    return emptyStateAttributedString("Your Daily Medication Schedule")
+  }
+
+  func imageAnimation(forEmptyDataSet scrollView: UIScrollView!) -> CAAnimation! {
+    let animation  = CABasicAnimation(keyPath:"opacity")
+    animation.fromValue = 0.8
+    animation.toValue = 1.0
+    animation.duration = 3.0
+    animation.repeatCount = 5
+    animation.autoreverses = true
+    animation.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
+
+    return animation
+  }
+
+  func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    return emptyStateButtonText("Add Prescription")
+  }
+
+  func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
+    UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
+    backgroundColor.setFill()
+    let rect = CGRect(origin:.zero, size:buttonSize)
+    let bezierPath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+    borderColor.setStroke()
+    backgroundColor.setFill()
+    bezierPath.fill()
+    bezierPath.stroke()
+    let image = UIGraphicsGetImageFromCurrentImageContext()!
+    return image
+  }
+  
+  func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
+
+    return createImage(borderColor:Asset.Colors.vlWarmTintColor.color,
+                       borderWidth:0.5,
+                       cornerRadius: 4,
+                       buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 50),
+                       backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string:"Add some prescriptions to see a schedule here. Do so on the 'Prescriptions' tab below.")
+    return emptyStateAttributedString("Your daily todo list of medications is shown here. Add prescriptions to see it by tapping the button here")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
     return -110
   }
 
-  func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
-    return true
+
+  func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+    performSegue(withIdentifier: "addPrescriptionSegue", sender: self)
   }
 
-  func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-    debugPrint("Tapped")
+  func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
+    return true
   }
 }
 
