@@ -36,7 +36,7 @@ enum RXEntryHelpText{
     Some types of medications do not come as pills.
 
      - For prepackaged, single-use items, put "**kit**" here.
-     - If your medication is something liquid or powdered, put "**g**" or "**ml**" or whatever unit measurement uses.
+     - If your medication is something liquid or powdered, put "**g**" or "**ml**" or whatever unit the measurement device uses.
      - If your medication is in an inhaler, put **puff** here.
     """
 

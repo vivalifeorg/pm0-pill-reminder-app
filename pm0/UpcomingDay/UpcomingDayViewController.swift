@@ -387,7 +387,7 @@ extension UpcomingDayViewController{
   }
 
   func alertUserOfFirstSave(){
-    onboardingAlert = UIAlertController(title: "You've added your first Rx", message: "This checklist shows when to take your medications each day. As you take each medication, tap the dose here to check it off. \n\nTo add more prescriptions, tap the 'Prescriptions' tab on the bottom", preferredStyle: .alert)
+    onboardingAlert = UIAlertController(title: "You've added your first Rx", message: "This checklist shows when to take your medications each day. As you take each medication, tap the dose here to check it off. If you tap the wrong one, tap again to uncheck it.\n\nTo add more prescriptions, tap the 'Prescriptions' tab on the bottom", preferredStyle: .alert)
     onboardingAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
       self.onboardingAlert.dismiss(animated:true)
     }))
