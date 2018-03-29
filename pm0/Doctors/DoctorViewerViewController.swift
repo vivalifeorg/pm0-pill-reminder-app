@@ -66,6 +66,19 @@ class DoctorViewerViewController:UITableViewController{
     }
   }
 
+  func showUnimplemented(){
+    alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+      self.alert.dismiss(animated: true, completion: nil)
+    }))
+    self.present(alert,animated: true)
+  }
+
+  var alert = UIAlertController()
+  @IBAction func notImplementedTapped(_ sender:UIButton!){
+    showUnimplemented()
+  }
+
   @IBAction func drivingDirectionsButtonTapped(_ sender:UIButton!){
     print("Tapped")
     let locationURI = "http://maps.apple.com/?daddr=1968+Peachtree+Rd+NW,+Atlanta,+GA+30309&t=m&dirflag=d"
