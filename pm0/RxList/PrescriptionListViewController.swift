@@ -236,11 +236,11 @@ extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string: "No prescriptions (yet)")
+    return NSAttributedString(string: "Your Prescriptions in One Place")
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return NSAttributedString(string:"Tap the + button below to add one.")
+    return NSAttributedString(string:"To enter your first Rx, tap on '+' in the upper right corner of the screen.")
   }
 }
 

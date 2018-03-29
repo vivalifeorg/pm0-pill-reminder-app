@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GEq-Ce-C4F">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                 <viewLayoutGuide key="safeArea" id="8Ny-Qm-8uh"/>
                                 <prototypes>
@@ -70,41 +70,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0J-k3-GBe">
-                                <rect key="frame" x="87.5" y="553" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="YG3-tj-0gu"/>
-                                    <constraint firstAttribute="width" constant="200" id="dom-p5-AGa"/>
-                                </constraints>
-                                <state key="normal" image="BottomAddButton"/>
-                                <connections>
-                                    <action selector="addTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7vN-Fa-Ytn"/>
-                                    <segue destination="eME-Ou-gsK" kind="popoverPresentation" identifier="showPrescriptionAddEntry" popoverAnchorView="q0J-k3-GBe" id="1y7-9p-zf2">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
                             <constraint firstItem="GEq-Ce-C4F" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="1Is-oH-mNi"/>
-                            <constraint firstItem="q0J-k3-GBe" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="82a-ch-lIz"/>
                             <constraint firstItem="GEq-Ce-C4F" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" id="MCH-zP-W88"/>
                             <constraint firstItem="GEq-Ce-C4F" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="NAz-qa-1M1"/>
                             <constraint firstItem="GEq-Ce-C4F" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="dgG-mF-Czl"/>
                             <constraint firstItem="GEq-Ce-C4F" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="du0-hZ-gdj"/>
-                            <constraint firstItem="q0J-k3-GBe" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" constant="135" id="ktN-dR-d0U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Prescriptions" image="Tab-Rx" id="acW-dT-cKf" userLabel="Prescriptions">
                         <color key="badgeColor" red="0.76456212999999995" green="0.93386453390000002" blue="0.39310157299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Prescriptions" largeTitleDisplayMode="always" id="7rG-cW-eqS"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Prescriptions" largeTitleDisplayMode="always" id="7rG-cW-eqS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CGB-pa-nGB">
+                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="eME-Ou-gsK" kind="popoverPresentation" identifier="showPrescriptionAddEntry" popoverAnchorBarButtonItem="CGB-pa-nGB" id="5o4-s0-lmf">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="GEq-Ce-C4F" id="xGT-fB-ztX"/>
+                        <segue destination="eME-Ou-gsK" kind="show" identifier="showPrescriptionEditEntry" id="ArH-QU-DXS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -121,10 +116,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BottomAddButton" width="206" height="206"/>
         <image name="Tab-Rx" width="23" height="10"/>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ArH-QU-DXS"/>
+    </inferredMetricsTieBreakers>
 </document>
