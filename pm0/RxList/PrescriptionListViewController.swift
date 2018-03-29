@@ -156,17 +156,12 @@ class PrescriptionListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
-    tableView.tableFooterView?.backgroundColor = VLColors.background
     tableView.dataSource = self
     tableView.delegate = self
-    tableView.backgroundColor = VLColors.background
-    tableView.separatorColor = UIColor.lightGray
-    tableView.sectionHeaderHeight = 0
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
-
+    tableView.tableHeaderView = UIView()
     viewModel.prescriptions = LocalStorage.prescriptions.load()
-  
   }
   
 
@@ -186,16 +181,7 @@ class PrescriptionListViewControllerCell:UITableViewCell{
 
 extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSource{
 
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 5
-  }
-
-  func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-    guard let header = view as? UITableViewHeaderFooterView else { return }
-    header.textLabel?.textColor = VLColors.primaryText
-    header.textLabel?.frame = header.frame
-  }
-
+ 
 
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path) as! PrescriptionListViewControllerCell
