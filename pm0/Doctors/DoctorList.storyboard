@@ -419,7 +419,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Name"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Dr Arha Sharma or Peachtree Podiatry"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -448,7 +448,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Specialty"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Podiatry or Podiatrist"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -478,7 +478,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Fax Number"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 404-555-5555"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -508,7 +508,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Phone Number"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 404-555-5556"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -539,7 +539,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Street Address "/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 1234 Street A"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -568,7 +568,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Street Address (Cont)"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Suite 500"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -598,7 +598,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="State"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Georgia"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -628,7 +628,7 @@
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="ZIP Code"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="plusButtonHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. 30309"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

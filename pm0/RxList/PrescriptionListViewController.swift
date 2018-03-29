@@ -228,7 +228,7 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
 
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return Asset.emptyRx.image
+    return Asset.EmptyScreenIcons.emptyRx.image
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{

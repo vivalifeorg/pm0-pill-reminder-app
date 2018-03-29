@@ -111,7 +111,7 @@ class DoctorListViewController:UITableViewController{
 import DZNEmptyDataSet
 extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return Asset.emptyDoc.image
+    return Asset.EmptyScreenIcons.emptyDoc.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

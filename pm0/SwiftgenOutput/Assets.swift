@@ -44,7 +44,6 @@ struct ColorAsset {
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 enum Asset {
-  static let bottomAddButton1 = ImageAsset(name: "BottomAddButton-1")
   static let bottomAddButton = ImageAsset(name: "BottomAddButton")
   enum Colors {
     static let color = ColorAsset(name: "Color")
@@ -53,16 +52,21 @@ enum Asset {
     static let vlCellBackgroundCommon = ColorAsset(name: "vlCellBackgroundCommon")
     static let vlTextColor = ColorAsset(name: "vlTextColor")
   }
-  static let emptyDoc = ImageAsset(name: "Empty-Doc")
-  static let emptyMyDay = ImageAsset(name: "Empty-MyDay")
-  static let emptyRx = ImageAsset(name: "Empty-Rx")
-  static let exampleFaxSignature = ImageAsset(name: "ExampleFaxSignature")
-  static let shadowedCross = ImageAsset(name: "ShadowedCross")
-  static let tabDoc = ImageAsset(name: "Tab-Doc")
-  static let tabFaxing = ImageAsset(name: "Tab-Faxing")
-  static let tabMyDay = ImageAsset(name: "Tab-MyDay")
-  static let tabRx = ImageAsset(name: "Tab-Rx")
-  static let linkToApp = ImageAsset(name: "linkToApp")
+  enum EmptyScreenIcons {
+    static let emptyDoc = ImageAsset(name: "Empty-Doc")
+    static let emptyMyDay = ImageAsset(name: "Empty-MyDay")
+    static let emptyRx = ImageAsset(name: "Empty-Rx")
+  }
+  enum FaxItems {
+    static let exampleFaxSignature = ImageAsset(name: "ExampleFaxSignature")
+    static let linkToApp = ImageAsset(name: "linkToApp")
+  }
+  enum TabIcons {
+    static let tabDoc = ImageAsset(name: "Tab-Doc")
+    static let tabFaxing = ImageAsset(name: "Tab-Faxing")
+    static let tabMyDay = ImageAsset(name: "Tab-MyDay")
+    static let tabRx = ImageAsset(name: "Tab-Rx")
+  }
 
   // swiftlint:disable trailing_comma
   static let allColors: [ColorAsset] = [
@@ -73,18 +77,16 @@ enum Asset {
     Colors.vlTextColor,
   ]
   static let allImages: [ImageAsset] = [
-    bottomAddButton1,
     bottomAddButton,
-    emptyDoc,
-    emptyMyDay,
-    emptyRx,
-    exampleFaxSignature,
-    shadowedCross,
-    tabDoc,
-    tabFaxing,
-    tabMyDay,
-    tabRx,
-    linkToApp,
+    EmptyScreenIcons.emptyDoc,
+    EmptyScreenIcons.emptyMyDay,
+    EmptyScreenIcons.emptyRx,
+    FaxItems.exampleFaxSignature,
+    FaxItems.linkToApp,
+    TabIcons.tabDoc,
+    TabIcons.tabFaxing,
+    TabIcons.tabMyDay,
+    TabIcons.tabRx,
   ]
   // swiftlint:enable trailing_comma
   @available(*, deprecated, renamed: "allImages")

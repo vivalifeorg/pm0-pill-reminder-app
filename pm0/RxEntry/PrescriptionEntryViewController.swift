@@ -314,9 +314,7 @@ extension PrescriptionLineEntry{
   }
 }
 
-class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,LineHelper {
-
-
+class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
   @IBOutlet weak var nameLine: PrescriptionLineEntry!
   @IBOutlet weak var unitLine: PrescriptionLineEntry!
@@ -394,13 +392,15 @@ class PrescriptionEntryViewController: UIViewController,UIScrollViewDelegate,Lin
     ]
   }
 
-  func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+  override func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+    super.scrollViewWillBeginDragging(scrollView)
     allSearchFields.forEach { (field) in
       field.hideResultsList()
     }
   }
 
-  func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+  override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    super.scrollViewDidEndScrollingAnimation(scrollView)
     allSearchFields.filter{$0.isFocused}.forEach { (field) in
       field.layoutSubviews()
     }

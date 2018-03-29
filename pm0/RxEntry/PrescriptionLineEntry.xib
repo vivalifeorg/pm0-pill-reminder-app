@@ -36,7 +36,7 @@
                         <view contentMode="scaleToFill" horizontalHuggingPriority="1" placeholderIntrinsicWidth="347" placeholderIntrinsicHeight="38" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-3N-Olw">
                             <rect key="frame" x="15" y="50.5" width="347" height="38"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="infinite" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="e.g. CVS Pharmacy" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kxi-XH-alT" customClass="SearchTextField" customModule="SearchTextField">
                                     <rect key="frame" x="4" y="0.0" width="317" height="38"/>
                                     <color key="backgroundColor" red="0.28235294119999998" green="0.32156862749999998" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="tintColor" red="0.29411764709999999" green="0.68235294120000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,10 +107,6 @@
                 <constraint firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="E9w-W9-nSR"/>
                 <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="I3E-bL-yFv" secondAttribute="leading" id="GlJ-6Y-LcX"/>
                 <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="I3E-bL-yFv" secondAttribute="top" id="LOJ-OH-WCn"/>
-                <constraint firstAttribute="bottom" secondItem="zBm-Bq-FJv" secondAttribute="bottom" id="LTd-Ru-zUv"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="top" secondItem="I3E-bL-yFv" secondAttribute="top" id="OGn-de-WdI"/>
-                <constraint firstAttribute="trailing" secondItem="zBm-Bq-FJv" secondAttribute="trailing" id="Zy9-Oz-5pe"/>
-                <constraint firstItem="zBm-Bq-FJv" firstAttribute="leading" secondItem="I3E-bL-yFv" secondAttribute="leading" id="ctM-0K-or3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="126" y="55"/>

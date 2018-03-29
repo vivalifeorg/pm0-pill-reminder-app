@@ -64,9 +64,9 @@ class PrescriptionLineEntry: UIView{
   }
 
   @IBInspectable
-  public var plusButtonHidden: Bool = false {
+  public var isPlusHidden: Bool = false {
     didSet {
-      addFromContactsButton?.isHidden =  plusButtonHidden
+      addFromContactsButton?.isHidden =  isPlusHidden
     }
   }
 
@@ -101,7 +101,7 @@ class PrescriptionLineEntry: UIView{
 
     //Calls the didset to use the inital values specified in code
     placeholder = {placeholder}()
-    plusButtonHidden = {plusButtonHidden}()
+    isPlusHidden = {isPlusHidden}()
     title = {title}()
   }
 
