@@ -161,10 +161,16 @@ class PrescriptionListViewController: UIViewController {
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
     tableView.tableHeaderView = UIView()
-    viewModel.prescriptions = LocalStorage.prescriptions.load()
   }
-  
 
+  override func viewWillAppear(_ animated: Bool) {
+    viewModel.prescriptions = LocalStorage.prescriptions.load()
+
+    guard isViewLoaded else{
+      return
+    }
+    tableView.reloadData()
+  }
 
   static var cellIdentifier:String{
     return "PrescriptionListViewControllerCell"
