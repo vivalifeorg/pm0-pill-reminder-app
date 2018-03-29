@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class PrescriptionEntryHelpViewController:UIViewController {
+class HelpViewController:UIViewController {
   @IBOutlet weak var helpLabel:UILabel!
 
   var helpText:NSAttributedString = NSAttributedString() {

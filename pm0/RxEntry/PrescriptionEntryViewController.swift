@@ -392,14 +392,12 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   }
 
   override func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
-    super.scrollViewWillBeginDragging(scrollView)
     allSearchFields.forEach { (field) in
       field.hideResultsList()
     }
   }
 
   override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-    super.scrollViewDidEndScrollingAnimation(scrollView)
     allSearchFields.filter{$0.isFocused}.forEach { (field) in
       field.layoutSubviews()
     }
@@ -513,7 +511,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == showPrescriptionHelpSegue{
-      let dst = segue.destination as! PrescriptionEntryHelpViewController
+      let dst = segue.destination as! HelpViewController
       dst.helpText = helpInfo!
     }
   }

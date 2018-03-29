@@ -13,7 +13,7 @@
 		8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */; };
 		890422D220604BC000817EC2 /* FaxPNG1.png in Resources */ = {isa = PBXBuildFile; fileRef = 890422D120604BC000817EC2 /* FaxPNG1.png */; };
 		890422D42060509200817EC2 /* FaxJPG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 890422D32060509200817EC2 /* FaxJPG1.jpg */; };
-		890CD2FC206458DE009DF10A /* PrescriptionEntryHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */; };
+		890CD2FC206458DE009DF10A /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FB206458DE009DF10A /* HelpViewController.swift */; };
 		890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FD20658538009DF10A /* RXEntryHelpText.swift */; };
 		890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890CD2FF20658E35009DF10A /* DoctorListViewController.swift */; };
 		890D425A206C16A800C20F82 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890D4259206C16A800C20F82 /* Assets.swift */; };
@@ -43,6 +43,7 @@
 		89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5169220587AA90069D9AE /* DoctorList.storyboard */; };
 		89B4E1D1204DE59000A09B27 /* UpcomingDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */; };
 		89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B4E1D2204DEFC200A09B27 /* VLColors.swift */; };
+		89C66829206D7478004A0731 /* HelpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C66828206D7478004A0731 /* HelpViewController.storyboard */; };
 		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
@@ -70,7 +71,7 @@
 		8903B5CC205C7779002D6652 /* TestFaxToDS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TestFaxToDS.pdf; sourceTree = "<group>"; };
 		890422D120604BC000817EC2 /* FaxPNG1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FaxPNG1.png; sourceTree = "<group>"; };
 		890422D32060509200817EC2 /* FaxJPG1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FaxJPG1.jpg; sourceTree = "<group>"; };
-		890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryHelpViewController.swift; sourceTree = "<group>"; };
+		890CD2FB206458DE009DF10A /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		890CD2FD20658538009DF10A /* RXEntryHelpText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXEntryHelpText.swift; sourceTree = "<group>"; };
 		890CD2FF20658E35009DF10A /* DoctorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorListViewController.swift; sourceTree = "<group>"; };
 		890D4259206C16A800C20F82 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		89A5169220587AA90069D9AE /* DoctorList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DoctorList.storyboard; sourceTree = "<group>"; };
 		89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpcomingDay.storyboard; sourceTree = "<group>"; };
 		89B4E1D2204DEFC200A09B27 /* VLColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLColors.swift; sourceTree = "<group>"; };
+		89C66828206D7478004A0731 /* HelpViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HelpViewController.storyboard; sourceTree = "<group>"; };
 		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +202,8 @@
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
 				890CD2FD20658538009DF10A /* RXEntryHelpText.swift */,
 				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
-				890CD2FB206458DE009DF10A /* PrescriptionEntryHelpViewController.swift */,
+				89C66828206D7478004A0731 /* HelpViewController.storyboard */,
+				890CD2FB206458DE009DF10A /* HelpViewController.swift */,
 				896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */,
 				896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */,
 			);
@@ -421,6 +424,7 @@
 				890242E02033941C00B25E99 /* fda_drugs.db in Resources */,
 				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
 				894FEC0820697F6A00E48ECA /* PrescriptionDisplayView.xib in Resources */,
+				89C66829206D7478004A0731 /* HelpViewController.storyboard in Resources */,
 				8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,7 +572,7 @@
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */,
 				898BC94020614A4A006ED4CF /* InformationRelease.swift in Sources */,
-				890CD2FC206458DE009DF10A /* PrescriptionEntryHelpViewController.swift in Sources */,
+				890CD2FC206458DE009DF10A /* HelpViewController.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
