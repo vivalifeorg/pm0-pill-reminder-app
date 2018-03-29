@@ -23,7 +23,7 @@
                         <viewLayoutGuide key="safeArea" id="E0L-HS-O3f"/>
                         <color key="separatorColor" name="vlTextColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSubtitleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DoctorSubtitleCell" textLabel="Fyu-FA-wNN" detailTextLabel="IRq-TH-IuQ" style="IBUITableViewCellStyleSubtitle" id="euR-Vp-vx2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSubtitleCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DoctorSubtitleCell" textLabel="Fyu-FA-wNN" detailTextLabel="IRq-TH-IuQ" style="IBUITableViewCellStyleSubtitle" id="euR-Vp-vx2">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="euR-Vp-vx2" id="BWt-2G-RYS">
@@ -72,7 +72,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <segue destination="k31-AD-THS" kind="show" identifier="editDoctorSegue" id="ubs-K7-yKP"/>
-                        <segue destination="jTf-49-tD4" kind="show" identifier="showDoctor" id="Y6o-w7-1WF"/>
+                        <segue destination="jTf-49-tD4" kind="show" identifier="viewDoctorSegue" id="Y6o-w7-1WF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zky-Et-1c3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,7 +101,7 @@
         <!--Doctor-->
         <scene sceneID="Lqs-KI-n6T">
             <objects>
-                <tableViewController title="Doctor" id="jTf-49-tD4" sceneMemberID="viewController">
+                <tableViewController title="Doctor" id="jTf-49-tD4" customClass="DoctorViewerViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="K9Z-pJ-9K8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,6 +129,9 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <state key="normal" title="  Driving Directions  ">
                                                         <color key="titleColor" name="vlWarmTintColor"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -203,49 +206,22 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="bJS-To-SO6" detailTextLabel="qG8-fE-Dle" style="IBUITableViewCellStyleValue1" id="R1g-0J-Zsx">
-                                        <rect key="frame" x="0.0" y="252" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="bJS-To-SO6" detailTextLabel="qG8-fE-Dle" rowHeight="101" style="IBUITableViewCellStyleValue1" id="R1g-0J-Zsx">
+                                        <rect key="frame" x="0.0" y="252" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1g-0J-Zsx" id="oWl-MH-9UV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bJS-To-SO6">
-                                                    <rect key="frame" x="16" y="10" width="72" height="24"/>
+                                                    <rect key="frame" x="16" y="39" width="72" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <color key="textColor" name="vlTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qG8-fE-Dle">
-                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="nBn-Fr-auR" detailTextLabel="0nr-nr-oAH" style="IBUITableViewCellStyleValue1" id="xgy-AL-TEU">
-                                        <rect key="frame" x="0.0" y="296" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xgy-AL-TEU" id="a4q-OA-lT5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Address (cont)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nBn-Fr-auR">
-                                                    <rect key="frame" x="16" y="10" width="128.5" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0nr-nr-oAH">
-                                                    <rect key="frame" x="315" y="13" width="44" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qG8-fE-Dle">
+                                                    <rect key="frame" x="315" y="42" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="vlTextColor"/>
@@ -258,7 +234,7 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="irz-iX-EIG" detailTextLabel="x4w-4N-Ibj" style="IBUITableViewCellStyleValue1" id="LL5-8H-bgA">
-                                        <rect key="frame" x="0.0" y="340" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="353" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LL5-8H-bgA" id="Qyg-n4-nDN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -285,7 +261,7 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Egj-dx-b9B" detailTextLabel="kY4-Ek-jop" style="IBUITableViewCellStyleValue1" id="Pz4-Jt-Xa9">
-                                        <rect key="frame" x="0.0" y="384" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="397" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pz4-Jt-Xa9" id="asl-Qj-Pcu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -314,7 +290,7 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="114" id="j1K-jp-YGp">
-                                        <rect key="frame" x="0.0" y="428" width="375" height="114"/>
+                                        <rect key="frame" x="0.0" y="441" width="375" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j1K-jp-YGp" id="zcq-Sl-6gO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
@@ -394,10 +370,25 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addressCell" destination="R1g-0J-Zsx" id="Z3L-PU-fUC"/>
+                        <outlet property="addressLabel" destination="qG8-fE-Dle" id="fRR-zW-HQV"/>
+                        <outlet property="drivingDirectionsButton" destination="Xah-FX-jt8" id="9Qx-4F-9BD"/>
+                        <outlet property="faxButtonCell" destination="j1K-jp-YGp" id="ydj-9n-0t7"/>
+                        <outlet property="faxCell" destination="Pz4-Jt-Xa9" id="P8B-G2-vfX"/>
+                        <outlet property="faxLabel" destination="kY4-Ek-jop" id="0eM-Ny-LJT"/>
+                        <outlet property="map" destination="7Yi-nm-dos" id="pCp-Di-4TC"/>
+                        <outlet property="mapCell" destination="Mgj-D9-c6n" id="LSy-lw-2EC"/>
+                        <outlet property="nameLabel" destination="aEC-k5-6L5" id="PDO-CP-vTU"/>
+                        <outlet property="phoneCell" destination="LL5-8H-bgA" id="RJd-ey-6HB"/>
+                        <outlet property="phoneLabel" destination="x4w-4N-Ibj" id="cem-fh-69t"/>
+                        <outlet property="specialityCell" destination="Y0f-1q-Wa8" id="zNL-87-j3g"/>
+                        <outlet property="specialityLabel" destination="Ghb-2A-Jrb" id="T2n-ri-SyP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMb-mc-fTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="106.59670164917542"/>
+            <point key="canvasLocation" x="118" y="502"/>
         </scene>
         <!--Doctor Entry-->
         <scene sceneID="xpX-C8-vCV">

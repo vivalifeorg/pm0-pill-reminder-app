@@ -51,16 +51,19 @@ class DoctorListViewController:UITableViewController{
     doctorEntryViewController.doctor = doctors[doctorInfoAtIndex]
   }
 
+  let viewSegueIdentifier = "viewDoctorSegue"
+  func prepareToView(segue:UIStoryboardSegue, doctorInfoAtIndex:Int){
+    let vc = segue.destination as! DoctorViewerViewController
+    vc.doctor = doctors[doctorInfoAtIndex]
+  }
 
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == editSegueIdentifier{
-      guard let lastTappedDoctorIndex = lastTappedDoctorIndex else{
-        return
-      }
-      prepareToEdit(segue: segue, doctorInfoAtIndex: lastTappedDoctorIndex)
-    }
-    else{
+      prepareToEdit(segue: segue, doctorInfoAtIndex: lastTappedDoctorIndex!)
+    } else if segue.identifier == viewSegueIdentifier {
+      prepareToView(segue: segue, doctorInfoAtIndex: lastTappedDoctorIndex!)
+    } else {
       lastTappedDoctorIndex = nil
     }
   }
@@ -84,7 +87,7 @@ class DoctorListViewController:UITableViewController{
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     lastTappedDoctorIndex = indexPath.row
-    performSegue(withIdentifier: "showDoctor", sender: self)
+    performSegue(withIdentifier: viewSegueIdentifier, sender: self)
   }
 
   func clearSelection(){
