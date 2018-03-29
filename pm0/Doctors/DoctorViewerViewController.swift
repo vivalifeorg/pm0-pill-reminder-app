@@ -13,7 +13,7 @@ import MapKit
 
 extension Address{
   var isMappable:Bool{
-    return false
+    return true
   }
   var annotation:MKPlacemark{
     return MKPlacemark()
@@ -66,6 +66,17 @@ class DoctorViewerViewController:UITableViewController{
     }
   }
 
+  @IBAction func drivingDirectionsButtonTapped(_ sender:UIButton!){
+    print("Tapped")
+    let locationURI = "http://maps.apple.com/?daddr=1968+Peachtree+Rd+NW,+Atlanta,+GA+30309&t=m&dirflag=d"
+    guard let url = URL(string:locationURI) else{
+      return
+    }
+    UIApplication.shared.open(url, options: [:]) { (success) in
+      print("It worked? \(success)")
+    }
+  }
+
   func loadDoctor(_ doctor:DoctorInfo){
     guard isViewLoaded else {
       return
@@ -73,7 +84,7 @@ class DoctorViewerViewController:UITableViewController{
 
 
     if doctor.address.isMappable {
-      map.showAnnotations([doctor.address.annotation], animated: false)
+   //   map.showAnnotations([doctor.address.annotation], animated: false)
     }
     map.isUserInteractionEnabled = doctor.address.isMappable
     drivingDirectionsButton.isEnabled = doctor.address.isMappable

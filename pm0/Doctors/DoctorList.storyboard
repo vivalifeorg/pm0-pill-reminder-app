@@ -138,6 +138,9 @@
                                                             <integer key="value" value="9"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="drivingDirectionsButtonTapped:" destination="jTf-49-tD4" eventType="touchUpInside" id="lJM-Oh-5BQ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="vlCellBackgroundCommon"/>
