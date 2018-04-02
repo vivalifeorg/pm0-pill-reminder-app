@@ -200,7 +200,7 @@
 			path = TestPages;
 			sourceTree = "<group>";
 		};
-		896052BF20470D9400DF502C /* RxEntry */ = {
+		896052BF20470D9400DF502C /* RxAddEdit */ = {
 			isa = PBXGroup;
 			children = (
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
@@ -211,7 +211,7 @@
 				896052BD20470D8900DF502C /* PrescriptionLineEntry.swift */,
 				896052BB20470B6400DF502C /* PrescriptionLineEntry.xib */,
 			);
-			path = RxEntry;
+			path = RxAddEdit;
 			sourceTree = "<group>";
 		};
 		89A5168E205879F50069D9AE /* ReleasePaperwork */ = {
@@ -286,7 +286,7 @@
 				89A5168E205879F50069D9AE /* ReleasePaperwork */,
 				894DBC3E205040460020353F /* RxList */,
 				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
-				896052BF20470D9400DF502C /* RxEntry */,
+				896052BF20470D9400DF502C /* RxAddEdit */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
 				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
