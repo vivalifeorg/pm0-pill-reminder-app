@@ -44,13 +44,23 @@ class ScheduleListViewController:UITableViewController{
     }
   }
 
+  override func viewDidLoad() {
+    updateDoneButton()
+  }
+
   private func scheduleForIndexPath(_ indexPath:IndexPath) -> Schedule {
     return scheduleDatasource[indexPath.section][indexPath.row]
+  }
+
+  @IBOutlet weak var doneButton: UIBarButtonItem!
+  func updateDoneButton(){
+    doneButton.isEnabled = (scheduleSelection != nil)
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     scheduleSelection = scheduleForIndexPath(indexPath)
     tableView.reloadData()
+    updateDoneButton()
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

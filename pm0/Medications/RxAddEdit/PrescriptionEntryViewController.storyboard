@@ -256,6 +256,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="K41-vb-eU9" id="GcH-Md-f1F"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lya-bb-BY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a1b-nA-wEX" userLabel="Exit" sceneMemberID="exit"/>
