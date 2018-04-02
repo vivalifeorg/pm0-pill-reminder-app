@@ -162,6 +162,9 @@ struct Timeslot:Hashable,Codable{
     return Timeslot.timeOffsetForSlot(self).minute
   }
 
+  private var allMinutesOffset:MinuteOffset{
+    return (hourOffset * 60) + minuteOffset
+  }
   /*
 
    */
@@ -203,6 +206,12 @@ struct Timeslot:Hashable,Codable{
 
   static func userOverridenTimeOffsetFor(_ event:Timeslot) -> (hour:HourOffset,minute:MinuteOffset)?{
     return nil
+  }
+
+  static var sortedDefaultTimeslots:[Timeslot]{
+    return Array(Timeslot.defaultTimeslots.keys).sorted(by: { (lhs, rhs) -> Bool in
+      lhs.allMinutesOffset > rhs.allMinutesOffset 
+    })
   }
 
   static let defaultTimeslots:[Timeslot:(HourOffset,MinuteOffset)] = [
