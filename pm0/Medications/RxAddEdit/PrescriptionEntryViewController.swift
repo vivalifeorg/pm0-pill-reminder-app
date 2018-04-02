@@ -132,37 +132,37 @@ var doctors = [
 typealias MinuteOffset = Int
 typealias HourOffset = Int
 
-struct TemporalEvent:Hashable,Codable{
+struct Timeslot:Hashable,Codable{
   var hashValue: Int {
-    return "\(name ?? "non-named")\(eventType)".hashValue
+    return "\(name ?? "non-named")\(slotType)".hashValue
   }
 
   let name:String?
 
-  let eventType:EventType
+  let slotType:SlotType
 
   var hourOffset:HourOffset {
-    return TemporalEvent.timeOffsetsForEvent(self).hour
+    return Timeslot.timeOffsetForSlot(self).hour
   }
 
   var minuteOffset:MinuteOffset {
-    return TemporalEvent.timeOffsetsForEvent(self).minute
+    return Timeslot.timeOffsetForSlot(self).minute
   }
 
   //todo fix broken ==
-  static func ==(lhs:TemporalEvent, rhs:TemporalEvent) -> Bool{
+  static func ==(lhs:Timeslot, rhs:Timeslot) -> Bool{
     return lhs.name == rhs.name &&
-      lhs.eventType == rhs.eventType
+      lhs.slotType == rhs.slotType
     //      &&
     //      lhs.hourOffset == rhs.hourOffset &&
     //      lhs.minuteOffset == rhs.minuteOffset
   }
 
-  static func userOverridenTimeOffsetFor(_ event:TemporalEvent) -> (hour:HourOffset,minute:MinuteOffset)?{
+  static func userOverridenTimeOffsetFor(_ event:Timeslot) -> (hour:HourOffset,minute:MinuteOffset)?{
     return nil
   }
 
-  static let defaultEventTimes:[TemporalEvent:(HourOffset,MinuteOffset)] = [
+  static let defaultTimeslots:[Timeslot:(HourOffset,MinuteOffset)] = [
     DefaultEvents.wakeUp: (7,30),
     DefaultEvents.breakfast: (8,00),
     DefaultEvents.morningSnack: (10,30),
@@ -171,88 +171,86 @@ struct TemporalEvent:Hashable,Codable{
     DefaultEvents.dinner: (18,00),
     DefaultEvents.bedTime: (22,00)
   ]
-  static func timeOffsetsForEvent(_ event:TemporalEvent)->(hour:HourOffset,minute:MinuteOffset){
+  static func timeOffsetForSlot(_ slot:Timeslot)->(hour:HourOffset,minute:MinuteOffset){
 
-    return userOverridenTimeOffsetFor(event) ?? defaultEventTimes[event] ?? (9,00)
+    return userOverridenTimeOffsetFor(slot) ?? defaultTimeslots[slot] ?? (9,00)
   }
 
-  init(name:String?, eventType:EventType){
+  init(name:String?, slotType:SlotType){
     self.name = name
-    self.eventType = eventType
+    self.slotType = slotType
   }
 }
 
-enum EventType:String,Codable{
+enum SlotType:String,Codable{
   case meal
   case sleep
   case time
 }
 
 enum DefaultEvents{
-  static let breakfast = TemporalEvent(name:"Breakfast",
-                                       eventType:.meal)
+  static let breakfast = Timeslot(name:"Breakfast",
+                                       slotType:.meal)
 
-  static let morningSnack = TemporalEvent(name:"Morning Snack",
-                                          eventType:.meal)
+  static let morningSnack = Timeslot(name:"Morning Snack",
+                                          slotType:.meal)
 
-  static let lunch = TemporalEvent(name:"Lunch",
-                                   eventType:.meal)
+  static let lunch = Timeslot(name:"Lunch",
+                                   slotType:.meal)
 
-  static let afternoonSnack = TemporalEvent(name:"Afternoon Snack",
-                                            eventType:.meal)
+  static let afternoonSnack = Timeslot(name:"Afternoon Snack",
+                                            slotType:.meal)
 
-  static let dinner = TemporalEvent(name:"Dinner",
-                                    eventType:.meal)
+  static let dinner = Timeslot(name:"Dinner",
+                                    slotType:.meal)
 
-  static let wakeUp = TemporalEvent(name:"Wake-up",
-                                    eventType:.sleep)
+  static let wakeUp = Timeslot(name:"Wake-up",
+                                    slotType:.sleep)
 
-  static let bedTime = TemporalEvent(name:"Bedtime",
-                                     eventType:.sleep)
+  static let bedTime = Timeslot(name:"Bedtime",
+                                     slotType:.sleep)
 
-  static var defaultSlot:TemporalEvent {
+  static var defaultSlot:Timeslot {
     return DefaultEvents.wakeUp
   }
 }
 
-
-
-struct DisplaySchedule{
+struct Schedule:Codable {
   var name:String
-  var examples:[String]
-  var events:[TemporalEvent]
+  var aliases:[String]
+  var events:[Timeslot]
 }
 
-extension DisplaySchedule:Listable{
+extension Schedule:Listable{
   var title:String{
     return name
   }
 
   var list:[String]{
-    return examples
+    return aliases
   }
 }
 
 var schedules = [
-  DisplaySchedule(name:"When I wake up in the morning",
-                  examples:["Once per day",
+  Schedule(name:"When I wake up in the morning",
+                  aliases:["Once per day",
                             "Immeadiately upon awakening",
                             "Before breakfast",
                             "First thing"], events: [DefaultEvents.wakeUp]),
-  DisplaySchedule(name:"With Breakfast",
-                  examples:["Once a day with food",
+  Schedule(name:"With Breakfast",
+                  aliases:["Once a day with food",
                             "Early in the day with food",
                             "First thing in the morning with food"], events: [DefaultEvents.breakfast]),
-  DisplaySchedule(name:"With Lunch",
-                  examples:["Once a day with food",
+  Schedule(name:"With Lunch",
+                  aliases:["Once a day with food",
                             "Early in the day with food",
                             "Avoid taking with alcohol"], events: [DefaultEvents.lunch]),
-  DisplaySchedule(name:"With Breakfast and Dinner",
-                  examples:["Twice a day with food",
+  Schedule(name:"With Breakfast and Dinner",
+                  aliases:["Twice a day with food",
                             "At least 6 hours apart",
                             "At least 4 hours apart"], events: [DefaultEvents.breakfast,DefaultEvents.dinner]),
-  DisplaySchedule(name:"Custom",
-                  examples:["Make my own schedule",
+  Schedule(name:"Custom",
+                  aliases:["Make my own schedule",
                             "Other",
                             "Something else",
                             "Every other day",
@@ -292,7 +290,7 @@ extension DisplayDrug{
 }
 
 extension PrescriptionLineEntry{
-  var events:[TemporalEvent] {
+  var events:[Timeslot] {
 
     guard let text = self.searchTextField.text else {
       return []
@@ -600,7 +598,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       for transform in mapping{
         entry[keyPath: transform.key] = self[keyPath:transform.value]
       }
-      entry.scheduleSelection = scheduleLine.events
+      entry.scheduleSelection = nil
       entry.drugDBSelection = lastSelectedDrug?.raw
 
       return entry

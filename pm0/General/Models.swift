@@ -38,13 +38,13 @@ struct Dosage:Codable{
   var description:String{
     return "\(name): \(quantity) × \(unitDescription ?? form ?? "dose")"
   }
-  var events:[TemporalEvent]
+  var schedule:Schedule
   var shortName:String{
     return name
   }
 
   func timesTaken(for:Date)->[TakeTime]{
-    return events.map{
+    return schedule.events.map{
       TakeTime(hour:$0.hourOffset,
                minute:$0.minuteOffset,
         timeName: $0.name)
@@ -73,21 +73,13 @@ struct EntryInfo:Codable{
   var unitDescription:String?
   var quantityOfUnits:String?
   var schedule:String?
-  var scheduleSelection:[TemporalEvent]
+  var scheduleSelection:Schedule? 
   var prescribingDoctor:String?
   var pharmacy:String?
   var condition:String?
   var drugDBSelection:MedicationPackage?
 }
-extension EntryInfo{
-  init(){
-    self.init(name:nil,
-              unitDescription:nil,
-              quantityOfUnits:nil,
-              schedule:nil,
-              scheduleSelection:[],prescribingDoctor:nil,pharmacy:nil,condition:nil,drugDBSelection:nil)
-  }
-}
+
 
 struct Prescription:Codable{
   var dosage:Dosage?
@@ -102,7 +94,7 @@ struct Prescription:Codable{
                         unitDescription: info.unitDescription,
                         form: "[PILL]",
                         quantity: Int(info.quantityOfUnits ?? "") ?? 1,
-                        events: info.scheduleSelection)
+                        schedule: info.scheduleSelection!)
     prescriber = nil
     obtainedFrom = nil
     conditionPrescribedFor = nil

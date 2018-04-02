@@ -259,7 +259,7 @@ class UpcomingDayViewController: UITableViewController {
 
 
     var names:[Int:String] = [:]
-    let defaultEvents = TemporalEvent.defaultEventTimes.keys
+    let defaultEvents = Timeslot.defaultTimeslots.keys
     for item in defaultEvents{
       guard let name = item.name else{ continue}
 
