@@ -179,14 +179,13 @@
 			path = DataStorage;
 			sourceTree = "<group>";
 		};
-		894DBC3E205040460020353F /* RxList */ = {
+		894DBC3E205040460020353F /* Medications */ = {
 			isa = PBXGroup;
 			children = (
-				894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */,
-				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
+				899215202072929F008B30C9 /* RxList */,
 				896052BF20470D9400DF502C /* RxAddEdit */,
 			);
-			path = RxList;
+			path = Medications;
 			sourceTree = "<group>";
 		};
 		8951A91D205B01FE0027076E /* TestPages */ = {
@@ -215,7 +214,16 @@
 			path = RxAddEdit;
 			sourceTree = "<group>";
 		};
-		89A5168E205879F50069D9AE /* ReleasePaperwork */ = {
+		899215202072929F008B30C9 /* RxList */ = {
+			isa = PBXGroup;
+			children = (
+				894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */,
+				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
+			);
+			name = RxList;
+			sourceTree = "<group>";
+		};
+		89A5168E205879F50069D9AE /* Faxing */ = {
 			isa = PBXGroup;
 			children = (
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
@@ -226,7 +234,7 @@
 				898BC939206139B4006ED4CF /* FaxGeneratedSwagger.swift */,
 				898BC93B206139CA006ED4CF /* FaxHandRolled.swift */,
 			);
-			path = ReleasePaperwork;
+			path = Faxing;
 			sourceTree = "<group>";
 		};
 		89A5168F20587A4D0069D9AE /* Doctors */ = {
@@ -240,7 +248,7 @@
 			path = Doctors;
 			sourceTree = "<group>";
 		};
-		89B4E1CF204DE55F00A09B27 /* UpcomingDay */ = {
+		89B4E1CF204DE55F00A09B27 /* MyDay */ = {
 			isa = PBXGroup;
 			children = (
 				89B4E1D0204DE59000A09B27 /* UpcomingDay.storyboard */,
@@ -251,7 +259,7 @@
 				894FEC0B2069845800E48ECA /* NibLoaderViewExtension.swift */,
 				8964CC622049EDE00028AB21 /* PillDisplayLabel.swift */,
 			);
-			path = UpcomingDay;
+			path = MyDay;
 			sourceTree = "<group>";
 		};
 		89F3D9821FF6AC4F0081FA77 = {
@@ -283,10 +291,10 @@
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
 				89C6682A206D7ED8004A0731 /* VivaButtonA.swift */,
+				89B4E1CF204DE55F00A09B27 /* MyDay */,
+				894DBC3E205040460020353F /* Medications */,
 				89A5168F20587A4D0069D9AE /* Doctors */,
-				89A5168E205879F50069D9AE /* ReleasePaperwork */,
-				894DBC3E205040460020353F /* RxList */,
-				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
+				89A5168E205879F50069D9AE /* Faxing */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
 				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
