@@ -14,6 +14,8 @@ import UIKit
   @IBOutlet weak var nameField:UITextField!
 }
 
+
+
 class ScheduleDetailViewController:UITableViewController{
 
   override func viewDidLoad() {
@@ -38,6 +40,10 @@ class ScheduleDetailViewController:UITableViewController{
 
 
   func accessoryFor(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCellAccessoryType {
+    guard indexPath.section != 0 else{
+      return .none
+    }
+    
     let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
     return schedule.events.reduce(false){$0 || $1 == timeslot} ? .checkmark : .none
   }

@@ -55,6 +55,7 @@
 		89F3D9A61FF6AC500081FA77 /* pm0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9A51FF6AC500081FA77 /* pm0Tests.swift */; };
 		89F4D0572072A3D700CC60E9 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0562072A3D700CC60E9 /* ScheduleList.swift */; };
 		89F4D0592072C7E300CC60E9 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */; };
+		89F4D05B2072DDC700CC60E9 /* TimeslotEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */; };
 		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +123,7 @@
 		89F3D9A71FF6AC500081FA77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89F4D0562072A3D700CC60E9 /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
 		89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
+		89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotEditorViewController.swift; sourceTree = "<group>"; };
 		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +213,7 @@
 				89F4D0562072A3D700CC60E9 /* ScheduleList.swift */,
 				89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */,
 				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
+				89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */,
 			);
 			path = RxAddEdit;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
 				8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */,
+				89F4D05B2072DDC700CC60E9 /* TimeslotEditorViewController.swift in Sources */,
 				898BC93E206139EB006ED4CF /* PhaxioObjcFaxProvider.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
 				898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */,
