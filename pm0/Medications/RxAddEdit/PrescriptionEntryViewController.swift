@@ -135,7 +135,7 @@ typealias HourOffset = Int
 
 extension String {
   func leftPadding(toLength: Int, withPad character: Character) -> String {
-    let stringLength = self.characters.count
+    let stringLength = count
     if stringLength < toLength {
       return String(repeatElement(character, count: toLength - stringLength)) + self
     } else {
@@ -258,7 +258,25 @@ enum DefaultEvents{
   }
 }
 
-struct Schedule:Codable {
+func ==(lhs:Schedule,rhs:Schedule)->Bool{
+  return lhs.name == rhs.name &&
+    lhs.aliases == rhs.aliases &&
+    lhs.events == rhs.events
+}
+
+func ==(lhs:Schedule?, rhs:Schedule?)->Bool{
+  if lhs == nil && rhs == nil{
+    return true
+  }
+
+  guard let lhs = lhs, let rhs = rhs else{
+    return false //one is not nil, one is
+  }
+
+  return lhs == rhs
+}
+
+struct Schedule:Codable,Equatable {
   var name:String
   var aliases:[String]
   var events:[Timeslot]

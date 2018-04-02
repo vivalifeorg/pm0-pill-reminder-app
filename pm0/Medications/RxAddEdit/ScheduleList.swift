@@ -61,6 +61,10 @@ class ScheduleListViewController:UITableViewController{
     return isShowingCustom ? 2 : 1
   }
 
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return sectionNameDatasource[section]
+  }
+
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let reuseIdentifier = "SubtitleSchedules"
@@ -72,9 +76,16 @@ class ScheduleListViewController:UITableViewController{
     let schedule = scheduleForIndexPath(indexPath)
     cell.textLabel?.text = schedule.title
     cell.detailTextLabel?.text = schedule.events.map{$0.description}.joined(separator: ", ")
-    
+
+    let isChecked = scheduleSelection != nil && scheduleSelection! == scheduleForIndexPath(indexPath)
+    cell.accessoryType = isChecked ? .checkmark : .none
+
+    cell.selectedBackgroundView = UIView()
     return cell
   }
+
+
+
   @IBAction func newScheduleTapped(_:Any){
     performSegue(withIdentifier: "newScheduleDetails", sender: self)
   }
