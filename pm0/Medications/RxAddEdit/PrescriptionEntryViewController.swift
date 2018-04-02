@@ -210,7 +210,7 @@ struct Timeslot:Hashable,Codable{
 
   static var sortedDefaultTimeslots:[Timeslot]{
     return Array(Timeslot.defaultTimeslots.keys).sorted(by: { (lhs, rhs) -> Bool in
-      lhs.allMinutesOffset < rhs.allMinutesOffset 
+      lhs.allMinutesOffset < rhs.allMinutesOffset
     })
   }
 

@@ -20,7 +20,7 @@ class ScheduleDetailViewController:UITableViewController{
 
   }
 
-  var name = "tbd"
+  var name = ""
   var isShowingCustom:Bool{
     return userTimeslots.count > 0
   }
@@ -34,8 +34,22 @@ class ScheduleDetailViewController:UITableViewController{
     }
   }
 
+  var schedule:Schedule = Schedule(name:"",aliases:[],events:[])
+
+
+  func accessoryFor(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCellAccessoryType {
+    let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
+    return schedule.events.reduce(false){$0 || $1 == timeslot} ? .checkmark : .none
+  }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    if accessoryFor(tableView,indexPath:indexPath) == .checkmark {
+      let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
+      schedule.events = schedule.events.filter{$0 != timeslot}
+    }else{
+      schedule.events.append(timeslotDatasource[indexPath.section][indexPath.row])
+    }
 
     tableView.reloadData()
   }
@@ -61,6 +75,8 @@ class ScheduleDetailViewController:UITableViewController{
       cell.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.nameField?.textColor = Asset.Colors.vlEditableTextColor.color
       cell.nameField?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
+      cell.nameField?.placeholder = "e.g. Before Meetings"
+      cell.nameField?.placeholderColor = UIColor.darkGray
       return cell
     }else {
       let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
@@ -74,10 +90,25 @@ class ScheduleDetailViewController:UITableViewController{
       cell.textLabel?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.detailTextLabel?.textColor = Asset.Colors.vlTextColor.color
       cell.detailTextLabel?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
+      cell.accessoryType = accessoryFor(tableView, indexPath: indexPath)
+      cell.selectedBackgroundView = UIView()
       return cell
     }
   }
 
 
   
+}
+
+extension UITextField {
+  @IBInspectable var placeholderColor: UIColor {
+    get {
+      return attributedPlaceholder?.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor ?? UIColor.clear
+    }
+    set {
+      guard  attributedPlaceholder != nil else { return }
+      let attributes: [NSAttributedStringKey : UIColor] = [.foregroundColor : newValue]
+      attributedPlaceholder = NSAttributedString(string: attributedPlaceholder!.string, attributes: attributes)
+    }
+  }
 }
