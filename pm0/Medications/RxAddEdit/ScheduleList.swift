@@ -94,7 +94,9 @@ class ScheduleListViewController:UITableViewController{
     return cell
   }
 
-
+  @IBAction func unwindFromEditingSchedule(segue:UIStoryboardSegue){
+    tableView.reloadData()
+  }
 
   @IBAction func newScheduleTapped(_:Any){
     performSegue(withIdentifier: "newScheduleDetails", sender: self)
