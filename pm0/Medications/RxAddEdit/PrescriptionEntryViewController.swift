@@ -320,12 +320,12 @@ var schedules = [
                   aliases:["Twice a day with food",
                             "At least 6 hours apart",
                             "At least 4 hours apart"], events: [DefaultEvents.breakfast,DefaultEvents.dinner]),
-  Schedule(name:"Custom",
-                  aliases:["Make my own schedule",
-                            "Other",
-                            "Something else",
-                            "Every other day",
-                            "Once a week"," "], events: [])
+//  Schedule(name:"Custom",
+//                  aliases:["Make my own schedule",
+//                            "Other",
+//                            "Something else",
+//                            "Every other day",
+//                            "Once a week"," "], events: [])
 ]
 
 struct DisplayDoctor{
