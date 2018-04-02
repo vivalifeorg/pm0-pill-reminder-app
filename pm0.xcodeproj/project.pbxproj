@@ -54,6 +54,7 @@
 		89F3D99B1FF6AC4F0081FA77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */; };
 		89F3D9A61FF6AC500081FA77 /* pm0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9A51FF6AC500081FA77 /* pm0Tests.swift */; };
 		89F4D0572072A3D700CC60E9 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0562072A3D700CC60E9 /* ScheduleList.swift */; };
+		89F4D0592072C7E300CC60E9 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */; };
 		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		89F3D9A51FF6AC500081FA77 /* pm0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pm0Tests.swift; sourceTree = "<group>"; };
 		89F3D9A71FF6AC500081FA77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89F4D0562072A3D700CC60E9 /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
+		89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */,
 				890CD2FD20658538009DF10A /* RXEntryHelpText.swift */,
 				89F4D0562072A3D700CC60E9 /* ScheduleList.swift */,
+				89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */,
 				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
 			);
 			path = RxAddEdit;
@@ -595,6 +598,7 @@
 			files = (
 				89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */,
 				890D425A206C16A800C20F82 /* Assets.swift in Sources */,
+				89F4D0592072C7E300CC60E9 /* ScheduleDetailViewController.swift in Sources */,
 				894FEC0C2069845800E48ECA /* NibLoaderViewExtension.swift in Sources */,
 				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,

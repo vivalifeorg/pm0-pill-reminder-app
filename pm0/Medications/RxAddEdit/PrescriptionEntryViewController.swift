@@ -166,7 +166,7 @@ struct Timeslot:Hashable,Codable{
 
    */
 
-  var twelveHourTime:String{
+  var timeString:String{
     var today = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: Date())
     today.second = 0
     today.nanosecond = 0
@@ -183,7 +183,7 @@ struct Timeslot:Hashable,Codable{
   }
   
   var description:String{
-    let timeStr = twelveHourTime
+    let timeStr = timeString
     if let name = name {
       return "\(name)@\(timeStr)"
     } else {
@@ -214,6 +214,7 @@ struct Timeslot:Hashable,Codable{
     DefaultEvents.dinner: (18,00),
     DefaultEvents.bedTime: (22,00)
   ]
+
   static func timeOffsetForSlot(_ slot:Timeslot)->(hour:HourOffset,minute:MinuteOffset){
 
     return userOverridenTimeOffsetFor(slot) ?? defaultTimeslots[slot] ?? (9,00)
