@@ -78,6 +78,9 @@ struct EntryInfo:Codable{
   var pharmacy:String?
   var condition:String?
   var drugDBSelection:MedicationPackage?
+  var prescription:Prescription{
+    return Prescription(info:self)
+  }
 }
 
 

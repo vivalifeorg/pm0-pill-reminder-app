@@ -426,9 +426,9 @@ extension UpcomingDayViewController{
     alertUserOfFirstSave()
 
 
-    let rxEntryVC = segue.source as! PrescriptionEntryViewController
+    let rxEntryVC = segue.source as! ScheduleListViewController
     var prescriptions = LocalStorage.prescriptions.load()
-    prescriptions.append(rxEntryVC.prescription!)
+    prescriptions.append(rxEntryVC.entryInfo!.prescription)
     LocalStorage.prescriptions.save(prescriptions)
 
     loadDosages()

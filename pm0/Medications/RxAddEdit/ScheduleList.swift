@@ -11,19 +11,19 @@ import UIKit
 
 
 class ScheduleListViewController:UITableViewController{
-  var selectedSchedule:Schedule? = nil {
+  var scheduleSelection:Schedule? = nil {
     didSet{
-      guard let selectedSchedule = selectedSchedule else{
+      guard let scheduleSelection = scheduleSelection else{
         return
       }
-
-      prescription?.dosage?.schedule = selectedSchedule
+      entryInfo?.scheduleSelection = scheduleSelection
     }
   }
-  var prescription:Prescription?
+
+  var entryInfo:EntryInfo?
 
   private var customSchedules:[Schedule] = []
-  private var standardSchedules:[Schedule] = []
+  private var standardSchedules:[Schedule] = schedules
   private var scheduleDatasource:[[Schedule]] {
     if customSchedules.count > 0 {
       return [customSchedules,standardSchedules]
@@ -45,7 +45,7 @@ class ScheduleListViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectedSchedule = scheduleForIndexPath(indexPath)
+    scheduleSelection = scheduleForIndexPath(indexPath)
     tableView.reloadData()
   }
 

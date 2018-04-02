@@ -511,6 +511,8 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     if segue.identifier == showPrescriptionHelpSegue{
       let dst = segue.destination as! HelpViewController
       dst.helpText = helpInfo!
+    } else if let scheduleList = segue.destination as? ScheduleListViewController {
+      scheduleList.entryInfo = entryInfo
     }
   }
   
@@ -598,9 +600,8 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       for transform in mapping{
         entry[keyPath: transform.key] = self[keyPath:transform.value]
       }
-      entry.scheduleSelection = nil
-      entry.drugDBSelection = lastSelectedDrug?.raw
 
+      entry.drugDBSelection = lastSelectedDrug?.raw
       return entry
     }
     set{
@@ -614,7 +615,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
         let text = entry[keyPath: transform.key]
         self[keyPath:transform.value] = text
       }
-      //scheduleLine.events = entry.scheduleSelection //TODO, do something if it doesn't match one
       lastSelectedDrug = entry.drugDBSelection.flatMap{DisplayDrug($0)}
     }
   }
