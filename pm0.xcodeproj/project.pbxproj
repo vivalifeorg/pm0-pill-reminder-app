@@ -184,6 +184,7 @@
 			children = (
 				894DBC3F205040630020353F /* PrescriptionListViewController.storyboard */,
 				89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */,
+				896052BF20470D9400DF502C /* RxAddEdit */,
 			);
 			path = RxList;
 			sourceTree = "<group>";
@@ -286,7 +287,6 @@
 				89A5168E205879F50069D9AE /* ReleasePaperwork */,
 				894DBC3E205040460020353F /* RxList */,
 				89B4E1CF204DE55F00A09B27 /* UpcomingDay */,
-				896052BF20470D9400DF502C /* RxAddEdit */,
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
 				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
