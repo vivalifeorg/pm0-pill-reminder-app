@@ -75,7 +75,7 @@ class PrescriptionListViewController: UIViewController {
   @IBAction func unwindToPrescriptionListCancel(segue:UIStoryboardSegue){}
   @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
 
-    guard let rx = (segue.source as? PrescriptionEntryViewController)?.prescription else{
+    guard let rx = (segue.source as? ScheduleListViewController)?.entryInfo?.prescription else{
         return
     }
 
