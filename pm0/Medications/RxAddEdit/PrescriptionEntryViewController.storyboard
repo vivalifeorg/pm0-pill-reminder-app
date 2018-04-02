@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Medication Details-->
+        <!--Medication Info-->
         <scene sceneID="LH0-pk-eQA">
             <objects>
                 <tableViewController id="O6b-de-CLH" customClass="PrescriptionEntryViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,34 +102,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="SGF-3K-Qnm">
-                                        <rect key="frame" x="0.0" y="294" width="375" height="98"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="SGF-3K-Qnm" id="82R-xv-qgh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nay-Fn-ap1" userLabel="When should you take it?" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
-                                                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="When should you take it?"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. With Lunch"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Nay-Fn-ap1" secondAttribute="bottom" id="1iQ-zj-ivH"/>
-                                                <constraint firstItem="Nay-Fn-ap1" firstAttribute="leading" secondItem="82R-xv-qgh" secondAttribute="leading" id="d14-xO-HiY"/>
-                                                <constraint firstItem="Nay-Fn-ap1" firstAttribute="top" secondItem="82R-xv-qgh" secondAttribute="top" id="dgb-Yr-jXV"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nay-Fn-ap1" secondAttribute="trailing" id="siL-vs-OFR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="b4S-7Y-eiV">
-                                        <rect key="frame" x="0.0" y="392" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="294" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="b4S-7Y-eiV" id="HpQ-E7-y1q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -154,7 +128,7 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="MNY-9D-weJ">
-                                        <rect key="frame" x="0.0" y="490" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="392" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="MNY-9D-weJ" id="QZi-ml-EAy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -179,7 +153,7 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="kK4-kz-hvL">
-                                        <rect key="frame" x="0.0" y="588" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="490" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="kK4-kz-hvL" id="eZ9-Y4-ksO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -213,7 +187,7 @@
                             <outlet property="delegate" destination="O6b-de-CLH" id="8OY-En-vSe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Medication Details" largeTitleDisplayMode="always" id="7E3-fv-fif">
+                    <navigationItem key="navigationItem" title="Medication Info" largeTitleDisplayMode="always" id="7E3-fv-fif">
                         <barButtonItem key="backBarButtonItem" title="Details" id="Ed6-hH-BlW"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YFU-5I-Vwj">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -234,7 +208,6 @@
                         <outlet property="pharmacyLine" destination="CaG-bp-2hH" id="cvy-CP-g8p"/>
                         <outlet property="prescriberLine" destination="xW1-aJ-TRY" id="81f-1C-KRM"/>
                         <outlet property="quantityLine" destination="U6C-P2-pcZ" id="PEF-pQ-rNj"/>
-                        <outlet property="scheduleLine" destination="Nay-Fn-ap1" id="Ydc-QV-Hxj"/>
                         <outlet property="unitLine" destination="rVI-l7-eVN" id="bvh-Xx-Zji"/>
                         <segue destination="dQz-ad-SPH" kind="show" identifier="showPrescriptionHelp" id="Z0u-bR-ne3"/>
                     </connections>
@@ -248,14 +221,14 @@
         <scene sceneID="g2p-H9-a01">
             <objects>
                 <tableViewController id="Br7-0M-hLe" customClass="ScheduleListViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="44" sectionFooterHeight="28" id="tXd-1O-oL9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="44" sectionFooterHeight="28" id="tXd-1O-oL9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <color key="sectionIndexColor" name="vlTextColor"/>
                         <color key="sectionIndexBackgroundColor" name="vlCellBackgroundCommon"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QgY-p7-053">
-                            <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                             <items>
@@ -270,116 +243,34 @@
                             </items>
                             <color key="barTintColor" name="vlCellBackgroundCommon"/>
                         </toolbar>
-                        <sections>
-                            <tableViewSection headerTitle="Custom Schedules" id="Yl7-dV-NJD">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="w03-Ex-cz6" detailTextLabel="gMj-va-QFp" style="IBUITableViewCellStyleSubtitle" id="vWT-Bi-LcL">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vWT-Bi-LcL" id="oM3-zA-K9e">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="w03-Ex-cz6" detailTextLabel="gMj-va-QFp" style="IBUITableViewCellStyleSubtitle" id="vWT-Bi-LcL">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vWT-Bi-LcL" id="oM3-zA-K9e">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w03-Ex-cz6">
+                                            <rect key="frame" x="16.000000000000007" y="5" width="111.66666666666667" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w03-Ex-cz6">
-                                                    <rect key="frame" x="16.000000000000007" y="5" width="111.66666666666667" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="9:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMj-va-QFp">
-                                                    <rect key="frame" x="16" y="25.333333333333332" width="47" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Standard Schedules" id="O2k-uS-rOs">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Vwz-hb-lp7" detailTextLabel="NIO-Bt-Ar0" style="IBUITableViewCellStyleSubtitle" id="9QF-yY-CWL">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9QF-yY-CWL" id="6sf-Hh-MfT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="9:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMj-va-QFp">
+                                            <rect key="frame" x="16" y="25.333333333333332" width="47" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With breakfast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vwz-hb-lp7">
-                                                    <rect key="frame" x="16.000000000000007" y="5" width="111.66666666666667" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="9:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NIO-Bt-Ar0">
-                                                    <rect key="frame" x="16" y="25.333333333333332" width="47" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="8Vr-kT-gaD" detailTextLabel="ZcH-jV-bBX" style="IBUITableViewCellStyleSubtitle" id="Whx-VW-tR9">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Whx-VW-tR9" id="1ra-QG-qaB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="First thing in the morning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Vr-kT-gaD" userLabel="First thing in the Morning">
-                                                    <rect key="frame" x="16" y="5" width="191" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="7:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZcH-jV-bBX">
-                                                    <rect key="frame" x="16" y="25.333333333333332" width="46" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="cgE-a5-uFa" detailTextLabel="awX-2e-Qf9" style="IBUITableViewCellStyleSubtitle" id="Ne1-3B-0gC">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ne1-3B-0gC" id="mBV-e5-5bJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="With breakfast and dinner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgE-a5-uFa" userLabel="First thing in the Morning">
-                                                    <rect key="frame" x="16" y="5" width="197.33333333333334" height="20.333333333333332"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="9:00 am, 5:30 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="awX-2e-Qf9">
-                                                    <rect key="frame" x="16" y="25.333333333333332" width="101" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" name="vlTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="Br7-0M-hLe" id="g30-es-L6s"/>
                             <outlet property="delegate" destination="Br7-0M-hLe" id="ffn-Ha-GB9"/>
@@ -874,15 +765,6 @@
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
@@ -904,7 +786,7 @@
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -917,15 +799,6 @@
         </namedColor>
         <namedColor name="vlEditableTextColor">
             <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -189,7 +189,8 @@ class UpcomingDayViewController: UITableViewController {
     return hour * 60 + minute
   }
 
-  struct TimeSlot{
+
+  struct DisplayTimeslot{
     let name:String?
     let date:Date
     var items:[TimeSlotItem]
@@ -222,7 +223,7 @@ class UpcomingDayViewController: UITableViewController {
 
 
 
-  func sectionsForSchedule(timeSlots:[TimeSlot])->[Section]{
+  func sectionsForSchedule(timeSlots:[DisplayTimeslot])->[Section]{
     return timeSlots.map{
       let startTime = $0.date
       let minutesBefore = 60.0
@@ -239,7 +240,7 @@ class UpcomingDayViewController: UITableViewController {
     }
   }
 
-  func scheduleForDate(_ date:Date, drugs:[Dosage]) -> [TimeSlot] {
+  func scheduleForDate(_ date:Date, drugs:[Dosage]) -> [DisplayTimeslot] {
     var times:[Int:[Dosage]] = [:]
     for dose in drugs{
       for time in dose.timesTaken(for: date){
@@ -266,7 +267,7 @@ class UpcomingDayViewController: UITableViewController {
       names[minuteOffset(hour: item.hourOffset, minute: item.minuteOffset)] = name
     }
 
-    var timeSlots:[TimeSlot] = []
+    var timeSlots:[DisplayTimeslot] = []
     for minuteOffset in times.keys.sorted(){
       let dosesAtTime = times[minuteOffset] ?? []
       guard dosesAtTime.count != 0 else {continue}
@@ -277,7 +278,7 @@ class UpcomingDayViewController: UITableViewController {
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
       let displayable = dosesAtTime.map{ TimeSlotItem(dosage:$0,isTaken:false) }
-      let timeSlot = TimeSlot(name:names[minuteOffset],
+      let timeSlot = DisplayTimeslot(name:names[minuteOffset],
                              date:timeSlotDate,
                              items:displayable)
       timeSlots.append(timeSlot)

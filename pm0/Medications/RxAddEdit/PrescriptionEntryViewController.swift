@@ -132,10 +132,23 @@ var doctors = [
 typealias MinuteOffset = Int
 typealias HourOffset = Int
 
+
+extension String {
+  func leftPadding(toLength: Int, withPad character: Character) -> String {
+    let stringLength = self.characters.count
+    if stringLength < toLength {
+      return String(repeatElement(character, count: toLength - stringLength)) + self
+    } else {
+      return String(self.suffix(toLength))
+    }
+  }
+}
+
 struct Timeslot:Hashable,Codable{
   var hashValue: Int {
     return "\(name ?? "non-named")\(slotType)".hashValue
   }
+
 
   let name:String?
 
@@ -148,6 +161,36 @@ struct Timeslot:Hashable,Codable{
   var minuteOffset:MinuteOffset {
     return Timeslot.timeOffsetForSlot(self).minute
   }
+
+  /*
+
+   */
+
+  var twelveHourTime:String{
+    var today = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: Date())
+    today.second = 0
+    today.nanosecond = 0
+
+    today.hour = hourOffset
+    today.minute = minuteOffset
+    let dateFormatter = DateFormatter()
+
+    dateFormatter.timeZone = Calendar.current.timeZone
+    dateFormatter.dateStyle = .none
+    dateFormatter.timeStyle = .short
+
+    return dateFormatter.string(from: today.date!)
+  }
+  
+  var description:String{
+    let timeStr = twelveHourTime
+    if let name = name {
+      return "\(name)@\(timeStr)"
+    } else {
+      return timeStr
+    }
+  }
+
 
   //todo fix broken ==
   static func ==(lhs:Timeslot, rhs:Timeslot) -> Bool{
@@ -317,7 +360,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   @IBOutlet weak var nameLine: PrescriptionLineEntry!
   @IBOutlet weak var unitLine: PrescriptionLineEntry!
   @IBOutlet weak var quantityLine: PrescriptionLineEntry!
-  @IBOutlet weak var scheduleLine: PrescriptionLineEntry!
+  //@IBOutlet weak var scheduleLine: PrescriptionLineEntry!
   @IBOutlet weak var prescriberLine: PrescriptionLineEntry!
   @IBOutlet weak var pharmacyLine: PrescriptionLineEntry!
   @IBOutlet weak var conditionLine: PrescriptionLineEntry!
@@ -382,7 +425,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       nameLine.searchTextField,
       unitLine.searchTextField,
       quantityLine.searchTextField,
-      scheduleLine.searchTextField,
+   //   scheduleLine.searchTextField,
       prescriberLine.searchTextField,
       pharmacyLine.searchTextField,
       conditionLine.searchTextField
@@ -564,12 +607,12 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     prescriberLine.helper = self
 
 
-    configureSearchField(scheduleLine.searchTextField)
-    configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
-    scheduleLine.searchTextField.filterItems(
-      schedules.map{SearchTextFieldItem(listable:$0)})
-    scheduleLine.helpInfo = RXEntryHelpText.scheduleHelpText.renderMarkdownAsAttributedString
-    scheduleLine.helper = self
+//    configureSearchField(scheduleLine.searchTextField)
+//    configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
+//    scheduleLine.searchTextField.filterItems(
+//      schedules.map{SearchTextFieldItem(listable:$0)})
+//    scheduleLine.helpInfo = RXEntryHelpText.scheduleHelpText.renderMarkdownAsAttributedString
+//    scheduleLine.helper = self
 
 
 
@@ -587,7 +630,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     \EntryInfo.name:\PrescriptionEntryViewController.nameLine.searchTextField.text,
     \EntryInfo.unitDescription:\PrescriptionEntryViewController.unitLine.searchTextField.text,
     \EntryInfo.quantityOfUnits:\PrescriptionEntryViewController.quantityLine.searchTextField.text,
-    \EntryInfo.schedule:\PrescriptionEntryViewController.scheduleLine.searchTextField.text,
+   // \EntryInfo.schedule:\PrescriptionEntryViewController.scheduleLine.searchTextField.text,
     \EntryInfo.prescribingDoctor:\PrescriptionEntryViewController.prescriberLine.searchTextField.text,
     \EntryInfo.pharmacy:\PrescriptionEntryViewController.pharmacyLine.searchTextField.text,
     \EntryInfo.condition:\PrescriptionEntryViewController.conditionLine.searchTextField.text,
