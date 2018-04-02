@@ -1,12 +1,9 @@
 PODS:
-  - Alamofire (4.5.1)
   - Down (0.5.1)
   - DZNEmptyDataSet (1.8.1)
   - KeychainAccess (3.1.0)
   - PDFGenerator (2.1)
   - PhaxioiOS (0.1.0)
-  - PhaxioSwiftAlamofire (0.0.1):
-    - Alamofire (~> 4.5.0)
   - SearchTextField (1.2.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
@@ -19,8 +16,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - KeychainAccess
   - PDFGenerator (~> 2.1)
-  - PhaxioiOS (from `pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master`)
-  - PhaxioSwiftAlamofire (from `pm0/ReleasePaperwork/generated/phaxio_swagger_pod/`)
+  - PhaxioiOS (from `pm0/Faxing/PhaxioAPIObjC/phaxio-ios-master`)
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
   - SwiftGen
@@ -31,9 +27,7 @@ EXTERNAL SOURCES:
     :commit: 4082c8d9432eb37ba6d7a4c379e714828238d061
     :git: https://github.com/iwasrobbed/Down
   PhaxioiOS:
-    :path: pm0/ReleasePaperwork/PhaxioAPIObjC/phaxio-ios-master
-  PhaxioSwiftAlamofire:
-    :path: pm0/ReleasePaperwork/generated/phaxio_swagger_pod/
+    :path: pm0/Faxing/PhaxioAPIObjC/phaxio-ios-master
   SearchTextField:
     :commit: 97cb555c4721cd80257022637ee255dc812eda3a
     :git: https://github.com/apasccon/SearchTextField
@@ -47,18 +41,16 @@ CHECKOUT OPTIONS:
     :git: https://github.com/apasccon/SearchTextField
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Down: 7c70e306ec1917f6539e69ddd4113d246c5a2448
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PDFGenerator: 4fd5db4972465679f4846a9a36d53e8826536a6d
   PhaxioiOS: 6622fa5ed57dba8db71e67d92ebbd4a4541447f0
-  PhaxioSwiftAlamofire: b3ae79c0e45443d943d8282a8bdccb662f722f63
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
   Yams: 58b13424ca380835c4c797bc775ce6cbb3bc0167
 
-PODFILE CHECKSUM: 77e1e33639bb6368a7601a42d73fbeae0e4eacb3
+PODFILE CHECKSUM: 93167a6a9e1b93f4a76b99beeedeee6d728fae59
 
 COCOAPODS: 1.4.0.beta.2

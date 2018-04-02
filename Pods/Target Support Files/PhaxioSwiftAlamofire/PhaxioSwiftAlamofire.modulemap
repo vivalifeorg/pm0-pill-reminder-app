@@ -1,6 +1,0 @@
-framework module PhaxioSwiftAlamofire {
-  umbrella header "PhaxioSwiftAlamofire-umbrella.h"
-
-  export *
-  module * { export * }
-}
