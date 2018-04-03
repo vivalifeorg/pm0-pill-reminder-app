@@ -201,7 +201,8 @@ class UpcomingDayViewController: UITableViewController {
       dateFormatter.dateStyle = .none
       dateFormatter.timeStyle = .short
       let time = dateFormatter.string(from: date)
-      if let name = name {
+
+      if let name = name, name != ""{
         return "\(name) @ \(time)"
       }else{
         return "\(time)"

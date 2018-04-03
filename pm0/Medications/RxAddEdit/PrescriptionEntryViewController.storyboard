@@ -383,12 +383,15 @@
                                 <segue destination="3Yt-Gk-seP" kind="unwind" identifier="canceledEditingSchedule" unwindAction="unwindFromEditingScheduleWithSegue:" id="uuf-lZ-UeH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="duC-Qh-nai">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="duC-Qh-nai">
                             <connections>
                                 <segue destination="3Yt-Gk-seP" kind="unwind" identifier="savingScheduleSegue" unwindAction="unwindFromEditingScheduleWithSegue:" id="0wS-pT-byq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="duC-Qh-nai" id="m2C-cE-yuV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gm9-sg-6GI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3Yt-Gk-seP" userLabel="Exit" sceneMemberID="exit"/>

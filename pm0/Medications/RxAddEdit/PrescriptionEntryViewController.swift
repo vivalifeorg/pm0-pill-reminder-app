@@ -203,7 +203,7 @@ struct Timeslot:Hashable,Codable{
   
   var description:String{
     let timeStr = timeString
-    if let name = name {
+    if let name = name, name != "" {
       return "\(name)@\(timeStr)"
     } else {
       return timeStr
