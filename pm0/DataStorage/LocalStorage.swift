@@ -31,8 +31,10 @@ enum LocalStorage{
   enum KeychainKey:String,Codable{
     case userPrescriptions
     case userDoctors
+
     case userTimeslots
     case systemTimeslots
+    
     case userSchedules
     case systemSchedules
   }
@@ -86,6 +88,7 @@ struct Persistor<T:Codable>{
 
 private func BlankLocal(key:LocalStorage.KeychainKey){
   let key = key.rawValue as String
+  debugPrint("BLANKING \(key)")
   keychain[string: key] = nil
 }
 

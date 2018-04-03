@@ -31,23 +31,23 @@ import UIKit
 
 class ScheduleDetailViewController:UITableViewController{
 
-  override func viewDidLoad() {
-  }
-
   func textFieldDidChange(_ textField:UITextField){
     schedule.name = textField.text ?? ""
   }
 
   var isShowingCustom:Bool{
-    return userTimeslots.count > 0
+    return !userTimeslots.isEmpty
   }
+
   private var userTimeslots:[Timeslot] = LocalStorage.TimeslotStore.User.load()
   private var defaultTimeslots:[Timeslot] = LocalStorage.TimeslotStore.System.load()
+
+  // Custom timeslots are above system timeslots so the user is more likely to see them
   private var timeslotDatasource:[[Timeslot]] {
     if isShowingCustom {
-      return [[],userTimeslots,defaultTimeslots]
+      return [[], userTimeslots, defaultTimeslots]
     }else{
-      return [[],defaultTimeslots]
+      return [[], defaultTimeslots]
     }
   }
 
@@ -146,6 +146,8 @@ class ScheduleDetailViewController:UITableViewController{
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "savingScheduleSegue" {
+      schedule.ensureNonEmptyName()
+
       var userSchedules = LocalStorage.ScheduleStore.User.load()
       userSchedules.insert(schedule, at: 0)
       LocalStorage.ScheduleStore.User.save(userSchedules)

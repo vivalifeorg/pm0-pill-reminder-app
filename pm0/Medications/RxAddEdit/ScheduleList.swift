@@ -8,7 +8,25 @@
 
 import UIKit
 
-
+var defaultSchedules = [
+  Schedule(name:"When I wake up in the morning",
+           aliases:["Once per day",
+                    "Immeadiately upon awakening",
+                    "Before breakfast",
+                    "First thing"], events: [DefaultTimeslots.wakeUp]),
+  Schedule(name:"With Breakfast",
+           aliases:["Once a day with food",
+                    "Early in the day with food",
+                    "First thing in the morning with food"], events: [DefaultTimeslots.breakfast]),
+  Schedule(name:"With Lunch",
+           aliases:["Once a day with food",
+                    "Early in the day with food",
+                    "Avoid taking with alcohol"], events: [DefaultTimeslots.lunch]),
+  Schedule(name:"With Breakfast and Dinner",
+           aliases:["Twice a day with food",
+                    "At least 6 hours apart",
+                    "At least 4 hours apart"], events: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner])
+]
 
 class ScheduleListViewController:UITableViewController{
   var scheduleSelection:Schedule? = nil {
@@ -22,8 +40,9 @@ class ScheduleListViewController:UITableViewController{
 
   var entryInfo:EntryInfo?
 
-  private var customSchedules:[Schedule] = []
-  private var standardSchedules:[Schedule] = schedules
+  private var customSchedules:[Schedule] = LocalStorage.ScheduleStore.User.load()
+  private var standardSchedules:[Schedule] = LocalStorage.ScheduleStore.System.load()
+
   private var scheduleDatasource:[[Schedule]] {
     if isShowingCustom {
       return [customSchedules,standardSchedules]
@@ -45,6 +64,12 @@ class ScheduleListViewController:UITableViewController{
   }
 
   override func viewDidLoad() {
+    if standardSchedules.count == 0{
+      LocalStorage.ScheduleStore.System.save(defaultSchedules)
+      standardSchedules = LocalStorage.ScheduleStore.System.load()
+      tableView.reloadData()
+    }
+    
     updateDoneButton()
   }
 
@@ -77,6 +102,7 @@ class ScheduleListViewController:UITableViewController{
 
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
     let reuseIdentifier = "SubtitleSchedules"
     let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ??     UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
     cell.textLabel?.textColor = Asset.Colors.vlTextColor.color
@@ -87,7 +113,8 @@ class ScheduleListViewController:UITableViewController{
     cell.textLabel?.text = schedule.title
     cell.detailTextLabel?.text = schedule.events.map{$0.description}.joined(separator: ", ")
 
-    let isChecked = scheduleSelection != nil && scheduleSelection! == scheduleForIndexPath(indexPath)
+    let isChecked = (scheduleSelection != nil) &&
+                      (scheduleSelection! == scheduleForIndexPath(indexPath))
     cell.accessoryType = isChecked ? .checkmark : .none
 
     cell.selectedBackgroundView = UIView()

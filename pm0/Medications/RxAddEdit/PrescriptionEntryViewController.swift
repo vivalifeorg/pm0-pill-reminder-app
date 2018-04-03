@@ -314,6 +314,12 @@ struct Schedule:Codable,Equatable {
   var name:String
   var aliases:[String]
   var events:[Timeslot]
+  let itemRef:UUID = UUID()
+
+  mutating func ensureNonEmptyName(){
+    let savingScheduleName = (self.name == "") ? "Schedule-\(UUID().uuidString.dropLast(31))" : self.name
+    self.name = savingScheduleName
+  }
 }
 
 extension Schedule:Listable{
@@ -326,31 +332,7 @@ extension Schedule:Listable{
   }
 }
 
-var schedules = [
-  Schedule(name:"When I wake up in the morning",
-                  aliases:["Once per day",
-                            "Immeadiately upon awakening",
-                            "Before breakfast",
-                            "First thing"], events: [DefaultTimeslots.wakeUp]),
-  Schedule(name:"With Breakfast",
-                  aliases:["Once a day with food",
-                            "Early in the day with food",
-                            "First thing in the morning with food"], events: [DefaultTimeslots.breakfast]),
-  Schedule(name:"With Lunch",
-                  aliases:["Once a day with food",
-                            "Early in the day with food",
-                            "Avoid taking with alcohol"], events: [DefaultTimeslots.lunch]),
-  Schedule(name:"With Breakfast and Dinner",
-                  aliases:["Twice a day with food",
-                            "At least 6 hours apart",
-                            "At least 4 hours apart"], events: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner]),
-//  Schedule(name:"Custom",
-//                  aliases:["Make my own schedule",
-//                            "Other",
-//                            "Something else",
-//                            "Every other day",
-//                            "Once a week"," "], events: [])
-]
+
 
 struct DisplayDoctor{
   var name:String
@@ -384,22 +366,6 @@ extension DisplayDrug{
   }
 }
 
-extension PrescriptionLineEntry{
-  var events:[Timeslot] {
-
-    guard let text = self.searchTextField.text else {
-      return []
-    }
-
-    for s in schedules{
-      if s.name == text {
-        return s.events
-      }
-    }
-
-    return [DefaultTimeslots.defaultTimeslot]
-  }
-}
 
 extension PrescriptionLineEntry{
   var intValue:Int?{
