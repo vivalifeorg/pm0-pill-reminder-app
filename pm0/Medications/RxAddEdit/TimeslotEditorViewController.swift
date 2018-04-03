@@ -51,10 +51,7 @@ func timeConfigurationSheet(currentDate:Date,width:CGFloat, title:String? = "", 
 
 
 class TimeslotEditorViewController:UITableViewController{
-  @IBAction func didSelectTimeItem(){
-    datePicker?.datePickerMode = .time
-   // alert.add
-  }
+
 
   var datePicker:UIDatePicker? = nil
   var timeslots:[[Timeslot]] = [LocalStorage.Timeslot.User.load(),
@@ -70,8 +67,6 @@ class TimeslotEditorViewController:UITableViewController{
     timeslots[customSectionIndex].append(newTimeslot)
     tableView.insertRows(at: [newTimeslotPath], with:.right )
     tableView.endUpdates()
-
-    saveTimeslotChanges(indexPath: newTimeslotPath)
     editTimeslotAt(at: newTimeslotPath)
   }
 
@@ -88,6 +83,8 @@ class TimeslotEditorViewController:UITableViewController{
     tableView.tableFooterView = UIView() //remove lines
   }
 
+
+  //prevent timeslots being named the same thing as other things
   func fixedTimeslotName(_ userProposedName:String, at indexPath:IndexPath)->String{
     guard userProposedName != "" else {
       return "Timeslot-\(UUID().uuidString.dropLast(31))"
@@ -111,7 +108,7 @@ class TimeslotEditorViewController:UITableViewController{
   func saveTimeslotChanges(indexPath:IndexPath){
 
     if areTimeslotsOrderedMonotonically{
-      tableView.reloadRows(at: [indexPath], with: .automatic)
+      tableView.reloadRows(at: [indexPath], with: .right)
     }else{
       timeslots[indexPath.section] = timeslots[indexPath.section].sorted
       let rowIndexes = 0..<(tableView.numberOfRows(inSection: indexPath.section))
