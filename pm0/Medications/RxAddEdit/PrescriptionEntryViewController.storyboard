@@ -380,12 +380,12 @@
                     <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="always" id="AyF-PT-Sjc" userLabel="Sch. Details">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="nwg-q6-l85">
                             <connections>
-                                <segue destination="3Yt-Gk-seP" kind="unwind" unwindAction="unwindFromEditingScheduleWithSegue:" id="uuf-lZ-UeH"/>
+                                <segue destination="3Yt-Gk-seP" kind="unwind" identifier="canceledEditingSchedule" unwindAction="unwindFromEditingScheduleWithSegue:" id="uuf-lZ-UeH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="duC-Qh-nai">
                             <connections>
-                                <segue destination="3Yt-Gk-seP" kind="unwind" unwindAction="unwindFromEditingScheduleWithSegue:" id="77z-Cy-8yy"/>
+                                <segue destination="3Yt-Gk-seP" kind="unwind" identifier="savingScheduleSegue" unwindAction="unwindFromEditingScheduleWithSegue:" id="0wS-pT-byq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

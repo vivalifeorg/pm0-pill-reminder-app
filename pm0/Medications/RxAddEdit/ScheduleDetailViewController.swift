@@ -12,22 +12,37 @@ import UIKit
 
 @objc class ScheduleDetailNameCell:UITableViewCell{
   @IBOutlet weak var nameField:UITextField!
+
+  var textFieldDidChange:(UITextField)->() = { _ in }
+
+  @objc func textFieldDidChangeHandler(_ textField:UITextField){
+    textFieldDidChange(textField)
+  }
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    nameField.addTarget(
+      self,
+      action: #selector(ScheduleDetailNameCell.textFieldDidChangeHandler(_:)),
+      for: UIControlEvents.editingChanged
+    )
+  }
 }
-
-
 
 class ScheduleDetailViewController:UITableViewController{
 
   override func viewDidLoad() {
-
   }
 
-  var name = ""
+  func textFieldDidChange(_ textField:UITextField){
+    schedule.name = textField.text ?? ""
+  }
+
   var isShowingCustom:Bool{
     return userTimeslots.count > 0
   }
-  private var userTimeslots:[Timeslot] = LocalStorage.Timeslot.User.load()
-  private var defaultTimeslots:[Timeslot] = LocalStorage.Timeslot.System.load()
+  private var userTimeslots:[Timeslot] = LocalStorage.TimeslotStore.User.load()
+  private var defaultTimeslots:[Timeslot] = LocalStorage.TimeslotStore.System.load()
   private var timeslotDatasource:[[Timeslot]] {
     if isShowingCustom {
       return [[],userTimeslots,defaultTimeslots]
@@ -37,7 +52,6 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   var schedule:Schedule = Schedule(name:"",aliases:[],events:[])
-
 
   func accessoryFor(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCellAccessoryType {
     guard indexPath.section != 0 else{
@@ -49,6 +63,10 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    guard indexPath.section != 0 else{
+      return
+    }
 
     if accessoryFor(tableView,indexPath:indexPath) == .checkmark {
       let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
@@ -99,12 +117,14 @@ class ScheduleDetailViewController:UITableViewController{
 
     if indexPath.section == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleDetailNameCell", for: indexPath)  as! ScheduleDetailNameCell
-      cell.nameField?.text = name
+      cell.nameField?.text = schedule.name
       cell.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.nameField?.textColor = Asset.Colors.vlEditableTextColor.color
       cell.nameField?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.nameField?.placeholder = "e.g. Before Meetings"
       cell.nameField?.placeholderColor = UIColor.darkGray
+      cell.textFieldDidChange = self.textFieldDidChange(_:)
+      cell.selectionStyle = .none
       return cell
     }else {
       let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
@@ -124,7 +144,13 @@ class ScheduleDetailViewController:UITableViewController{
     }
   }
 
- 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "savingScheduleSegue" {
+      var userSchedules = LocalStorage.ScheduleStore.User.load()
+      userSchedules.insert(schedule, at: 0)
+      LocalStorage.ScheduleStore.User.save(userSchedules)
+    }
+  }
   
 }
 

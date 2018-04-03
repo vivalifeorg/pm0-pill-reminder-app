@@ -84,8 +84,8 @@ class TimeslotEditorViewController:UITableViewController{
 
 
   var datePicker:UIDatePicker? = nil
-  var timeslots:[[Timeslot]] = [LocalStorage.Timeslot.User.load(),
-                                LocalStorage.Timeslot.System.load()]
+  var timeslots:[[Timeslot]] = [LocalStorage.TimeslotStore.User.load(),
+                                LocalStorage.TimeslotStore.System.load()]
 
   let customSectionIndex = 0
 
@@ -143,8 +143,8 @@ class TimeslotEditorViewController:UITableViewController{
       tableView.reloadRows(at: sectionIndexPaths, with: .automatic)
     }
 
-    LocalStorage.Timeslot.User.save(timeslots[0])
-    LocalStorage.Timeslot.System.save(timeslots[1])
+    LocalStorage.TimeslotStore.User.save(timeslots[0])
+    LocalStorage.TimeslotStore.System.save(timeslots[1])
   }
 
   func editTimeslotAt(at indexPath:IndexPath){

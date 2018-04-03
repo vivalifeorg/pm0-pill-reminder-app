@@ -51,7 +51,7 @@ let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeader
 let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHeaderFontSize))!
 
 
-let providers = LocalStorage.DoctorInfo.load()
+let providers = LocalStorage.DoctorStore.load()
 //let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
 
 let patient = Patient(name:"Josh Ditel", phoneNumber:"(555) 555-5555")

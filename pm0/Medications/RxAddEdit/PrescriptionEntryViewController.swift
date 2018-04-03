@@ -225,7 +225,7 @@ struct Timeslot:Hashable,Codable{
   static var sortedSystemTimeslots:[Timeslot]{
     DefaultTimeslots.ensureDefaultsExist()
 
-    return LocalStorage.Timeslot.System.load().sorted(by: { (lhs, rhs) -> Bool in
+    return LocalStorage.TimeslotStore.System.load().sorted(by: { (lhs, rhs) -> Bool in
       lhs.allMinutesOffset < rhs.allMinutesOffset
     })
   }
@@ -284,11 +284,11 @@ enum DefaultTimeslots{
   }
 
   static func ensureDefaultsExist(){
-    guard LocalStorage.Timeslot.System.load().isEmpty else{
+    guard LocalStorage.TimeslotStore.System.load().isEmpty else{
       return
     }
 
-    LocalStorage.Timeslot.System.save(DefaultTimeslots.defaultTimeslots)
+    LocalStorage.TimeslotStore.System.save(DefaultTimeslots.defaultTimeslots)
   }
 }
 

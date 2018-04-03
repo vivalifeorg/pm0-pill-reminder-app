@@ -95,6 +95,7 @@ class ScheduleListViewController:UITableViewController{
   }
 
   @IBAction func unwindFromEditingSchedule(segue:UIStoryboardSegue){
+    customSchedules = LocalStorage.ScheduleStore.User.load()
     tableView.reloadData()
   }
 

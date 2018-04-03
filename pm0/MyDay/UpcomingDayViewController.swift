@@ -301,7 +301,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   func loadDosages(){
-    scheduledDosages = LocalStorage.Prescription.load().flatMap{$0.dosage}
+    scheduledDosages = LocalStorage.PrescriptionStore.load().flatMap{$0.dosage}
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -428,9 +428,9 @@ extension UpcomingDayViewController{
 
 
     let rxEntryVC = segue.source as! ScheduleListViewController
-    var prescriptions = LocalStorage.Prescription.load()
+    var prescriptions = LocalStorage.PrescriptionStore.load()
     prescriptions.append(rxEntryVC.entryInfo!.prescription)
-    LocalStorage.Prescription.save(prescriptions)
+    LocalStorage.PrescriptionStore.save(prescriptions)
 
     loadDosages()
   }
