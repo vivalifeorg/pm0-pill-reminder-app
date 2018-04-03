@@ -158,8 +158,8 @@ struct Timeslot:Hashable,Codable{
   }
 
   static func >(lhs:Timeslot, rhs:Timeslot)->Bool{
-    if lhs.allMinutesOffset != rhs.allMinutesOffset{
-      return lhs.allMinutesOffset > rhs.allMinutesOffset
+    if lhs.offsetFromDayStart != rhs.offsetFromDayStart{
+      return lhs.offsetFromDayStart > rhs.offsetFromDayStart
     }else{
       return lhs.name ?? "" > rhs.name ?? ""
     }
@@ -178,7 +178,7 @@ struct Timeslot:Hashable,Codable{
 
   var minuteOffset:MinuteOffset
 
-  fileprivate var allMinutesOffset:MinuteOffset{
+  var offsetFromDayStart:MinuteOffset{
     return (hourOffset * 60) + minuteOffset
   }
   /*
@@ -215,7 +215,7 @@ struct Timeslot:Hashable,Codable{
   static func ==(lhs:Timeslot, rhs:Timeslot) -> Bool{
     return lhs.name == rhs.name &&
       lhs.slotType == rhs.slotType &&
-      lhs.allMinutesOffset == rhs.allMinutesOffset
+      lhs.offsetFromDayStart == rhs.offsetFromDayStart
   }
 
   static func userOverridenTimeOffsetFor(_ event:Timeslot) -> (hour:HourOffset,minute:MinuteOffset)?{
@@ -226,7 +226,7 @@ struct Timeslot:Hashable,Codable{
     DefaultTimeslots.ensureDefaultsExist()
 
     return LocalStorage.TimeslotStore.System.load().sorted(by: { (lhs, rhs) -> Bool in
-      lhs.allMinutesOffset < rhs.allMinutesOffset
+      lhs.offsetFromDayStart < rhs.offsetFromDayStart
     })
   }
 

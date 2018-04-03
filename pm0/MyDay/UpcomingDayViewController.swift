@@ -162,14 +162,16 @@ class UpcomingDayViewController: UITableViewController {
       return VLColors.footerInfoPertinent
     }
 
+
     var title:String
+    var footnote:String
     var remaining:String{
       let remaining = medications.reduce(0){
         $1.isTaken ? $0 : $0 + 1
       }
       let leader = "           "
       if remaining == 0 {
-        return "\(leader)Completed!"
+        return "\(leader)✓"
       }
       return "\(leader)\(remaining)/\(medications.count)"
     }
@@ -185,15 +187,11 @@ class UpcomingDayViewController: UITableViewController {
     }
   }
 
-  func minuteOffset(hour:Int,minute:Int)->Int{
-    return hour * 60 + minute
-  }
-
-
   struct DisplayTimeslot{
     let name:String?
     let date:Date
     var items:[TimeSlotItem]
+    var footnote:String = ""
 
     var slotDescription:String{
       let dateFormatter = DateFormatter()
@@ -232,7 +230,7 @@ class UpcomingDayViewController: UITableViewController {
       let activeStart = startTime.addingTimeInterval(-minutesBefore * 60.0)
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
       //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
-      return Section(title: $0.slotDescription,
+      return Section(title: $0.slotDescription, footnote: $0.footnote,
               medications: $0.items,
               isActive:{ (now:Date) in
                 activeStart <= now &&
@@ -243,11 +241,17 @@ class UpcomingDayViewController: UITableViewController {
 
   func scheduleForDate(_ date:Date, drugs:[Dosage]) -> [DisplayTimeslot] {
     var times:[Int:[Dosage]] = [:]
+    var timeNames:[Int:[String]] = [:]
     for dose in drugs{
       for time in dose.timesTaken(for: date){
-        var dosesAtTime = times[minuteOffset(hour: time.hourOffset  , minute: time.minuteOffset)] ?? []
+        var dosesAtTime = times[time.offsetFromDayStart] ?? []
         dosesAtTime.append(dose)
-        times[minuteOffset(hour: time.hourOffset, minute: time.minuteOffset)] = dosesAtTime
+        times[time.offsetFromDayStart] = dosesAtTime
+        if let name = time.name, name != "" {
+          var nameList = timeNames[time.offsetFromDayStart] ?? []
+          nameList.append(name)
+          timeNames[time.offsetFromDayStart] = nameList
+        }
       }
     }
 
@@ -270,9 +274,21 @@ class UpcomingDayViewController: UITableViewController {
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
       let displayable = dosesAtTime.map{ TimeSlotItem(dosage:$0,isTaken:false) }
-      let timeSlot = DisplayTimeslot(name:"",
+
+      var footnote = ""
+      let nameList = (timeNames[minuteOffset] ?? []).sorted()
+      var name = nameList.first ?? ""
+      if nameList.count > 1{
+        name = nameList.reduce(name){ $0.count > $1.count ? $0 : $1 } //longest name
+        if name != nameList.first{
+          name = "\(name)*" //show there are multiple names going on
+          footnote = "*All Names: \(nameList.joined(separator: "/"))"
+        }
+      }
+
+      let timeSlot = DisplayTimeslot(name:name,
                              date:timeSlotDate,
-                             items:displayable)
+                             items:displayable, footnote:footnote)
       timeSlots.append(timeSlot)
 
       //debugPrint("\(thisTime.hour!):\(thisTime.minute!) \(timeSlot)")
@@ -350,6 +366,10 @@ extension UpcomingDayViewController{
     let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyDayTableSectionHeaderView") as! MyDayTableSectionHeaderView
     return header
   }
+  override func tableView(_ tableView:UITableView, titleForFooterInSection sectionIndex: Int) -> String{
+    return sections[sectionIndex].footnote
+  }
+
 
   override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
     return 40
