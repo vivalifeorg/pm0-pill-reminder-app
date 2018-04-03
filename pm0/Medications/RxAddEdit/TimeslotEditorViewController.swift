@@ -160,7 +160,7 @@ class TimeslotEditorViewController:UITableViewController{
     let sheet = timeConfigurationSheet(currentDate:currentDate,
                                        width:view.frame.size.width-20.0,
                                        editText:editableName,
-                                       title:"Editing Timeslot \"\(timeslot.name ?? "Slot")\"",
+                                       title:"Editing \"\(timeslot.name ?? "Slot")\"",
     message:""){ hourOffset, minuteOffset, nameUpdate in
 
       if let hourOffset=hourOffset,
@@ -216,6 +216,46 @@ class TimeslotEditorViewController:UITableViewController{
     }
   }
 
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    guard indexPath.section == customSectionIndex else{
+      return []
+    }
+
+    return [
+      UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteTimeslotTableRowAction),
+    ]
+  }
+
+  var deleteConfirmController:UIAlertController? = nil
+  func deleteTimeslotTableRowAction(_ action:UITableViewRowAction, indexPath:IndexPath){
+    // delete item at indexPath
+    let timeslot = timeslots[indexPath.section][indexPath.row]
+    let alert = UIAlertController(title: "Delete Timeslot?",                                  message: "Are you sure you want to delete \(timeslot.name ?? "this timeslot")?",
+                                  preferredStyle: .alert)
+
+    alert.addAction(
+      UIAlertAction(title: NSLocalizedString("Keep Timeslot",
+                                             comment: "Keep Timeslot"),
+                    style: .cancel,
+                    handler:nil)
+    )
+
+    alert.addAction(
+      UIAlertAction(title: NSLocalizedString("Delete Timeslot",
+                                             comment: "Delete it"),
+                    style: .destructive){ _ in
+                      self.timeslots[indexPath.section].remove(at: indexPath.row)
+                      self.tableView.deleteRows(at: [indexPath], with: .fade)
+      }
+    )
+
+    self.deleteConfirmController = alert
+    self.present(deleteConfirmController!, animated: true, completion: nil)
+  }
+
+
+
+
   func showUnimplemented(){
     alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .actionSheet)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
@@ -231,21 +271,3 @@ class TimeslotEditorViewController:UITableViewController{
   }
 }
 
-extension TimeslotEditorViewController: UIPickerViewDelegate{
-
-
-  func showDatePicker(){
-    let message = "\n\n\n\n\n\n"
-    let alert = UIAlertController(title: "Please Select City", message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
-
-    let okAction = UIAlertAction(title: "OK", style: .default, handler: {
-      (alert: UIAlertAction!) -> Void in
-      //Perform Action
-    })
-    alert.addAction(okAction)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-    alert.addAction(cancelAction)
-    self.parent!.present(alert, animated: true, completion:nil)
- }
-
-}
