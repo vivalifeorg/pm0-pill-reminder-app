@@ -287,7 +287,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWO-qs-XAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3530" y="335"/>
+            <point key="canvasLocation" x="3704" y="599"/>
         </scene>
         <!--Details-->
         <scene sceneID="E3K-Nx-R9y">
@@ -345,7 +345,7 @@
                                     <outlet property="nameField" destination="Mie-FD-CtO" id="h3R-gG-Idf"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="rJy-eO-sfq" detailTextLabel="gRp-my-ve7" style="IBUITableViewCellStyleSubtitle" id="Kug-zV-nvH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ScheduleDetailTimeslotCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleDetailTimeslotCell" textLabel="rJy-eO-sfq" detailTextLabel="gRp-my-ve7" style="IBUITableViewCellStyleSubtitle" id="Kug-zV-nvH">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kug-zV-nvH" id="YbC-f0-eX1">
@@ -393,7 +393,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gm9-sg-6GI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3Yt-Gk-seP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4370" y="86"/>
+            <point key="canvasLocation" x="4328" y="12"/>
         </scene>
         <!--Timeslots-->
         <scene sceneID="W7D-gn-JKx">

@@ -20,23 +20,51 @@ import UIKit
 }
 
 
-func timeConfigurationSheet(currentDate:Date,width:CGFloat, title:String? = "", message:String? = "", completion:@escaping ((HourOffset?,MinuteOffset?)->())) -> UIAlertController {
+func timeConfigurationSheet(currentDate:Date,width:CGFloat, editText:String? = nil, title:String? = "", message:String? = "", updatedValues:@escaping ((HourOffset?,MinuteOffset?,String?)->())) -> UIAlertController {
+
+  let alertSheet = UIAlertController(title:title,
+                                     message:"",
+                                     preferredStyle: .alert)
+  var runningTop:CGFloat = 27 //avoids titleText
+  if let startingName = editText {
+
+    alertSheet.addTextField { textField in
+      textField.placeholder = "Name of Timeslot"
+      textField.text = startingName
+
+
+      //TODO fix leak
+      _ =  NotificationCenter.default.addObserver(
+        forName: NSNotification.Name.UITextFieldTextDidChange,
+        object: textField,
+        queue: OperationQueue.main) { notification in
+          updatedValues(nil,nil,textField.text)
+
+      }
+    }
+
+    let textFieldSpace:CGFloat = 60.0
+    runningTop += (textFieldSpace + 20.0)
+  }
 
   //Sizes from experimentation/web quotes about current sizes
-  let datePicker = UIDatePicker(frame: CGRect(x:0, y:27, width:width, height: 216))
+  let datePickerHeight:CGFloat = 216
+  let datePicker = UIDatePicker(frame: CGRect(x:0, y:runningTop, width:width, height: datePickerHeight))
+  runningTop += datePickerHeight
   datePicker.datePickerMode = .time
   datePicker.timeZone = Calendar.current.timeZone
   datePicker.clipsToBounds = true
   datePicker.date = currentDate
 
-  let alertSheet = UIAlertController(title:title,
-                                     message:"",
-                                     preferredStyle: .alert)
+
   alertSheet.view.addSubview(datePicker)
+
   alertSheet.addAction( UIAlertAction(title: "Done", style: UIAlertActionStyle.default) { _ in
     let components = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: datePicker.date)
-    completion(components.hour, components.minute)
+    updatedValues(components.hour, components.minute, nil)
   })
+
+
 
   let height:NSLayoutConstraint = NSLayoutConstraint(item: alertSheet.view,
                                                      attribute: NSLayoutAttribute.height,
@@ -44,8 +72,10 @@ func timeConfigurationSheet(currentDate:Date,width:CGFloat, title:String? = "", 
                                                      toItem: nil,
                                                      attribute: NSLayoutAttribute.notAnAttribute,
                                                      multiplier: 1,
-                                                     constant: 300)
-  alertSheet.view.addConstraint(height);
+                                                     constant: runningTop + 44)
+  alertSheet.view.addConstraint(height)
+
+
   return alertSheet
 }
 
@@ -108,7 +138,7 @@ class TimeslotEditorViewController:UITableViewController{
   func saveTimeslotChanges(indexPath:IndexPath){
 
     if areTimeslotsOrderedMonotonically{
-      tableView.reloadRows(at: [indexPath], with: .right)
+      tableView.reloadRows(at: [indexPath], with: .none)
     }else{
       timeslots[indexPath.section] = timeslots[indexPath.section].sorted
       let rowIndexes = 0..<(tableView.numberOfRows(inSection: indexPath.section))
@@ -126,26 +156,24 @@ class TimeslotEditorViewController:UITableViewController{
     components.hour = timeslot.hourOffset
     components.minute = timeslot.minuteOffset
     let currentDate = components.date!
+    let editableName = (indexPath.section == customSectionIndex) ? timeslot.name : nil
     let sheet = timeConfigurationSheet(currentDate:currentDate,
                                        width:view.frame.size.width-20.0,
-                                       title:"Editing \(timeslot.name ?? "Slot")",
-    message:"Use this to change when you do things (eat, sleep, etc)"){ hourOffset, minuteOffset in
-      self.timeslots[indexPath.section][indexPath.row].hourOffset = hourOffset ?? 12
-      self.timeslots[indexPath.section][indexPath.row].minuteOffset = minuteOffset ?? 00
-      self.saveTimeslotChanges(indexPath:indexPath)
-    }
-    sheet.addTextField { textField in
-      textField.placeholder = "Name of Timeslot"
-      textField.text = self.timeslots[indexPath.section][indexPath.row].name
+                                       editText:editableName,
+                                       title:"Editing Timeslot \"\(timeslot.name ?? "Slot")\"",
+    message:""){ hourOffset, minuteOffset, nameUpdate in
 
-      //TODO fix leak
-      _ =  NotificationCenter.default.addObserver(
-        forName: NSNotification.Name.UITextFieldTextDidChange,
-        object: textField,
-        queue: OperationQueue.main) { notification in
-          self.timeslots[indexPath.section][indexPath.row].name = self.fixedTimeslotName(textField.text ?? "",at:indexPath)
+      if let hourOffset=hourOffset,
+        let minuteOffset=minuteOffset{
+        self.timeslots[indexPath.section][indexPath.row].hourOffset = hourOffset
+        self.timeslots[indexPath.section][indexPath.row].minuteOffset = minuteOffset
+        self.saveTimeslotChanges(indexPath: indexPath)
+      }else if let nameUpdate=nameUpdate {
+        self.timeslots[indexPath.section][indexPath.row].name = self.fixedTimeslotName(nameUpdate,at:indexPath)
       }
     }
+
+
     present(sheet,animated:true)
   }
   var timeslotActionSheet = UIAlertController()
