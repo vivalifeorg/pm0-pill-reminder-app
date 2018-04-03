@@ -158,12 +158,17 @@ struct Timeslot:Hashable,Codable{
   }
 
   static func >(lhs:Timeslot, rhs:Timeslot)->Bool{
-    return lhs.allMinutesOffset > rhs.allMinutesOffset
+    if lhs.allMinutesOffset != rhs.allMinutesOffset{
+      return lhs.allMinutesOffset > rhs.allMinutesOffset
+    }else{
+      return lhs.name ?? "" > rhs.name ?? ""
+    }
   }
 
   static func <(lhs:Timeslot, rhs:Timeslot)->Bool{
-    return lhs.allMinutesOffset < rhs.allMinutesOffset
+    return !(lhs > rhs) && (lhs != rhs)
   }
+
 
   var name:String?
 
@@ -209,10 +214,8 @@ struct Timeslot:Hashable,Codable{
   //todo fix broken ==
   static func ==(lhs:Timeslot, rhs:Timeslot) -> Bool{
     return lhs.name == rhs.name &&
-      lhs.slotType == rhs.slotType
-    //      &&
-    //      lhs.hourOffset == rhs.hourOffset &&
-    //      lhs.minuteOffset == rhs.minuteOffset
+      lhs.slotType == rhs.slotType &&
+      lhs.allMinutesOffset == rhs.allMinutesOffset
   }
 
   static func userOverridenTimeOffsetFor(_ event:Timeslot) -> (hour:HourOffset,minute:MinuteOffset)?{
