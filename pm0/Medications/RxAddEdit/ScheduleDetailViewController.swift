@@ -52,7 +52,7 @@ class ScheduleDetailViewController:UITableViewController{
     }
   }
 
-  var schedule:Schedule = Schedule(name:"",aliases:[],events:[])
+  var schedule:Schedule = Schedule(name:"",aliases:[],timeslots:[])
 
   func accessoryFor(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCellAccessoryType {
     guard indexPath.section != 0 else{
@@ -60,11 +60,11 @@ class ScheduleDetailViewController:UITableViewController{
     }
     
     let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
-    return schedule.events.reduce(false){$0 || $1 == timeslot} ? .checkmark : .none
+    return schedule.timeslots.reduce(false){$0 || $1 == timeslot} ? .checkmark : .none
   }
 
   func updateSave(){
-    saveButton.isEnabled = !schedule.events.isEmpty
+    saveButton.isEnabled = !schedule.timeslots.isEmpty
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,9 +75,9 @@ class ScheduleDetailViewController:UITableViewController{
 
     if accessoryFor(tableView,indexPath:indexPath) == .checkmark {
       let timeslot = timeslotDatasource[indexPath.section][indexPath.row]
-      schedule.events = schedule.events.filter{$0 != timeslot}
+      schedule.timeslots = schedule.timeslots.filter{$0 != timeslot}
     }else{
-      schedule.events.append(timeslotDatasource[indexPath.section][indexPath.row])
+      schedule.timeslots.append(timeslotDatasource[indexPath.section][indexPath.row])
     }
     updateSave()
     tableView.reloadData()

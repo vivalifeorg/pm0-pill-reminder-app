@@ -171,7 +171,7 @@ class UpcomingDayViewController: UITableViewController {
       if remaining == 0 {
         return "\(leader)Completed!"
       }
-      return "\(leader)(\(remaining)/\(medications.count))"
+      return "\(leader)\(remaining)/\(medications.count)"
     }
     var rowCount:Int{return medications.count}
     var medications:[TimeSlotItem]
@@ -245,9 +245,9 @@ class UpcomingDayViewController: UITableViewController {
     var times:[Int:[Dosage]] = [:]
     for dose in drugs{
       for time in dose.timesTaken(for: date){
-        var dosesAtTime = times[minuteOffset(hour: time.hour, minute: time.minute)] ?? []
+        var dosesAtTime = times[minuteOffset(hour: time.hourOffset  , minute: time.minuteOffset)] ?? []
         dosesAtTime.append(dose)
-        times[minuteOffset(hour: time.hour, minute: time.minute)] = dosesAtTime
+        times[minuteOffset(hour: time.hourOffset, minute: time.minuteOffset)] = dosesAtTime
       }
     }
 
@@ -258,15 +258,6 @@ class UpcomingDayViewController: UITableViewController {
     thisDay.second = 0
     thisDay.minute = 0
     thisDay.nanosecond = 0
-
-
-    var names:[Int:String] = [:]
-    let defaultEvents = Timeslot.sortedSystemTimeslots
-    for item in defaultEvents{
-      guard let name = item.name else{ continue}
-
-      names[minuteOffset(hour: item.hourOffset, minute: item.minuteOffset)] = name
-    }
 
     var timeSlots:[DisplayTimeslot] = []
     for minuteOffset in times.keys.sorted(){
@@ -279,7 +270,7 @@ class UpcomingDayViewController: UITableViewController {
       let timeSlotDate = Calendar.current.date(from: thisTime)!
 
       let displayable = dosesAtTime.map{ TimeSlotItem(dosage:$0,isTaken:false) }
-      let timeSlot = DisplayTimeslot(name:names[minuteOffset],
+      let timeSlot = DisplayTimeslot(name:"",
                              date:timeSlotDate,
                              items:displayable)
       timeSlots.append(timeSlot)
@@ -352,6 +343,7 @@ extension UpcomingDayViewController{
     let customHeader = view as! MyDayTableSectionHeaderView
     customHeader.titleLabel.text = sections[section].title
     customHeader.remainingLabel.text = sections[section].remaining
+    customHeader.remainingLabel.textColor = Asset.Colors.vlTextColor.color
   }
 
   override func tableView(_ tableView:UITableView, viewForHeaderInSection sectionIndex: Int) -> UIView{

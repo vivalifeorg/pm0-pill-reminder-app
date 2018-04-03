@@ -13,19 +13,19 @@ var defaultSchedules = [
            aliases:["Once per day",
                     "Immeadiately upon awakening",
                     "Before breakfast",
-                    "First thing"], events: [DefaultTimeslots.wakeUp]),
+                    "First thing"], timeslots: [DefaultTimeslots.wakeUp]),
   Schedule(name:"With Breakfast",
            aliases:["Once a day with food",
                     "Early in the day with food",
-                    "First thing in the morning with food"], events: [DefaultTimeslots.breakfast]),
+                    "First thing in the morning with food"], timeslots: [DefaultTimeslots.breakfast]),
   Schedule(name:"With Lunch",
            aliases:["Once a day with food",
                     "Early in the day with food",
-                    "Avoid taking with alcohol"], events: [DefaultTimeslots.lunch]),
+                    "Avoid taking with alcohol"], timeslots: [DefaultTimeslots.lunch]),
   Schedule(name:"With Breakfast and Dinner",
            aliases:["Twice a day with food",
                     "At least 6 hours apart",
-                    "At least 4 hours apart"], events: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner])
+                    "At least 4 hours apart"], timeslots: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner])
 ]
 
 class ScheduleListViewController:UITableViewController{
@@ -111,7 +111,7 @@ class ScheduleListViewController:UITableViewController{
 
     let schedule = scheduleForIndexPath(indexPath)
     cell.textLabel?.text = schedule.title
-    cell.detailTextLabel?.text = schedule.events.map{$0.description}.joined(separator: ", ")
+    cell.detailTextLabel?.text = schedule.timeslots.map{$0.description}.joined(separator: ", ")
 
     let isChecked = (scheduleSelection != nil) &&
                       (scheduleSelection! == scheduleForIndexPath(indexPath))

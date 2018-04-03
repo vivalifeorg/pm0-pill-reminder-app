@@ -24,12 +24,6 @@ struct DosageForm:Codable{
 
 }
 
-struct TakeTime{
-  var hour:Int
-  var minute:Int
-  var timeName:String?
-}
-
 struct Dosage:Codable{
   var name:String = "Drug"
   var unitDescription:String?
@@ -43,12 +37,8 @@ struct Dosage:Codable{
     return name
   }
 
-  func timesTaken(for:Date)->[TakeTime]{
-    return schedule.events.map{
-      TakeTime(hour:$0.hourOffset,
-               minute:$0.minuteOffset,
-        timeName: $0.name)
-    }
+  func timesTaken(for:Date)->[Timeslot]{
+    return schedule.timeslots
   }
 }
 

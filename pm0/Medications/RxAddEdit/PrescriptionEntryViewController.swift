@@ -295,7 +295,7 @@ enum DefaultTimeslots{
 func ==(lhs:Schedule,rhs:Schedule)->Bool{
   return lhs.name == rhs.name &&
     lhs.aliases == rhs.aliases &&
-    lhs.events == rhs.events
+    lhs.timeslots == rhs.timeslots
 }
 
 func ==(lhs:Schedule?, rhs:Schedule?)->Bool{
@@ -313,7 +313,7 @@ func ==(lhs:Schedule?, rhs:Schedule?)->Bool{
 struct Schedule:Codable,Equatable {
   var name:String
   var aliases:[String]
-  var events:[Timeslot]
+  var timeslots:[Timeslot]
   let itemRef:UUID = UUID()
 
   mutating func ensureNonEmptyName(){
