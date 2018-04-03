@@ -25,7 +25,7 @@ func timeConfigurationSheet(currentDate:Date,width:CGFloat, editText:String? = n
   let alertSheet = UIAlertController(title:title,
                                      message:"",
                                      preferredStyle: .alert)
-  var runningTop:CGFloat = 27 //avoids titleText
+  var runningTop:CGFloat = 30 //avoids titleText
   if let startingName = editText {
 
     alertSheet.addTextField { textField in
