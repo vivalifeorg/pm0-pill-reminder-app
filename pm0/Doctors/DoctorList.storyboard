@@ -341,7 +341,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="notImplementedTapped:" destination="jTf-49-tD4" eventType="touchUpInside" id="A6G-VV-ilj"/>
+                                                        <action selector="faxHipaaSheet:" destination="jTf-49-tD4" eventType="touchUpInside" id="q5a-pn-pjk"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

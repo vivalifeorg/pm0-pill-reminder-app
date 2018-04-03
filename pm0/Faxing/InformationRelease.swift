@@ -260,7 +260,7 @@ func samplePDF() -> String {
 
   You have the right to revoke this Consent by sending a signed notice, in writing. Revocation shall not affect any disclosures already made in reliance on your prior Consent.
 
-  You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you chose from a list of restrictions you could impose on the use of your protected health information. You agree that this form represents your indicated restrictions.
+  You have the right to request that the indicated providers restrict how protected health information about you is used or disclosed. In the app that sent this document, you had an opportunity to request restrictions on use of your personal health information. You agree that this form represents your indicated restrictions.
   """
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
 

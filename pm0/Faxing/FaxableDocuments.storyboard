@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -79,6 +80,9 @@
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                        <connections>
+                                            <segue destination="Sgj-Sf-wfT" kind="show" identifier="sendFaxSegue" id="rad-JG-t4d"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FI9-oD-eT4" detailTextLabel="FVQ-7p-vxN" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="rqn-1E-prm">
                                         <rect key="frame" x="0.0" y="124" width="375" height="70"/>
@@ -158,6 +162,201 @@
             </objects>
             <point key="canvasLocation" x="-175.19999999999999" y="159.67016491754123"/>
         </scene>
+        <!--Send To-->
+        <scene sceneID="vI7-bJ-lLA">
+            <objects>
+                <tableViewController title="Send To" id="Sgj-Sf-wfT" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t36-Vw-gJY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="lEg-Uc-NKX" detailTextLabel="vIa-wi-r8w" style="IBUITableViewCellStyleSubtitle" id="HH3-7G-HHS">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HH3-7G-HHS" id="2fM-sd-8US">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEg-Uc-NKX">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vIa-wi-r8w">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" name="vlWarmTintColor"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                <color key="tintColor" name="vlWarmTintColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Sgj-Sf-wfT" id="Da1-0g-Jdx"/>
+                            <outlet property="delegate" destination="Sgj-Sf-wfT" id="Fg9-Vy-289"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Send To" id="65b-ZI-qJv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9c8-h9-6YQ">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="qtD-qM-S9d" kind="unwind" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="XpH-Nj-qrG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="lV2-5Y-tjl" userLabel="Next">
+                            <color key="tintColor" name="vlWarmTintColor"/>
+                            <connections>
+                                <segue destination="4ZZ-kK-Nan" kind="push" id="i1n-Hd-9fM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sda-0c-HTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qtD-qM-S9d" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="610" y="165"/>
+        </scene>
+        <!--Data From-->
+        <scene sceneID="ekz-2L-W50">
+            <objects>
+                <tableViewController title="Data From" id="4ZZ-kK-Nan" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pVt-e3-8NS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="v3O-Y1-u6H" detailTextLabel="H2Y-Vl-z2o" style="IBUITableViewCellStyleSubtitle" id="5nY-V7-3sa">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5nY-V7-3sa" id="l3Q-dW-Aiy">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v3O-Y1-u6H">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H2Y-Vl-z2o">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" name="vlWarmTintColor"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                <color key="tintColor" name="vlWarmTintColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4ZZ-kK-Nan" id="mTA-Hh-SMv"/>
+                            <outlet property="delegate" destination="4ZZ-kK-Nan" id="6Fw-pe-8bD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Data From" id="bC7-2e-IBE">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="K0q-j2-U0Y"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="w6b-nS-TNt" kind="push" id="GGP-xM-KhT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXR-NQ-NsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343" y="167"/>
+        </scene>
+        <!--Restrictions-->
+        <scene sceneID="IUY-X5-twH">
+            <objects>
+                <viewController id="w6b-nS-TNt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WsE-b3-ALI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV7-Si-FYF">
+                                <rect key="frame" x="20" y="84" width="335" height="108.5"/>
+                                <string key="text">You can request doctors do not use your data in a certian manner. For instance, you may request HIV status not be shared beyond a given practice, or that your son is adopted.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
+                                <rect key="frame" x="18" y="239" width="328" height="315"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type any Restrictions here:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-2X-C5G">
+                                <rect key="frame" x="18" y="214" width="233" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <constraints>
+                            <constraint firstItem="MV7-Si-FYF" firstAttribute="top" secondItem="EEV-zf-cF8" secondAttribute="top" constant="20" id="4fN-et-sDk"/>
+                            <constraint firstItem="MV7-Si-FYF" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="93I-7U-tnx"/>
+                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="SI0-Lk-c2W" secondAttribute="trailing" constant="29" id="E3v-GI-67Z"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="18" id="IYX-J8-AVM"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="MV7-Si-FYF" secondAttribute="bottom" constant="46.5" id="JYH-7I-h6h"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="8Ib-2X-C5G" secondAttribute="bottom" constant="1" id="RcG-vX-BOu"/>
+                            <constraint firstItem="8Ib-2X-C5G" firstAttribute="leading" secondItem="SI0-Lk-c2W" secondAttribute="leading" id="dLb-el-epf"/>
+                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="MV7-Si-FYF" secondAttribute="trailing" constant="20" id="iLm-Ci-TbL"/>
+                            <constraint firstItem="EEV-zf-cF8" firstAttribute="bottom" secondItem="SI0-Lk-c2W" secondAttribute="bottom" constant="20" id="oHF-YH-XxH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EEV-zf-cF8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Restrictions" id="zOP-BR-QxZ">
+                        <barButtonItem key="rightBarButtonItem" title="Preview + Send" id="21d-5T-4f4">
+                            <connections>
+                                <segue destination="xZa-fJ-BhG" kind="push" id="U77-tY-13m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drL-RO-3Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2029.5999999999999" y="166.8665667166417"/>
+        </scene>
+        <!--Preview-->
+        <scene sceneID="5qa-un-AyZ">
+            <objects>
+                <viewController id="xZa-fJ-BhG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g7E-b1-xwl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="d7g-gN-ufe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Preview" id="tVU-bv-Tac">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="AG7-sm-xfr">
+                            <connections>
+                                <segue destination="fsc-ZY-SsF" kind="unwind" unwindAction="unwindFromFaxingAfterSendWithSegue:" id="3NV-Oe-8fW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fsc-ZY-SsF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="168"/>
+        </scene>
         <!--Faxing-->
         <scene sceneID="snf-ha-tI6">
             <objects>
@@ -182,8 +381,26 @@
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002099999996" green="0.61599999670000005" blue="0.3840000033" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="vlWarmTintColor"/>

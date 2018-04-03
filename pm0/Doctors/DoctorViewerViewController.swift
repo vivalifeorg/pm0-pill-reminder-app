@@ -142,6 +142,10 @@ class DoctorViewerViewController:UITableViewController{
  //   faxButtonCell.isHidden = !(doctor.fax.number.count > 0)
   }
 
+  @IBAction func faxHipaaSheet(_:Any){
+
+  }
+
   override func viewDidLoad() {
     guard let doctor = doctor else {
       return

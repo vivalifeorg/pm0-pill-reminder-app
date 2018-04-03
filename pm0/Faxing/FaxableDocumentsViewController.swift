@@ -18,6 +18,16 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
     tableView.tableFooterView = UIView()
   }
 
+  @IBAction func unwindFromFaxingAfterCancel(segue:UIStoryboardSegue){
+
+  }
+
+  @IBAction func unwindFromFaxingAfterSend(segue:UIStoryboardSegue){
+
+  }
+
+
+
   @IBAction func export(_ sender: Any) {
 
     let sample = samplePDF()
