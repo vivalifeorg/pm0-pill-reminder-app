@@ -144,11 +144,26 @@ extension String {
   }
 }
 
+extension Array where Element == Timeslot {
+  var sorted:[Timeslot]{
+    return self.sorted { (lhs, rhs) -> Bool in
+      return lhs < rhs
+    }
+  }
+}
+
 struct Timeslot:Hashable,Codable{
   var hashValue: Int {
     return "\(name ?? "non-named")\(slotType)".hashValue
   }
 
+  static func >(lhs:Timeslot, rhs:Timeslot)->Bool{
+    return lhs.allMinutesOffset > rhs.allMinutesOffset
+  }
+
+  static func <(lhs:Timeslot, rhs:Timeslot)->Bool{
+    return lhs.allMinutesOffset < rhs.allMinutesOffset
+  }
 
   let name:String?
 
@@ -158,7 +173,7 @@ struct Timeslot:Hashable,Codable{
 
   var minuteOffset:MinuteOffset
 
-  private var allMinutesOffset:MinuteOffset{
+  fileprivate var allMinutesOffset:MinuteOffset{
     return (hourOffset * 60) + minuteOffset
   }
   /*
