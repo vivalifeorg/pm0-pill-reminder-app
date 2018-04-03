@@ -88,6 +88,26 @@ class TimeslotEditorViewController:UITableViewController{
     tableView.tableFooterView = UIView() //remove lines
   }
 
+  func fixedTimeslotName(_ userProposedName:String, at indexPath:IndexPath)->String{
+    guard userProposedName != "" else {
+      return "Timeslot-\(UUID().uuidString.dropLast(31))"
+    }
+
+    for section in 0..<numberOfSections(in: tableView){
+      for row in 0..<tableView(tableView, numberOfRowsInSection: section){
+        if indexPath.row == row && indexPath.section == section {
+          continue
+        }
+
+        let slotName = timeslots[section][row].name
+        if slotName == userProposedName {
+          return fixedTimeslotName("\(userProposedName)'", at:indexPath)
+        }
+      }
+    }
+    return userProposedName
+  }
+
   func saveTimeslotChanges(indexPath:IndexPath){
 
     if areTimeslotsOrderedMonotonically{
@@ -126,12 +146,7 @@ class TimeslotEditorViewController:UITableViewController{
         forName: NSNotification.Name.UITextFieldTextDidChange,
         object: textField,
         queue: OperationQueue.main) { notification in
-
-          var text = textField.text
-          if text == "" {
-            text = "Timeslot-\(UUID().uuidString.dropLast(31))"
-          }
-          self.timeslots[indexPath.section][indexPath.row].name = text
+          self.timeslots[indexPath.section][indexPath.row].name = self.fixedTimeslotName(textField.text ?? "",at:indexPath)
       }
     }
     present(sheet,animated:true)

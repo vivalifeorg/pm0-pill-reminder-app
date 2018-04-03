@@ -26,8 +26,8 @@ class ScheduleDetailViewController:UITableViewController{
   var isShowingCustom:Bool{
     return userTimeslots.count > 0
   }
-  private var userTimeslots:[Timeslot] = []
-  private var defaultTimeslots:[Timeslot] = Timeslot.sortedSystemTimeslots
+  private var userTimeslots:[Timeslot] = LocalStorage.Timeslot.User.load()
+  private var defaultTimeslots:[Timeslot] = LocalStorage.Timeslot.System.load()
   private var timeslotDatasource:[[Timeslot]] {
     if isShowingCustom {
       return [[],userTimeslots,defaultTimeslots]
