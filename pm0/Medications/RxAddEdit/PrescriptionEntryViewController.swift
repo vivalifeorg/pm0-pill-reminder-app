@@ -165,9 +165,9 @@ struct Timeslot:Hashable,Codable{
     return lhs.allMinutesOffset < rhs.allMinutesOffset
   }
 
-  let name:String?
+  var name:String?
 
-  let slotType:SlotType
+  var slotType:SlotType
 
   var hourOffset:HourOffset
 
@@ -241,6 +241,7 @@ enum SlotType:String,Codable{
   case meal
   case sleep
   case time
+  case custom
 }
 
 enum DefaultTimeslots{

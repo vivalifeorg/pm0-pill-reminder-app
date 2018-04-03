@@ -31,7 +31,7 @@ func timeConfigurationSheet(currentDate:Date,width:CGFloat, title:String? = "", 
 
   let alertSheet = UIAlertController(title:title,
                                      message:"",
-                                     preferredStyle: .actionSheet)
+                                     preferredStyle: .alert)
   alertSheet.view.addSubview(datePicker)
   alertSheet.addAction( UIAlertAction(title: "Done", style: UIAlertActionStyle.default) { _ in
     let components = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: datePicker.date)
@@ -62,6 +62,19 @@ class TimeslotEditorViewController:UITableViewController{
 
   let customSectionIndex = 0
 
+  @IBAction func addCustomTimeslot(_sender:UIBarButtonItem){
+    let newTimeslot = Timeslot(name: "", slotType: SlotType.custom, hourOffset: 12, minuteOffset: 00)
+
+    let newTimeslotPath = IndexPath(indexes:[customSectionIndex,timeslots[customSectionIndex].count])
+    tableView.beginUpdates()
+    timeslots[customSectionIndex].append(newTimeslot)
+    tableView.insertRows(at: [newTimeslotPath], with:.right )
+    tableView.endUpdates()
+
+    saveTimeslotChanges(indexPath: newTimeslotPath)
+    editTimeslotAt(at: newTimeslotPath)
+  }
+
   var areTimeslotsOrderedMonotonically:Bool{
     for section in 0..<numberOfSections(in: tableView){
       if timeslots[section].sorted != timeslots[section]{
@@ -69,6 +82,10 @@ class TimeslotEditorViewController:UITableViewController{
       }
     }
     return true
+  }
+
+  override func viewDidLoad() {
+    tableView.tableFooterView = UIView() //remove lines
   }
 
   func saveTimeslotChanges(indexPath:IndexPath){
@@ -86,8 +103,7 @@ class TimeslotEditorViewController:UITableViewController{
     LocalStorage.Timeslot.System.save(timeslots[1])
   }
 
-  var timeslotActionSheet = UIAlertController()
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func editTimeslotAt(at indexPath:IndexPath){
     let timeslot = timeslots[indexPath.section][indexPath.row]
     var components = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: Date())
     components.hour = timeslot.hourOffset
@@ -96,13 +112,34 @@ class TimeslotEditorViewController:UITableViewController{
     let sheet = timeConfigurationSheet(currentDate:currentDate,
                                        width:view.frame.size.width-20.0,
                                        title:"Editing \(timeslot.name ?? "Slot")",
-                                       message:"Use this to change when you do things (eat, sleep, etc)"){ hourOffset, minuteOffset in
+    message:"Use this to change when you do things (eat, sleep, etc)"){ hourOffset, minuteOffset in
       self.timeslots[indexPath.section][indexPath.row].hourOffset = hourOffset ?? 12
       self.timeslots[indexPath.section][indexPath.row].minuteOffset = minuteOffset ?? 00
       self.saveTimeslotChanges(indexPath:indexPath)
     }
+    sheet.addTextField { textField in
+      textField.placeholder = "Name of Timeslot"
+      textField.text = self.timeslots[indexPath.section][indexPath.row].name
+
+      //TODO fix leak
+      _ =  NotificationCenter.default.addObserver(
+        forName: NSNotification.Name.UITextFieldTextDidChange,
+        object: textField,
+        queue: OperationQueue.main) { notification in
+
+          var text = textField.text
+          if text == "" {
+            text = "Timeslot-\(UUID().uuidString.dropLast(31))"
+          }
+          self.timeslots[indexPath.section][indexPath.row].name = text
+      }
+    }
     present(sheet,animated:true)
-    //present(timeslotActionSheet, animated:true)
+  }
+  var timeslotActionSheet = UIAlertController()
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    editTimeslotAt(at:indexPath)
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,9 +151,12 @@ class TimeslotEditorViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == customSectionIndex{
+    switch section{
+    case customSectionIndex where timeslots[customSectionIndex].isEmpty:
+      return ""
+    case customSectionIndex:
       return "Custom Timeslots"
-    } else {
+    default:
       return "Standard Timeslots"
     }
   }

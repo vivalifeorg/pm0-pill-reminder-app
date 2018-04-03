@@ -481,7 +481,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Timeslots" largeTitleDisplayMode="always" id="DCV-AW-HVo" userLabel="Sch. Details">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iX4-cl-gXC"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iX4-cl-gXC">
+                            <connections>
+                                <action selector="addCustomTimeslotWith_sender:" destination="do3-tJ-7mM" id="FcI-zJ-uSY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rc2-9y-ulJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
