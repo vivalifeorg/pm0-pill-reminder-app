@@ -69,8 +69,30 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return section == 0 ? "" : "Timeslots (select multiple as needed)"
+    switch section{
+    case 0:
+      return ""
+    case 1:
+      return "Custom Timeslots"
+    case 2:
+      return "Standard Timeslots"
+    default:
+      return ""
+    }
   }
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+      switch section{
+      case 0:
+        return ""
+      case 1:
+        return ""
+      case 2:
+        return ""
+      default:
+        return ""
+      }
+  }
+
 
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {

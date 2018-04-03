@@ -116,9 +116,6 @@ class TimeslotEditorViewController:UITableViewController{
 
   //prevent timeslots being named the same thing as other things
   func fixedTimeslotName(_ userProposedName:String, at indexPath:IndexPath)->String{
-    guard userProposedName != "" else {
-      return "Timeslot-\(UUID().uuidString.dropLast(31))"
-    }
 
     for section in 0..<numberOfSections(in: tableView){
       for row in 0..<tableView(tableView, numberOfRowsInSection: section){
