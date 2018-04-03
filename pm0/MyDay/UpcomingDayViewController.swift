@@ -276,13 +276,13 @@ class UpcomingDayViewController: UITableViewController {
       let displayable = dosesAtTime.map{ TimeSlotItem(dosage:$0,isTaken:false) }
 
       var footnote = ""
-      let nameList = (timeNames[minuteOffset] ?? []).sorted()
-      var name = nameList.first ?? ""
-      if nameList.count > 1{
-        name = nameList.reduce(name){ $0.count > $1.count ? $0 : $1 } //longest name
-        if name != nameList.first{
+      let sortedNames = (timeNames[minuteOffset] ?? []).sorted()
+      var name = sortedNames.first ?? ""
+      if sortedNames.count > 1{
+        name = sortedNames.reduce(name){ $0.count > $1.count ? $0 : $1 } //longest name
+        if name != sortedNames.first{
+          footnote = "*also: \(sortedNames.filter{name != $0}.joined(separator: "/"))"
           name = "\(name)*" //show there are multiple names going on
-          footnote = "*All Names: \(nameList.joined(separator: "/"))"
         }
       }
 
