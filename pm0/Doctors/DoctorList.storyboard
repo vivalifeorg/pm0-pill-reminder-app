@@ -376,7 +376,7 @@
                     <navigationItem key="navigationItem" title="Alice Sharm" largeTitleDisplayMode="always" id="zBY-I0-vgq">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="y5z-Ga-0vr">
                             <connections>
-                                <segue destination="k31-AD-THS" kind="show" id="GLq-ic-OTj"/>
+                                <segue destination="k31-AD-THS" kind="show" identifier="editDoctor" id="GLq-ic-OTj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -604,9 +604,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="State"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="City"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Georgia"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Atlanta"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -623,8 +623,38 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="aKe-dF-qM1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="cq4-nX-65P">
                                         <rect key="frame" x="0.0" y="686" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cq4-nX-65P" id="6iA-ah-BM2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="dLL-2N-Vva" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="State"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Georgia"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dLL-2N-Vva" firstAttribute="top" secondItem="6iA-ah-BM2" secondAttribute="top" id="5t3-ef-ycO"/>
+                                                <constraint firstItem="dLL-2N-Vva" firstAttribute="leading" secondItem="6iA-ah-BM2" secondAttribute="leading" id="84d-od-Opt"/>
+                                                <constraint firstAttribute="bottom" secondItem="dLL-2N-Vva" secondAttribute="bottom" id="AYI-XF-q1Y"/>
+                                                <constraint firstAttribute="bottom" secondItem="dLL-2N-Vva" secondAttribute="bottom" id="Bta-K1-Zor"/>
+                                                <constraint firstItem="dLL-2N-Vva" firstAttribute="top" secondItem="6iA-ah-BM2" secondAttribute="top" id="P24-Ph-9hb"/>
+                                                <constraint firstItem="dLL-2N-Vva" firstAttribute="leading" secondItem="6iA-ah-BM2" secondAttribute="leading" id="dds-JS-45J"/>
+                                                <constraint firstAttribute="trailing" secondItem="dLL-2N-Vva" secondAttribute="trailing" id="tkQ-3B-fJE"/>
+                                                <constraint firstAttribute="trailing" secondItem="dLL-2N-Vva" secondAttribute="trailing" id="u2x-yx-5Pn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="98" id="aKe-dF-qM1">
+                                        <rect key="frame" x="0.0" y="784" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aKe-dF-qM1" id="dfo-xI-Cak">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
@@ -678,11 +708,12 @@
                     <connections>
                         <outlet property="addressContLabel" destination="j58-Nw-BeP" id="guk-ym-jKx"/>
                         <outlet property="addressLabel" destination="rCJ-Ve-UfB" id="lVc-Ce-hLw"/>
+                        <outlet property="cityLabel" destination="Vyk-DK-glM" id="Kwg-no-Xtt"/>
                         <outlet property="faxLabel" destination="7bX-oB-Fwn" id="VqW-a4-CrJ"/>
                         <outlet property="nameLabel" destination="Q6w-C5-J8f" id="4V1-tw-oks"/>
                         <outlet property="phoneLabel" destination="CBi-IM-qjh" id="IbP-Nm-gc7"/>
                         <outlet property="specialtyLabel" destination="K6C-rV-eFo" id="ZpR-sJ-yS8"/>
-                        <outlet property="stateLabel" destination="Vyk-DK-glM" id="vWz-MR-ct0"/>
+                        <outlet property="stateLabel" destination="dLL-2N-Vva" id="AAN-w8-3SP"/>
                         <outlet property="zipLabel" destination="pfL-DF-uag" id="NAk-gp-ya0"/>
                     </connections>
                 </tableViewController>
@@ -712,6 +743,9 @@
     </scenes>
     <resources>
         <image name="Tab-Doc" width="23" height="23"/>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

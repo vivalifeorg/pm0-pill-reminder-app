@@ -32,6 +32,20 @@ extension Address{
     """
     return result
   }
+
+  var url:URL? {
+    var urlComponents = URLComponents()
+    urlComponents.scheme = "https"
+    urlComponents.host = "maps.apple.com"
+    urlComponents.path = "/"
+
+    let addressItem = URLQueryItem(name: "daddr", value: displayable)
+    let tItem = URLQueryItem(name: "t", value: "m") //t=m&dirflag=d
+    let dirflagItem = URLQueryItem(name: "dirflag", value: "d")
+    urlComponents.queryItems = [addressItem,tItem,dirflagItem]
+
+    return urlComponents.url
+  }
 }
 
 class DoctorViewerViewController:UITableViewController{
@@ -79,10 +93,19 @@ class DoctorViewerViewController:UITableViewController{
     showUnimplemented()
   }
 
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "editDoctor"{
+      let editor = segue.destination as! DoctorEntryViewController
+      editor.doctor = doctor!
+    }
+  }
+
   @IBAction func drivingDirectionsButtonTapped(_ sender:UIButton!){
-    print("Tapped")
-    let locationURI = "http://maps.apple.com/?daddr=1968+Peachtree+Rd+NW,+Atlanta,+GA+30309&t=m&dirflag=d"
-    guard let url = URL(string:locationURI) else{
+    
+    //let locationURI = "http://maps.apple.com/?daddr=\(encodedAddress)&t=m&dirflag=d"
+  //  let locationURI = "http://maps.apple.com/?daddr=1968+Peachtree+Rd+NW,+Atlanta,+GA+30309&t=m&dirflag=d"
+    guard let url = doctor?.address.url else{
       return
     }
     UIApplication.shared.open(url, options: [:]) { (success) in

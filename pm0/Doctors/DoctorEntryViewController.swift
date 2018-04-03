@@ -13,6 +13,7 @@ class DoctorEntryViewController:UITableViewController{
   @IBOutlet weak var specialtyLabel:PrescriptionLineEntry!
   @IBOutlet weak var addressLabel:PrescriptionLineEntry!
   @IBOutlet weak var addressContLabel:PrescriptionLineEntry!
+  @IBOutlet weak var cityLabel:PrescriptionLineEntry!
   @IBOutlet weak var stateLabel:PrescriptionLineEntry!
   @IBOutlet weak var zipLabel:PrescriptionLineEntry!
   @IBOutlet weak var phoneLabel:PrescriptionLineEntry!
@@ -25,7 +26,7 @@ class DoctorEntryViewController:UITableViewController{
 
   func hideHelpers(){
     let entryLabels = [
-      nameLabel,specialtyLabel,addressLabel,addressContLabel,stateLabel,
+      nameLabel,specialtyLabel,addressLabel,addressContLabel,cityLabel,stateLabel,
       zipLabel,phoneLabel,faxLabel
     ]
     for entry in entryLabels{
@@ -52,6 +53,7 @@ class DoctorEntryViewController:UITableViewController{
     specialtyLabel?.searchTextField.text = doctor.specialty
     addressLabel?.searchTextField.text = doctor.address.street
     addressContLabel?.searchTextField.text = doctor.address.streetCont
+    cityLabel?.searchTextField.text = doctor.address.city
     stateLabel?.searchTextField.text = doctor.address.state
     zipLabel?.searchTextField.text = doctor.address.ZIP
   }
@@ -62,6 +64,7 @@ class DoctorEntryViewController:UITableViewController{
     newDoctor.specialty = specialtyLabel?.searchTextField.text ?? ""
     newDoctor.address.street = addressLabel?.searchTextField.text ?? ""
     newDoctor.address.streetCont = addressContLabel?.searchTextField.text ?? ""
+    newDoctor.address.city = cityLabel?.searchTextField.text ?? ""
     newDoctor.address.state = stateLabel?.searchTextField.text ?? ""
     newDoctor.address.ZIP = zipLabel?.searchTextField.text ?? ""
     newDoctor.phone.number = phoneLabel?.searchTextField.text ?? ""
