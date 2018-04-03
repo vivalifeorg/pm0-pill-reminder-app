@@ -25,18 +25,32 @@ public typealias KeychainItem = String
 
 var debugKeychain = false
 
+typealias GlobalTimeslot  = Timeslot
 enum LocalStorage{
   enum KeychainKey:String,Codable{
     case userPrescriptions
     case userDoctors
+    case userTimeslots
+    case systemTimeslots
   }
 
-  static var prescriptions:Persistor<Prescription>{
+  static var Prescription:Persistor<Prescription>{
     return Persistor(key:.userPrescriptions)
   }
-  static var doctors:Persistor<DoctorInfo>{
+
+  static var DoctorInfo:Persistor<DoctorInfo>{
     return Persistor(key:.userDoctors)
   }
+
+  struct Timeslot:Codable{
+    static var User:Persistor<GlobalTimeslot>{
+      return Persistor(key:.userTimeslots)
+    }
+    static var System:Persistor<GlobalTimeslot>{
+      return Persistor(key:.systemTimeslots)
+    }
+  }
+
 }
 
 protocol LocalStorageWrapper{

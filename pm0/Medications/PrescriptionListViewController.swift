@@ -52,7 +52,7 @@ struct PrescriptionListViewModel{
   mutating func deleteItemAt(index:Int){
     editingIndex = nil
     prescriptions.remove(at:index)
-    LocalStorage.prescriptions.save(prescriptions)
+    LocalStorage.Prescription.save(prescriptions)
   }
 
   mutating func receivedPrescription(_ rx:Prescription){
@@ -61,7 +61,7 @@ struct PrescriptionListViewModel{
     }else{
       prescriptions.append(rx)
     }
-    LocalStorage.prescriptions.save(prescriptions)
+    LocalStorage.Prescription.save(prescriptions)
   }
 }
 
@@ -164,7 +164,7 @@ class PrescriptionListViewController: UIViewController {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    viewModel.prescriptions = LocalStorage.prescriptions.load()
+    viewModel.prescriptions = LocalStorage.Prescription.load()
 
     guard isViewLoaded else{
       return

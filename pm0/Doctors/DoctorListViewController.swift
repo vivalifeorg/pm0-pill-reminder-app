@@ -18,7 +18,7 @@ class DoctorListViewController:UITableViewController{
   var lastTappedDoctorIndex:Int? = nil
 
   override func viewWillAppear(_ animated: Bool) {
-    doctors = LocalStorage.doctors.load()
+    doctors = LocalStorage.DoctorInfo.load()
   }
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -106,7 +106,7 @@ class DoctorListViewController:UITableViewController{
     } else {
       doctors.append(doctorItem)
     }
-    LocalStorage.doctors.save(doctors)
+    LocalStorage.DoctorInfo.save(doctors)
     tableView.reloadData()
   }
 

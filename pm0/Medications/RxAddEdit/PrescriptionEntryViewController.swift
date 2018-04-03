@@ -154,13 +154,9 @@ struct Timeslot:Hashable,Codable{
 
   let slotType:SlotType
 
-  var hourOffset:HourOffset {
-    return Timeslot.timeOffsetForSlot(self).hour
-  }
+  var hourOffset:HourOffset
 
-  var minuteOffset:MinuteOffset {
-    return Timeslot.timeOffsetForSlot(self).minute
-  }
+  var minuteOffset:MinuteOffset
 
   private var allMinutesOffset:MinuteOffset{
     return (hourOffset * 60) + minuteOffset
@@ -208,30 +204,21 @@ struct Timeslot:Hashable,Codable{
     return nil
   }
 
-  static var sortedDefaultTimeslots:[Timeslot]{
-    return Array(Timeslot.defaultTimeslots.keys).sorted(by: { (lhs, rhs) -> Bool in
+  static var sortedSystemTimeslots:[Timeslot]{
+    DefaultTimeslots.ensureDefaultsExist()
+
+    return LocalStorage.Timeslot.System.load().sorted(by: { (lhs, rhs) -> Bool in
       lhs.allMinutesOffset < rhs.allMinutesOffset
     })
   }
 
-  static let defaultTimeslots:[Timeslot:(HourOffset,MinuteOffset)] = [
-    DefaultEvents.wakeUp: (7,30),
-    DefaultEvents.breakfast: (8,00),
-    DefaultEvents.morningSnack: (10,30),
-    DefaultEvents.lunch: (12,00),
-    DefaultEvents.afternoonSnack: (14,30),
-    DefaultEvents.dinner: (18,00),
-    DefaultEvents.bedTime: (22,00)
-  ]
 
-  static func timeOffsetForSlot(_ slot:Timeslot)->(hour:HourOffset,minute:MinuteOffset){
 
-    return userOverridenTimeOffsetFor(slot) ?? defaultTimeslots[slot] ?? (9,00)
-  }
-
-  init(name:String?, slotType:SlotType){
+  init(name:String?, slotType:SlotType, hourOffset:HourOffset, minuteOffset:MinuteOffset){
     self.name = name
     self.slotType = slotType
+    self.hourOffset = hourOffset
+    self.minuteOffset = minuteOffset
   }
 }
 
@@ -241,30 +228,48 @@ enum SlotType:String,Codable{
   case time
 }
 
-enum DefaultEvents{
+enum DefaultTimeslots{
   static let breakfast = Timeslot(name:"Breakfast",
-                                       slotType:.meal)
+                                  slotType:.meal, hourOffset:8, minuteOffset:00)
 
   static let morningSnack = Timeslot(name:"Morning Snack",
-                                          slotType:.meal)
+                                          slotType:.meal, hourOffset:8, minuteOffset:00)
 
   static let lunch = Timeslot(name:"Lunch",
-                                   slotType:.meal)
+                                   slotType:.meal, hourOffset:12, minuteOffset:00)
 
   static let afternoonSnack = Timeslot(name:"Afternoon Snack",
-                                            slotType:.meal)
+                                            slotType:.meal, hourOffset:14, minuteOffset:30)
 
   static let dinner = Timeslot(name:"Dinner",
-                                    slotType:.meal)
+                                    slotType:.meal, hourOffset:17, minuteOffset:30)
 
   static let wakeUp = Timeslot(name:"Wake-up",
-                                    slotType:.sleep)
+                                    slotType:.sleep, hourOffset:7, minuteOffset:30)
 
   static let bedTime = Timeslot(name:"Bedtime",
-                                     slotType:.sleep)
+                                     slotType:.sleep, hourOffset:21, minuteOffset:30)
 
-  static var defaultSlot:Timeslot {
-    return DefaultEvents.wakeUp
+  static let defaultTimeslots:[Timeslot] = [
+    DefaultTimeslots.wakeUp,
+    DefaultTimeslots.breakfast,
+    DefaultTimeslots.morningSnack,
+    DefaultTimeslots.lunch,
+    DefaultTimeslots.afternoonSnack,
+    DefaultTimeslots.dinner,
+    DefaultTimeslots.bedTime
+  ]
+
+  static var defaultTimeslot:Timeslot {
+    return DefaultTimeslots.wakeUp
+  }
+
+  static func ensureDefaultsExist(){
+    guard LocalStorage.Timeslot.System.load().isEmpty else{
+      return
+    }
+
+    LocalStorage.Timeslot.System.save(DefaultTimeslots.defaultTimeslots)
   }
 }
 
@@ -307,19 +312,19 @@ var schedules = [
                   aliases:["Once per day",
                             "Immeadiately upon awakening",
                             "Before breakfast",
-                            "First thing"], events: [DefaultEvents.wakeUp]),
+                            "First thing"], events: [DefaultTimeslots.wakeUp]),
   Schedule(name:"With Breakfast",
                   aliases:["Once a day with food",
                             "Early in the day with food",
-                            "First thing in the morning with food"], events: [DefaultEvents.breakfast]),
+                            "First thing in the morning with food"], events: [DefaultTimeslots.breakfast]),
   Schedule(name:"With Lunch",
                   aliases:["Once a day with food",
                             "Early in the day with food",
-                            "Avoid taking with alcohol"], events: [DefaultEvents.lunch]),
+                            "Avoid taking with alcohol"], events: [DefaultTimeslots.lunch]),
   Schedule(name:"With Breakfast and Dinner",
                   aliases:["Twice a day with food",
                             "At least 6 hours apart",
-                            "At least 4 hours apart"], events: [DefaultEvents.breakfast,DefaultEvents.dinner]),
+                            "At least 4 hours apart"], events: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner]),
 //  Schedule(name:"Custom",
 //                  aliases:["Make my own schedule",
 //                            "Other",
@@ -373,7 +378,7 @@ extension PrescriptionLineEntry{
       }
     }
 
-    return [DefaultEvents.defaultSlot]
+    return [DefaultTimeslots.defaultTimeslot]
   }
 }
 

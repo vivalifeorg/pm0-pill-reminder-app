@@ -260,7 +260,7 @@ class UpcomingDayViewController: UITableViewController {
 
 
     var names:[Int:String] = [:]
-    let defaultEvents = Timeslot.defaultTimeslots.keys
+    let defaultEvents = Timeslot.sortedSystemTimeslots
     for item in defaultEvents{
       guard let name = item.name else{ continue}
 
@@ -301,7 +301,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   func loadDosages(){
-    scheduledDosages = LocalStorage.prescriptions.load().flatMap{$0.dosage}
+    scheduledDosages = LocalStorage.Prescription.load().flatMap{$0.dosage}
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -428,9 +428,9 @@ extension UpcomingDayViewController{
 
 
     let rxEntryVC = segue.source as! ScheduleListViewController
-    var prescriptions = LocalStorage.prescriptions.load()
+    var prescriptions = LocalStorage.Prescription.load()
     prescriptions.append(rxEntryVC.entryInfo!.prescription)
-    LocalStorage.prescriptions.save(prescriptions)
+    LocalStorage.Prescription.save(prescriptions)
 
     loadDosages()
   }
