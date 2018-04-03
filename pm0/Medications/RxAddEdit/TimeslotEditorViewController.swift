@@ -23,10 +23,13 @@ class TimeslotEditorViewController:UITableViewController{
   }
 
   func showUnimplemented(){
-    alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .alert)
+    alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .actionSheet)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
       self.alert.dismiss(animated: true, completion: nil)
     }))
+    alert.addDatePicker(mode: .time, date: Date(), minimumDate: Date(), maximumDate: Date().addingTimeInterval(1000000.0)) { (date) in
+      print("date: \(date)")
+    }
     self.present(alert,animated: true)
   }
 

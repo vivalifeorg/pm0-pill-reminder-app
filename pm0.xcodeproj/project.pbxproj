@@ -56,6 +56,7 @@
 		89F4D0572072A3D700CC60E9 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0562072A3D700CC60E9 /* ScheduleList.swift */; };
 		89F4D0592072C7E300CC60E9 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */; };
 		89F4D05B2072DDC700CC60E9 /* TimeslotEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */; };
+		89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */; };
 		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		89F4D0562072A3D700CC60E9 /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
 		89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotEditorViewController.swift; sourceTree = "<group>"; };
+		89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 				89F4D0582072C7E300CC60E9 /* ScheduleDetailViewController.swift */,
 				896052C02047266D00DF502C /* PrescriptionEntryViewController.storyboard */,
 				89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */,
+				89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */,
 			);
 			path = RxAddEdit;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
+				89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
 				89C6682B206D7ED8004A0731 /* VivaButtonA.swift in Sources */,
 				8951A918205992E50027076E /* Fax.swift in Sources */,
