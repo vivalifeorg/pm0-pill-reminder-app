@@ -363,7 +363,7 @@
                     <navigationItem key="navigationItem" title="Preview" id="tVU-bv-Tac">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="AG7-sm-xfr">
                             <connections>
-                                <segue destination="fsc-ZY-SsF" kind="unwind" unwindAction="unwindFromFaxingAfterSendWithSegue:" id="3NV-Oe-8fW"/>
+                                <action selector="sendShownFax:" destination="xZa-fJ-BhG" id="sAG-1j-vBU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -372,7 +372,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="fsc-ZY-SsF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2733.5999999999999" y="167.76611694152925"/>
         </scene>

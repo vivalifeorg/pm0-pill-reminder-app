@@ -39,7 +39,8 @@ class PhaxioObjcFaxProvider:FaxServiceProvider{
     fax.files = documentPaths.map{
       let shortFilename = String($0.absoluteString.split(separator: "/").last!)
       let mimeType = mimeTypeName(shortFilename)
-      return FaxFile(data:readFile(fileURL: $0), name:shortFilename, mimeTypeName:mimeType)
+      let data = readFile(fileName: $0.path)
+      return FaxFile(data:data, name:shortFilename, mimeTypeName:mimeType)
     }
     self.completion = completion
     fax.send()
