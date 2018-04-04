@@ -171,7 +171,7 @@ func addHeader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
   return runningVerticalOffset
 }
 
-func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> String {
+func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> DocumentRef {
 
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -218,7 +218,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
   return fileOfPDFForView(backgroundView,fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
 }
 
-func fileOfPDFForView(_ view:UIView,fileSuffix:String)->String{
+func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
   let path = NSTemporaryDirectory().appending(fileSuffix)
   let dst = URL(fileURLWithPath: path)
   // outputs as Data
@@ -236,10 +236,10 @@ func fileOfPDFForView(_ view:UIView,fileSuffix:String)->String{
     print(error)
   }
 
-  return path
+  return dst
 }
 
-func samplePDF() -> String {
+func samplePDF() -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))

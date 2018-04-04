@@ -7,9 +7,36 @@
 //
 
 import Foundation
+import PDFKit
+typealias DocumentRef = URL
 
 
-func sendFax(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
+
+extension PDFDocument{
+  var pages:[PDFPage]{
+    var xs:[PDFPage] = []
+    for i in 0..<pageCount{
+      guard let thePage = page(at: i) else{
+        continue
+      }
+      xs.append(thePage)
+    }
+    return xs
+  }
+}
+
+extension Array where Element == DocumentRef{
+  var singleDocument:PDFDocument {
+    let allPages = flatMap{PDFDocument(url: $0)}.map{$0.pages}.flatMap{$0}
+    let doc = PDFDocument()
+    allPages.forEach { (page) in
+      doc.insert(page, at: doc.pageCount)
+    }
+    return doc
+  }
+}
+
+func sendFax(toNumber:String, documentPaths:[DocumentRef],completion:@escaping (Bool,String)->()){
   phaxioObjcFaxService.sendFaxUsingService(toNumber:toNumber,
                                            documentPaths:documentPaths,
                                            completion:completion)
@@ -20,7 +47,7 @@ protocol FaxServiceProvider{
   func sendFax(authentication:FaxService.Credentials,
                otherInfo:FaxService.OtherSenderInfo,
                toNumber:String,
-               documentPaths:[String],
+               documentPaths:[DocumentRef],
                completion:@escaping (Bool,String)->())
 
 }
@@ -37,7 +64,7 @@ struct FaxService{
   let provider:FaxServiceProvider
 
   static func fetchFaxCredentials(toNumber:String,
-                                  documentPaths:[String],
+                                  documentPaths:[DocumentRef],
                                   completion:@escaping (Bool, String, FaxService.Credentials?, FaxService.OtherSenderInfo?)->()){
     let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
     let task = URLSession.shared.dataTask(with: URL(string:faxEndpoint)!) { (data, response, error) in
@@ -81,7 +108,7 @@ struct FaxService{
     task.resume()
   }
 
-  func sendFaxUsingService(toNumber:String, documentPaths:[String],completion:@escaping (Bool,String)->()){
+  func sendFaxUsingService(toNumber:String, documentPaths:[DocumentRef],completion:@escaping (Bool,String)->()){
     FaxService.fetchFaxCredentials(
       toNumber:toNumber,
       documentPaths:documentPaths ){ success, errorInfo, creds, other in
@@ -121,6 +148,10 @@ extension String {
   func toBase64() -> String {
     return Data(self.utf8).base64EncodedString()
   }
+}
+
+func readFile(fileURL: URL) -> Data{
+  return try! NSData(contentsOf: fileURL) as Data
 }
 
 func readFile(fileName: String) -> Data{

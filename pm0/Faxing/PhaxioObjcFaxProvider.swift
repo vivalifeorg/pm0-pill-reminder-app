@@ -29,7 +29,7 @@ class PhaxioObjcFaxProvider:FaxServiceProvider{
   func sendFax(authentication:FaxService.Credentials,
                otherInfo:FaxService.OtherSenderInfo,
                toNumber:String,
-               documentPaths:[String],
+               documentPaths:[DocumentRef],
                completion:@escaping (Bool,String)->()){
 
     PhaxioAPI.setAPIKey(authentication.key, andSecret: authentication.secret)
@@ -37,9 +37,9 @@ class PhaxioObjcFaxProvider:FaxServiceProvider{
     fax.delegate = apiDelegate
     fax.to_phone_numbers = [toNumber]
     fax.files = documentPaths.map{
-      let shortFilename = String($0.split(separator: "/").last!)
+      let shortFilename = String($0.absoluteString.split(separator: "/").last!)
       let mimeType = mimeTypeName(shortFilename)
-      return FaxFile(data:readFile(fileName: $0), name:shortFilename, mimeTypeName:mimeType)
+      return FaxFile(data:readFile(fileURL: $0), name:shortFilename, mimeTypeName:mimeType)
     }
     self.completion = completion
     fax.send()

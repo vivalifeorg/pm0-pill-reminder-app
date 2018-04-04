@@ -39,6 +39,8 @@
 		898BC946206196DA006ED4CF /* FaxableDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */; };
 		89987AB6207542D50057E685 /* FaxPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB5207542D50057E685 /* FaxPreviewViewController.swift */; };
 		89987AB82075453F0057E685 /* PreviewUnavailable.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 89987AB72075453F0057E685 /* PreviewUnavailable.pdf */; };
+		89987ABA20754C950057E685 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB920754C950057E685 /* SendToViewController.swift */; };
+		89987ABC20754F710057E685 /* RestrictionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987ABB20754F710057E685 /* RestrictionsViewController.swift */; };
 		89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */; };
 		89A5168D205879ED0069D9AE /* FaxableDocuments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */; };
 		89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A5169220587AA90069D9AE /* DoctorList.storyboard */; };
@@ -106,6 +108,8 @@
 		898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxableDocumentsViewController.swift; sourceTree = "<group>"; };
 		89987AB5207542D50057E685 /* FaxPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxPreviewViewController.swift; sourceTree = "<group>"; };
 		89987AB72075453F0057E685 /* PreviewUnavailable.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PreviewUnavailable.pdf; sourceTree = "<group>"; };
+		89987AB920754C950057E685 /* SendToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
+		89987ABB20754F710057E685 /* RestrictionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestrictionsViewController.swift; sourceTree = "<group>"; };
 		89A1EBBA20168F5D00C00F69 /* PrescriptionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionEntryViewController.swift; sourceTree = "<group>"; };
 		89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FaxableDocuments.storyboard; sourceTree = "<group>"; };
 		89A5169220587AA90069D9AE /* DoctorList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DoctorList.storyboard; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
+				89987AB920754C950057E685 /* SendToViewController.swift */,
+				89987ABB20754F710057E685 /* RestrictionsViewController.swift */,
 				898BC93F20614A4A006ED4CF /* InformationRelease.swift */,
 				898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */,
 				8951A917205992E50027076E /* Fax.swift */,
@@ -611,9 +617,11 @@
 			files = (
 				89B4E1D3204DEFC200A09B27 /* VLColors.swift in Sources */,
 				890D425A206C16A800C20F82 /* Assets.swift in Sources */,
+				89987ABA20754C950057E685 /* SendToViewController.swift in Sources */,
 				89F4D0592072C7E300CC60E9 /* ScheduleDetailViewController.swift in Sources */,
 				894FEC0C2069845800E48ECA /* NibLoaderViewExtension.swift in Sources */,
 				894092822051A9C200FA1B9F /* LocalStorage.swift in Sources */,
+				89987ABC20754F710057E685 /* RestrictionsViewController.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */,

@@ -80,9 +80,6 @@
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                        <connections>
-                                            <segue destination="Sgj-Sf-wfT" kind="show" identifier="sendFaxSegue" id="rad-JG-t4d"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FI9-oD-eT4" detailTextLabel="FVQ-7p-vxN" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="rqn-1E-prm">
                                         <rect key="frame" x="0.0" y="124" width="375" height="70"/>
@@ -157,6 +154,9 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <connections>
+                        <segue destination="Sgj-Sf-wfT" kind="show" identifier="sendInfoFaxSegue" id="LO0-lg-0mD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZz-ag-3jM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +165,7 @@
         <!--Send To-->
         <scene sceneID="vI7-bJ-lLA">
             <objects>
-                <tableViewController title="Send To" id="Sgj-Sf-wfT" sceneMemberID="viewController">
+                <tableViewController title="Send To" id="Sgj-Sf-wfT" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t36-Vw-gJY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,7 +229,7 @@
         <!--Data From-->
         <scene sceneID="ekz-2L-W50">
             <objects>
-                <tableViewController title="Data From" id="4ZZ-kK-Nan" sceneMemberID="viewController">
+                <tableViewController title="Data From" id="4ZZ-kK-Nan" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pVt-e3-8NS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -286,7 +286,7 @@
         <!--Restrictions-->
         <scene sceneID="IUY-X5-twH">
             <objects>
-                <viewController id="w6b-nS-TNt" sceneMemberID="viewController">
+                <viewController id="w6b-nS-TNt" customClass="RestrictionsViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WsE-b3-ALI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -397,9 +397,6 @@
     </scenes>
     <resources>
         <image name="Tab-Faxing" width="18" height="23"/>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

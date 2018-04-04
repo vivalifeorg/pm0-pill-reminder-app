@@ -11,6 +11,20 @@ import PDFKit
 
 class FaxPreviewViewController:UIViewController{
 
+
+  var listOfPdfs:[DocumentRef]=[]{
+    didSet{
+      guard !listOfPdfs.isEmpty else{
+        return
+      }
+
+
+      let doc = listOfPdfs.singleDocument
+      let tempFileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.pdf"))
+      doc.write(to: tempFileURL)
+      pdfURL = tempFileURL
+    }
+  }
   var pdfURL:URL = Bundle.main.url(
     forResource: "PreviewUnavailable",
     withExtension: "pdf",
@@ -18,6 +32,9 @@ class FaxPreviewViewController:UIViewController{
     localization: nil)!
   {
     didSet{
+      guard isViewLoaded else{
+        return
+      }
       pdfView.document = PDFDocument.init(url: pdfURL)
     }
   }
@@ -31,4 +48,10 @@ class FaxPreviewViewController:UIViewController{
     pdfView.autoScales = true
   }
 
+}
+
+extension FaxPreviewViewController:PDFHandler{
+  func addPDFs(_ pdfsToAdd: [DocumentRef]) {
+    listOfPdfs = pdfsToAdd
+  }
 }

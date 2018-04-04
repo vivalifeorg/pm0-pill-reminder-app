@@ -29,9 +29,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func export(_ sender: Any) {
-
-    let sample = samplePDF()
-    let url = URL(fileURLWithPath: sample)
+    let url = samplePDF()
     self.documentInteractionController = UIDocumentInteractionController(url: url)
     self.documentInteractionController?.delegate = self
     self.documentInteractionController?.presentPreview(animated: true )
@@ -81,18 +79,34 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
 
-      showStartFax()
+     // showStartFax()
 
       let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: "Dr Ableton's Office", from: "Patient Directly (Marv Jones)", forPatient: "Marv Jones")
       let pdf = samplePDF()
 
       
-      sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
-        self.showSuccessfulFax(message:msg)
-      }
+     // sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
+       // self.showSuccessfulFax(message:msg)
+     // }
+
+      pdfsToSend = [cover,pdf] //this is happening after the segue, remove the hard segue in IB and just name it
+      performSegue(withIdentifier: sendInfoFaxSegueIdentifier, sender: self)
     }
     else{
       showUnimplemented()
     }
   }
+  let sendInfoFaxSegueIdentifier = "sendInfoFaxSegue"
+
+  var pdfsToSend:[URL] = []
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == sendInfoFaxSegueIdentifier {
+      (segue.destination as! PDFHandler).addPDFs(pdfsToSend)
+    }
+  }
+}
+
+protocol PDFHandler{
+  func addPDFs(_ rpdfs:[DocumentRef])
 }
