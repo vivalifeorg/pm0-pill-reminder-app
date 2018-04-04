@@ -44,7 +44,7 @@ class FaxPreviewViewController:UIViewController{
 
   override func viewDidLoad() {
     pdfView.document = PDFDocument.init(url: pdfURL)
-    pdfView.displayMode = .twoUpContinuous
+    pdfView.displayMode = .singlePageContinuous
     pdfView.autoScales = true
   }
 
