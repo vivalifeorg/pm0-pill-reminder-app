@@ -23,15 +23,14 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     var handler = segue.destination as! (PDFHandler & SendableDocumentMetadata)
 
     handler.sendableDocuments = sendableDocuments
-
     handler.sendableDocumentTopics = sendableDocumentTopics
+    
     let selectedDoctors:[DoctorInfo] = selectedRows.map{doctors[$0.row]}
     selectedDoctors.forEach{ handler.sendableDocumentTopics.append($0) }
 
     handler.sendableDocumentDestinations = isSendToScreen ?
         selectedDoctors.map{$0.fax.number} :
         sendableDocumentDestinations
-
   }
 
   var isSendToScreen:Bool {
