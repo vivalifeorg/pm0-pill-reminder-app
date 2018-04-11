@@ -290,7 +290,9 @@ func hipaaConsentForm(doctors:[DocumentTopic], restrictions:[String] = noRestric
     \("✔️ \($0)")
   """}.joined(separator: "\n")
 
-  runningVerticalOffset = addStandardText(text: allRestrictions,
+  let qualifiedRestrictions = restrictions.count > 0 ? allRestrictions : "No Restrictions Added by Patient"
+
+  runningVerticalOffset = addStandardText(text: qualifiedRestrictions,
                                           view: backgroundView,
                                           y: runningVerticalOffset)
 
