@@ -171,7 +171,7 @@ func addHeader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
   return runningVerticalOffset
 }
 
-func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:String, forPatient:String) -> DocumentRef {
+func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPatient:String) -> DocumentRef {
 
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -195,7 +195,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, from:S
 
   From:
 
-    \(from)
+    \(forPatient) [Sent from Patient]
 
 
   For Patient:
@@ -239,7 +239,27 @@ func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
   return dst
 }
 
-func hipaaConsentForm(listing providers:[DoctorInfo]) -> DocumentRef {
+extension String{
+  func addingIndentation(_ n: Int) -> String{
+    let indentation = String(repeating:" ", count:n)
+    return "\(indentation)\(self.replacingOccurrences(of: "\n", with: "\n\(indentation)"))"
+  }
+}
+
+extension DoctorInfo:DocumentTopic{
+  var topicText:String{
+    let provider = self
+    let providerText =
+      "\(provider.name)\n" +
+      "\(provider.address.displayable.addingIndentation(2))\n" +
+      "  Phone: \t\(provider.phone.number)\n" +
+      "  Fax: \t\(provider.fax.number)\n\n"
+    return providerText
+  }
+}
+
+let noRestrictionsText = ["No additional restrictions"]
+func hipaaConsentForm(doctors:[DocumentTopic], restrictions:[String] = noRestrictionsText) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -265,11 +285,12 @@ func hipaaConsentForm(listing providers:[DoctorInfo]) -> DocumentRef {
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
 
   runningVerticalOffset = addSubheader("Restrictions", view: backgroundView, y: runningVerticalOffset)
-  let restrictions =
+  let allRestrictions = restrictions.map{
   """
-  \("✔️ No Additional Restrictions on Use")
-  """
-  runningVerticalOffset = addStandardText(text: restrictions,
+    \("✔️ \($0)")
+  """}.joined(separator: "\n")
+
+  runningVerticalOffset = addStandardText(text: allRestrictions,
                                           view: backgroundView,
                                           y: runningVerticalOffset)
 
@@ -277,22 +298,9 @@ func hipaaConsentForm(listing providers:[DoctorInfo]) -> DocumentRef {
                                        view: backgroundView,
                                        y: runningVerticalOffset)
 
-  let allProviderText:String = providers.map{ provider in
-    let providerText =
-    "\(provider.name)\n" +
-    "    \(provider.address.street)\n" +
-    "    \(provider.address.streetCont)\n" +
-    "    \(provider.address.city), \(provider.address.state). \(provider.address.ZIP)\n" +
-    "    Phone: \t\(provider.phone.number)\n" +
-    "    Fax: \t\(provider.fax.number)\n\n"
-
-    return providerText
-    }.joined()
+  let allProviderText:String = doctors.map{ $0.topicText }.joined()
 
   runningVerticalOffset = addStandardText(text: allProviderText, view: backgroundView, y: runningVerticalOffset)
-
-
-
 
   let vivaLifeIconHeight:CGFloat = 273.0/4
   let vivaIconStart = pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin)
@@ -311,7 +319,7 @@ func hipaaConsentForm(listing providers:[DoctorInfo]) -> DocumentRef {
   """
   Date: \(signingDate)
 
-  DocumentId: \("EXAMPLE-1-A")
+  DocumentId: \("VL-HIPAA-CONSENT-001-A")
   """
 
   let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate

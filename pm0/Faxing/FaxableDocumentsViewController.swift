@@ -29,7 +29,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func export(_ sender: Any) {
-    let url = hipaaConsentForm(listing:LocalStorage.DoctorStore.load())
+    let url = hipaaConsentForm(doctors:LocalStorage.DoctorStore.load())
     self.documentInteractionController = UIDocumentInteractionController(url: url)
     self.documentInteractionController?.delegate = self
     self.documentInteractionController?.presentPreview(animated: true )
@@ -78,18 +78,6 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   var pdfPreview = UIAlertController()
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
-
-     // showStartFax()
-
-      let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: "Dr Ableton's Office", from: "Patient Directly (Marv Jones)", forPatient: "Marv Jones")
-      let pdf = hipaaConsentForm(listing:LocalStorage.DoctorStore.load())
-
-      
-     // sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
-       // self.showSuccessfulFax(message:msg)
-     // }
-
-      pdfsToSend = [cover,pdf] //this is happening after the segue, remove the hard segue in IB and just name it
       performSegue(withIdentifier: sendInfoFaxSegueIdentifier, sender: self)
     }
     else{
@@ -102,13 +90,12 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == sendInfoFaxSegueIdentifier {
-      (segue.destination as! PDFHandler).addPDFs(pdfsToSend)
     }
   }
 }
 
 protocol DocumentTopic{
-  var description:String {get set}
+  var topicText:String {get}
 }
 
 protocol SendableDocumentMetadata{
@@ -117,5 +104,5 @@ protocol SendableDocumentMetadata{
 }
 
 protocol PDFHandler{
-  func addPDFs(_ rpdfs:[DocumentRef])
+  var sendableDocuments:[DocumentRef] {get set}
 }

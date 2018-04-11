@@ -9,17 +9,18 @@
 import UIKit
 import PDFKit
 
-class FaxPreviewViewController:UIViewController{
+class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
+  var sendableDocumentTopics: [DocumentTopic] = []
+  var sendableDocumentDestinations:[DocumentDestination] = []
 
-
-  var listOfPdfs:[DocumentRef]=[]{
+  var sendableDocuments:[DocumentRef]=[]{
     didSet{
-      guard !listOfPdfs.isEmpty else{
+      guard !sendableDocuments.isEmpty else{
         return
       }
 
 
-      let doc = listOfPdfs.singleDocument
+      let doc = sendableDocuments.singleDocument
       let tempFileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.pdf"))
       doc.write(to: tempFileURL)
       pdfURL = tempFileURL
@@ -86,7 +87,7 @@ class FaxPreviewViewController:UIViewController{
   var faxNumber = "+18558237571"
   @IBAction func sendShownFax(_:AnyObject){
     //TODO: Figure out if combined pdf is bad or if API can't take single document due to the file/file[] differences
-    sendFax(toNumber:faxNumber, documentPaths: listOfPdfs){ isSuccess,msg in
+    sendFax(toNumber:faxNumber, documentPaths: sendableDocuments){ isSuccess,msg in
       if isSuccess{
         self.showSuccessfulFax(message:msg)
       }else{
@@ -98,16 +99,5 @@ class FaxPreviewViewController:UIViewController{
     alert = UIAlertController(title: "Compiling Fax...", message: "Assembling paperwork and uploading", preferredStyle: .alert)
     self.present(alert,animated: true)
   }
-  
-
 }
 
-extension FaxPreviewViewController:PDFHandler{
-  func addDestinations(_ destinations: [DocumentDestination]) {
-    faxNumber = destinations.first!
-  }
-
-  func addPDFs(_ pdfsToAdd: [DocumentRef]) {
-    listOfPdfs = pdfsToAdd
-  }
-}

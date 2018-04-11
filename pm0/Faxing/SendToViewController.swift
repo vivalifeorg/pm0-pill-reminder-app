@@ -8,21 +8,39 @@
 
 import UIKit
 
-class SendToViewController:UITableViewController{
+class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFHandler{
+  var sendableDocumentTopics: [DocumentTopic] = []
 
-  var pdfs:[DocumentRef] = []
+
+  @IBOutlet weak var nextButton:UIBarButtonItem!
+  var sendableDocuments:[DocumentRef] = []
+
+  func updateNextButton(){
+    nextButton.isEnabled = selectedRows.count > 0
+  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    var handler = segue.destination as? (PDFHandler & SendableDocumentMetadata)
-    handler?.addPDFs(pdfs)
-    handler?.sendableDocumentDestinations.append(
-      contentsOf:selectedDoctors.map{doctors[$0.row].fax.number}
-    )
+    var handler = segue.destination as! (PDFHandler & SendableDocumentMetadata)
+
+    handler.sendableDocuments = sendableDocuments
+
+    handler.sendableDocumentTopics = sendableDocumentTopics
+    let selectedDoctors:[DoctorInfo] = selectedRows.map{doctors[$0.row]}
+    selectedDoctors.forEach{ handler.sendableDocumentTopics.append($0) }
+
+    handler.sendableDocumentDestinations = isSendToScreen ?
+        selectedDoctors.map{$0.fax.number} :
+        sendableDocumentDestinations
+
+  }
+
+  var isSendToScreen:Bool {
+    return self.restorationIdentifier == "SendToScreen"
   }
 
   var doctors:[DoctorInfo] = []
 
-  var selectedDoctors:[IndexPath] = []
+  var selectedRows:[IndexPath] = []
 
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -38,19 +56,22 @@ class SendToViewController:UITableViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //remove excess lines
+    updateNextButton()
   }
 
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .checkmark
-    selectedDoctors.append(indexPath)
+    selectedRows.append(indexPath)
+    updateNextButton()
   }
 
   override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .none
-    selectedDoctors = selectedDoctors.filter{ $0 != indexPath }
+    selectedRows = selectedRows.filter{ $0 != indexPath }
+    updateNextButton()
   }
 
   static var cellIdentifier = "DoctorSelectCell"
@@ -60,20 +81,14 @@ class SendToViewController:UITableViewController{
     cell.textLabel?.text = doctors[indexPath.row].name
     cell.detailTextLabel?.text = doctors[indexPath.row].specialty
 
-    cell.accessoryType = selectedDoctors.contains(indexPath) ? .checkmark : .none
+    cell.accessoryType = selectedRows.contains(indexPath) ? .checkmark : .none
     return cell
   }
 
-  var documentDestinations:[DocumentDestination] = []
-  func addDestinations(_ destinations:[DocumentDestination]){
-    documentDestinations.append(contentsOf: destinations)
+  var sendableDocumentDestinations:[DocumentDestination] = []{
+    didSet{
+      print(sendableDocumentDestinations)
+    }
   }
 }
 
-extension SendToViewController:PDFHandler{
-  func addPDFs(_ toAdd:[DocumentRef]){
-    pdfs.append(contentsOf: toAdd)
-  }
-
-
-}
