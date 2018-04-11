@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorSelectCell" textLabel="lEg-Uc-NKX" detailTextLabel="vIa-wi-r8w" style="IBUITableViewCellStyleSubtitle" id="HH3-7G-HHS" customClass="DoctorSelectCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorSelectCell" textLabel="lEg-Uc-NKX" detailTextLabel="vIa-wi-r8w" style="IBUITableViewCellStyleSubtitle" id="HH3-7G-HHS" customClass="DoctorSelectCell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HH3-7G-HHS" id="2fM-sd-8US">
