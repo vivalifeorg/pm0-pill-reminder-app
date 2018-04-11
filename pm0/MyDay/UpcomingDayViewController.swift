@@ -9,6 +9,51 @@
 import UIKit
 import DZNEmptyDataSet
 
+func loadDeviceID()->DeviceIdentifier{
+  guard let devId = LocalStorage.DeviceStore.load().first else {
+    let newDevId = "\(UIDevice.current.localizedModel):\(UUID())"
+    LocalStorage.DeviceStore.save([newDevId])
+    return newDevId
+  }
+  return devId
+}
+
+struct MedicationLogEvent:Codable{
+  enum MedicationLogEventType:String,Codable{
+    case markedMedicationTaken
+    case unmarkedMedicationTaken
+  }
+  var eventType:MedicationLogEventType
+  var dosage:Dosage
+  var date:Date
+  var deviceId:DeviceIdentifier
+  var eventId:EventIdentifier
+}
+
+extension MedicationLogEvent{
+  static func markedTaken(dosage:Dosage,date:Date)->MedicationLogEvent{
+    return MedicationLogEvent(eventType: .markedMedicationTaken,
+                       dosage: dosage,
+                       date: date,
+                       deviceId: loadDeviceID(),
+                       eventId: UUID().uuidString)
+  }
+
+  static func unmarkedTaken(dosage:Dosage, date:Date)->MedicationLogEvent{
+    return MedicationLogEvent(eventType: .unmarkedMedicationTaken,
+                       dosage: dosage,
+                       date: date,
+                       deviceId: loadDeviceID(),
+                       eventId: UUID().uuidString)
+  }
+
+}
+
+
+typealias DeviceIdentifier = String
+typealias EventIdentifier = String
+
+
 class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
 
   @IBOutlet weak var titleLabel:UILabel!
@@ -53,9 +98,8 @@ class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
       return accessoryType = newValue ? .checkmark : .none
     }
   }
-
-
 }
+
 extension UIColor {
 
   convenience init(hexString : String)
@@ -392,10 +436,24 @@ extension UpcomingDayViewController{
     header.textLabel?.frame = header.frame
   }
 
+  func recordMedicationEvent(_ event:MedicationLogEvent){
+    let log = LocalStorage.MedicationLogStore.load()
+    LocalStorage.MedicationLogStore.save(log + [event])
+  }
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
-    sections[indexPath.section].medications[indexPath.row].isTaken = !wasPreviouslyChecked
-    if !wasPreviouslyChecked {
+    let shouldNowBeChecked = !wasPreviouslyChecked
+    sections[indexPath.section].medications[indexPath.row].isTaken = shouldNowBeChecked
+
+    let dosage = sections[indexPath.section].medications[indexPath.row].dosage
+    let event:MedicationLogEvent = shouldNowBeChecked ?
+      MedicationLogEvent.markedTaken(dosage: dosage,date: Date()) :
+      MedicationLogEvent.unmarkedTaken(dosage: dosage, date: Date())
+    recordMedicationEvent(event)
+
+
+    if shouldNowBeChecked {
       UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
     }
   }

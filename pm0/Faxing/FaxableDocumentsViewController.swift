@@ -35,6 +35,12 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
     self.documentInteractionController?.presentPreview(animated: true )
   }
 
+
+  @IBAction func exportMedicationLog(_ sender: Any) {
+    performSegue(withIdentifier: "showHelpVC", sender: self)
+
+  }
+
   func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
       return self
     }
@@ -79,8 +85,9 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.row == 0{
       performSegue(withIdentifier: sendInfoFaxSegueIdentifier, sender: self)
-    }
-    else{
+    } else if indexPath.row == 1{
+      exportMedicationLog(self)
+    }else{
       showUnimplemented()
     }
   }
@@ -88,8 +95,27 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
   var pdfsToSend:[URL] = []
 
+  var medlog:String{
+    let medicationLog = LocalStorage.MedicationLogStore.load().map{"\($0.date): \($0.eventType.rawValue) \($0.dosage.name) \($0.dosage.quantity)"}.joined(separator: "\n\n")
+    return medicationLog
+  }
+
+
+
+  @objc func cancelFax(){
+    presentedViewController?.performSegue(withIdentifier: "unwindFromFaxingAfterCancel", sender: presentedViewController!)
+  }
+
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == sendInfoFaxSegueIdentifier {
+    }else if segue.identifier == "showHelpVC"{
+      let medicationLog = medlog
+      let nav = segue.destination as! UINavigationController
+      let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(FaxableDocumentsViewController.cancelFax))
+      let helpVC = (nav.viewControllers.first! as! HelpViewController)
+      helpVC.helpText = NSAttributedString(string:medicationLog)
+      helpVC.navigationItem.leftBarButtonItem = cancelButton
     }
   }
 }

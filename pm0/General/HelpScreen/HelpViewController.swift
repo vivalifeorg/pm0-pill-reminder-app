@@ -17,6 +17,6 @@ class HelpViewController:UIViewController {
   }
 
   override func viewDidLoad() {
-    helpLabel.attributedText = helpText
+    helpLabel?.attributedText = helpText
   }
 }

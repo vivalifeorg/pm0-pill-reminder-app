@@ -9,6 +9,8 @@
 import UIKit
 
 class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFHandler{
+  var sendableDocumentDestinations: [DocumentDestination] = []
+
   @IBOutlet weak var nextButton:UIBarButtonItem!
 
   var sendableDocumentTopics: [DocumentTopic] = []

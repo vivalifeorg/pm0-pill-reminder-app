@@ -27,6 +27,8 @@ var debugKeychain = false
 
 typealias GlobalTimeslot  = Timeslot
 
+
+
 enum LocalStorage{
   enum KeychainKey:String,Codable{
     case userPrescriptions
@@ -37,6 +39,19 @@ enum LocalStorage{
     
     case userSchedules
     case systemSchedules
+
+    case userDeviceInfo
+    case userMedicationLog
+  }
+
+  //TODO: This needs to be moved to pod 'RNCryptor', '~> 5.0' or something like that
+  /// You aren't supposed to store this much data in the keychain.
+  static var MedicationLogStore:Persistor<MedicationLogEvent> {
+    return Persistor(key:.userMedicationLog)
+  }
+
+  static var DeviceStore:Persistor<String>{
+    return Persistor(key:.userDeviceInfo)
   }
 
   static var PrescriptionStore:Persistor<Prescription>{
