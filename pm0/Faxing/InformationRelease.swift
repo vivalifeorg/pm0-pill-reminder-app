@@ -51,7 +51,7 @@ let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeader
 let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHeaderFontSize))!
 
 
-let providers = LocalStorage.DoctorStore.load()
+
 //let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
 
 let patient = Patient(name:"Josh Ditel", phoneNumber:"(555) 555-5555")
@@ -239,7 +239,7 @@ func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
   return dst
 }
 
-func samplePDF() -> DocumentRef {
+func hipaaConsentForm(listing providers:[DoctorInfo]) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))

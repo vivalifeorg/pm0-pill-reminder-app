@@ -19,8 +19,14 @@ class RestrictionsViewController:UIViewController{
 }
 
 extension RestrictionsViewController:PDFHandler{
+
   func addPDFs(_ toAdd:[DocumentRef]){
     pdfs.append(contentsOf: toAdd)
   }
+
+  func addDestinations(_ dsts:[DocumentDestination]){
+
+  }
+
 }
 

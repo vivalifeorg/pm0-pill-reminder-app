@@ -98,9 +98,15 @@ class FaxPreviewViewController:UIViewController{
     alert = UIAlertController(title: "Compiling Fax...", message: "Assembling paperwork and uploading", preferredStyle: .alert)
     self.present(alert,animated: true)
   }
+  
+
 }
 
 extension FaxPreviewViewController:PDFHandler{
+  func addDestinations(_ destinations: [DocumentDestination]) {
+    faxNumber = destinations.first!
+  }
+
   func addPDFs(_ pdfsToAdd: [DocumentRef]) {
     listOfPdfs = pdfsToAdd
   }

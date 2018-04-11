@@ -533,23 +533,11 @@
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlEditableTextColor">
-            <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlEditableTextColor">
-            <color red="0.66699999570000001" green="0.66699999570000001" blue="0.66699999570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="vlEditableTextColor">
             <color red="0.66699999570846558" green="0.66699999570846558" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlEmptyStateText">
             <color white="0.72299998998641968" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

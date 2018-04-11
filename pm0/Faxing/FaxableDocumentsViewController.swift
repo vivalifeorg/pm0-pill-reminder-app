@@ -29,7 +29,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func export(_ sender: Any) {
-    let url = samplePDF()
+    let url = hipaaConsentForm(listing:LocalStorage.DoctorStore.load())
     self.documentInteractionController = UIDocumentInteractionController(url: url)
     self.documentInteractionController?.delegate = self
     self.documentInteractionController?.presentPreview(animated: true )
@@ -82,7 +82,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
      // showStartFax()
 
       let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: "Dr Ableton's Office", from: "Patient Directly (Marv Jones)", forPatient: "Marv Jones")
-      let pdf = samplePDF()
+      let pdf = hipaaConsentForm(listing:LocalStorage.DoctorStore.load())
 
       
      // sendFax(toNumber:"+18558237571", documentPaths: [cover,pdf]){ isSuccess,msg in
@@ -105,6 +105,15 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
       (segue.destination as! PDFHandler).addPDFs(pdfsToSend)
     }
   }
+}
+
+protocol DocumentTopic{
+  var description:String {get set}
+}
+
+protocol SendableDocumentMetadata{
+  var sendableDocumentDestinations:[DocumentDestination] {get set}
+  var sendableDocumentTopics:[DocumentTopic] {get set}
 }
 
 protocol PDFHandler{
