@@ -72,24 +72,17 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     updateNextButton()
   }
 
-
   var cellIdentifier:String{
     return isSendToScreen ? "DoctorSelectCell" : "DoctorDataFromSelectCell"
   }
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-
     cell.textLabel?.text = doctors[indexPath.row].name
     cell.detailTextLabel?.text = doctors[indexPath.row].specialty
 
     cell.accessoryType = selectedRows.contains(indexPath) ? .checkmark : .none
     return cell
-  }
-
-  var sendableDocumentDestinations:[DocumentDestination] = []{
-    didSet{
-      print(sendableDocumentDestinations)
-    }
   }
 }
 
