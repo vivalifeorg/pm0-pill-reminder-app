@@ -20,7 +20,10 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    var handler = segue.destination as! (PDFHandler & SendableDocumentMetadata)
+
+    guard var handler = segue.destination as? (PDFHandler & SendableDocumentMetadata) else {
+      return //for cancel, etc
+    }
 
     handler.sendableDocuments = sendableDocuments
     handler.sendableDocumentTopics = sendableDocumentTopics

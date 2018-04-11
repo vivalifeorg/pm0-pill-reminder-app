@@ -93,11 +93,22 @@ class DoctorViewerViewController:UITableViewController{
     showUnimplemented()
   }
 
+  @objc func cancelFax(){
+    presentedViewController?.performSegue(withIdentifier: "unwindFromFaxingAfterCancel", sender: presentedViewController!)
+  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "editDoctor"{
       let editor = segue.destination as! DoctorEntryViewController
       editor.doctor = doctor!
+    } else if segue.identifier == "sendHipaaReleaseFromDoctorViewer"{
+      let nav = segue.destination as! UINavigationController
+
+      let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))
+
+      var dataFrom = nav.viewControllers.first! as! SendableDocumentMetadata & UIViewController
+      dataFrom.navigationItem.leftBarButtonItem = cancelButton
+      dataFrom.sendableDocumentDestinations = [doctor!.fax.number]
     }
   }
 
@@ -111,6 +122,11 @@ class DoctorViewerViewController:UITableViewController{
     UIApplication.shared.open(url, options: [:]) { (success) in
       print("It worked? \(success)")
     }
+  }
+
+
+  @IBAction func unwindFromFaxingAfterCancel(segue:UIStoryboardSegue){
+
   }
 
   func loadDoctor(_ doctor:DoctorInfo){
@@ -142,9 +158,6 @@ class DoctorViewerViewController:UITableViewController{
  //   faxButtonCell.isHidden = !(doctor.fax.number.count > 0)
   }
 
-  @IBAction func faxHipaaSheet(_:Any){
-
-  }
 
   override func viewDidLoad() {
     guard let doctor = doctor else {

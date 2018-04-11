@@ -207,9 +207,9 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Send To" id="65b-ZI-qJv">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9c8-h9-6YQ">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="vlWarmTintColor"/>
                             <connections>
-                                <segue destination="qtD-qM-S9d" kind="unwind" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="XpH-Nj-qrG"/>
+                                <segue destination="qtD-qM-S9d" kind="unwind" identifier="unwindFromFaxingAfterCancel" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="XpH-Nj-qrG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="lV2-5Y-tjl" userLabel="Next">
@@ -407,6 +407,9 @@
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlWarmTintColor">
             <color red="0.87800002099999996" green="0.61599999670000005" blue="0.3840000033" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
