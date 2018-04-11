@@ -9,10 +9,11 @@
 import UIKit
 
 class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFHandler{
-  var sendableDocumentTopics: [DocumentTopic] = []
-
-
   @IBOutlet weak var nextButton:UIBarButtonItem!
+
+  var sendableDocumentTopics: [DocumentTopic] = []
+  var doctors:[DoctorInfo] = []
+  var selectedRows:[IndexPath] = []
   var sendableDocuments:[DocumentRef] = []
 
   func updateNextButton(){
@@ -40,10 +41,6 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     return self.restorationIdentifier == "SendToScreen"
   }
 
-  var doctors:[DoctorInfo] = []
-
-  var selectedRows:[IndexPath] = []
-
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
@@ -60,7 +57,6 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     tableView.tableFooterView = UIView() //remove excess lines
     updateNextButton()
   }
-
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath)
