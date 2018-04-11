@@ -72,9 +72,12 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     updateNextButton()
   }
 
-  static var cellIdentifier = "DoctorSelectCell"
+
+  var cellIdentifier:String{
+    return isSendToScreen ? "DoctorSelectCell" : "DoctorDataFromSelectCell"
+  }
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: DoctorListViewController.cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: DoctorListViewController.cellIdentifier)
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
 
     cell.textLabel?.text = doctors[indexPath.row].name
     cell.detailTextLabel?.text = doctors[indexPath.row].specialty
