@@ -9,9 +9,10 @@ target "pm0" do
   pod 'KeychainAccess', :inhibit_warnings => true #Secure Storage Wrapper
   pod 'PhaxioiOS', :path => "pm0/Faxing/PhaxioAPIObjC/phaxio-ios-master", :inhibit_warnings => true #Faxing provider
   pod 'PDFGenerator', '~> 2.1', :inhibit_warnings => true #PDF making lib
-  pod 'Down',  :git => 'https://github.com/iwasrobbed/Down', :commit => '4082c8d9432eb37ba6d7a4c379e714828238d061', :inhibit_warnings => true  #markdown renderer
+  pod 'Down',  :inhibit_warnings => true, :git => 'https://github.com/iwasrobbed/Down', :commit => '4082c8d9432eb37ba6d7a4c379e714828238d061'  #markdown renderer
   pod 'SwiftGen', :inhibit_warnings => true #takes the name of the asset files and generates constants
   pod 'Yams', :inhibit_warnings => true #yaml generator to export data for tests tests for migrations
+  pod 'RNCryptor', '~> 5.0', :inhibit_warnings => true #symmetric file encryption for daily checkmarks
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334

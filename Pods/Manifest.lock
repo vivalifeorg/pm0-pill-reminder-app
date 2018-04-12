@@ -4,6 +4,7 @@ PODS:
   - KeychainAccess (3.1.0)
   - PDFGenerator (2.1)
   - PhaxioiOS (0.1.0)
+  - RNCryptor (5.0.2)
   - SearchTextField (1.2.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - KeychainAccess
   - PDFGenerator (~> 2.1)
   - PhaxioiOS (from `pm0/Faxing/PhaxioAPIObjC/phaxio-ios-master`)
+  - RNCryptor (~> 5.0)
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
   - SwiftGen
@@ -46,11 +48,12 @@ SPEC CHECKSUMS:
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PDFGenerator: 4fd5db4972465679f4846a9a36d53e8826536a6d
   PhaxioiOS: 6622fa5ed57dba8db71e67d92ebbd4a4541447f0
+  RNCryptor: 59b9f92e9fa8a1af74c32dc6b1af5e30ff5e1b64
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
   Yams: 58b13424ca380835c4c797bc775ce6cbb3bc0167
 
-PODFILE CHECKSUM: 93167a6a9e1b93f4a76b99beeedeee6d728fae59
+PODFILE CHECKSUM: ab5e0301e1221e7e58f9d5c654477d023fc856ee
 
 COCOAPODS: 1.4.0.beta.2
