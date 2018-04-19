@@ -25,26 +25,38 @@ struct MedicationLogEvent:Codable{
   }
   var eventType:MedicationLogEventType
   var dosage:Dosage
-  var date:Date
+  var timestamp:Date
   var deviceId:DeviceIdentifier
   var eventId:EventIdentifier
+  var sectionName:String
+  var timezone:TimeZone
 }
 
 extension MedicationLogEvent{
-  static func markedTaken(dosage:Dosage,date:Date)->MedicationLogEvent{
+  var isToday:Bool{
+    return Calendar.current.startOfDay(for:timestamp) == Calendar.current.startOfDay(for:Date())
+  }
+}
+
+extension MedicationLogEvent{
+  static func markedTaken(dosage:Dosage,date:Date,sectionName:String)->MedicationLogEvent{
     return MedicationLogEvent(eventType: .markedMedicationTaken,
                        dosage: dosage,
-                       date: date,
+                       timestamp: date,
                        deviceId: loadDeviceID(),
-                       eventId: UUID().uuidString)
+                       eventId: UUID().uuidString,
+                       sectionName:sectionName,
+                       timezone: Calendar.current.timeZone)
   }
 
-  static func unmarkedTaken(dosage:Dosage, date:Date)->MedicationLogEvent{
+  static func unmarkedTaken(dosage:Dosage, date:Date, sectionName:String)->MedicationLogEvent{
     return MedicationLogEvent(eventType: .unmarkedMedicationTaken,
                        dosage: dosage,
-                       date: date,
+                       timestamp: date,
                        deviceId: loadDeviceID(),
-                       eventId: UUID().uuidString)
+                       eventId: UUID().uuidString,
+                       sectionName:sectionName,
+                       timezone: Calendar.current.timeZone )
   }
 
 }
@@ -153,6 +165,8 @@ extension ColorProxy{
 
 class UpcomingDayViewController: UITableViewController {
 
+  var medicationTakenEventLog:[MedicationLogEvent] = []
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -164,6 +178,7 @@ class UpcomingDayViewController: UITableViewController {
     tableView.estimatedRowHeight = 44
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
+
 
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
@@ -353,11 +368,41 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   func loadDosages(){
-    scheduledDosages = LocalStorage.PrescriptionStore.load().flatMap{$0.dosage}
+    scheduledDosages = LocalStorage.PrescriptionStore.load().compactMap{$0.dosage}
+  }
+
+  func loadMedicationLog(){
+    medicationTakenEventLog = LocalStorage.MedicationLogStore.load()
+    let todaysActions = medicationTakenEventLog.filter{ $0.isToday }.sorted {
+      $0.timestamp < $1.timestamp
+    }
+
+    for logItem in todaysActions {
+      for sectionIndex in 0..<sections.count{
+        for medicationIndex in 0..<sections[sectionIndex].medications.count{
+          let item = sections[sectionIndex].medications[medicationIndex]
+          if item.dosage == logItem.dosage &&
+            sections[sectionIndex].title == logItem.sectionName {
+            switch logItem{
+            case let x where x.eventType == .markedMedicationTaken:
+              print("checked, \(logItem.sectionName), \(medicationIndex) ")
+              sections[sectionIndex].medications[medicationIndex].isTaken = true
+            case let x where x.eventType == .unmarkedMedicationTaken:
+              print("unchecked, \(logItem.sectionName), \(medicationIndex) ")
+              sections[sectionIndex].medications[medicationIndex].isTaken = false
+            default:
+              print("ERROR")
+            }
+          }
+        }
+      }
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
     loadDosages()
+    loadMedicationLog()
+    tableView.reloadData()
   }
 
   static let cellIdentifier = "UpcomingDayViewControllerDoseCell"
@@ -436,9 +481,10 @@ extension UpcomingDayViewController{
     header.textLabel?.frame = header.frame
   }
 
+
   func recordMedicationEvent(_ event:MedicationLogEvent){
-    let log = LocalStorage.MedicationLogStore.load()
-    LocalStorage.MedicationLogStore.save(log + [event])
+
+    LocalStorage.MedicationLogStore.save(medicationTakenEventLog + [event])
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -448,8 +494,8 @@ extension UpcomingDayViewController{
 
     let dosage = sections[indexPath.section].medications[indexPath.row].dosage
     let event:MedicationLogEvent = shouldNowBeChecked ?
-      MedicationLogEvent.markedTaken(dosage: dosage,date: Date()) :
-      MedicationLogEvent.unmarkedTaken(dosage: dosage, date: Date())
+      MedicationLogEvent.markedTaken(dosage: dosage,date: Date(),sectionName:sections[indexPath.section].title) :
+      MedicationLogEvent.unmarkedTaken(dosage: dosage, date: Date(),sectionName:sections[indexPath.section].title)
     recordMedicationEvent(event)
 
 

@@ -96,7 +96,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   var pdfsToSend:[URL] = []
 
   var medlog:String{
-    let medicationLog = LocalStorage.MedicationLogStore.load().map{"\($0.date): \($0.eventType.rawValue) \($0.dosage.name) \($0.dosage.quantity)"}.joined(separator: "\n\n")
+    let medicationLog = LocalStorage.MedicationLogStore.load().map{"\($0.timestamp): \($0.eventType.rawValue) \($0.dosage.name) \($0.dosage.quantity)"}.joined(separator: "\n\n")
     return medicationLog
   }
 

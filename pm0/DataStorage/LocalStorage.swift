@@ -132,10 +132,13 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   func load() -> [T] {
-    guard let ciphertext = FileManager.default.contents(atPath:persistenceFilePath) else{
+
+    guard let ciphertext = try? Data.init(contentsOf:URL(fileURLWithPath: persistenceFilePath)) else{
+      print("missing file: \(persistenceFilePath)")
       return []
     }
     guard let data = try? RNCryptor.decrypt(data: ciphertext, withPassword: storedEncryptionKey()) else{
+      print("couldn't decrypt file: \(persistenceFilePath)")
       return []
     }
 
@@ -158,7 +161,12 @@ struct FilePersistor<T:Codable>:Persistor{
     }
 
     let ciphertextData = RNCryptor.encrypt(data:encoded,withPassword:password)
-    FileManager.default.createFile(atPath: persistenceFilePath, contents: ciphertextData, attributes: [:])
+
+    do{
+      try ciphertextData.write(to:URL(fileURLWithPath: persistenceFilePath))
+    }catch{
+      print("Failed to write file")
+    }
   }
 
   //////
@@ -183,10 +191,6 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 }
 
-
-
-
-
 private func BlankLocal(key:LocalStorage.KeychainKey){
   let key = key.rawValue as String
   debugPrint("BLANKING \(key)")
@@ -196,6 +200,7 @@ private func BlankLocal(key:LocalStorage.KeychainKey){
 private func decodeData<T:Codable>(_ dataT:Data)->[T]{
 
   guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
+    print("Could not decode data in \(T.self)")
     return []
   }
 

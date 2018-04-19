@@ -42,6 +42,15 @@ struct Dosage:Codable{
   }
 }
 
+func ==(lhs:Dosage, rhs:Dosage)->Bool{
+  return lhs.name == rhs.name &&
+    lhs.unitDescription == rhs.unitDescription &&
+   lhs.form == rhs.form &&
+  lhs.quantity == rhs.quantity &&
+  lhs.schedule == rhs.schedule
+}
+
+
 struct Condition:Codable{
   var name:String
 
