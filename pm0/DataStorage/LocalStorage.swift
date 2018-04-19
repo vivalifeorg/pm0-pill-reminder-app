@@ -17,6 +17,7 @@
 import Foundation
 import KeychainAccess
 import Yams
+import RNCryptor
 
 
 fileprivate var keychain = Keychain(service:"com.vivalife.app.pm0.prescription-tracking")
@@ -44,39 +45,37 @@ enum LocalStorage{
     case userMedicationLog
   }
 
-  //TODO: This needs to be moved to pod 'RNCryptor', '~> 5.0' or something like that
-  /// You aren't supposed to store this much data in the keychain.
-  static var MedicationLogStore:Persistor<MedicationLogEvent> {
-    return Persistor(key:.userMedicationLog)
+  static var MedicationLogStore:FilePersistor<MedicationLogEvent> {
+    return FilePersistor(key:.userMedicationLog)
   }
 
-  static var DeviceStore:Persistor<String>{
-    return Persistor(key:.userDeviceInfo)
+  static var DeviceStore:KeychainPersistor<String>{
+    return KeychainPersistor(key:.userDeviceInfo)
   }
 
-  static var PrescriptionStore:Persistor<Prescription>{
-    return Persistor(key:.userPrescriptions)
+  static var PrescriptionStore:KeychainPersistor<Prescription>{
+    return KeychainPersistor(key:.userPrescriptions)
   }
 
-  static var DoctorStore:Persistor<DoctorInfo>{
-    return Persistor(key:.userDoctors)
+  static var DoctorStore:KeychainPersistor<DoctorInfo>{
+    return KeychainPersistor(key:.userDoctors)
   }
 
   struct TimeslotStore:Codable{
-    static var User:Persistor<GlobalTimeslot>{
-      return Persistor(key:.userTimeslots)
+    static var User:KeychainPersistor<GlobalTimeslot>{
+      return KeychainPersistor(key:.userTimeslots)
     }
-    static var System:Persistor<GlobalTimeslot>{
-      return Persistor(key:.systemTimeslots)
+    static var System:KeychainPersistor<GlobalTimeslot>{
+      return KeychainPersistor(key:.systemTimeslots)
     }
   }
 
   struct ScheduleStore:Codable{
-    static var User:Persistor<Schedule>{
-      return Persistor(key:.userSchedules)
+    static var User:KeychainPersistor<Schedule>{
+      return KeychainPersistor(key:.userSchedules)
     }
-    static var System:Persistor<Schedule>{
-      return Persistor(key:.systemSchedules)
+    static var System:KeychainPersistor<Schedule>{
+      return KeychainPersistor(key:.systemSchedules)
     }
   }
 }
@@ -88,7 +87,17 @@ protocol LocalStorageWrapper{
   var version:String {get}
 }
 
-struct Persistor<T:Codable>{
+
+protocol Persistor{
+  associatedtype PersistedType:Codable
+  var key:LocalStorage.KeychainKey {get set}
+  func blank()
+  func load()->[PersistedType]
+  func save(_ items:[PersistedType])
+}
+
+struct KeychainPersistor<T:Codable>:Persistor{
+  typealias PersistedType = T
   var key:LocalStorage.KeychainKey
   func blank(){
     BlankLocal(key: key)
@@ -101,10 +110,96 @@ struct Persistor<T:Codable>{
   }
 }
 
+extension FileManager {
+  class func documentsDirectory() -> String {
+    var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as [String]
+    return paths[0]
+  }
+}
+
+struct FilePassword:Codable{
+  let password:String
+  let logFiles:[String]
+}
+
+struct FilePersistor<T:Codable>:Persistor{
+  typealias PersistedType = T
+  var key:LocalStorage.KeychainKey
+
+  func blank(){
+    KeychainPersistor<FilePassword>(key: key).blank()
+    _ = try? FileManager.default.removeItem(atPath: persistenceFilePath)
+  }
+
+  func load() -> [T] {
+    guard let ciphertext = FileManager.default.contents(atPath:persistenceFilePath) else{
+      return []
+    }
+    guard let data = try? RNCryptor.decrypt(data: ciphertext, withPassword: storedEncryptionKey()) else{
+      return []
+    }
+
+    return decodeData(data)
+  }
+
+  func save(_ items:[T]){
+    //We need to load/generate a password for symmetric encryption, and save it
+    let password = storedEncryptionKey()
+    KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:password,logFiles:[persistenceFilePath])])
+
+    //now, we encode then encrypt the data
+    let wrapped = Wrapper<T>(wrapped:items,key:key)
+    guard let encoded = try? JSONEncoder().encode(wrapped) else {
+      return
+    }
+
+    if shouldExportToYamlForTesting {
+      printYamlAndHeader(wrapped, key: key, addAssociated:true)
+    }
+
+    let ciphertextData = RNCryptor.encrypt(data:encoded,withPassword:password)
+    FileManager.default.createFile(atPath: persistenceFilePath, contents: ciphertextData, attributes: [:])
+  }
+
+  //////
+
+  //todo make a way to autopage to a new log file when appropriate
+  private func generateKey()->String{
+    debugPrint("Generating Key/Password for checks because we don't have one")
+    return RNCryptor.randomData(ofLength: 12).base64EncodedString()
+  }
+
+  private func storedEncryptionKey()->String{
+    let encryptionKey = KeychainPersistor<FilePassword>(key: key).load().first?.password ?? generateKey()
+    return encryptionKey
+  }
+
+  private let prefix = "df-"
+  private var persistenceFilePath:String{
+    let currentLogIndex = String(0)
+    let paddedIndex = currentLogIndex.padding(toLength: 8, withPad: "0", startingAt: 0)
+    let path = FileManager.documentsDirectory() + "/" + prefix + key.rawValue + "_" + paddedIndex
+    return path
+  }
+}
+
+
+
+
+
 private func BlankLocal(key:LocalStorage.KeychainKey){
   let key = key.rawValue as String
   debugPrint("BLANKING \(key)")
   keychain[string: key] = nil
+}
+
+private func decodeData<T:Codable>(_ dataT:Data)->[T]{
+
+  guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
+    return []
+  }
+
+  return items.wrapped
 }
 
 private func LoadLocal<T:Codable>(key:LocalStorage.KeychainKey)->[T]{
@@ -116,11 +211,7 @@ private func LoadLocal<T:Codable>(key:LocalStorage.KeychainKey)->[T]{
     return []
   }
 
-  guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
-    return []
-  }
-
-  return items.wrapped
+  return decodeData(dataT)
 }
 
 
@@ -153,8 +244,19 @@ extension Bundle {
   }
 }
 
-func yamlize<T:Codable>(_ toEncode:T, key:LocalStorage.KeychainKey)->String!{
-  return try? yamlEncoder.encode(toEncode)
+fileprivate func yamlize<T:Codable>(_ toEncode:T, key:LocalStorage.KeychainKey)->String{
+  return (try? yamlEncoder.encode(toEncode)) ?? "<<Encoding Error>>"
+}
+
+fileprivate func printYamlAndHeader<T:Codable>(_ wrapped:T, key:LocalStorage.KeychainKey, addAssociated:Bool = false){
+  print("# ==== \(addAssociated ? "Associated " : "")Storage Key: \(key.rawValue) ====")
+  print("# ==== Exporting OS Name: \(operatingSystemName) ====")
+  print("# ==== Exporting OS Version: \(operatingSystemVersion) ====")
+  print("# ==== Exporting App Version: \(Bundle.main.compositeVersionNumber) ====")
+  print("# ==== Export Date: \(Date()) ====")
+  print("# ==== \(key.rawValue) BEGIN ====")
+  print(yamlize(wrapped, key:key))
+  print("# ==== \(key.rawValue) END ====")
 }
 
 private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
@@ -164,14 +266,7 @@ private func SaveLocal<T:Codable>(_ items:[T], key:LocalStorage.KeychainKey){
   }
 
   if shouldExportToYamlForTesting {
-    print("# ==== Storage Key: \(key.rawValue) ====")
-    print("# ==== Exporting OS Name: \(operatingSystemName) ====")
-    print("# ==== Exporting OS Version: \(operatingSystemVersion) ====")
-    print("# ==== Exporting App Version: \(Bundle.main.compositeVersionNumber) ====")
-    print("# ==== Export Date: \(Date()) ====")
-    print("# ==== \(key.rawValue) BEGIN ====")
-    print(yamlize(wrapped, key:key))
-    print("# ==== \(key.rawValue) END ====")
+    printYamlAndHeader(wrapped, key: key)
   }
 
   keychain[string: key.rawValue] = String(data:encoded,encoding:.utf8)

@@ -64,7 +64,7 @@ class ScheduleListViewController:UITableViewController{
   }
 
   override func viewDidLoad() {
-    if standardSchedules.count == 0{
+    if standardSchedules.count == 0 {
       LocalStorage.ScheduleStore.System.save(defaultSchedules)
       standardSchedules = LocalStorage.ScheduleStore.System.load()
       tableView.reloadData()
