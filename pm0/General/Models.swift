@@ -118,14 +118,16 @@ struct Address:Codable{
 extension String {
 
   var digitsOnly: String {
-    return components(separatedBy: CharacterSet.decimalDigits.inverted)
-      .joined()
+    //todo: handle # and *
+    let filtered = self.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+    return filtered
   }
 }
 struct PhoneNumber:Codable{
   var number:String
   var telURL:URL?{
-    return URL(string:"tel://\(number.digitsOnly)")
+    let url = URL(string:"tel://\(number.digitsOnly)")
+    return url
   }
 }
 

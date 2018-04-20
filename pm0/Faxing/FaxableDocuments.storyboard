@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f4T-WS-Wu4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f4T-WS-Wu4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,7 +53,7 @@
                         <sections>
                             <tableViewSection id="vGD-EM-HQj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Information Release Form" textLabel="vx5-bN-D1W" detailTextLabel="2Xl-5L-cEg" style="IBUITableViewCellStyleSubtitle" id="5WE-qF-7oh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Information Release Form" textLabel="vx5-bN-D1W" detailTextLabel="2Xl-5L-cEg" style="IBUITableViewCellStyleSubtitle" id="5WE-qF-7oh">
                                         <rect key="frame" x="0.0" y="80" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="5WE-qF-7oh" id="oKJ-s9-laZ">
@@ -81,7 +81,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FI9-oD-eT4" detailTextLabel="FVQ-7p-vxN" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="rqn-1E-prm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FI9-oD-eT4" detailTextLabel="FVQ-7p-vxN" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="rqn-1E-prm">
                                         <rect key="frame" x="0.0" y="124" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rqn-1E-prm" id="xk5-Sj-sIo">
@@ -108,7 +108,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="W1P-Gt-87v" detailTextLabel="CEc-3s-leK" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="5d7-3u-RqJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="W1P-Gt-87v" detailTextLabel="CEc-3s-leK" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="5d7-3u-RqJ">
                                         <rect key="frame" x="0.0" y="194" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5d7-3u-RqJ" id="mPJ-S2-RWE">

@@ -182,7 +182,7 @@ class DoctorViewerViewController:UITableViewController{
   }
 
   @IBAction func callPhone(_ sender:UIControl){
-    let telUrl:URL? = (doctor?.phone.telURL).ifNotNil{URL(string: "tel://\($0)")} ?? nil
+    let telUrl:URL? = (doctor?.phone.telURL)
     telUrl.ifNotNil{UIApplication.shared.open($0, options: [:], completionHandler:nil)}
   }
 
@@ -213,12 +213,14 @@ class DoctorViewerViewController:UITableViewController{
     phoneLabel.text = doctor.phone.number
     if canCall(doctor.phone.telURL){
       phoneLabel.textColor = Asset.Colors.vlWarmTintColor.color
+      phoneLabel.tintColor = Asset.Colors.vlWarmTintColor.color
 
       let tap = UITapGestureRecognizer(target: self, action: #selector(DoctorViewerViewController.callPhone))
       tap.numberOfTapsRequired = 1
       phoneLabel.addGestureRecognizer(tap)
     }else{
       phoneLabel.textColor = Asset.Colors.vlTextColor.color
+      phoneLabel.tintColor = Asset.Colors.vlTextColor.color
       phoneLabel.gestureRecognizers = nil
     }
 
