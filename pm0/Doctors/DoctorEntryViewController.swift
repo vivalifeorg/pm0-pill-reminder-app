@@ -56,6 +56,8 @@ class DoctorEntryViewController:UITableViewController{
     cityLabel?.searchTextField.text = doctor.address.city
     stateLabel?.searchTextField.text = doctor.address.state
     zipLabel?.searchTextField.text = doctor.address.ZIP
+    phoneLabel?.searchTextField.text = doctor.phone.number
+    faxLabel?.searchTextField.text = doctor.fax.number
   }
 
   func updateDoctorItem(){
