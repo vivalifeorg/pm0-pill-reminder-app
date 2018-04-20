@@ -178,6 +178,7 @@ class UpcomingDayViewController: UITableViewController {
     tableView.estimatedRowHeight = 44
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
+    tableView.tintColor = UIColor.white
 
 
 
@@ -581,7 +582,49 @@ extension UIImage {
     rectangle.stroke()
     context.restoreGState()
   }
+
+  func drawRoundRectButtonBackground(color:UIColor){
+    let context = UIGraphicsGetCurrentContext()!
+
+    /// Rectangle
+    let rectangle = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size.width, height: 60), cornerRadius: 8)
+    context.saveGState()
+    context.translateBy(x: 0, y: 0)
+    context.saveGState()
+    rectangle.lineWidth = 1
+    context.beginPath()
+    context.addPath(rectangle.cgPath)
+    context.clip(using: .evenOdd)
+    color.setStroke()
+    rectangle.fill()
+    context.restoreGState()
+  }
+
+  var roundedCornerButton: UIImage {
+      let rect = CGRect(origin:CGPoint(x: 0, y: 0), size: self.size)
+      UIGraphicsBeginImageContextWithOptions(self.size, false, 1)
+      UIBezierPath(
+        roundedRect: rect,
+        cornerRadius: 8.0
+        ).addClip()
+    draw(in: rect)
+    return UIGraphicsGetImageFromCurrentImageContext()!
+  }
 }
+
+extension UIImage {
+  convenience init(view: UIView) {
+    let scale = UIScreen.main.scale
+    let scaledSize = CGSize(width: view.frame.size.width * scale,
+                            height: view.frame.size.height * scale)
+    UIGraphicsBeginImageContext(scaledSize)
+    view.layer.render(in:UIGraphicsGetCurrentContext()!)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    self.init(cgImage: image!.cgImage!)
+  }
+}
+
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
@@ -605,18 +648,24 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
   }
 
   func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+
     return emptyStateButtonText("Add Medication")
   }
 
   func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
     UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
     backgroundColor.setFill()
-    let rect = CGRect(origin:.zero, size:buttonSize)
-    let bezierPath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
-    borderColor.setStroke()
-    backgroundColor.setFill()
+
+
+    let backgroundPath = UIBezierPath(rect: CGRect(origin:.zero, size:buttonSize))
+    Asset.Colors.vlCellBackgroundCommon.color.setFill()
+    backgroundPath.fill()
+
+    let bezierPath = UIBezierPath(roundedRect: CGRect(origin:.zero, size:buttonSize),
+                                  cornerRadius: cornerRadius)
+    Asset.Colors.vlWarmTintColor.color.setFill()
     bezierPath.fill()
-    bezierPath.stroke()
+
     let image = UIGraphicsGetImageFromCurrentImageContext()!
     return image
   }
@@ -625,7 +674,7 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
 
     return createImage(borderColor:Asset.Colors.vlWarmTintColor.color,
                        borderWidth:0.5,
-                       cornerRadius: 4,
+                       cornerRadius: 8,
                        buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 50),
                        backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
   }

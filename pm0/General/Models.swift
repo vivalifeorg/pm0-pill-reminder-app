@@ -114,8 +114,19 @@ struct Address:Codable{
   var ZIP:String
 }
 
+
+extension String {
+
+  var digitsOnly: String {
+    return components(separatedBy: CharacterSet.decimalDigits.inverted)
+      .joined()
+  }
+}
 struct PhoneNumber:Codable{
   var number:String
+  var telURL:URL?{
+    return URL(string:"tel://\(number.digitsOnly)")
+  }
 }
 
 struct FaxNumber:Codable{

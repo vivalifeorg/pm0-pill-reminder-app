@@ -109,7 +109,7 @@
                         <sections>
                             <tableViewSection id="rxb-ju-u0s">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="164" id="Mgj-D9-c6n">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="164" id="Mgj-D9-c6n">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mgj-D9-c6n" id="kJv-9u-lwj">
@@ -263,7 +263,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Egj-dx-b9B" detailTextLabel="kY4-Ek-jop" style="IBUITableViewCellStyleValue1" id="Pz4-Jt-Xa9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="Egj-dx-b9B" detailTextLabel="kY4-Ek-jop" style="IBUITableViewCellStyleValue1" id="Pz4-Jt-Xa9">
                                         <rect key="frame" x="0.0" y="397" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pz4-Jt-Xa9" id="asl-Qj-Pcu">
@@ -379,7 +379,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Alice Sharm" largeTitleDisplayMode="always" id="zBY-I0-vgq">
+                    <navigationItem key="navigationItem" title="Doctor" largeTitleDisplayMode="always" id="zBY-I0-vgq">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="y5z-Ga-0vr">
                             <connections>
                                 <segue destination="k31-AD-THS" kind="show" identifier="editDoctor" id="GLq-ic-OTj"/>

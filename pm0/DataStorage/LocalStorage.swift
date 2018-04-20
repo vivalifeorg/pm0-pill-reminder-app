@@ -182,7 +182,7 @@ struct FilePersistor<T:Codable>:Persistor{
     return encryptionKey
   }
 
-  private let prefix = "df-"
+  private let prefix = "FilePersistorData-"
   private var persistenceFilePath:String{
     let currentLogIndex = String(0)
     let paddedIndex = currentLogIndex.padding(toLength: 8, withPad: "0", startingAt: 0)

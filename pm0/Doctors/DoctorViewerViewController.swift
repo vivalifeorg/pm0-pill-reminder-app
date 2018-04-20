@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-
+import CoreTelephony
 
 extension Address{
   var isMappable:Bool{
@@ -181,6 +181,26 @@ class DoctorViewerViewController:UITableViewController{
 
   }
 
+  @IBAction func callPhone(_ sender:UIControl){
+    let telUrl:URL? = (doctor?.phone.telURL).ifNotNil{URL(string: "tel://\($0)")} ?? nil
+    telUrl.ifNotNil{UIApplication.shared.open($0, options: [:], completionHandler:nil)}
+  }
+
+  func canCall(_ telURL:URL?)->Bool{
+    guard telURL != nil, UIApplication.shared.canOpenURL(telURL!) else{
+      debugPrint("Can't call because open")
+      return false
+    }
+
+    //is phone able to be used now
+    guard let _ = CTTelephonyNetworkInfo().subscriberCellularProvider?.mobileNetworkCode else{
+      debugPrint("Can't call because no mobile network code")
+      return false
+    }
+
+    return true
+  }
+
   func loadDoctor(_ doctor:DoctorInfo){
     guard isViewLoaded else {
       return
@@ -191,8 +211,20 @@ class DoctorViewerViewController:UITableViewController{
     nameLabel.text = doctor.name
     addressLabel.text = doctor.address.displayable
     phoneLabel.text = doctor.phone.number
+    if canCall(doctor.phone.telURL){
+      phoneLabel.textColor = Asset.Colors.vlWarmTintColor.color
+
+      let tap = UITapGestureRecognizer(target: self, action: #selector(DoctorViewerViewController.callPhone))
+      tap.numberOfTapsRequired = 1
+      phoneLabel.addGestureRecognizer(tap)
+    }else{
+      phoneLabel.textColor = Asset.Colors.vlTextColor.color
+      phoneLabel.gestureRecognizers = nil
+    }
+
     specialityLabel.text = doctor.specialty
     faxLabel.text = doctor.fax.number
+    title = doctor.name
 
     geocoder = CLGeocoder()
     geocoder?.geocodeAddressString(doctor.address.displayable){ placemarks, error in
