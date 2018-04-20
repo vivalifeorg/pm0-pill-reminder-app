@@ -48,6 +48,14 @@ extension Address{
   }
 }
 
+
+class DoctorAnnotation:NSObject, MKAnnotation{
+  public var coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D()
+  public var title:String? = ""
+  public var subtitle:String? = ""
+  override init(){}
+}
+
 class DoctorViewerViewController:UITableViewController{
 
   @IBOutlet weak var map:MKMapView!
@@ -70,6 +78,34 @@ class DoctorViewerViewController:UITableViewController{
   @IBOutlet weak var specialityLabel:UILabel!
   @IBOutlet weak var specialityCell:UITableViewCell!
 
+  var geocoder:CLGeocoder? = nil
+
+  var addressPlacemarks:[CLPlacemark] = []{
+    didSet{
+      
+      map.removeAnnotations(map.annotations)
+      guard !addressPlacemarks.isEmpty else{
+        return
+      }
+
+      map.addAnnotations(
+        addressPlacemarks.map{ placemark in
+          let coordinate = placemark.location?.coordinate ?? CLLocationCoordinate2D()
+
+          let ann = DoctorAnnotation()
+          ann.coordinate = coordinate
+          ann.title = placemark.name
+          ann.subtitle = placemark.thoroughfare
+          return ann
+          })
+      (addressPlacemarks.first?.location?.coordinate).ifNotNil{
+        map.setCenter($0, animated: true)
+        let region = MKCoordinateRegion(center: $0, span: MKCoordinateSpanMake(0.0675,0.0675) )
+        map.setRegion(region, animated: true)
+      }
+    }
+  }
+
   var doctor:DoctorInfo?{
     didSet{
       guard let newDoctor = doctor else{
@@ -81,11 +117,15 @@ class DoctorViewerViewController:UITableViewController{
   }
 
   func showUnimplemented(){
-    alert = UIAlertController(title: "Not Implemented", message: "Feature to come", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-      self.alert.dismiss(animated: true, completion: nil)
-    }))
-    self.present(alert,animated: true)
+    alert = UIAlertController(title: "Not Implemented",
+                              message: "Feature to come",
+                              preferredStyle: .alert)
+
+    alert.addAction(UIAlertAction(
+      title: "Ok",
+      style: .default,
+      handler: { (_) in self.alert.dismiss(animated: true,completion: nil)}))
+    present(alert, animated: true)
   }
 
   var alert = UIAlertController()
@@ -94,14 +134,20 @@ class DoctorViewerViewController:UITableViewController{
   }
 
   @objc func cancelFax(){
-    presentedViewController?.performSegue(withIdentifier: "unwindFromFaxingAfterCancel", sender: presentedViewController!)
+    presentedViewController?.performSegue(
+      withIdentifier: "unwindFromFaxingAfterCancel",
+      sender: presentedViewController!
+    )
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "editDoctor"{
+    switch segue.identifier{
+
+    case "editDoctor":
       let editor = segue.destination as! DoctorEntryViewController
       editor.doctor = doctor!
-    } else if segue.identifier == "sendHipaaReleaseFromDoctorViewer"{
+
+    case "sendHipaaReleaseFromDoctorViewer":
       let nav = segue.destination as! UINavigationController
 
       let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))
@@ -109,13 +155,14 @@ class DoctorViewerViewController:UITableViewController{
       var dataFrom = nav.viewControllers.first! as! SendableDocumentMetadata & UIViewController
       dataFrom.navigationItem.leftBarButtonItem = cancelButton
       dataFrom.sendableDocumentDestinations = [doctor!.fax.number]
+
+    default:
+      print("another segue")
     }
   }
 
   @IBAction func drivingDirectionsButtonTapped(_ sender:UIButton!){
-    
-    //let locationURI = "http://maps.apple.com/?daddr=\(encodedAddress)&t=m&dirflag=d"
-  //  let locationURI = "http://maps.apple.com/?daddr=1968+Peachtree+Rd+NW,+Atlanta,+GA+30309&t=m&dirflag=d"
+
     guard let url = doctor?.address.url else{
       return
     }
@@ -138,24 +185,20 @@ class DoctorViewerViewController:UITableViewController{
     if doctor.address.isMappable {
    //   map.showAnnotations([doctor.address.annotation], animated: false)
     }
+
     map.isUserInteractionEnabled = doctor.address.isMappable
     drivingDirectionsButton.isEnabled = doctor.address.isMappable
-
-
     nameLabel.text = doctor.name
-
     addressLabel.text = doctor.address.displayable
-    //addressCell.isHidden = !doctor.address.isDisplayable
-
     phoneLabel.text = doctor.phone.number
-    //phoneCell.isHidden = !(doctor.phone.number.count > 0)
-
     specialityLabel.text = doctor.specialty
-    //specialityCell.isHidden = !(doctor.specialty.count > 0)
-
     faxLabel.text = doctor.fax.number
-  //  faxCell.isHidden = !(doctor.fax.number.count > 0)
- //   faxButtonCell.isHidden = !(doctor.fax.number.count > 0)
+
+    geocoder = CLGeocoder()
+    geocoder?.geocodeAddressString(doctor.address.displayable){ placemarks, error in
+        error.ifNotNil{ print("Error geocoding: \($0.localizedDescription)") }
+        self.addressPlacemarks = placemarks ?? []
+    }
   }
 
 
