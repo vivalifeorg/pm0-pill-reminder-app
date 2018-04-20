@@ -254,7 +254,7 @@
                                                     <rect key="frame" x="315" y="13" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" name="vlTextColor"/>
+                                                    <color key="textColor" name="vlWarmTintColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
