@@ -64,7 +64,7 @@ class DoctorViewerViewController:UITableViewController{
 
   @IBOutlet weak var nameLabel:UILabel!
 
-  @IBOutlet weak var drivingDirectionsButton:UIButton!
+  @IBOutlet weak var drivingDirectionsButton:VivaButtonA!
 
   @IBOutlet weak var faxLabel:UILabel!
   @IBOutlet weak var faxCell:UITableViewCell!
@@ -102,6 +102,7 @@ class DoctorViewerViewController:UITableViewController{
         map.setCenter($0, animated: true)
         let region = MKCoordinateRegion(center: $0, span: MKCoordinateSpanMake(0.0675,0.0675) )
         map.setRegion(region, animated: true)
+        drivingDirectionsButton.isEnabled = true
       }
     }
   }
@@ -163,6 +164,10 @@ class DoctorViewerViewController:UITableViewController{
 
   @IBAction func drivingDirectionsButtonTapped(_ sender:UIButton!){
 
+    guard drivingDirectionsButton.isEnabled else{
+      return
+    }
+    
     guard let url = doctor?.address.url else{
       return
     }
@@ -181,13 +186,8 @@ class DoctorViewerViewController:UITableViewController{
       return
     }
 
-
-    if doctor.address.isMappable {
-   //   map.showAnnotations([doctor.address.annotation], animated: false)
-    }
-
     map.isUserInteractionEnabled = doctor.address.isMappable
-    drivingDirectionsButton.isEnabled = doctor.address.isMappable
+    drivingDirectionsButton.isEnabled = false
     nameLabel.text = doctor.name
     addressLabel.text = doctor.address.displayable
     phoneLabel.text = doctor.phone.number

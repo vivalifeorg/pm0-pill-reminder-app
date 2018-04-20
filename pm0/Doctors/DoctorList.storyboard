@@ -126,7 +126,6 @@
                                                 </mapView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Xah-FX-jt8" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
                                                     <rect key="frame" x="211" y="10" width="154" height="33"/>
-                                                    <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <state key="normal" title="  Driving Directions  ">
                                                         <color key="titleColor" name="vlTextColor"/>

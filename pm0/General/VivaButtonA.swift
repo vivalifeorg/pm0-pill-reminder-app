@@ -10,8 +10,13 @@ import UIKit
 
 class VivaButtonA:UIButton{
 
+  override var isEnabled: Bool{
+    didSet{
+      backgroundColor = bgColor
+    }
+  }
+
   override func draw(_ rect: CGRect) {
-    layer.borderColor = color
     super.draw(rect)
   }
 
@@ -19,13 +24,21 @@ class VivaButtonA:UIButton{
     return isEnabled ? Asset.Colors.vlWarmTintColor.color.cgColor:   Asset.Colors.vlDisabledButtonColor.color.cgColor
   }
 
+  var fgColor:UIColor{
+    return isEnabled ? Asset.Colors.vlTextColor.color:
+      Asset.Colors.vlDisabledTextColor.color
+  }
+
+  var bgColor:UIColor{
+    return isEnabled ?
+      Asset.Colors.vlWarmTintColor.color:
+      Asset.Colors.vlDisabledButtonColor.color
+  }
+
   override func awakeFromNib() {
     layer.cornerRadius = 8.0
     layer.masksToBounds = true
-    layer.borderColor =
-      isEnabled ? Asset.Colors.vlWarmTintColor.color.cgColor:   Asset.Colors.vlDisabledButtonColor.color.cgColor
-    layer.borderWidth = 0.5
-    setTitleColor(Asset.Colors.vlWarmTintColor.color, for: .normal)
-    setTitleColor(Asset.Colors.vlDisabledButtonColor.color, for: .disabled)
+    setTitleColor(Asset.Colors.vlTextColor.color, for: .normal)
+    setTitleColor(Asset.Colors.vlDisabledTextColor.color, for: .disabled)
   }
 }

@@ -51,6 +51,7 @@ enum Asset {
     }
     static let vlCellBackgroundCommon = ColorAsset(name: "vlCellBackgroundCommon")
     static let vlDisabledButtonColor = ColorAsset(name: "vlDisabledButtonColor")
+    static let vlDisabledTextColor = ColorAsset(name: "vlDisabledTextColor")
     static let vlEditableTextColor = ColorAsset(name: "vlEditableTextColor")
     static let vlEmptyStateText = ColorAsset(name: "vlEmptyStateText")
     static let vlTextColor = ColorAsset(name: "vlTextColor")
@@ -79,6 +80,7 @@ enum Asset {
     Colors.Sip.sipTarawera,
     Colors.vlCellBackgroundCommon,
     Colors.vlDisabledButtonColor,
+    Colors.vlDisabledTextColor,
     Colors.vlEditableTextColor,
     Colors.vlEmptyStateText,
     Colors.vlTextColor,
