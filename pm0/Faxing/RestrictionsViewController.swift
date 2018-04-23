@@ -14,30 +14,23 @@ extension DocumentDestination{
   }
 }
 
+protocol RestrictionsMetadata{
+  var restrictions:[String] {set get}
+}
+
 class RestrictionsViewController:UIViewController,PDFHandler, SendableDocumentMetadata{
   @IBOutlet weak var restrictionsTextView:UITextView!
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    var handler = segue.destination as! PDFHandler & SendableDocumentMetadata
+    var handler = segue.destination as! PDFHandler & SendableDocumentMetadata & RestrictionsMetadata
     handler.sendableDocuments = sendableDocuments
-    let hipaaForm = hipaaConsentForm(
-      doctors: sendableDocumentTopics ,
-      patient: LocalStorage.UserInfoStore.load().first ?? PatientInfo(),
-      restrictions: restrictionsTextView.text.split(separator: "\n").map{String($0)})
-
-    //TODO count pages for real
-    let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: sendableDocumentDestinations.first?.faxToLine ?? "DOCTOR'S OFFICE", forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
-    pdfs.append(hipaaForm)
-
-
-    handler.sendableDocuments = [cover, hipaaForm]
+    handler.restrictions = restrictionsTextView.text.split(separator: "\n").map{String($0)}
     handler.sendableDocumentTopics = sendableDocumentTopics
     handler.sendableDocumentDestinations = sendableDocumentDestinations
   }
 
   var sendableDocumentTopics: [DocumentTopic] = []
   var sendableDocumentDestinations:[DocumentDestination] = []
-  var pdfs:[DocumentRef] = []
   var sendableDocuments: [DocumentRef] = []
 }
 

@@ -444,7 +444,7 @@ You can change it here before sending this document. </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4201" y="-593"/>
+            <point key="canvasLocation" x="3492" y="128"/>
         </scene>
         <!--Signing-->
         <scene sceneID="WWY-N6-FwI">
