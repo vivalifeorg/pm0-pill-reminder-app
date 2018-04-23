@@ -36,6 +36,8 @@ enum LocalStorage{
     case userDoctors
 
     case userTimeslots
+
+    case userInfo
     case systemTimeslots
     
     case userSchedules
@@ -47,6 +49,10 @@ enum LocalStorage{
 
   static var MedicationLogStore:FilePersistor<MedicationLogEvent> {
     return FilePersistor(key:.userMedicationLog)
+  }
+
+  static var UserInfoStore:KeychainPersistor<UserInfo>{
+    return KeychainPersistor(key:.userInfo)
   }
 
   static var DeviceStore:KeychainPersistor<String>{

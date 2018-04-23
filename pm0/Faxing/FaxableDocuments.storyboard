@@ -145,14 +145,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Faxing" image="Tab-Faxing" id="x5S-1w-lvN"/>
-                    <navigationItem key="navigationItem" title="Faxing" largeTitleDisplayMode="always" id="smW-cT-elK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="AhF-eP-G8m">
-                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="export:" destination="hgT-1R-QPE" id="m1L-Ge-qB9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Faxing" largeTitleDisplayMode="always" id="smW-cT-elK"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
@@ -314,7 +307,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
                                 <rect key="frame" x="18" y="175" width="689" height="126"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -346,9 +339,9 @@
                         <viewLayoutGuide key="safeArea" id="EEV-zf-cF8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Restrictions" id="zOP-BR-QxZ">
-                        <barButtonItem key="rightBarButtonItem" title="Preview" id="21d-5T-4f4">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="21d-5T-4f4">
                             <connections>
-                                <segue destination="xZa-fJ-BhG" kind="show" id="00A-s1-rIk"/>
+                                <segue destination="vCa-jE-kf3" kind="push" id="QSn-2H-8Je"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -359,6 +352,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drL-RO-3Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2029.5999999999999" y="166.8665667166417"/>
+        </scene>
+        <!--Verify Name-->
+        <scene sceneID="dzG-JA-TaI">
+            <objects>
+                <viewController id="vCa-jE-kf3" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k2s-N3-Omi">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="e.g. John Doe" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-6B-iK7">
+                                <rect key="frame" x="36" y="123" width="661" height="30"/>
+                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name on this Document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdo-9F-2jj">
+                                <rect key="frame" x="36" y="93" width="253" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSD-2f-wXo">
+                                <rect key="frame" x="34" y="194" width="661" height="64.333333333333314"/>
+                                <string key="text">Your name is shown above as you last used it in this App. 
+
+You can change it here before sending this document. </string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <constraints>
+                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="qVC-6B-iK7" secondAttribute="trailing" constant="39" id="6Su-Tm-YPD"/>
+                            <constraint firstItem="qVC-6B-iK7" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="36" id="F0O-LF-Rpq"/>
+                            <constraint firstItem="BSD-2f-wXo" firstAttribute="width" secondItem="qVC-6B-iK7" secondAttribute="width" id="JhX-as-feD"/>
+                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="BSD-2f-wXo" secondAttribute="trailing" constant="41" id="K6E-yh-k0p"/>
+                            <constraint firstItem="rdo-9F-2jj" firstAttribute="top" secondItem="Nyw-bx-XiV" secondAttribute="top" constant="49" id="L09-7p-lGM"/>
+                            <constraint firstItem="rdo-9F-2jj" firstAttribute="leading" secondItem="qVC-6B-iK7" secondAttribute="leading" id="ZVg-lV-SGi"/>
+                            <constraint firstItem="BSD-2f-wXo" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="34" id="lW4-Up-YBt"/>
+                            <constraint firstItem="qVC-6B-iK7" firstAttribute="top" secondItem="rdo-9F-2jj" secondAttribute="bottom" constant="6" id="vAY-8B-NXW"/>
+                            <constraint firstItem="BSD-2f-wXo" firstAttribute="top" secondItem="qVC-6B-iK7" secondAttribute="bottom" constant="41" id="w5K-Pv-5NH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nyw-bx-XiV"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Verify Name" id="GKC-d4-dbn">
+                        <barButtonItem key="rightBarButtonItem" title="Sign" id="4f9-ul-42w">
+                            <connections>
+                                <segue destination="OkB-dV-NGA" kind="push" id="hYA-tg-fqg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="qVC-6B-iK7" id="Ixm-iu-vg3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2701.630434782609" y="-552.17391304347825"/>
         </scene>
         <!--Preview-->
         <scene sceneID="5qa-un-AyZ">
@@ -383,25 +436,20 @@
                         <viewLayoutGuide key="safeArea" id="d7g-gN-ufe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Preview" id="tVU-bv-Tac">
-                        <barButtonItem key="rightBarButtonItem" title="Sign" id="AG7-sm-xfr">
-                            <connections>
-                                <action selector="sendShownFax:" destination="xZa-fJ-BhG" id="sAG-1j-vBU"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="AG7-sm-xfr"/>
                     </navigationItem>
                     <connections>
                         <outlet property="pdfView" destination="wGa-FR-apQ" id="7sQ-nF-Lak"/>
-                        <segue destination="OkB-dV-NGA" kind="show" id="z3c-ww-4uM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2733.5999999999999" y="167.76611694152925"/>
+            <point key="canvasLocation" x="4201" y="-593"/>
         </scene>
         <!--Signing-->
         <scene sceneID="WWY-N6-FwI">
             <objects>
-                <viewController title="Signing" id="OkB-dV-NGA" sceneMemberID="viewController">
+                <viewController title="Signing" id="OkB-dV-NGA" customClass="SignatureViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bwb-Tp-sE7">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -412,9 +460,9 @@
                                     <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbV-nB-Eme" userLabel="Container">
                                         <rect key="frame" x="4" y="8" width="728" height="199"/>
                                         <subviews>
-                                            <view alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dqd-sT-NVc" userLabel="Background">
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dqd-sT-NVc" userLabel="Background">
                                                 <rect key="frame" x="0.0" y="0.0" width="728" height="199"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="jHT-jG-5b0"/>
                                                 </constraints>
@@ -482,12 +530,16 @@
                         <viewLayoutGuide key="safeArea" id="8c2-IP-XNj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Signing" id="72F-ht-iCv">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="LGU-jv-mQB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Preview" id="LGU-jv-mQB">
+                            <connections>
+                                <segue destination="xZa-fJ-BhG" kind="push" id="SAq-y3-48V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Os6-ut-dqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3421.4392803598203" y="165.59999999999999"/>
+            <point key="canvasLocation" x="3326" y="361"/>
         </scene>
         <!--Faxing-->
         <scene sceneID="snf-ha-tI6">
@@ -543,6 +595,12 @@
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlDisabledButtonColor">
+            <color red="0.40799999237060547" green="0.40599998831748962" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

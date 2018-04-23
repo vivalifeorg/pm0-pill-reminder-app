@@ -114,6 +114,9 @@ struct Address:Codable{
   var ZIP:String
 }
 
+struct UserInfo:Codable{
+  var lastDocumentName:String //Last name user chose in a document
+}
 
 extension String {
 

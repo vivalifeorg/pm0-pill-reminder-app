@@ -8,7 +8,18 @@
 
 import UIKit
 
-class SignatureViewController:UIViewController{
+class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
+  var sendableDocumentDestinations: [DocumentDestination] = []
+
+  var sendableDocumentTopics: [DocumentTopic]  = []
+
+  var sendableDocuments: [DocumentRef]  = []
 
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    var handler = segue.destination as! PDFHandler & SendableDocumentMetadata
+    handler.sendableDocuments = sendableDocuments
+    handler.sendableDocumentTopics = sendableDocumentTopics
+    handler.sendableDocumentDestinations = sendableDocumentDestinations
+  }
 }

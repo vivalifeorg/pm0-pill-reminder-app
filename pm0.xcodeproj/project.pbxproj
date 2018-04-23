@@ -39,6 +39,7 @@
 		898BC94020614A4A006ED4CF /* InformationRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC93F20614A4A006ED4CF /* InformationRelease.swift */; };
 		898BC946206196DA006ED4CF /* FaxableDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */; };
 		8991A9BA208E4FEA00CCD703 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9B9208E4FEA00CCD703 /* SignatureViewController.swift */; };
+		8991A9BC208E6BE300CCD703 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9BB208E6BE300CCD703 /* NameViewController.swift */; };
 		89987AB6207542D50057E685 /* FaxPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB5207542D50057E685 /* FaxPreviewViewController.swift */; };
 		89987AB82075453F0057E685 /* PreviewUnavailable.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 89987AB72075453F0057E685 /* PreviewUnavailable.pdf */; };
 		89987ABA20754C950057E685 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB920754C950057E685 /* SendToViewController.swift */; };
@@ -110,6 +111,7 @@
 		898BC93F20614A4A006ED4CF /* InformationRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRelease.swift; sourceTree = "<group>"; };
 		898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxableDocumentsViewController.swift; sourceTree = "<group>"; };
 		8991A9B9208E4FEA00CCD703 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
+		8991A9BB208E6BE300CCD703 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		89987AB5207542D50057E685 /* FaxPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxPreviewViewController.swift; sourceTree = "<group>"; };
 		89987AB72075453F0057E685 /* PreviewUnavailable.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PreviewUnavailable.pdf; sourceTree = "<group>"; };
 		89987AB920754C950057E685 /* SendToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
 				89987AB920754C950057E685 /* SendToViewController.swift */,
 				89987ABB20754F710057E685 /* RestrictionsViewController.swift */,
+				8991A9BB208E6BE300CCD703 /* NameViewController.swift */,
 				898BC93F20614A4A006ED4CF /* InformationRelease.swift */,
 				898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */,
 				8951A917205992E50027076E /* Fax.swift */,
@@ -632,6 +635,7 @@
 				89987ABC20754F710057E685 /* RestrictionsViewController.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
+				8991A9BC208E6BE300CCD703 /* NameViewController.swift in Sources */,
 				89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
 				89987AB6207542D50057E685 /* FaxPreviewViewController.swift in Sources */,
