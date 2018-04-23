@@ -54,9 +54,12 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
   override func viewWillAppear(_ animated: Bool) {
     doctors = LocalStorage.DoctorStore.load()
   }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //remove excess lines
+    tableView.emptyDataSetSource = self
+    tableView.emptyDataSetDelegate = self
     updateNextButton()
   }
 
@@ -85,6 +88,93 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
 
     cell.accessoryType = selectedRows.contains(indexPath) ? .checkmark : .none
     return cell
+  }
+}
+
+import DZNEmptyDataSet
+
+extension SendToViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+  return Asset.Empty.emptyDoc.image
+}
+
+func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+  return emptyStateAttributedString("We need to know more about your doctor first")
+}
+
+func imageAnimation(forEmptyDataSet scrollView: UIScrollView!) -> CAAnimation! {
+  let animation  = CABasicAnimation(keyPath:"opacity")
+  animation.fromValue = 0.8
+  animation.toValue = 1.0
+  animation.duration = 3.0
+  animation.repeatCount = 5
+  animation.autoreverses = true
+  animation.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
+
+  return animation
+}
+
+func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+
+  return emptyStateButtonText("Add Doctor")
+}
+
+func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
+  UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
+  backgroundColor.setFill()
+
+
+  let backgroundPath = UIBezierPath(rect: CGRect(origin:.zero, size:buttonSize))
+  Asset.Colors.vlCellBackgroundCommon.color.setFill()
+  backgroundPath.fill()
+
+  let bezierPath = UIBezierPath(roundedRect: CGRect(origin:.zero, size:buttonSize),
+                                cornerRadius: cornerRadius)
+  Asset.Colors.vlWarmTintColor.color.setFill()
+  bezierPath.fill()
+
+  let image = UIGraphicsGetImageFromCurrentImageContext()!
+  return image
+}
+
+func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
+
+  return createImage(borderColor:Asset.Colors.vlWarmTintColor.color,
+                     borderWidth:0.5,
+                     cornerRadius: 8,
+                     buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 50),
+                     backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
+}
+
+func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+  return emptyStateAttributedString("You don't have any doctors saved yet. Add one then we will continue sending a document.")
+}
+
+func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
+  return 0
+}
+
+
+func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+  performSegue(withIdentifier: "AddDoctorFromSendToScreen", sender: self)
+}
+
+func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
+  return true
+}
+
+  @IBAction func unwindToDoctorList(segue:UIStoryboardSegue){
+
+    guard segue.identifier == "savedDoctorEditOrNew" else{
+      return
+    }
+    let doctorItem = (segue.source as! DoctorEntryViewController).doctor
+    var doctorList = LocalStorage.DoctorStore.load()
+    doctorList.append(doctorItem)
+    LocalStorage.DoctorStore.save(doctorList)
+    doctors = doctorList
+
+    tableView.reloadData()
   }
 }
 
