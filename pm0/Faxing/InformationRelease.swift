@@ -35,10 +35,7 @@ extension UILabel{
 
 
 
-struct Patient{
-  let name:String
-  let phoneNumber:String
-}
+
 
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
@@ -53,8 +50,6 @@ let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHea
 
 
 //let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
-
-let patient = Patient(name:"Josh Ditel", phoneNumber:"(555) 555-5555")
 
 extension String{
   var lineCount:Int{
@@ -259,7 +254,7 @@ extension DoctorInfo:DocumentTopic{
 }
 
 let noRestrictionsText = ["No additional restrictions"]
-func hipaaConsentForm(doctors:[DocumentTopic], restrictions:[String] = noRestrictionsText) -> DocumentRef {
+func hipaaConsentForm(doctors:[DocumentTopic], patient:PatientInfo, restrictions:[String] = noRestrictionsText) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -270,7 +265,7 @@ func hipaaConsentForm(doctors:[DocumentTopic], restrictions:[String] = noRestric
 
   let bodyText  =
   """
-  This consent form goes over the Health Insurance Portability & Accountability Act of 1996, known as HIPAA. This law specifies how protected health information about you, \(patient.name), may be used and shared.
+  This consent form goes over the Health Insurance Portability & Accountability Act of 1996, known as HIPAA. This law specifies how protected health information about you, \(patient.lastDocumentName), may be used and shared.
 
   You consent to the use of and the disclosure of protected health information for the purposes of:
     - Treatment
@@ -359,7 +354,7 @@ func hipaaConsentForm(doctors:[DocumentTopic], restrictions:[String] = noRestric
   signatureBufferView.isOpaque = false
   backgroundView.addSubview(signatureBufferView)
 
-  let signatureHeaderLabelText = "▼ Patient Signature (\(patient.name)) ▼ "
+  let signatureHeaderLabelText = "▼ Patient Signature (\(patient.lastDocumentName)) ▼ "
   let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
   let signatureHeaderLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: signatureBufferView.frame.origin.y - signatureHeaderHeight - standardVerticalSpace),

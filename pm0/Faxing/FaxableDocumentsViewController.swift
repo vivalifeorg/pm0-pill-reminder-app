@@ -29,10 +29,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func export(_ sender: Any) {
-    let url = hipaaConsentForm(doctors:LocalStorage.DoctorStore.load())
-    self.documentInteractionController = UIDocumentInteractionController(url: url)
-    self.documentInteractionController?.delegate = self
-    self.documentInteractionController?.presentPreview(animated: true )
+    return 
   }
 
 

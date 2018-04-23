@@ -278,7 +278,7 @@
                     <navigationItem key="navigationItem" title="Sharing From" id="bC7-2e-IBE">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="K0q-j2-U0Y">
                             <connections>
-                                <segue destination="w6b-nS-TNt" kind="show" id="CuS-SE-Fuk"/>
+                                <segue destination="vCa-jE-kf3" kind="show" id="75a-DE-KUB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -299,14 +299,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV7-Si-FYF">
-                                <rect key="frame" x="20" y="63.999999999999993" width="696" height="64.333333333333314"/>
-                                <string key="text">You can request doctors do not use your data in a certian manner. For instance, you may request HIV status not be shared beyond a given practice, or to withold that your son is adopted.</string>
+                                <rect key="frame" x="20" y="64" width="696" height="42.333333333333343"/>
+                                <string key="text">You can request doctors do not use your data in a certian manner. For instance, you may request adoption status not be shared with a child. </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
-                                <rect key="frame" x="18" y="175" width="689" height="126"/>
+                                <rect key="frame" x="18" y="153" width="689" height="148"/>
                                 <color key="backgroundColor" name="vlDisabledButtonColor"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -318,7 +318,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type any Restrictions here:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-2X-C5G">
-                                <rect key="frame" x="18" y="147" width="233" height="24"/>
+                                <rect key="frame" x="18" y="125" width="233" height="24"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -341,7 +341,7 @@
                     <navigationItem key="navigationItem" title="Restrictions" id="zOP-BR-QxZ">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="21d-5T-4f4">
                             <connections>
-                                <segue destination="vCa-jE-kf3" kind="push" id="QSn-2H-8Je"/>
+                                <segue destination="OkB-dV-NGA" kind="show" id="M3j-Pw-UW6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -351,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drL-RO-3Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2029.5999999999999" y="166.8665667166417"/>
+            <point key="canvasLocation" x="2107" y="136"/>
         </scene>
         <!--Verify Name-->
         <scene sceneID="dzG-JA-TaI">
@@ -399,9 +399,9 @@ You can change it here before sending this document. </string>
                         <viewLayoutGuide key="safeArea" id="Nyw-bx-XiV"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verify Name" id="GKC-d4-dbn">
-                        <barButtonItem key="rightBarButtonItem" title="Sign" id="4f9-ul-42w">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="4f9-ul-42w">
                             <connections>
-                                <segue destination="OkB-dV-NGA" kind="push" id="hYA-tg-fqg"/>
+                                <segue destination="w6b-nS-TNt" kind="show" id="CO7-fI-W5h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -411,7 +411,7 @@ You can change it here before sending this document. </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701.630434782609" y="-552.17391304347825"/>
+            <point key="canvasLocation" x="2120" y="-930"/>
         </scene>
         <!--Preview-->
         <scene sceneID="5qa-un-AyZ">
@@ -458,23 +458,23 @@ You can change it here before sending this document. </string>
                                 <rect key="frame" x="0.0" y="44" width="736" height="277"/>
                                 <subviews>
                                     <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbV-nB-Eme" userLabel="Container">
-                                        <rect key="frame" x="4" y="8" width="728" height="199"/>
+                                        <rect key="frame" x="20" y="20" width="696" height="190.33333333333334"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dqd-sT-NVc" userLabel="Background">
-                                                <rect key="frame" x="0.0" y="0.0" width="728" height="199"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="696" height="190.33333333333334"/>
                                                 <color key="backgroundColor" name="vlDisabledButtonColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="jHT-jG-5b0"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" text="Patient Signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1L-bk-FaL">
-                                                <rect key="frame" x="16" y="170" width="131" height="25"/>
+                                                <rect key="frame" x="16" y="161.33333333333334" width="131" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDA-63-8hR" userLabel="Line">
-                                                <rect key="frame" x="8" y="167" width="712" height="2"/>
+                                                <rect key="frame" x="8" y="158.33333333333334" width="680" height="2"/>
                                                 <color key="backgroundColor" name="vlTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="Bqx-fy-ep0"/>
@@ -496,7 +496,7 @@ You can change it here before sending this document. </string>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97J-e3-YcE">
-                                        <rect key="frame" x="20" y="215" width="696" height="44"/>
+                                        <rect key="frame" x="20" y="218.33333333333331" width="696" height="44"/>
                                         <color key="backgroundColor" name="vlWarmTintColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="DRJ-bf-RQj"/>
@@ -510,9 +510,9 @@ You can change it here before sending this document. </string>
                                 <constraints>
                                     <constraint firstItem="97J-e3-YcE" firstAttribute="top" secondItem="NbV-nB-Eme" secondAttribute="bottom" constant="8" id="2HB-Jw-WKr"/>
                                     <constraint firstAttribute="trailing" secondItem="97J-e3-YcE" secondAttribute="trailing" constant="20" id="7wh-Tr-mTT"/>
-                                    <constraint firstAttribute="trailing" secondItem="NbV-nB-Eme" secondAttribute="trailing" constant="4" id="LIt-8I-sc5"/>
-                                    <constraint firstItem="NbV-nB-Eme" firstAttribute="leading" secondItem="CUY-oZ-lRe" secondAttribute="leading" constant="4" id="PyH-4U-fPE"/>
-                                    <constraint firstItem="NbV-nB-Eme" firstAttribute="top" secondItem="CUY-oZ-lRe" secondAttribute="top" constant="8" id="Wo9-Ee-EE1"/>
+                                    <constraint firstAttribute="trailing" secondItem="NbV-nB-Eme" secondAttribute="trailing" constant="20" id="LIt-8I-sc5"/>
+                                    <constraint firstItem="NbV-nB-Eme" firstAttribute="leading" secondItem="CUY-oZ-lRe" secondAttribute="leading" constant="20" id="PyH-4U-fPE"/>
+                                    <constraint firstItem="NbV-nB-Eme" firstAttribute="top" secondItem="CUY-oZ-lRe" secondAttribute="top" constant="20" id="Wo9-Ee-EE1"/>
                                     <constraint firstItem="97J-e3-YcE" firstAttribute="leading" secondItem="CUY-oZ-lRe" secondAttribute="leading" constant="20" id="c6R-NT-GJJ"/>
                                 </constraints>
                             </view>
@@ -530,7 +530,7 @@ You can change it here before sending this document. </string>
                         <viewLayoutGuide key="safeArea" id="8c2-IP-XNj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Signing" id="72F-ht-iCv">
-                        <barButtonItem key="rightBarButtonItem" title="Preview" id="LGU-jv-mQB">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="LGU-jv-mQB">
                             <connections>
                                 <segue destination="xZa-fJ-BhG" kind="push" id="SAq-y3-48V"/>
                             </connections>
@@ -539,7 +539,7 @@ You can change it here before sending this document. </string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Os6-ut-dqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3326" y="361"/>
+            <point key="canvasLocation" x="2744" y="157"/>
         </scene>
         <!--Faxing-->
         <scene sceneID="snf-ha-tI6">

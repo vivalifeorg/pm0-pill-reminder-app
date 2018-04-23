@@ -51,7 +51,7 @@ enum LocalStorage{
     return FilePersistor(key:.userMedicationLog)
   }
 
-  static var UserInfoStore:KeychainPersistor<UserInfo>{
+  static var UserInfoStore:KeychainPersistor<PatientInfo>{
     return KeychainPersistor(key:.userInfo)
   }
 

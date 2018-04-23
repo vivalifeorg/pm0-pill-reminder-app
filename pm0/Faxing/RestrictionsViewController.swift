@@ -14,10 +14,13 @@ class RestrictionsViewController:UIViewController,PDFHandler, SendableDocumentMe
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     var handler = segue.destination as! PDFHandler & SendableDocumentMetadata
     handler.sendableDocuments = sendableDocuments
-    let hipaaForm = hipaaConsentForm(doctors: sendableDocumentTopics , restrictions: restrictionsTextView.text.split(separator: "\n").map{String($0)})
+    let hipaaForm = hipaaConsentForm(
+      doctors: sendableDocumentTopics ,
+      patient: LocalStorage.UserInfoStore.load().first ?? PatientInfo(),
+      restrictions: restrictionsTextView.text.split(separator: "\n").map{String($0)})
 
     //TODO count pages for real
-    let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: sendableDocumentDestinations.first!, forPatient: "PATIENT NAME HERE")
+    let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: sendableDocumentDestinations.first!, forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
     pdfs.append(hipaaForm)
 
 

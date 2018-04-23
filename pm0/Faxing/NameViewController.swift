@@ -22,7 +22,7 @@ class NameViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    var user = LocalStorage.UserInfoStore.load().first ?? UserInfo(lastDocumentName: "")
+    var user = LocalStorage.UserInfoStore.load().first ?? PatientInfo()
     user.lastDocumentName = nameField.text ?? ""
     LocalStorage.UserInfoStore.save([user])
 

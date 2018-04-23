@@ -114,8 +114,10 @@ struct Address:Codable{
   var ZIP:String
 }
 
-struct UserInfo:Codable{
-  var lastDocumentName:String //Last name user chose in a document
+
+struct PatientInfo:Codable{
+  var lastDocumentName:String = "" //last name the user put on a document (transgender complexities/recent name changes make this important to track).
+  var contactPhoneNumber:String = ""
 }
 
 extension String {
