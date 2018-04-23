@@ -268,7 +268,10 @@ extension DoctorInfo:DocumentTopic{
 }
 
 let noRestrictionsText = ["No additional restrictions"]
-func hipaaConsentForm(doctors:[DocumentTopic], patient:PatientInfo, restrictions:[String] = noRestrictionsText) -> DocumentRef {
+func hipaaConsentForm(doctors:[DocumentTopic],
+                      patient:PatientInfo,
+                      signatureInfo:SignatureInfo,
+                      restrictions:[String] = noRestrictionsText) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -351,7 +354,7 @@ func hipaaConsentForm(doctors:[DocumentTopic], patient:PatientInfo, restrictions
   let signatureImageView = UIImageView(frame:
     CGRect(origin:CGPoint(x:signatureImageX, y: signatureSuffixLabel.frame.origin.y - (1.0 * signatureHeight) - standardVerticalSpace),
            size: CGSize(width:116, height: signatureHeight)))
-  signatureImageView.image = UIImage(named:"ExampleFaxSignature")!
+  signatureImageView.image = signatureInfo.image
   signatureImageView.contentMode = .scaleAspectFit
   signatureImageView.backgroundColor = .clear
   let buffer = standardVerticalSpace/2

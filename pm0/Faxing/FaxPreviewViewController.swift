@@ -9,7 +9,9 @@
 import UIKit
 import PDFKit
 
-class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
+class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMetadata, RestrictionsMetadata{
+  var signature: SignatureInfo? = nil
+  var restrictions: [String] = []
   var sendableDocumentTopics: [DocumentTopic] = []
   var sendableDocumentDestinations:[DocumentDestination] = []
 
