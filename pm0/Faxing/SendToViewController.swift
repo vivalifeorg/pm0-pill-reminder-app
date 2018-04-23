@@ -35,7 +35,7 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     selectedDoctors.forEach{ handler.sendableDocumentTopics.append($0) }
 
     handler.sendableDocumentDestinations = isSendToScreen ?
-        selectedDoctors.map{$0.fax.number} :
+        selectedDoctors.map{DocumentDestination(name:$0.name, value:$0.fax.number)} :
         sendableDocumentDestinations
   }
 

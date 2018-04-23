@@ -155,7 +155,9 @@ class DoctorViewerViewController:UITableViewController{
 
       var dataFrom = nav.viewControllers.first! as! SendableDocumentMetadata & UIViewController
       dataFrom.navigationItem.leftBarButtonItem = cancelButton
-      dataFrom.sendableDocumentDestinations = [doctor!.fax.number]
+      dataFrom.sendableDocumentDestinations = [doctor!].map{
+        DocumentDestination(name:$0.name, value:$0.fax.number)
+      }
 
     default:
       print("another segue")

@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension DocumentDestination{
+  var faxToLine:String{
+    return "\(name) <fax://\(value)>"
+  }
+}
+
 class RestrictionsViewController:UIViewController,PDFHandler, SendableDocumentMetadata{
   @IBOutlet weak var restrictionsTextView:UITextView!
 
@@ -20,7 +26,7 @@ class RestrictionsViewController:UIViewController,PDFHandler, SendableDocumentMe
       restrictions: restrictionsTextView.text.split(separator: "\n").map{String($0)})
 
     //TODO count pages for real
-    let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: sendableDocumentDestinations.first!, forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
+    let cover = coverPage(totalPageCountIncludingCoverPage: 2, to: sendableDocumentDestinations.first?.faxToLine ?? "DOCTOR'S OFFICE", forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
     pdfs.append(hipaaForm)
 
 

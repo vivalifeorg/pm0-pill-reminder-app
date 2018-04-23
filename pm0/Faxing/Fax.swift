@@ -9,7 +9,12 @@
 import Foundation
 import PDFKit
 typealias DocumentRef = URL
-typealias DocumentDestination = String
+
+
+struct DocumentDestination{
+  var name:String
+  var value:String
+}
 
 extension PDFDocument{
   var pages:[PDFPage]{

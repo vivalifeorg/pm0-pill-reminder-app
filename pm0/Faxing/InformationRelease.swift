@@ -241,14 +241,28 @@ extension String{
   }
 }
 
+func omitIfAllWhitespace(_ s:String)->String{
+  let labels = ["Phone", "Fax"]
+  let detitledString = labels.reduce(s){$0.replacingOccurrences(of:$1, with:"")}
+  let bannedCharacters = CharacterSet.whitespacesAndNewlines.union(
+      CharacterSet.init(charactersIn: ",.:"))
+  let trimmedString = detitledString.trimmingCharacters(in: bannedCharacters)
+  
+  guard trimmedString != "" else {
+    return ""
+  }
+
+  return s
+}
+
 extension DoctorInfo:DocumentTopic{
   var topicText:String{
     let provider = self
     let providerText =
-      "\(provider.name)\n" +
-      "\(provider.address.displayable.addingIndentation(2))\n" +
-      "  Phone: \t\(provider.phone.number)\n" +
-      "  Fax: \t\(provider.fax.number)\n\n"
+      omitIfAllWhitespace("\(provider.name)\n") +
+      omitIfAllWhitespace("\(provider.address.displayable.addingIndentation(2))\n") +
+      omitIfAllWhitespace("  Phone: \t\(provider.phone.number)\n") +
+      omitIfAllWhitespace("  Fax: \t\(provider.fax.number)\n\n")
     return providerText
   }
 }
