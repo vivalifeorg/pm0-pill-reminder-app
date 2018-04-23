@@ -585,6 +585,7 @@
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework",
 				"${BUILT_PRODUCTS_DIR}/Yams/Yams.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -597,6 +598,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySignature.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Yams.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

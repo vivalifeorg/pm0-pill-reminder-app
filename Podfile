@@ -13,6 +13,7 @@ target "pm0" do
   pod 'SwiftGen', :inhibit_warnings => true #takes the name of the asset files and generates constants
   pod 'Yams', :inhibit_warnings => true #yaml generator to export data for tests tests for migrations
   pod 'RNCryptor', '~> 5.0', :inhibit_warnings => true #symmetric file encryption for daily checkmarks
+  pod 'SwiftySignature', :inhibit_warnings => true # drives signature view
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334

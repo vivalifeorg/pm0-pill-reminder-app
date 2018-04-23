@@ -10,6 +10,7 @@ PODS:
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
   - SwiftGen (5.2.1)
+  - SwiftySignature (1.0.0)
   - Yams (0.5.0)
 
 DEPENDENCIES:
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - SearchTextField (from `https://github.com/apasccon/SearchTextField`, commit `97cb555c4721cd80257022637ee255dc812eda3a`)
   - SQLite.swift (~> 0.11.4)
   - SwiftGen
+  - SwiftySignature
   - Yams
 
 EXTERNAL SOURCES:
@@ -52,8 +54,9 @@ SPEC CHECKSUMS:
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
+  SwiftySignature: 5f5905fcad18659e53e7c01ed467cfe00ea6127c
   Yams: 58b13424ca380835c4c797bc775ce6cbb3bc0167
 
-PODFILE CHECKSUM: ab5e0301e1221e7e58f9d5c654477d023fc856ee
+PODFILE CHECKSUM: 64197f01598c6be58ecc7a88ddad4a25a5fa705c
 
 COCOAPODS: 1.4.0.beta.2

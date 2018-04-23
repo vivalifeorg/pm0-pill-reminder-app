@@ -119,6 +119,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yams/Yams.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -130,6 +131,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftySignature/SwiftySignature.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Yams/Yams.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
