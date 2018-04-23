@@ -436,7 +436,11 @@ You can change it here before sending this document. </string>
                         <viewLayoutGuide key="safeArea" id="d7g-gN-ufe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Preview" id="tVU-bv-Tac">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="AG7-sm-xfr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="AG7-sm-xfr">
+                            <connections>
+                                <action selector="sendShownFax:" destination="xZa-fJ-BhG" id="ecr-mo-XYh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="pdfView" destination="wGa-FR-apQ" id="7sQ-nF-Lak"/>
