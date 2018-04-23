@@ -264,8 +264,8 @@
 			children = (
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
 				89987AB920754C950057E685 /* SendToViewController.swift */,
-				89987ABB20754F710057E685 /* RestrictionsViewController.swift */,
 				8991A9BB208E6BE300CCD703 /* NameViewController.swift */,
+				89987ABB20754F710057E685 /* RestrictionsViewController.swift */,
 				898BC93F20614A4A006ED4CF /* InformationRelease.swift */,
 				898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */,
 				8951A917205992E50027076E /* Fax.swift */,

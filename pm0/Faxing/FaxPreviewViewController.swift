@@ -24,8 +24,28 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
       let tempFileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.pdf"))
       doc.write(to: tempFileURL)
       pdfURL = tempFileURL
+
+      let preview = sendableDocuments.singleDocumentWithMargin
+      let previewUrl = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.preview.pdf"))
+      preview.write(to:previewUrl)
+      pdfPreviewURL = previewUrl
     }
   }
+
+  var pdfPreviewURL:URL = Bundle.main.url(
+    forResource: "PreviewUnavailable",
+    withExtension: "pdf",
+    subdirectory: nil,
+    localization: nil)!
+    {
+    didSet{
+      guard isViewLoaded else{
+        return
+      }
+      pdfView.document = PDFDocument.init(url: pdfPreviewURL)
+    }
+  }
+
   var pdfURL:URL = Bundle.main.url(
     forResource: "PreviewUnavailable",
     withExtension: "pdf",
@@ -36,7 +56,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
       guard isViewLoaded else{
         return
       }
-      pdfView.document = PDFDocument.init(url: pdfURL)
+     // pdfView.document = PDFDocument.init(url: pdfURL)
     }
   }
 
@@ -44,7 +64,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
   @IBOutlet weak var pdfView:PDFView!
 
   override func viewDidLoad() {
-    pdfView.document = PDFDocument.init(url: pdfURL)
+    pdfView.document = PDFDocument.init(url: pdfPreviewURL)
     pdfView.displayMode = .singlePageContinuous
     pdfView.autoScales = true
   }

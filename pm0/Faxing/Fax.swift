@@ -38,6 +38,40 @@ extension Array where Element == DocumentRef{
     }
     return doc
   }
+
+  var singleDocumentWithMargin:PDFDocument {
+    let allPages = flatMap{PDFDocument(url: $0)}.map{$0.pages}.flatMap{$0}
+    let doc = PDFDocument()
+    allPages.forEach { (page) in
+      if let mediaBox = page.pageRef?.getBoxRect(.mediaBox){
+        let widthToHeightOfLetterSizedPaper:CGFloat = (8.5/11.0)
+        let isOverlyBroad = mediaBox.width / mediaBox.height > widthToHeightOfLetterSizedPaper
+        let cropBox:CGRect
+
+        if isOverlyBroad {
+          //make it have a taller crop box
+          let totalHeight:CGFloat = mediaBox.width / widthToHeightOfLetterSizedPaper
+          let addedHeight:CGFloat = totalHeight - mediaBox.height
+          cropBox = CGRect(x: mediaBox.minX ,
+                               y: mediaBox.minY - (CGFloat(0.5) * addedHeight) ,
+                               width: mediaBox.width,
+                               height: mediaBox.height + ( addedHeight))
+        }else{
+          //make it have a wider crop box
+          let totalWidth:CGFloat = mediaBox.height * widthToHeightOfLetterSizedPaper
+          let addedWidth:CGFloat = totalWidth - mediaBox.width
+          cropBox = CGRect(x: mediaBox.minX - (CGFloat(0.5) * addedWidth) ,
+                               y: mediaBox.minY ,
+                               width: mediaBox.width +  addedWidth,
+                               height: mediaBox.height )
+        }
+        dump((cropBox))
+       page.setBounds(cropBox, for: .cropBox)
+      }
+       doc.insert(page, at: doc.pageCount)
+    }
+    return doc
+  }
 }
 
 func sendFax(toNumber:String, documentPaths:[DocumentRef],completion:@escaping (Bool,String)->()){
