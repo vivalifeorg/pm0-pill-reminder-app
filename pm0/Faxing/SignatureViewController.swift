@@ -7,8 +7,47 @@
 //
 
 import UIKit
+import SwiftySignature
 
-class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMetadata,RestrictionsMetadata{
+struct SignatureInfo{
+  var image:UIImage
+  var date:Date
+}
+class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMetadata,RestrictionsMetadata, SignatureViewDelegate{
+  func SignatureViewIsDrawing(view: SignatureView) {
+    //no-op
+  }
+
+  func SignatureViewDidCancelDrawing(view: SignatureView) {
+   // no-op
+  }
+
+
+  @IBOutlet weak var signatureView:SignatureView!
+  func SignatureViewDidBeginDrawing(view:SignatureView){
+    nextButton.isEnabled = true
+  }
+
+  func SignatureViewDidFinishDrawing(view:SignatureView){
+    signatureView.captureSignature()
+  }
+
+  func SignatureViewDidCaptureSignature(view: SignatureView, signature: Signature?){
+    guard let signature = signature else{
+      return
+    }
+    latestSignature = SignatureInfo(image:signature.image,date:signature.date)
+  }
+  
+  var latestSignature:SignatureInfo?
+
+  @IBAction func signatureClear(_:UIControl){
+    nextButton.isEnabled = false
+    signatureView.clearCanvas()
+  }
+
+  @IBOutlet weak var nextButton:UIBarButtonItem!
+
   var restrictions: [String] = []
 
   var sendableDocumentDestinations: [DocumentDestination] = []
@@ -17,6 +56,11 @@ class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMeta
 
   var sendableDocuments: [DocumentRef]  = []
 
+  override func viewDidLoad() {
+    signatureView.lineColor = UIColor.lightGray
+    signatureView.lineOpacity = 0.85
+    signatureView.delegate = self
+  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     var handler = segue.destination as! PDFHandler & SendableDocumentMetadata
