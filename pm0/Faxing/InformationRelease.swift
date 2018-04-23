@@ -247,7 +247,7 @@ func omitIfAllWhitespace(_ s:String)->String{
   let bannedCharacters = CharacterSet.whitespacesAndNewlines.union(
       CharacterSet.init(charactersIn: ",.:"))
   let trimmedString = detitledString.trimmingCharacters(in: bannedCharacters)
-  
+
   guard trimmedString != "" else {
     return ""
   }
@@ -309,7 +309,8 @@ func hipaaConsentForm(doctors:[DocumentTopic], patient:PatientInfo, restrictions
                                        view: backgroundView,
                                        y: runningVerticalOffset)
 
-  let allProviderText:String = doctors.map{ $0.topicText }.joined()
+  let dedupedDoctors = Array(Set(doctors.map{$0.topicText}))
+  let allProviderText:String = dedupedDoctors.joined()
 
   runningVerticalOffset = addStandardText(text: allProviderText, view: backgroundView, y: runningVerticalOffset)
 
