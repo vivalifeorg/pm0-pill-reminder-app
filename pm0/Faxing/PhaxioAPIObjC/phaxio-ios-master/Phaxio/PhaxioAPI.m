@@ -344,7 +344,9 @@ const NSString* fileKey = @"file[]";
         if (faxFiles) {
           [parameters removeObjectForKey:@"file[]"];
 
-          NSString* fileParamConstant = faxFiles.count == 1 ? @"file":@"file[]";
+          //there is a bug when sending a single file
+          //NSString* fileParamConstant = faxFiles.count == 1 ? @"file":@"file[]";
+          NSString* fileParamConstant = @"file[]";
           for (FaxFile* faxFile in faxFiles){
             [mutableData appendData:[[NSString stringWithFormat:@"--%@\r\n", boundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
             [mutableData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileParamConstant, faxFile.filename] dataUsingEncoding:NSUTF8StringEncoding]];

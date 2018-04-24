@@ -89,7 +89,8 @@
 
     if (files != nil)
     {
-      if (files.count == 1){
+      //bug with file counts
+      if (0 /*files.count == 1*/){
         [parameters setValue:files forKey:@"file"];
       }else{
         [parameters setValue:files forKey:@"file[]"];

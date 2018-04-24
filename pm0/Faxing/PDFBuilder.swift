@@ -81,7 +81,7 @@ extension String {
 
 func addMedication (dose:String, recordedTime:String, plannedTime:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
 
-  let frame = CGRect(x:horizontalMargin, y: offset, width: 350, height: 30)
+  let frame = CGRect(x:horizontalMargin, y: offset, width: 302, height: 30)
   let entry = FaxMedlogAdministeredEntry(frame:frame, dose:dose, recordedTime:recordedTime, plannedTime:plannedTime)
   view.addSubview(entry)
 
