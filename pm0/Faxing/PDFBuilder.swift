@@ -234,8 +234,8 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   let vivaLifeIconHeight:CGFloat = 100
   let iconView = UIImageView(frame:
     CGRect(origin:
-      CGPoint(x:horizontalMargin,
-              y: runningVerticalOffset),
+      CGPoint(x:backgroundView.frame.size.width - horizontalMargin - vivaLifeIconHeight,
+              y:0),
            size: CGSize(
             width:vivaLifeIconHeight,
             height: vivaLifeIconHeight)))
