@@ -180,6 +180,8 @@ class UpcomingDayViewController: UITableViewController {
     tableView.emptyDataSetDelegate = self;
     tableView.tintColor = UIColor.white
 
+    
+
 
 
     tableView.register(UpcomingDayViewControllerDoseCell.self,
