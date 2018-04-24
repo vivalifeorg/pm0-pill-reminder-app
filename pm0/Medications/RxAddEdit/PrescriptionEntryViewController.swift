@@ -123,12 +123,6 @@ extension DisplayDrug:Listable{
 }
 
 
-var doctors = [
-  DisplayDoctor(name:"Andy Lindorn, MD", specialities:["Podiatry, Orthopedics"]),
-  DisplayDoctor(name:"Rena Patel, MD", specialities:["Hemophilia, Bone Cancer"]),
-  DisplayDoctor(name:"James Jodi, NP", specialities:["General Care"])
-]
-
 typealias MinuteOffset = Int
 typealias HourOffset = Int
 
@@ -339,9 +333,9 @@ struct DisplayDoctor{
   var specialities:[String]
 }
 
-extension DisplayDoctor:Listable{
+extension DoctorInfo:Listable{
   var title:String{ return name}
-  var list:[String] {return specialities}
+  var list:[String] {return [specialty]}
 }
 
 
@@ -473,7 +467,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   func configureSearchField(_ field:SearchTextField){
     field.theme = SearchTextFieldTheme.darkTheme()
     field.theme.font  = UIFont.systemFont(ofSize: 20)
-    field.theme.cellHeight = 65
+    field.theme.cellHeight = 80
     field.theme.bgColor = popupBackgroundColor
     field.highlightAttributes =  [
       NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):
@@ -583,10 +577,13 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       scheduleList.entryInfo = entryInfo
     }
   }
-  
+
+  var doctors:[DoctorInfo] = []
+
   var helpInfo:NSAttributedString? = nil
   override func viewDidLoad() {
     updateNextButton()
+
     if let rx = editRx {
       entryInfo = rx.editInfo
     }
@@ -625,12 +622,14 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     quantityLine.helper = self
 
 
+    doctors = LocalStorage.DoctorStore.load()
     configureSearchField(prescriberLine.searchTextField)
-    configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
+    //configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
     prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
     prescriberLine.helpInfo = RXEntryHelpText.prescriberHelpText.renderMarkdownAsAttributedString
     prescriberLine.helper = self
+    prescriberLine.searchTextField.startSuggestingInmediately = true
 
 
 //    configureSearchField(scheduleLine.searchTextField)

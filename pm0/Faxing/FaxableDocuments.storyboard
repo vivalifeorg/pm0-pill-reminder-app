@@ -300,13 +300,13 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV7-Si-FYF">
                                 <rect key="frame" x="20" y="84" width="374" height="64.333333333333314"/>
-                                <string key="text">You can request doctors do not use your data in a certian manner. For instance, you may request adoption status not be shared with a child. </string>
+                                <string key="text">You can request doctors do not use your data in a specific manner. For instance, you may request adoption status not be shared with a child. </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
-                                <rect key="frame" x="18" y="195" width="367" height="428"/>
+                                <rect key="frame" x="20" y="200.33333333333334" width="374" height="422.66666666666663"/>
                                 <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
                                 <color key="textColor" name="vlEditableFieldTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -317,8 +317,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type any Restrictions here:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-2X-C5G">
-                                <rect key="frame" x="18" y="167" width="233" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restrictions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-2X-C5G">
+                                <rect key="frame" x="20" y="168.33333333333334" width="109" height="24"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -328,12 +328,12 @@
                         <constraints>
                             <constraint firstItem="MV7-Si-FYF" firstAttribute="top" secondItem="EEV-zf-cF8" secondAttribute="top" constant="20" id="4fN-et-sDk"/>
                             <constraint firstItem="MV7-Si-FYF" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="93I-7U-tnx"/>
-                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="SI0-Lk-c2W" secondAttribute="trailing" constant="29" id="E3v-GI-67Z"/>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="18" id="IYX-J8-AVM"/>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="MV7-Si-FYF" secondAttribute="bottom" constant="46.5" id="JYH-7I-h6h"/>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="8Ib-2X-C5G" secondAttribute="bottom" constant="4" id="RcG-vX-BOu"/>
+                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="SI0-Lk-c2W" secondAttribute="trailing" constant="20" id="E3v-GI-67Z"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="IYX-J8-AVM"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="8Ib-2X-C5G" secondAttribute="bottom" constant="8" id="RcG-vX-BOu"/>
                             <constraint firstItem="8Ib-2X-C5G" firstAttribute="leading" secondItem="SI0-Lk-c2W" secondAttribute="leading" id="dLb-el-epf"/>
                             <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="MV7-Si-FYF" secondAttribute="trailing" constant="20" id="iLm-Ci-TbL"/>
+                            <constraint firstItem="8Ib-2X-C5G" firstAttribute="top" secondItem="MV7-Si-FYF" secondAttribute="bottom" constant="20" id="kFV-RI-Lvt"/>
                             <constraint firstItem="EEV-zf-cF8" firstAttribute="bottom" secondItem="SI0-Lk-c2W" secondAttribute="bottom" constant="20" id="oHF-YH-XxH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EEV-zf-cF8"/>
