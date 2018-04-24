@@ -487,13 +487,14 @@ extension UpcomingDayViewController{
 
 
   func recordMedicationEvent(_ event:MedicationLogEvent){
-
-    LocalStorage.MedicationLogStore.save(medicationTakenEventLog + [event])
+    medicationTakenEventLog.append(event)
+    LocalStorage.MedicationLogStore.save(medicationTakenEventLog)
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
     let shouldNowBeChecked = !wasPreviouslyChecked
+    //print("\(indexPath) should now be checked? \(shouldNowBeChecked)")
     sections[indexPath.section].medications[indexPath.row].isTaken = shouldNowBeChecked
 
     let dosage = sections[indexPath.section].medications[indexPath.row].dosage
@@ -501,7 +502,6 @@ extension UpcomingDayViewController{
       MedicationLogEvent.markedTaken(dosage: dosage,date: Date(),sectionName:sections[indexPath.section].title) :
       MedicationLogEvent.unmarkedTaken(dosage: dosage, date: Date(),sectionName:sections[indexPath.section].title)
     recordMedicationEvent(event)
-
 
     if shouldNowBeChecked {
       UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
