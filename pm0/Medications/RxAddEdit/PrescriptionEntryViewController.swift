@@ -370,6 +370,7 @@ extension PrescriptionLineEntry{
 class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
   @IBOutlet weak var nameLine: PrescriptionLineEntry!
+  @IBOutlet weak var formLine: PrescriptionLineEntry!
   @IBOutlet weak var unitLine: PrescriptionLineEntry!
   @IBOutlet weak var quantityLine: PrescriptionLineEntry!
   //@IBOutlet weak var scheduleLine: PrescriptionLineEntry!
@@ -524,6 +525,25 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     }
   }
 
+  func formLinePopup(){
+    updateNextButton()
+    self.formLine.searchTextField.showLoadingIndicator()
+
+    let search = nameLine.searchTextField.text ?? ""
+    let pillSizePartial = unitLine.searchTextField.text ?? ""
+    guard !search.isEmpty else{
+      nameLine.searchTextField.filterItems([])
+      return
+    }
+
+    pillSizesMatching(name: search, partial: pillSizePartial){ medications in
+      DispatchQueue.main.async {
+        self.unitLine.searchTextField?.stopLoadingIndicator()
+        self.unitLine.searchTextField?.filterItems(medications)
+      }
+    }
+  }
+
   var namedDrugs:[DisplayDrug] = [] {
     didSet{
       let displayable = namedDrugs.map{SearchTextFieldItem(listable:$0)}
@@ -557,8 +577,8 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
     nameLine.searchTextField?.text = drugSelection.name
     unitLine.searchTextField?.text = [drugSelection.activeStrength,
-                                      drugSelection.unit,
-                                      drugSelection.dosageForm].flatMap{$0}.joined(separator:" ")
+                                      drugSelection.unit].flatMap{$0}.joined(separator:" ")
+    formLine.searchTextField?.text = drugSelection.dosageForm
     lastSelectedDrug = drugSelection
   }
 
@@ -615,6 +635,11 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     unitLine.helpInfo = RXEntryHelpText.unitHelpText.renderMarkdownAsAttributedString
     unitLine.helper = self
 
+    configureSearchField(formLine.searchTextField)
+    formLine.searchTextField.userStoppedTypingHandler = formLinePopup
+    formLine.helpInfo = RXEntryHelpText.formHelpText.renderMarkdownAsAttributedString
+    formLine.helper = self
+
 
     configureSearchField(quantityLine.searchTextField)
     quantityLine.searchTextField.userStoppedTypingHandler = {self.updateNextButton()}
@@ -654,6 +679,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   var mapping = [
     \EntryInfo.name:\PrescriptionEntryViewController.nameLine.searchTextField.text,
     \EntryInfo.unitDescription:\PrescriptionEntryViewController.unitLine.searchTextField.text,
+    \EntryInfo.form:\PrescriptionEntryViewController.formLine.searchTextField.text,
     \EntryInfo.quantityOfUnits:\PrescriptionEntryViewController.quantityLine.searchTextField.text,
    // \EntryInfo.schedule:\PrescriptionEntryViewController.scheduleLine.searchTextField.text,
     \EntryInfo.prescribingDoctor:\PrescriptionEntryViewController.prescriberLine.searchTextField.text,

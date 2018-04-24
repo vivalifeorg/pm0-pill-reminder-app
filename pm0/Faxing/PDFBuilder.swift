@@ -409,7 +409,7 @@ extension MedicationLogEvent{
   }
 
   var doseRendering:String{
-    return "\(dosage.name) \(dosage.unitDescription ?? "<Potency omitted>"); \(dosage.quantity) \(dosage.form ?? "<Unit format omitted>")"
+    return "\(dosage.name) \(dosage.unitDescription ?? "<Potency omitted>"); \(dosage.quantity) of   \(dosage.form ?? "<Unit format omitted>")"
   }
 }
 
@@ -430,29 +430,7 @@ func medlogForm(events: [MedicationLogEvent],
   Some entries may indicate the patient erasing checkmarks, these are marked "! Clear Entry !". These are provided for purposes of completeness.
 
   """
-  let allEntries = events.map{ event->String in
-    switch event{
-    case _ where event.eventType == .markedMedicationTaken:
-      print("entry")
-//      """
-//      Administered  :> \(event.doseRendering)
-//        -- Recorded :> \(event.timeRendering)
-//        -- Planned  :> \(event.sectionName)]
-//
-//      """
-
-    case _ where event.eventType == .unmarkedMedicationTaken:
-      return """
-      ⌫ Cleared Entry:
-        [Planned \(event.sectionName), Recorded at \(event.timestamp)] Dosage: \(event.dosage)
-
-      """
-    default:
-      return ""
-    }
-    return ""
-  }
-
+  
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
   runningVerticalOffset = addSubheader("\(events.count) Total Entries", view: backgroundView, y: runningVerticalOffset)
 

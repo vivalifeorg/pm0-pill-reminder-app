@@ -16,18 +16,18 @@ enum RXEntryHelpText{
 
     Feel free to shorten the text the search box inserted for you if you selected one from the list that shows up after you start typing. Selecting an item from that list will also insert starting values in the quantity and unit fields.
     """
-  static let unitHelpText =
+  static let formHelpText =
   """
-    # Describing a "Unit"
+    # Describe the form of the medication
 
     Describe what a *single* pill looks like. You will input quantity later.
 
-    For example, if you take two orange 200mg pills every six hours, put "**200mg orange pill**" here.
+    For example, if you take two orange 200mg tablets every six hours, put "**tablet**" here.
 
     ### Other Examples:
 
-     - 40mg Square Blue Pill
-     - 100mg Capsule
+     - Square Blue Pill
+     - Capsule
 
     *****
 
@@ -36,8 +36,32 @@ enum RXEntryHelpText{
     Some types of medications do not come as pills.
 
      - For prepackaged, single-use items, put "**kit**" here.
-     - If your medication is something liquid or powdered, put "**g**" or "**ml**" or whatever unit the measurement device uses.
+     - If your medication is something liquid or powdered that you take a measured amount of, you most likely should put something like "liquid" or "solution" here, or whatever appropriate noun is on the prescription.
      - If your medication is in an inhaler, put **puff** here.
+    """
+  static let unitHelpText =
+  """
+    # Describing strength of a single pill
+
+    Describe how strong a single pill is. If you only take one pill this strength shown on the package. You will input quantity later.
+
+    For example, if you take two, orange 200 mg tablets every six hours, put "**200 mg**" here.
+
+    ### Other Examples:
+
+     - 40mg
+     - 100mg
+     - 5ml
+
+    *****
+
+    # Things that aren't pills
+
+    Some types of medications do not come as pills.
+
+     - For prepackaged, single-use items, put the "potency" here.
+     - If your medication is something liquid or powdered that you take a measured amount of, you most likely should put the concentration here. For example, for "10mL of 160 mg/5ml solution", put "160 mg/5ml"
+     - If your medication is in an inhaler, put nothing here.
     """
 
   static let quantityHelpText =
@@ -48,7 +72,7 @@ enum RXEntryHelpText{
 
     For example, if you take two 200mg pills every six hours, you put "**2**" here, as that's how much you take at a single time.
 
-    If you take a liquid, take how many "units" of that medication you take. So if you take 10ml of a tylenol solution, put "**10**" here.
+    If your medication is something liquid or powdered that you take a measured amount of, you most likely should put the amount of units of it you take here here. For example, for "10mL of 160 mg/5ml solution", put "**10ml**"
     """
 
   static let prescriberHelpText =

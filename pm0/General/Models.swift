@@ -29,8 +29,9 @@ struct Dosage:Codable{
   var unitDescription:String?
   var form:String?
   var quantity:Int
+
   var description:String{
-    return "\(name): \(quantity) × \(unitDescription ?? form ?? "dose")"
+    return "\(name), \(quantity) of \(unitDescription ?? "") \(form ?? "UNIT")"
   }
   var schedule:Schedule
   var shortName:String{
@@ -69,6 +70,7 @@ struct MedicationSource:Codable{
 
 struct EntryInfo:Codable{
   var name:String?
+  var form:String?
   var unitDescription:String?
   var quantityOfUnits:String?
   var schedule:String?
