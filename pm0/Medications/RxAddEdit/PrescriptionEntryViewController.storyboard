@@ -287,7 +287,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWO-qs-XAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3704" y="599"/>
+            <point key="canvasLocation" x="3498" y="372"/>
         </scene>
         <!--Details-->
         <scene sceneID="E3K-Nx-R9y">
@@ -326,7 +326,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="With breakfast" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mie-FD-CtO">
-                                            <rect key="frame" x="488" y="12.5" width="99" height="17"/>
+                                            <rect key="frame" x="263" y="12.666666666666664" width="99" height="17"/>
                                             <color key="textColor" name="vlEditableTextColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -396,7 +396,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gm9-sg-6GI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3Yt-Gk-seP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4328" y="12"/>
+            <point key="canvasLocation" x="4479" y="375"/>
         </scene>
         <!--Timeslots-->
         <scene sceneID="W7D-gn-JKx">
@@ -422,7 +422,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khG-yW-uLj" userLabel="Time">
-                                            <rect key="frame" x="519.5" y="11" width="65.5" height="21"/>
+                                            <rect key="frame" x="294.66666666666669" y="11" width="65.333333333333314" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="vlEditableTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -456,7 +456,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jc-yP-JXr" userLabel="Time">
-                                            <rect key="frame" x="519.5" y="11" width="65.5" height="21"/>
+                                            <rect key="frame" x="294.66666666666669" y="11" width="65.333333333333314" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="vlEditableTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -493,7 +493,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rc2-9y-ulJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5074" y="-726"/>
+            <point key="canvasLocation" x="5282" y="-420"/>
         </scene>
         <!--PrescriptionEntryNav-->
         <scene sceneID="kqF-Jp-tzc">
@@ -526,7 +526,7 @@
                 <viewControllerPlaceholder storyboardName="HelpViewController" id="dQz-ad-SPH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXW-am-Cj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2707" y="-10"/>
+            <point key="canvasLocation" x="2630" y="-14"/>
         </scene>
     </scenes>
     <resources>
@@ -545,12 +545,9 @@
         <namedColor name="vlWarmTintColor">
             <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlWarmTintColor">
-            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5ue-ap-0U6"/>
+        <segue reference="a1b-N1-xlI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="vlWarmTintColor"/>
 </document>
