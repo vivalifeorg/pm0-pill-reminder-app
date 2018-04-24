@@ -14,7 +14,20 @@ class FaxMedlogAdministeredEntry:UIView{
   let recordedTime:String
   let plannedTime:String
   override func draw(_ rect: CGRect) {
-    MedlogFaxDrawables.drawFaxMedlogMarkedTaken(dose: dose, recordedTime: recordedTime, plannedTime: plannedTime)
+    /*
+    FaxMedlogEntryGenerated.drawMedlogEntry(frame: rect,
+                                            resizing: .aspectFit,
+                                            doseText: dose,
+                                            timestampText: recordedTime,
+                                            plannedTime: plannedTime,
+                                            doseDescription: "Administered",
+                                            timestampDescription: "Recorded",
+                                            plannedTimeDescription: "Planned")*/
+    FaxMedlogEntryGenerated.drawCompactMedlogEntry(frame: rect,
+                                                  resizing: .aspectFit,
+                                                  doseText: dose,
+                                                  timestampText: recordedTime,
+                                                  plannedTime: plannedTime)
   }
 
   init(frame:CGRect, dose:String, recordedTime:String, plannedTime:String){
@@ -32,3 +45,6 @@ class FaxMedlogAdministeredEntry:UIView{
     super.init(coder:coder)
   }
 }
+
+
+

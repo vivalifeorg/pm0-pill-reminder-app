@@ -81,7 +81,7 @@ extension String {
 
 func addMedication (dose:String, recordedTime:String, plannedTime:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
 
-  let frame = CGRect(x:horizontalMargin, y: offset, width: 302, height: 30)
+  let frame = CGRect(x:horizontalMargin, y: offset, width: 300, height: 15)
   let entry = FaxMedlogAdministeredEntry(frame:frame, dose:dose, recordedTime:recordedTime, plannedTime:plannedTime)
   view.addSubview(entry)
 
@@ -427,11 +427,8 @@ func medlogForm(events: [MedicationLogEvent],
   """
   \(patient.lastDocumentName) indicates they took these medications at these times.
 
-  The log indicates the patient checking off doses to mark them as taken as well as the patient "unchecking" doses to fix data entry errors.
+  Some entries may indicate the patient erasing checkmarks, these are marked "! Clear Entry !". These are provided for purposes of completeness.
 
-  Use this log as an aid when speaking with the patient. The patient may have taken items and failed to log them, or mistakenly logged items, and not removed them.
-
-  Time is shown here as it would have appeared on the patient phone/tablet when they recorded it.
   """
   let allEntries = events.map{ event->String in
     switch event{
@@ -463,6 +460,7 @@ func medlogForm(events: [MedicationLogEvent],
   if events.count == 0 {
     runningVerticalOffset = addStandardText(text: "No medication log to report", view: backgroundView, y: runningVerticalOffset)
   }else{
+    runningVerticalOffset = addMedication(dose: "DOSAGE", recordedTime: "TIME RECORDED", plannedTime: "SCHEDULED TIME", view: backgroundView, y: runningVerticalOffset)
     events.forEach{ entry in
       runningVerticalOffset = addMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
     }
