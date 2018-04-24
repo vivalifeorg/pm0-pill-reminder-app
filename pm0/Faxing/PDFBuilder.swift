@@ -234,7 +234,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   let vivaLifeIconHeight:CGFloat = 100
   let iconView = UIImageView(frame:
     CGRect(origin:
-      CGPoint(x:(pageSize.width-vivaLifeIconHeight)/CGFloat(2.0),
+      CGPoint(x:horizontalMargin,
               y: runningVerticalOffset),
            size: CGSize(
             width:vivaLifeIconHeight,
@@ -242,6 +242,17 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   iconView.image = Asset.Fax.blackAndWhiteLogo.image
   iconView.contentMode = .scaleAspectFit
   backgroundView.addSubview(iconView)
+
+  let qrView = UIImageView(frame:
+    CGRect(origin:
+      CGPoint(x: backgroundView.frame.size.width - horizontalMargin - vivaLifeIconHeight,
+              y: runningVerticalOffset),
+           size: CGSize(
+            width:vivaLifeIconHeight,
+            height: vivaLifeIconHeight)))
+  qrView.image = Asset.Fax.qrCodeForCover.image
+  qrView.contentMode = .scaleAspectFit
+  backgroundView.addSubview(qrView)
   runningVerticalOffset += vivaLifeIconHeight + standardVerticalSpace
 
   runningVerticalOffset = addHipaaText(view: backgroundView, y: runningVerticalOffset)
