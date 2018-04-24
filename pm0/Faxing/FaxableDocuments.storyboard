@@ -684,12 +684,14 @@ You likely do not need to change this. It is primarily for people taking care of
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="J46-VT-Umk" userLabel="Next">
                             <color key="tintColor" name="vlWarmTintColor"/>
+                            <connections>
+                                <segue destination="fBp-wX-Rmo" kind="show" id="1Z3-Tl-N0J"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="nextButton" destination="J46-VT-Umk" id="kIj-33-Cf5"/>
-                        <segue destination="fBp-wX-Rmo" kind="show" id="H9N-pC-nfK"/>
                         <segue destination="QaR-6o-NMq" kind="presentation" identifier="AddDoctorFromSendToScreen" id="Hgo-Tw-CwQ"/>
                     </connections>
                 </tableViewController>

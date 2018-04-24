@@ -22,6 +22,8 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     nextButton.isEnabled = selectedRows.count > 0
   }
 
+  let hippaFlowSendRestorationIdentifier = "SendToScreen"
+  let medlogFlowSendRestorationIdentifier = "SendToViewControllerInMedFlow"
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     guard var handler = segue.destination as? (PDFHandler & SendableDocumentMetadata) else {
@@ -37,10 +39,15 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     handler.sendableDocumentDestinations = isSendToScreen ?
         selectedDoctors.map{DocumentDestination(name:$0.name, value:$0.fax.number)} :
         sendableDocumentDestinations
+
+    if restorationIdentifier == medlogFlowSendRestorationIdentifier {
+      
+    }
   }
 
   var isSendToScreen:Bool {
-    return self.restorationIdentifier == "SendToScreen"
+    return [hippaFlowSendRestorationIdentifier,
+            medlogFlowSendRestorationIdentifier].contains(restorationIdentifier!)
   }
 
   override func numberOfSections(in tableView: UITableView) -> Int {

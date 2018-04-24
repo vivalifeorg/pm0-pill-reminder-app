@@ -34,7 +34,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func exportMedicationLog(_ sender: Any) {
-    performSegue(withIdentifier: "showHelpVC", sender: self)
+    performSegue(withIdentifier: "sendMedicationLog", sender: self)
 
   }
 
