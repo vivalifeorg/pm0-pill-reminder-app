@@ -34,9 +34,6 @@ extension UILabel{
 }
 
 
-
-
-
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
 let faxBodyFontSize = 6
@@ -46,10 +43,6 @@ let faxBodyMinimumSize = 8
 let faxBodyFont = UIFont(name: faxPlainFontFaceName, size: CGFloat(faxBodyFontSize))!
 let faxBigHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxHeaderFontSize))!
 let faxSubHeaderFont = UIFont(name: faxBoldFontFaceName, size: CGFloat(faxSubHeaderFontSize))!
-
-
-
-//let patient = Patient(name:"{{{patient}}}",phoneNumber:"{{{phoneNumber}}}")
 
 extension String{
   var lineCount:Int{
@@ -86,19 +79,32 @@ extension String {
   }
 }
 
-func addStandardText(text body:String, view:UIView, y offset:CGFloat) -> CGFloat{
+func addMedication (dose:String, recordedTime:String, plannedTime:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
+
+  let frame = CGRect(x:horizontalMargin, y: offset, width: 350, height: 30)
+  let entry = FaxMedlogAdministeredEntry(frame:frame, dose:dose, recordedTime:recordedTime, plannedTime:plannedTime)
+  view.addSubview(entry)
+
+  var offset = offset
+  offset += entry.frame.size.height
+  offset += 0
+
+  return offset
+}
+
+func addStandardText(text body:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
+  let font = fontOverride ?? faxBodyFont
   let bodyHeight:CGFloat = body.height(withConstrainedWidth: standardFullWidth,
-                                           font:faxBodyFont)
+                                           font:font)
   let label = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: offset),
            size: CGSize(width:standardFullWidth, height: bodyHeight)))
   label.numberOfLines = 0
-  label.font = faxBodyFont
+  label.font = font
   if debugBounding { label.showBlackBorder() }
-  label.minimumScaleFactor = CGFloat(faxBodyFontSize)/CGFloat(faxBodyMinimumSize)
+  label.minimumScaleFactor = CGFloat(font.pointSize)/CGFloat(faxBodyMinimumSize)
   label.setTextAndAdjustSize(body)
   view.addSubview(label)
-
 
   var offset = offset
   offset += label.frame.size.height
@@ -391,4 +397,101 @@ func hipaaConsentForm(doctors:[DocumentTopic],
 
 
   return fileOfPDFForView(backgroundView, fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
+}
+
+extension MedicationLogEvent{
+  var timeRendering:String{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .short
+    let tz:TimeZone = timezone
+    return "\(dateFormatter.string(from: timestamp)) \(tz.abbreviation(for:timestamp) ?? "")"
+  }
+
+  var doseRendering:String{
+    return "\(dosage.name) \(dosage.unitDescription ?? "<Potency omitted>"); \(dosage.quantity) \(dosage.form ?? "<Unit format omitted>")"
+  }
+}
+
+func medlogForm(events: [MedicationLogEvent],
+                patient:PatientInfo) -> DocumentRef {
+  let pageSize = FaxSizes.hyperFine
+
+  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  backgroundView.backgroundColor = VLColors.faxBackgroundColor
+
+  let title = "Patient Medication Log"
+  var runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
+
+  let bodyText  =
+  """
+  \(patient.lastDocumentName) indicates they took these medications at these times.
+
+  The log indicates the patient checking off doses to mark them as taken as well as the patient "unchecking" doses to fix data entry errors.
+
+  Use this log as an aid when speaking with the patient. The patient may have taken items and failed to log them, or mistakenly logged items, and not removed them.
+
+  Time is shown here as it would have appeared on the patient phone/tablet when they recorded it.
+  """
+  let allEntries = events.map{ event->String in
+    switch event{
+    case _ where event.eventType == .markedMedicationTaken:
+      print("entry")
+//      """
+//      Administered  :> \(event.doseRendering)
+//        -- Recorded :> \(event.timeRendering)
+//        -- Planned  :> \(event.sectionName)]
+//
+//      """
+
+    case _ where event.eventType == .unmarkedMedicationTaken:
+      return """
+      ⌫ Cleared Entry:
+        [Planned \(event.sectionName), Recorded at \(event.timestamp)] Dosage: \(event.dosage)
+
+      """
+    default:
+      return ""
+    }
+    return ""
+  }
+
+  runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
+  runningVerticalOffset = addSubheader("\(events.count) Total Entries", view: backgroundView, y: runningVerticalOffset)
+
+  //TODO add pagination
+  if events.count == 0 {
+    runningVerticalOffset = addStandardText(text: "No medication log to report", view: backgroundView, y: runningVerticalOffset)
+  }else{
+    events.forEach{ entry in
+      runningVerticalOffset = addMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
+    }
+  }
+
+
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateStyle = .medium
+  let signingDate = dateFormatter.string(from: Date())
+  let documentId = "VL-MEDICATION-LOG-002-B"
+
+  let signatureSuffixText =
+  """
+  Date Generated: \(signingDate)
+
+  DocumentId: \(documentId)
+  """
+  let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
+  let signatureSuffixLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
+           size: CGSize(width:232, height: signatureSuffixHeight)))
+  signatureSuffixLabel.numberOfLines = 0
+  signatureSuffixLabel.font = faxBodyFont
+  if debugBounding { signatureSuffixLabel.showBlackBorder() }
+  signatureSuffixLabel.text = signatureSuffixText
+  backgroundView.addSubview(signatureSuffixLabel)
+  runningVerticalOffset += signatureSuffixLabel.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
+
+  return fileOfPDFForView(backgroundView, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
 }

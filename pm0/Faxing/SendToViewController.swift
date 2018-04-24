@@ -30,7 +30,7 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
       return //for cancel, etc
     }
 
-    handler.sendableDocuments = sendableDocuments
+
     handler.sendableDocumentTopics = sendableDocumentTopics
     
     let selectedDoctors:[DoctorInfo] = selectedRows.map{doctors[$0.row]}
@@ -40,8 +40,11 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
         selectedDoctors.map{DocumentDestination(name:$0.name, value:$0.fax.number)} :
         sendableDocumentDestinations
 
-    if restorationIdentifier == medlogFlowSendRestorationIdentifier {
-      
+    if restorationIdentifier != medlogFlowSendRestorationIdentifier {
+      handler.sendableDocuments = sendableDocuments 
+    }else{
+      let medlog = medlogForm(events: LocalStorage.MedicationLogStore.load(), patient: LocalStorage.UserInfoStore.loadSingle()!)
+      handler.sendableDocuments = sendableDocuments + [medlog]
     }
   }
 

@@ -111,6 +111,10 @@ struct KeychainPersistor<T:Codable>:Persistor{
   func load()->[T]{
     return LoadLocal(key: key)
   }
+
+  func loadSingle()->T?{
+    return LoadLocal(key: key).first
+  }
   func save(_ items:[T]){
     SaveLocal(items, key: key)
   }

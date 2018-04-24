@@ -18,6 +18,7 @@ func loadDeviceID()->DeviceIdentifier{
   return devId
 }
 
+
 struct MedicationLogEvent:Codable{
   enum MedicationLogEventType:String,Codable{
     case markedMedicationTaken

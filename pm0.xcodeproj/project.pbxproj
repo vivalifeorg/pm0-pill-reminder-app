@@ -40,6 +40,8 @@
 		898BC946206196DA006ED4CF /* FaxableDocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */; };
 		8991A9BA208E4FEA00CCD703 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9B9208E4FEA00CCD703 /* SignatureViewController.swift */; };
 		8991A9BC208E6BE300CCD703 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9BB208E6BE300CCD703 /* NameViewController.swift */; };
+		8991A9C3208F9A9400CCD703 /* MedlogFaxDrawables-Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9C2208F9A9400CCD703 /* MedlogFaxDrawables-Generated.swift */; };
+		8991A9C6208F9BE300CCD703 /* MedlogFaxDrawables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8991A9C5208F9BE300CCD703 /* MedlogFaxDrawables.swift */; };
 		89987AB6207542D50057E685 /* FaxPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB5207542D50057E685 /* FaxPreviewViewController.swift */; };
 		89987AB82075453F0057E685 /* PreviewUnavailable.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 89987AB72075453F0057E685 /* PreviewUnavailable.pdf */; };
 		89987ABA20754C950057E685 /* SendToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89987AB920754C950057E685 /* SendToViewController.swift */; };
@@ -112,6 +114,8 @@
 		898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxableDocumentsViewController.swift; sourceTree = "<group>"; };
 		8991A9B9208E4FEA00CCD703 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		8991A9BB208E6BE300CCD703 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		8991A9C2208F9A9400CCD703 /* MedlogFaxDrawables-Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MedlogFaxDrawables-Generated.swift"; sourceTree = "<group>"; };
+		8991A9C5208F9BE300CCD703 /* MedlogFaxDrawables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedlogFaxDrawables.swift; sourceTree = "<group>"; };
 		89987AB5207542D50057E685 /* FaxPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaxPreviewViewController.swift; sourceTree = "<group>"; };
 		89987AB72075453F0057E685 /* PreviewUnavailable.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PreviewUnavailable.pdf; sourceTree = "<group>"; };
 		89987AB920754C950057E685 /* SendToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +250,15 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		8991A9C4208F9BBC00CCD703 /* MedlogDrawables */ = {
+			isa = PBXGroup;
+			children = (
+				8991A9C2208F9A9400CCD703 /* MedlogFaxDrawables-Generated.swift */,
+				8991A9C5208F9BE300CCD703 /* MedlogFaxDrawables.swift */,
+			);
+			path = MedlogDrawables;
+			sourceTree = "<group>";
+		};
 		899215202072929F008B30C9 /* RxList */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +286,7 @@
 		89A5168E205879F50069D9AE /* Faxing */ = {
 			isa = PBXGroup;
 			children = (
+				8991A9C4208F9BBC00CCD703 /* MedlogDrawables */,
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
 				898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */,
 				89987AB920754C950057E685 /* SendToViewController.swift */,
@@ -655,6 +669,7 @@
 				8970790D207E7C4F00A2CC11 /* IfNotNil.swift in Sources */,
 				8954AC5F204DCE1B00E97305 /* Models.swift in Sources */,
 				894FEC0A2069804E00E48ECA /* PrescriptionDisplayView.swift in Sources */,
+				8991A9C3208F9A9400CCD703 /* MedlogFaxDrawables-Generated.swift in Sources */,
 				89F4D0572072A3D700CC60E9 /* ScheduleList.swift in Sources */,
 				89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */,
 				89C6682D206D807D004A0731 /* DoctorViewerViewController.swift in Sources */,
@@ -669,6 +684,7 @@
 				8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */,
 				89F4D05B2072DDC700CC60E9 /* TimeslotEditorViewController.swift in Sources */,
 				898BC93E206139EB006ED4CF /* PhaxioObjcFaxProvider.swift in Sources */,
+				8991A9C6208F9BE300CCD703 /* MedlogFaxDrawables.swift in Sources */,
 				89A1EBBB20168F5D00C00F69 /* PrescriptionEntryViewController.swift in Sources */,
 				898BC93C206139CA006ED4CF /* FaxHandRolled.swift in Sources */,
 			);
