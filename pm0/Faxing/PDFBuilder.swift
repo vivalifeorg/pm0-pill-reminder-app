@@ -132,14 +132,14 @@ func addHipaaText(view:UIView, y offset:CGFloat) -> CGFloat{
   let body = "IMPORTANT: This facsimile transmission contains confidential information, some or all of which may be protected health information as defined by the federal Health Insurance Portability & Accountability Act (HIPAA) Privacy Rule. This transmission is intended for the exclusive use of the individual or entity to whom it is addressed and may contain information that is proprietary, privileged, confidential and/or exempt from disclosure under applicable law. If you are not the intended recipient (or an employee or agent responsible for delivering this facsimile transmission to the intended recipient), you are hereby notified that any disclosure, dissemination, distribution or copying of this information is strictly prohibited and may be subject to legal restriction or sanction. Please notify the sender by telephone (number listed above) to arrange the return or destruction of the information and all copies."
 
   let textHeight = body.height(withConstrainedWidth: standardFullWidth, font: faxBodyFont)
-  let y = view.frame.size.height - textHeight
+  let y = view.frame.size.height - textHeight - bottomMargin
 
   return addStandardText(text: body, view: view, y: y)
 }
 
-let horizontalMargin:CGFloat = CGFloat(3 * faxHeaderFontSize)
-let topMargin:CGFloat = 4
-let bottomMargin:CGFloat = 4
+let horizontalMargin:CGFloat = 25 //CGFloat(3 * faxHeaderFontSize)
+let topMargin:CGFloat = 25
+let bottomMargin:CGFloat = 25
 let standardVerticalSpace:CGFloat = 8
 let standardFullWidth = pageSize.width-CGFloat( 2.0 * horizontalMargin)
 let pageSize = FaxSizes.hyperFine
@@ -231,11 +231,11 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   runningVerticalOffset += standardVerticalSpace
 
 
-  let vivaLifeIconHeight:CGFloat = 100
+  let vivaLifeIconHeight:CGFloat = 50
   let iconView = UIImageView(frame:
     CGRect(origin:
       CGPoint(x:backgroundView.frame.size.width - horizontalMargin - vivaLifeIconHeight,
-              y:0),
+              y:topMargin),
            size: CGSize(
             width:vivaLifeIconHeight,
             height: vivaLifeIconHeight)))
@@ -245,7 +245,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
 
   let qrView = UIImageView(frame:
     CGRect(origin:
-      CGPoint(x: backgroundView.frame.size.width - horizontalMargin - vivaLifeIconHeight,
+      CGPoint(x: (backgroundView.frame.size.width - vivaLifeIconHeight)/CGFloat(2),
               y: runningVerticalOffset),
            size: CGSize(
             width:vivaLifeIconHeight,

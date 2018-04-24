@@ -69,6 +69,8 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
     pdfView.document = PDFDocument.init(url: pdfPreviewURL)
     pdfView.displayMode = .singlePageContinuous
     pdfView.autoScales = true
+    view.backgroundColor = .white
+    pdfView.backgroundColor = .white
   }
 
   var alert = UIAlertController()
