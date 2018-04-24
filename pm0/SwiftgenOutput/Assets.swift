@@ -52,8 +52,10 @@ enum Asset {
     static let vlCellBackgroundCommon = ColorAsset(name: "vlCellBackgroundCommon")
     static let vlDisabledButtonColor = ColorAsset(name: "vlDisabledButtonColor")
     static let vlDisabledTextColor = ColorAsset(name: "vlDisabledTextColor")
+    static let vlEditableFieldTextColor = ColorAsset(name: "vlEditableFieldTextColor")
     static let vlEditableTextColor = ColorAsset(name: "vlEditableTextColor")
     static let vlEmptyStateText = ColorAsset(name: "vlEmptyStateText")
+    static let vlTextBackgroundAreaColor = ColorAsset(name: "vlTextBackgroundAreaColor")
     static let vlTextColor = ColorAsset(name: "vlTextColor")
     static let vlWarmTintColor = ColorAsset(name: "vlWarmTintColor")
   }
@@ -81,8 +83,10 @@ enum Asset {
     Colors.vlCellBackgroundCommon,
     Colors.vlDisabledButtonColor,
     Colors.vlDisabledTextColor,
+    Colors.vlEditableFieldTextColor,
     Colors.vlEditableTextColor,
     Colors.vlEmptyStateText,
+    Colors.vlTextBackgroundAreaColor,
     Colors.vlTextColor,
     Colors.vlWarmTintColor,
   ]

@@ -96,7 +96,7 @@ class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMeta
   var sendableDocuments: [DocumentRef]  = []
 
   override func viewDidLoad() {
-    signatureView.lineColor = UIColor.white
+    signatureView.lineColor = Asset.Colors.vlEditableFieldTextColor.color
     signatureView.lineOpacity = 0.85
     signatureView.delegate = self
   }

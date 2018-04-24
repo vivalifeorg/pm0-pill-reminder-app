@@ -126,7 +126,7 @@
                                                     </constraints>
                                                 </mapView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Xah-FX-jt8" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="211" y="10" width="154" height="44"/>
+                                                    <rect key="frame" x="436" y="10" width="154" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="i3U-lI-TJs"/>
                                                     </constraints>
@@ -304,7 +304,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gfp-Em-hAq" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="72" width="339" height="44"/>
+                                                    <rect key="frame" x="23" y="72" width="564" height="44"/>
                                                     <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="1Qq-h7-0s7"/>
@@ -323,7 +323,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XnW-gD-T4p" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="196.5" y="20" width="165.5" height="44"/>
+                                                    <rect key="frame" x="309" y="20" width="278" height="44"/>
                                                     <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="Sdb-ha-3ze"/>
@@ -343,7 +343,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="smL-co-8ki" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="20" width="165.5" height="44"/>
+                                                    <rect key="frame" x="23" y="20" width="278" height="44"/>
                                                     <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="6aE-86-o5H"/>
@@ -646,7 +646,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vyk-DK-glM" customClass="PrescriptionLineEntry" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="City"/>

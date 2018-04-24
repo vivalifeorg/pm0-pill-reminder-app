@@ -307,8 +307,8 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
                                 <rect key="frame" x="18" y="195" width="367" height="428"/>
-                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
-                                <color key="textColor" name="vlTextColor"/>
+                                <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
+                                <color key="textColor" name="vlEditableFieldTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -466,7 +466,7 @@ You can change it here before sending this document. </string>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O71-XJ-tXT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
-                                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                                <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" text="Patient Signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1L-bk-FaL">
                                                 <rect key="frame" x="16" y="121" width="131" height="25"/>
@@ -623,8 +623,11 @@ You can change it here before sending this document. </string>
         <namedColor name="vlDisabledButtonColor">
             <color red="0.40799999237060547" green="0.40599998831748962" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="vlDisabledButtonColor">
-            <color red="0.40799999237060547" green="0.40599998831748962" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="vlEditableFieldTextColor">
+            <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextBackgroundAreaColor">
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
