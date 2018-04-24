@@ -36,7 +36,7 @@ enum RXEntryHelpText{
     Some types of medications do not come as pills.
 
      - For prepackaged, single-use items, put "**kit**" here.
-     - If your medication is something liquid or powdered that you take a measured amount of, you most likely should put something like "liquid" or "solution" here, or whatever appropriate noun is on the prescription.
+     - If your medication is something liquid or powdered that you take a measured amount of, you most possibly should put nothing here.
      - If your medication is in an inhaler, put **puff** here.
     """
   static let unitHelpText =
@@ -60,7 +60,7 @@ enum RXEntryHelpText{
     Some types of medications do not come as pills.
 
      - For prepackaged, single-use items, put the "potency" here.
-     - If your medication is something liquid or powdered that you take a measured amount of, you most likely should put the concentration here. For example, for "10mL of 160 mg/5ml solution", put "160 mg/5ml"
+     - If your medication is something liquid or powdered that you take a measured amount of put the concentration here. For example, for "10mL of 160 mg/5ml solution", put "160 mg/5ml"
      - If your medication is in an inhaler, put nothing here.
     """
 

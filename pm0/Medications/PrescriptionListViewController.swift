@@ -13,17 +13,31 @@ import UIKit
 
 import UIKit
 extension Dosage{
+
+  var quantityExpression:String{
+    if let quantity = quantity {
+      return "\(quantity) of "
+    }else{
+      return ""
+    }
+  }
+
   var attributedString:NSAttributedString{
+
     let str =
-      "**\(name)**<br/>\(quantity) × \(unitDescription ?? form ?? "dose")".renderMarkdownAsAttributedString
+      "**\(name)**,<br/>\(quantityExpression)\(unitDescription ?? form ?? "dose")".renderMarkdownAsAttributedString
     return str
   }
   var attributedTitle:NSAttributedString{
     return NSAttributedString(string:"\(name)")
   }
 
+  var bodyString:String{
+    return "\(quantityExpression)\(unitDescription ?? "") \(form ?? "")"
+  }
+  
   var attributedBody:NSAttributedString{
-    return NSAttributedString(string:"\(quantity) × \(unitDescription ?? form ?? "dose")")
+    return NSAttributedString(string:bodyString)
   }
 }
 

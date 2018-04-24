@@ -92,6 +92,20 @@ func addMedication (dose:String, recordedTime:String, plannedTime:String, view:U
   return offset
 }
 
+func removeMedication (dose:String, recordedTime:String, plannedTime:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
+
+  let frame = CGRect(x:horizontalMargin, y: offset, width: 300, height: 15)
+  let entry = FaxMedlogRemovedEntry(frame:frame, dose:dose, recordedTime:recordedTime, plannedTime:plannedTime)
+  view.addSubview(entry)
+
+  var offset = offset
+  offset += entry.frame.size.height
+  offset += 0
+
+  return offset
+}
+
+
 func addStandardText(text body:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
   let font = fontOverride ?? faxBodyFont
   let bodyHeight:CGFloat = body.height(withConstrainedWidth: standardFullWidth,
@@ -409,7 +423,7 @@ extension MedicationLogEvent{
   }
 
   var doseRendering:String{
-    return "\(dosage.name) \(dosage.unitDescription ?? "<Potency omitted>"); \(dosage.quantity) of   \(dosage.form ?? "<Unit format omitted>")"
+    return "\(dosage.name), \(dosage.bodyString)"
   }
 }
 
@@ -440,7 +454,11 @@ func medlogForm(events: [MedicationLogEvent],
   }else{
     runningVerticalOffset = addMedication(dose: "DOSAGE", recordedTime: "TIME RECORDED", plannedTime: "SCHEDULED TIME", view: backgroundView, y: runningVerticalOffset)
     events.forEach{ entry in
-      runningVerticalOffset = addMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
+      if entry.eventType == .markedMedicationTaken{
+        runningVerticalOffset = addMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
+      }else if entry.eventType == .unmarkedMedicationTaken{
+        runningVerticalOffset = removeMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
+      }
     }
   }
 

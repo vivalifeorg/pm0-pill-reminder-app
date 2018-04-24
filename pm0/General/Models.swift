@@ -28,10 +28,10 @@ struct Dosage:Codable{
   var name:String = "Drug"
   var unitDescription:String?
   var form:String?
-  var quantity:Int
+  var quantity:String?
 
   var description:String{
-    return "\(name), \(quantity) of \(unitDescription ?? "") \(form ?? "UNIT")"
+    return "\(name), \(quantity ?? "1" ) of \(unitDescription ?? "") \(form ?? "UNITS")"
   }
   var schedule:Schedule
   var shortName:String{
@@ -96,8 +96,8 @@ struct Prescription:Codable{
     editInfo = info
     dosage = Dosage(name: info.name ?? "Drug",
                         unitDescription: info.unitDescription,
-                        form: "[PILL]",
-                        quantity: Int(info.quantityOfUnits ?? "") ?? 1,
+                        form: info.form,
+                        quantity: info.quantityOfUnits,
                         schedule: info.scheduleSelection!)
     prescriber = nil
     obtainedFrom = nil
