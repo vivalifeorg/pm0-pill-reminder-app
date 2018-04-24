@@ -66,6 +66,7 @@ enum Asset {
     static let orangeButtonBorder = ImageAsset(name: "orangeButtonBorder")
   }
   enum Fax {
+    static let blackAndWhiteLogo = ImageAsset(name: "BlackAndWhiteLogo")
     static let exampleFaxSignature = ImageAsset(name: "ExampleFaxSignature")
     static let linkToApp = ImageAsset(name: "linkToApp")
   }
@@ -95,6 +96,7 @@ enum Asset {
     Empty.emptyMyDay,
     Empty.emptyRx,
     Empty.orangeButtonBorder,
+    Fax.blackAndWhiteLogo,
     Fax.exampleFaxSignature,
     Fax.linkToApp,
     Tab.tabDoc,

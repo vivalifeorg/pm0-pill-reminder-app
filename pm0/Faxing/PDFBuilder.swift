@@ -228,17 +228,33 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
 
   runningVerticalOffset = addSubheader("Do not send a return fax to this number", view: backgroundView, y: runningVerticalOffset)
 
+  runningVerticalOffset += standardVerticalSpace
+
+
+  let vivaLifeIconHeight:CGFloat = 100
+  let iconView = UIImageView(frame:
+    CGRect(origin:
+      CGPoint(x:(pageSize.width-vivaLifeIconHeight)/CGFloat(2.0),
+              y: runningVerticalOffset),
+           size: CGSize(
+            width:vivaLifeIconHeight,
+            height: vivaLifeIconHeight)))
+  iconView.image = Asset.Fax.blackAndWhiteLogo.image
+  iconView.contentMode = .scaleAspectFit
+  backgroundView.addSubview(iconView)
+  runningVerticalOffset += vivaLifeIconHeight + standardVerticalSpace
+
   runningVerticalOffset = addHipaaText(view: backgroundView, y: runningVerticalOffset)
 
   return fileOfPDFForView(backgroundView,fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
 }
 
-func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
+func fileOfPDFForViews(_ views:[UIView],fileSuffix:String)->DocumentRef{
   let path = NSTemporaryDirectory().appending(fileSuffix)
   let dst = URL(fileURLWithPath: path)
   // outputs as Data
   do {
-    let data = try PDFGenerator.generated(by: [view])
+    let data = try PDFGenerator.generated(by: views)
     try! data.write(to: dst, options: .atomic)
   } catch (let error) {
     print(error)
@@ -246,12 +262,16 @@ func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
 
   // writes to Disk directly.
   do {
-    try PDFGenerator.generate([view], to: dst)
+    try PDFGenerator.generate(views, to: dst)
   } catch (let error) {
     print(error)
   }
 
   return dst
+}
+
+func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
+  return fileOfPDFForViews([view],fileSuffix:fileSuffix)
 }
 
 extension String{
@@ -285,6 +305,14 @@ extension DoctorInfo:DocumentTopic{
       omitIfAllWhitespace("  Fax: \t\(provider.fax.number)\n\n")
     return providerText
   }
+}
+extension Array{
+func chunk(_ chunkSize: Int) -> [[Element]] {
+  return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -> [Element] in
+    let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ? self.count-startIndex : chunkSize
+    return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
+  })
+}
 }
 
 let noRestrictionsText = ["No additional restrictions"]
@@ -431,7 +459,7 @@ func medlogForm(events: [MedicationLogEvent],
                 patient:PatientInfo) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
-  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  var backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
   let title = "Patient Medication Log"
@@ -441,23 +469,50 @@ func medlogForm(events: [MedicationLogEvent],
   """
   \(patient.lastDocumentName) indicates they took these medications at these times.
 
-  Some entries may indicate the patient erasing checkmarks, these are marked "! Clear Entry !". These are provided for purposes of completeness.
+  Patients sometimes remove checkmarks. This removal is indicated with the word "!REMOVED".
+
+  This indicates an earlier entry that matches that name and scheduled time did not occur.
+
+  These are provided for purposes of completeness.
 
   """
   
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
-  runningVerticalOffset = addSubheader("\(events.count) Total Entries", view: backgroundView, y: runningVerticalOffset)
+  let entriesPerPage = 16
+  runningVerticalOffset = addSubheader("\(events.count) Total Entries [\(entriesPerPage) per page]", view: backgroundView, y: runningVerticalOffset)
 
-  //TODO add pagination
+  var viewList:[UIView] = [backgroundView]
   if events.count == 0 {
     runningVerticalOffset = addStandardText(text: "No medication log to report", view: backgroundView, y: runningVerticalOffset)
   }else{
-    runningVerticalOffset = addMedication(dose: "DOSAGE", recordedTime: "TIME RECORDED", plannedTime: "SCHEDULED TIME", view: backgroundView, y: runningVerticalOffset)
-    events.forEach{ entry in
-      if entry.eventType == .markedMedicationTaken{
-        runningVerticalOffset = addMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
-      }else if entry.eventType == .unmarkedMedicationTaken{
-        runningVerticalOffset = removeMedication(dose: entry.doseRendering, recordedTime: entry.timeRendering, plannedTime: entry.sectionName, view: backgroundView, y: runningVerticalOffset)
+    //pagination
+    let eventSheets = events.chunk(entriesPerPage)
+    for sheetIndex in 0..<eventSheets.count{
+      //we have multiple pages
+
+      if sheetIndex != 0 {
+        //make a new page
+        backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+        viewList.append(backgroundView)
+        let title = "Patient Medication Log (Continued)"
+        runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
+      }
+
+      runningVerticalOffset = addMedication(dose: "DOSAGE", recordedTime: "TIME RECORDED", plannedTime: "SCHEDULED TIME", view: backgroundView, y: runningVerticalOffset)
+      eventSheets[sheetIndex].forEach{ entry in
+        if entry.eventType == .markedMedicationTaken{
+          runningVerticalOffset = addMedication(dose: entry.doseRendering,
+                                              recordedTime: entry.timeRendering,
+                                              plannedTime: entry.sectionName,
+                                              view: backgroundView,
+                                              y: runningVerticalOffset)
+        }else if entry.eventType == .unmarkedMedicationTaken{
+          runningVerticalOffset = removeMedication(dose: entry.doseRendering,
+                                                 recordedTime: entry.timeRendering,
+                                                 plannedTime: entry.sectionName,
+                                                 view: backgroundView,
+                                                 y: runningVerticalOffset)
+        }
       }
     }
   }
@@ -487,5 +542,5 @@ func medlogForm(events: [MedicationLogEvent],
   runningVerticalOffset += standardVerticalSpace/2
 
 
-  return fileOfPDFForView(backgroundView, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
+  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
 }
