@@ -25,7 +25,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Fill out paperwork once to save time on every visit to the doctors." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljl-d4-jSp">
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send paperwork to your doctors. Fill it out once, then you only need to update it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljl-d4-jSp">
                                     <rect key="frame" x="20" y="11" width="374" height="56"/>
                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
@@ -149,13 +149,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
-                        <segue destination="CG2-A8-7om" kind="presentation" identifier="showHelpVC" id="jM2-iT-CKF"/>
+                        <segue destination="CG2-A8-7om" kind="showDetail" identifier="showHelpVC" id="jM2-iT-CKF"/>
                         <segue destination="Upl-0q-f9W" kind="show" identifier="sendInfoFaxSegue" id="N7Y-hB-HBd"/>
+                        <segue destination="SVK-NG-V54" kind="show" identifier="sendMedicationLog" id="X5i-Ok-OfB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZz-ag-3jM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-604" y="249"/>
+            <point key="canvasLocation" x="-414" y="75"/>
         </scene>
         <!--Send To-->
         <scene sceneID="vI7-bJ-lLA">
@@ -223,7 +224,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sda-0c-HTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qtD-qM-S9d" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="610" y="165"/>
+            <point key="canvasLocation" x="1226" y="72"/>
         </scene>
         <!--DoctorEntryViewController-->
         <scene sceneID="S0b-75-eM2">
@@ -231,7 +232,7 @@
                 <viewControllerPlaceholder storyboardName="DoctorList" referencedIdentifier="DoctorEntryViewController" id="fRd-zV-YXI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AnL-k2-Syn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="724" y="793"/>
+            <point key="canvasLocation" x="1222" y="532"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fP0-bc-CdB">
@@ -248,7 +249,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ma-40-rgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="188"/>
+            <point key="canvasLocation" x="471" y="75"/>
         </scene>
         <!--Data From-->
         <scene sceneID="ekz-2L-W50">
@@ -305,7 +306,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BXR-NQ-NsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1343" y="167"/>
+            <point key="canvasLocation" x="1943" y="75"/>
         </scene>
         <!--Restrictions-->
         <scene sceneID="IUY-X5-twH">
@@ -368,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drL-RO-3Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2107" y="136"/>
+            <point key="canvasLocation" x="3420" y="78"/>
         </scene>
         <!--Verify Name-->
         <scene sceneID="dzG-JA-TaI">
@@ -427,7 +428,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2120" y="-930"/>
+            <point key="canvasLocation" x="2654" y="77"/>
         </scene>
         <!--Preview-->
         <scene sceneID="5qa-un-AyZ">
@@ -464,7 +465,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3492" y="128"/>
+            <point key="canvasLocation" x="4939" y="77"/>
         </scene>
         <!--Signing-->
         <scene sceneID="WWY-N6-FwI">
@@ -582,7 +583,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Os6-ut-dqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2744" y="157"/>
+            <point key="canvasLocation" x="4212" y="77"/>
         </scene>
         <!--Faxing-->
         <scene sceneID="snf-ha-tI6">
@@ -606,8 +607,9 @@ You likely do not need to change this. It is primarily for people taking care of
         <scene sceneID="Dfs-YU-cgq">
             <objects>
                 <navigationController id="CG2-A8-7om" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FLa-dy-q07">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="FLa-dy-q07">
+                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -618,7 +620,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lO3-hr-SMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xlq-Ho-PvA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-73" y="-785"/>
+            <point key="canvasLocation" x="351" y="-691"/>
         </scene>
         <!--HelpViewController-->
         <scene sceneID="drb-Kl-wk2">
@@ -628,16 +630,144 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6K-Hj-xXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="-713"/>
+            <point key="canvasLocation" x="958" y="-690"/>
+        </scene>
+        <!--Send To-->
+        <scene sceneID="tUs-VZ-YKe">
+            <objects>
+                <tableViewController storyboardIdentifier="SendToViewControllerInMedFlow" title="Send To" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yNP-K7-aYo" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g5k-gw-Tnr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorSelectCell" textLabel="6E1-nz-BO5" detailTextLabel="ncX-Hs-KHp" style="IBUITableViewCellStyleSubtitle" id="Y7Q-Ee-Sgb" customClass="DoctorSelectCell">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y7Q-Ee-Sgb" id="IBB-WX-f8W">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6E1-nz-BO5">
+                                            <rect key="frame" x="20.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ncX-Hs-KHp">
+                                            <rect key="frame" x="19.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" name="vlTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="tintColor" name="vlWarmTintColor"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                <color key="tintColor" name="vlWarmTintColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yNP-K7-aYo" id="RfM-MR-Xz6"/>
+                            <outlet property="delegate" destination="yNP-K7-aYo" id="gfo-4b-zIs"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Send To" id="lJR-b3-Wa5">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NQ6-tM-qK5">
+                            <color key="tintColor" name="vlWarmTintColor"/>
+                            <connections>
+                                <segue destination="Vn3-ma-DQQ" kind="unwind" identifier="unwindFromFaxingAfterCancel" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="wbq-tg-rV6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="J46-VT-Umk" userLabel="Next">
+                            <color key="tintColor" name="vlWarmTintColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="nextButton" destination="J46-VT-Umk" id="kIj-33-Cf5"/>
+                        <segue destination="fBp-wX-Rmo" kind="show" id="H9N-pC-nfK"/>
+                        <segue destination="QaR-6o-NMq" kind="presentation" identifier="AddDoctorFromSendToScreen" id="Hgo-Tw-CwQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynD-SZ-W72" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Vn3-ma-DQQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="345" y="903"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FQ3-aO-Ta6">
+            <objects>
+                <navigationController id="SVK-NG-V54" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="vX2-OW-A2U">
+                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yNP-K7-aYo" kind="relationship" relationship="rootViewController" id="phA-ju-cqV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1QC-7D-tbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-416" y="807"/>
+        </scene>
+        <!--Preview-->
+        <scene sceneID="tDX-76-s59">
+            <objects>
+                <viewController storyboardIdentifier="Preview2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fBp-wX-Rmo" customClass="FaxPreviewViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RSm-ry-4TP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCb-Px-qDy" userLabel="PDFViewContainer" customClass="PDFView">
+                                <rect key="frame" x="0.0" y="116" width="414" height="527"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <constraints>
+                            <constraint firstItem="gTr-lY-Z8n" firstAttribute="bottom" secondItem="dCb-Px-qDy" secondAttribute="bottom" id="eQd-G4-Wi6"/>
+                            <constraint firstItem="dCb-Px-qDy" firstAttribute="top" secondItem="gTr-lY-Z8n" secondAttribute="top" id="eYx-kv-s4j"/>
+                            <constraint firstItem="gTr-lY-Z8n" firstAttribute="trailing" secondItem="dCb-Px-qDy" secondAttribute="trailing" id="r0k-3S-Ewn"/>
+                            <constraint firstItem="dCb-Px-qDy" firstAttribute="leading" secondItem="gTr-lY-Z8n" secondAttribute="leading" id="rAg-rR-Abv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gTr-lY-Z8n"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Preview" id="NoO-Ft-7oI">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="9Zz-fw-IVd">
+                            <connections>
+                                <action selector="sendShownFax:" destination="fBp-wX-Rmo" id="g0B-5L-eRA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pdfView" destination="dCb-Px-qDy" id="4bl-hG-oNq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vLA-0o-OcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1125" y="1061"/>
+        </scene>
+        <!--DoctorEntryViewController-->
+        <scene sceneID="NUA-f7-DZS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DoctorList" referencedIdentifier="DoctorEntryViewController" id="QaR-6o-NMq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Oy-hb-vVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="352" y="1552"/>
         </scene>
     </scenes>
     <resources>
         <image name="Tab-Faxing" width="18" height="23"/>
         <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlDisabledButtonColor">
-            <color red="0.40799999237060547" green="0.40599998831748962" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlEditableFieldTextColor">
             <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
