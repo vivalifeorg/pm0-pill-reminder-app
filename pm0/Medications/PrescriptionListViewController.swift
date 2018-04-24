@@ -227,7 +227,7 @@ func colorizedAttributedString(_ string:String, color:UIColor)->NSAttributedStri
 }
 
 func emptyStateButtonText(_ string:String)->NSAttributedString{
-  return colorizedAttributedString(string, color:Asset.Colors.vlTextColor.color)
+  return colorizedAttributedString(string, color:.black)
 }
 
 func emptyStateAttributedString(_ string:String)->NSAttributedString{

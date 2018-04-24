@@ -505,7 +505,7 @@ You likely do not need to change this. It is primarily for people taking care of
                                             <constraint firstItem="O71-XJ-tXT" firstAttribute="width" secondItem="Dqd-sT-NVc" secondAttribute="width" id="tTA-Sh-3H4"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97J-e3-YcE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97J-e3-YcE" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
                                         <rect key="frame" x="20" y="178" width="374" height="44"/>
                                         <color key="backgroundColor" name="vlWarmTintColor"/>
                                         <constraints>
@@ -513,7 +513,7 @@ You likely do not need to change this. It is primarily for people taking care of
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="Clear">
-                                            <color key="titleColor" name="vlTextColor"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="signatureClear:" destination="OkB-dV-NGA" eventType="touchUpInside" id="PwA-Y0-3s9"/>

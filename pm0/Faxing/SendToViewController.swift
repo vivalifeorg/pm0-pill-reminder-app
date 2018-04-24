@@ -119,30 +119,14 @@ func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl
   return emptyStateButtonText("Add Doctor")
 }
 
-func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
-  UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
-  backgroundColor.setFill()
 
-
-  let backgroundPath = UIBezierPath(rect: CGRect(origin:.zero, size:buttonSize))
-  Asset.Colors.vlCellBackgroundCommon.color.setFill()
-  backgroundPath.fill()
-
-  let bezierPath = UIBezierPath(roundedRect: CGRect(origin:.zero, size:buttonSize),
-                                cornerRadius: cornerRadius)
-  Asset.Colors.vlWarmTintColor.color.setFill()
-  bezierPath.fill()
-
-  let image = UIGraphicsGetImageFromCurrentImageContext()!
-  return image
-}
 
 func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
 
-  return createImage(borderColor:Asset.Colors.vlWarmTintColor.color,
+  return VivaButtonA.createImageForButton(borderColor:Asset.Colors.vlWarmTintColor.color,
                      borderWidth:0.5,
                      cornerRadius: 8,
-                     buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 50),
+                     buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 44),
                      backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
 }
 

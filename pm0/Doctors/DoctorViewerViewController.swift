@@ -65,6 +65,9 @@ class DoctorViewerViewController:UITableViewController{
   @IBOutlet weak var nameLabel:UILabel!
 
   @IBOutlet weak var drivingDirectionsButton:VivaButtonA!
+  @IBOutlet weak var faxHipaaButton :VivaButtonA!
+  @IBOutlet weak var faxMedLogButton:VivaButtonA!
+  @IBOutlet weak var faxPatientHistoryButton:VivaButtonA!
 
   @IBOutlet weak var faxLabel:UILabel!
   @IBOutlet weak var faxCell:UITableViewCell!
@@ -242,6 +245,11 @@ class DoctorViewerViewController:UITableViewController{
     guard let doctor = doctor else {
       return
     }
+
+    drivingDirectionsButton.setTitleColor(.black, for: .normal)
+    faxHipaaButton.setTitleColor(.black, for: .normal)
+    faxMedLogButton.setTitleColor(.black, for: .normal)
+    faxPatientHistoryButton.setTitleColor(.black, for: .normal)
 
     loadDoctor(doctor)
   }

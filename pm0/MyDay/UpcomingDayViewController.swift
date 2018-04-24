@@ -652,35 +652,19 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
     return emptyStateButtonText("Add Medication")
   }
 
-  func createImage(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
-    UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
-    backgroundColor.setFill()
-
-
-    let backgroundPath = UIBezierPath(rect: CGRect(origin:.zero, size:buttonSize))
-    Asset.Colors.vlCellBackgroundCommon.color.setFill()
-    backgroundPath.fill()
-
-    let bezierPath = UIBezierPath(roundedRect: CGRect(origin:.zero, size:buttonSize),
-                                  cornerRadius: cornerRadius)
-    Asset.Colors.vlWarmTintColor.color.setFill()
-    bezierPath.fill()
-
-    let image = UIGraphicsGetImageFromCurrentImageContext()!
-    return image
-  }
+  
   
   func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
 
-    return createImage(borderColor:Asset.Colors.vlWarmTintColor.color,
+    return VivaButtonA.createImageForButton(borderColor:Asset.Colors.vlWarmTintColor.color,
                        borderWidth:0.5,
                        cornerRadius: 8,
-                       buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 50),
+                       buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 44),
                        backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-    return emptyStateAttributedString("Your daily checklist of medications is shown here after you've added a medication to the app")
+    return emptyStateAttributedString("Add your medications to the app to see a checklist of what to take each day here.")
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
