@@ -383,9 +383,15 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   @IBOutlet weak var pharmacyLine: PrescriptionLineEntry!
   @IBOutlet weak var conditionLine: PrescriptionLineEntry!
 
+  @IBOutlet weak var nextButton:UIBarButtonItem!
 
-
-
+  func updateNextButton(){
+    guard let nameLength = nameLine.searchTextField?.text?.count,
+      let quantityLength = quantityLine?.searchTextField?.text?.count else{
+      return
+    }
+    nextButton.isEnabled = nameLength > 0 && quantityLength > 0
+  }
 
   @IBAction func doctorContactAddressButtonTapped(_ sender: Any) {
   }
@@ -506,6 +512,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   }
 
   func updatePillSizePopup(){
+    updateNextButton()
     self.unitLine.searchTextField.showLoadingIndicator()
 
     let search = nameLine.searchTextField.text ?? ""
@@ -531,7 +538,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   }
 
   func updateDrugsPopup(){
-
+    updateNextButton()
     nameLine.searchTextField.showLoadingIndicator()
 
     let search = nameLine.searchTextField.text ?? ""
@@ -579,6 +586,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   
   var helpInfo:NSAttributedString? = nil
   override func viewDidLoad() {
+    updateNextButton()
     if let rx = editRx {
       entryInfo = rx.editInfo
     }
@@ -612,7 +620,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
 
     configureSearchField(quantityLine.searchTextField)
-    quantityLine.searchTextField.userStoppedTypingHandler = {}
+    quantityLine.searchTextField.userStoppedTypingHandler = {self.updateNextButton()}
     quantityLine.helpInfo = RXEntryHelpText.quantityHelpText.renderMarkdownAsAttributedString
     quantityLine.helper = self
 

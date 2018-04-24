@@ -361,24 +361,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="e.g. John Doe" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-6B-iK7">
-                                <rect key="frame" x="36" y="143" width="339" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-6B-iK7">
+                                <rect key="frame" x="20" y="116" width="374" height="30"/>
                                 <color key="backgroundColor" name="vlDisabledButtonColor"/>
-                                <color key="textColor" name="vlTextColor"/>
+                                <color key="textColor" name="vlEditableFieldTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name on this Document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdo-9F-2jj">
-                                <rect key="frame" x="36" y="113" width="253" height="24"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient name on this document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdo-9F-2jj">
+                                <rect key="frame" x="20" y="84" width="268" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSD-2f-wXo">
-                                <rect key="frame" x="34" y="214.00000000000003" width="339" height="108.33333333333334"/>
-                                <string key="text">Your name is shown above as you last used it in this App. 
+                                <rect key="frame" x="20" y="166" width="374" height="130.33333333333337"/>
+                                <string key="text">You can change the name that will be shown on the document before sending it. 
 
-You can change it here before sending this document. </string>
+You likely do not need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -386,15 +386,14 @@ You can change it here before sending this document. </string>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
-                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="qVC-6B-iK7" secondAttribute="trailing" constant="39" id="6Su-Tm-YPD"/>
-                            <constraint firstItem="qVC-6B-iK7" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="36" id="F0O-LF-Rpq"/>
+                            <constraint firstItem="qVC-6B-iK7" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="20" id="F0O-LF-Rpq"/>
                             <constraint firstItem="BSD-2f-wXo" firstAttribute="width" secondItem="qVC-6B-iK7" secondAttribute="width" id="JhX-as-feD"/>
-                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="BSD-2f-wXo" secondAttribute="trailing" constant="41" id="K6E-yh-k0p"/>
-                            <constraint firstItem="rdo-9F-2jj" firstAttribute="top" secondItem="Nyw-bx-XiV" secondAttribute="top" constant="49" id="L09-7p-lGM"/>
+                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="BSD-2f-wXo" secondAttribute="trailing" constant="20" id="K6E-yh-k0p"/>
+                            <constraint firstItem="rdo-9F-2jj" firstAttribute="top" secondItem="Nyw-bx-XiV" secondAttribute="top" constant="20" id="L09-7p-lGM"/>
                             <constraint firstItem="rdo-9F-2jj" firstAttribute="leading" secondItem="qVC-6B-iK7" secondAttribute="leading" id="ZVg-lV-SGi"/>
-                            <constraint firstItem="BSD-2f-wXo" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="34" id="lW4-Up-YBt"/>
-                            <constraint firstItem="qVC-6B-iK7" firstAttribute="top" secondItem="rdo-9F-2jj" secondAttribute="bottom" constant="6" id="vAY-8B-NXW"/>
-                            <constraint firstItem="BSD-2f-wXo" firstAttribute="top" secondItem="qVC-6B-iK7" secondAttribute="bottom" constant="41" id="w5K-Pv-5NH"/>
+                            <constraint firstItem="BSD-2f-wXo" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="20" id="lW4-Up-YBt"/>
+                            <constraint firstItem="qVC-6B-iK7" firstAttribute="top" secondItem="rdo-9F-2jj" secondAttribute="bottom" constant="8" id="vAY-8B-NXW"/>
+                            <constraint firstItem="BSD-2f-wXo" firstAttribute="top" secondItem="qVC-6B-iK7" secondAttribute="bottom" constant="20" id="w5K-Pv-5NH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nyw-bx-XiV"/>
                     </view>
