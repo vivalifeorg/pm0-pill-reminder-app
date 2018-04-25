@@ -40,7 +40,7 @@ extension Array where Element == DocumentRef{
   }
 
   var singleDocumentWithMargin:PDFDocument {
-    let allPages = flatMap{PDFDocument(url: $0)}.map{$0.pages}.flatMap{$0}
+    let allPages = compactMap{PDFDocument(url: $0)}.flatMap{$0.pages}
     let doc = PDFDocument()
     allPages.forEach { (page) in
        doc.insert(page, at: doc.pageCount)

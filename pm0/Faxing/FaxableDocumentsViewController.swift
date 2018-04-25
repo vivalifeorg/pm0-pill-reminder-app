@@ -92,10 +92,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
   var pdfsToSend:[URL] = []
 
-  var medlog:String{
-    let medicationLog = LocalStorage.MedicationLogStore.load().map{"\($0.timestamp): \($0.eventType.rawValue) \($0.dosage.name) \($0.dosage.quantity)"}.joined(separator: "\n\n")
-    return medicationLog
-  }
+
 
 
 
@@ -104,17 +101,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   }
 
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == sendInfoFaxSegueIdentifier {
-    }else if segue.identifier == "showHelpVC"{
-      let medicationLog = medlog
-      let nav = segue.destination as! UINavigationController
-      let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(FaxableDocumentsViewController.cancelFax))
-      let helpVC = (nav.viewControllers.first! as! HelpViewController)
-      helpVC.helpText = NSAttributedString(string:medicationLog)
-      helpVC.navigationItem.leftBarButtonItem = cancelButton
-    }
-  }
+ 
 }
 
 protocol DocumentTopic{

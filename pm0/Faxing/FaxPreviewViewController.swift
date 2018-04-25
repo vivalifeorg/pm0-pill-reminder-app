@@ -53,14 +53,6 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
     withExtension: "pdf",
     subdirectory: nil,
     localization: nil)!
-  {
-    didSet{
-      guard isViewLoaded else{
-        return
-      }
-     // pdfView.document = PDFDocument.init(url: pdfURL)
-    }
-  }
 
 
   @IBOutlet weak var pdfView:PDFView!
