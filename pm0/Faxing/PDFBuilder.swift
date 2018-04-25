@@ -106,13 +106,14 @@ func removeMedication (dose:String, recordedTime:String, plannedTime:String, vie
 }
 
 
-func addStandardText(text body:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil) -> CGFloat{
+func addStandardText(text body:String, view:UIView, y offset:CGFloat, fontOverride:UIFont? = nil, textAlignment:NSTextAlignment = .left) -> CGFloat{
   let font = fontOverride ?? faxBodyFont
   let bodyHeight:CGFloat = body.height(withConstrainedWidth: standardFullWidth,
                                            font:font)
   let label = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: offset),
            size: CGSize(width:standardFullWidth, height: bodyHeight)))
+  label.textAlignment = textAlignment
   label.numberOfLines = 0
   label.font = font
   if debugBounding { label.showBlackBorder() }
@@ -188,9 +189,11 @@ func addHeader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
 
 func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPatient:String) -> DocumentRef {
 
-
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
+
+
+
 
   var runningVerticalOffset:CGFloat = topMargin
   runningVerticalOffset = addHeader("Cover Page", view: backgroundView, y: runningVerticalOffset)
@@ -226,11 +229,36 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
 
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
 
+  //warn the dr office to not assume return communication is secure
   runningVerticalOffset = addSubheader("Do not send a return fax to this number", view: backgroundView, y: runningVerticalOffset)
 
   runningVerticalOffset += standardVerticalSpace
+  runningVerticalOffset += standardVerticalSpace
+
+  //Add a link to the website of the app
+  let QRIconHeight:CGFloat = 50
+  let qrView = UIImageView(frame:
+    CGRect(origin:
+      CGPoint(x: (backgroundView.frame.size.width - QRIconHeight)/CGFloat(2),
+              y: runningVerticalOffset),
+           size: CGSize(
+            width:QRIconHeight,
+            height: QRIconHeight)))
+  qrView.image = Asset.Fax.qrCodeForCover.image
+  qrView.contentMode = .scaleAspectFit
+  backgroundView.addSubview(qrView)
+  runningVerticalOffset += QRIconHeight
+  runningVerticalOffset += 2
+
+  //add a note to make the office staff to feel safe to go to the QR code on their phone
+  runningVerticalOffset += addStandardText(text: "No Patient Data in QR Code", view: backgroundView, y: runningVerticalOffset, fontOverride: nil, textAlignment: .center)
+  runningVerticalOffset += standardVerticalSpace
+
+  //add a note stating this text is HIPAA related
+  runningVerticalOffset = addHipaaText(view: backgroundView, y: runningVerticalOffset)
 
 
+  // Place a branding icon in the top right corner (written last = written atop)
   let vivaLifeIconHeight:CGFloat = 50
   let iconView = UIImageView(frame:
     CGRect(origin:
@@ -243,35 +271,13 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   iconView.contentMode = .scaleAspectFit
   backgroundView.addSubview(iconView)
 
-  let qrView = UIImageView(frame:
-    CGRect(origin:
-      CGPoint(x: (backgroundView.frame.size.width - vivaLifeIconHeight)/CGFloat(2),
-              y: runningVerticalOffset),
-           size: CGSize(
-            width:vivaLifeIconHeight,
-            height: vivaLifeIconHeight)))
-  qrView.image = Asset.Fax.qrCodeForCover.image
-  qrView.contentMode = .scaleAspectFit
-  backgroundView.addSubview(qrView)
-  runningVerticalOffset += vivaLifeIconHeight + standardVerticalSpace
-
-  runningVerticalOffset = addHipaaText(view: backgroundView, y: runningVerticalOffset)
-
-  return fileOfPDFForView(backgroundView,fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
+  return fileOfPDFForViews([backgroundView],fileSuffix:"\(NSUUID().uuidString)-coverPage.pdf")
 }
 
+///Convert PDF to view
 func fileOfPDFForViews(_ views:[UIView],fileSuffix:String)->DocumentRef{
   let path = NSTemporaryDirectory().appending(fileSuffix)
   let dst = URL(fileURLWithPath: path)
-  // outputs as Data
-  do {
-    let data = try PDFGenerator.generated(by: views)
-    try! data.write(to: dst, options: .atomic)
-  } catch (let error) {
-    print(error)
-  }
-
-  // writes to Disk directly.
   do {
     try PDFGenerator.generate(views, to: dst)
   } catch (let error) {
@@ -281,10 +287,7 @@ func fileOfPDFForViews(_ views:[UIView],fileSuffix:String)->DocumentRef{
   return dst
 }
 
-func fileOfPDFForView(_ view:UIView,fileSuffix:String)->DocumentRef{
-  return fileOfPDFForViews([view],fileSuffix:fileSuffix)
-}
-
+//used to format some pages that indent
 extension String{
   func addingIndentation(_ n: Int) -> String{
     let indentation = String(repeating:" ", count:n)
@@ -292,6 +295,7 @@ extension String{
   }
 }
 
+///filters out address/title fluff on lines we should not output if the patient didn't enter them
 func omitIfAllWhitespace(_ s:String)->String{
   let labels = ["Phone", "Fax"]
   let detitledString = labels.reduce(s){$0.replacingOccurrences(of:$1, with:"")}
@@ -307,6 +311,7 @@ func omitIfAllWhitespace(_ s:String)->String{
 }
 
 extension DoctorInfo:DocumentTopic{
+  ///Turns doctors into addresses
   var topicText:String{
     let provider = self
     let providerText =
@@ -317,20 +322,29 @@ extension DoctorInfo:DocumentTopic{
     return providerText
   }
 }
+
+
 extension Array{
-func chunk(_ chunkSize: Int) -> [[Element]] {
-  return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -> [Element] in
-    let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ? self.count-startIndex : chunkSize
-    return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
-  })
-}
+///Used to paginate things, this finds discrete sized chunks
+  func chunk(_ chunkSize: Int) -> [[Element]] {
+    return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -> [Element] in
+      let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ?
+          self.count-startIndex :
+          chunkSize
+      return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
+    })
+  }
 }
 
-let noRestrictionsText = ["No additional restrictions"]
+/**
+ Generates a general HIPAA conscent form to allow the patient to allow
+    the doctor to use their data for operational purposes,
+    as well as share it among other care professionals.
+ */
 func hipaaConsentForm(doctors:[DocumentTopic],
                       patient:PatientInfo,
                       signatureInfo:SignatureInfo,
-                      restrictions:[String] = noRestrictionsText) -> DocumentRef {
+                      restrictions:[String] = ["No Restrictions Added by Patient"]) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
@@ -339,6 +353,7 @@ func hipaaConsentForm(doctors:[DocumentTopic],
   let title = "Patient Information Disclosure Consent Form"
   var runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
 
+  //This is parsed down from the documents provided by Hampton in Jan/Feb 2018 from Oconee Heath (sp?).
   let bodyText  =
   """
   This consent form goes over the Health Insurance Portability & Accountability Act of 1996, known as HIPAA. This law specifies how protected health information about you, \(patient.lastDocumentName), may be used and shared.
@@ -355,18 +370,17 @@ func hipaaConsentForm(doctors:[DocumentTopic],
   """
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
 
+  ///I am not sure we really need to have a restrictions section, but why not
   runningVerticalOffset = addSubheader("Restrictions", view: backgroundView, y: runningVerticalOffset)
   let allRestrictions = restrictions.map{
   """
     \("✔️ \($0)")
   """}.joined(separator: "\n")
-
-  let qualifiedRestrictions = restrictions.count > 0 ? allRestrictions : "No Restrictions Added by Patient"
-
-  runningVerticalOffset = addStandardText(text: qualifiedRestrictions,
+  runningVerticalOffset = addStandardText(text: allRestrictions,
                                           view: backgroundView,
                                           y: runningVerticalOffset)
 
+  ///Perhaps the title needs work
   runningVerticalOffset = addSubheader("Authorized Providers",
                                        view: backgroundView,
                                        y: runningVerticalOffset)
@@ -376,26 +390,17 @@ func hipaaConsentForm(doctors:[DocumentTopic],
 
   runningVerticalOffset = addStandardText(text: allProviderText, view: backgroundView, y: runningVerticalOffset)
 
-  let vivaLifeIconHeight:CGFloat = 273.0/4
-  let vivaIconStart = pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin)
-
-  let iconView = UIImageView(frame:
-    CGRect(origin:CGPoint(x:pageSize.width-vivaLifeIconHeight-(0.5 * horizontalMargin), y: pageSize.height-(vivaLifeIconHeight)-(0.5 * bottomMargin)),
-           size: CGSize(width:vivaLifeIconHeight, height: vivaLifeIconHeight)))
-  //iconView.image = UIImage(named:"linkToApp")!
-  iconView.contentMode = .scaleAspectFit
-  backgroundView.addSubview(iconView)
-
   let dateFormatter = DateFormatter()
   dateFormatter.dateStyle = .medium
   let signingDate = dateFormatter.string(from: Date())
+  //Document IDs are made up. Should eventually be tracked in a spreadsheet somewhere
   let signatureSuffixText =
   """
   Date: \(signingDate)
 
   DocumentId: \("VL-HIPAA-CONSENT-001-A")
   """
-
+  //Adds signature file and date signed.
   let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
   let signatureSuffixLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
@@ -408,11 +413,12 @@ func hipaaConsentForm(doctors:[DocumentTopic],
   runningVerticalOffset += signatureSuffixLabel.frame.size.height
   runningVerticalOffset += standardVerticalSpace/2
 
+  //Images are currently coming out at 335:150 on the iPhone x
   let signatureHeight:CGFloat = 50
   let signatureImageX = horizontalMargin * 1.25
   let signatureImageView = UIImageView(frame:
     CGRect(origin:CGPoint(x:signatureImageX, y: signatureSuffixLabel.frame.origin.y - (1.0 * signatureHeight) - standardVerticalSpace),
-           size: CGSize(width:116, height: signatureHeight)))
+           size: CGSize(width:CGFloat(335/3), height: signatureHeight)))
   signatureImageView.image = signatureInfo.image
   signatureImageView.contentMode = .scaleAspectFit
   signatureImageView.backgroundColor = .clear
@@ -431,11 +437,12 @@ func hipaaConsentForm(doctors:[DocumentTopic],
   signatureBufferView.isOpaque = false
   backgroundView.addSubview(signatureBufferView)
 
+  //This is a small drawing about the signature to call attention to it
   let signatureHeaderLabelText = "▼ Patient Signature (\(patient.lastDocumentName)) ▼ "
   let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
   let signatureHeaderLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin, y: signatureBufferView.frame.origin.y - signatureHeaderHeight - standardVerticalSpace),
-           size: CGSize(width:vivaIconStart-horizontalMargin, height: signatureHeaderHeight)))
+           size: CGSize(width:standardFullWidth, height: signatureHeaderHeight)))
   signatureHeaderLabel.minimumScaleFactor = 1.0
   signatureHeaderLabel.layer.borderWidth = 0
   signatureHeaderLabel.numberOfLines = 0
@@ -449,7 +456,7 @@ func hipaaConsentForm(doctors:[DocumentTopic],
 
 
 
-  return fileOfPDFForView(backgroundView, fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
+  return fileOfPDFForViews([backgroundView], fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
 }
 
 extension MedicationLogEvent{
