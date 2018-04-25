@@ -326,6 +326,14 @@ extension DoctorInfo:DocumentTopic{
 
 extension Array{
 ///Used to paginate things, this finds discrete sized chunks
+
+  func chunk(firstChunkSize:Int, otherChunkSize:Int) -> [[Element]]{
+    let firstChunk = first(n:firstChunkSize)
+    let rest = Array(dropFirst(firstChunkSize))
+    let chunks:[[Element]] = [firstChunk] + rest.chunk(otherChunkSize)
+    return chunks
+  }
+
   func chunk(_ chunkSize: Int) -> [[Element]] {
     return stride(from: 0, to: self.count, by: chunkSize).map({ (startIndex) -> [Element] in
       let endIndex = (startIndex.advanced(by: chunkSize) > self.count) ?
@@ -334,10 +342,6 @@ extension Array{
       return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
     })
   }
-}
-
-
-extension Array{
 
   func first(n:Int)->Array{
     if count > n{
@@ -346,6 +350,13 @@ extension Array{
     return self
   }
 }
+
+func newPage( backgroundView:inout UIView, viewList:inout [UIView], header:String)->CGFloat{
+  backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  viewList.append(backgroundView)
+  return addHeader(header, view: backgroundView, y: topMargin)
+}
+
 /**
  Generates a general HIPAA conscent form to allow the patient to allow
     the doctor to use their data for operational purposes,
@@ -401,22 +412,21 @@ func hipaaConsentForm(doctors:[DocumentTopic],
 
   //pagination
   var viewList = [backgroundView]
-  let entriesPerPage = 3
-  let firstPageThreshold = 2
-  let firstPage = dedupedDoctors.first(n:firstPageThreshold)
-  let rest = Array(dedupedDoctors.dropFirst(2))
-
-  let paginatedProvider:[[String]] = [firstPage] + rest.chunk(entriesPerPage)
+  let countOnFirstPage = 2
+  let countOnSubsequentPages = 3
+  let paginatedProvider:[[String]] =
+    dedupedDoctors.chunk(firstChunkSize:countOnFirstPage,
+                         otherChunkSize:countOnSubsequentPages)
   let pageCount = paginatedProvider.count
   for sheetIndex in 0..<pageCount{
       //we have multiple pages
 
     if sheetIndex != 0 {
         //make a new page
-      backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-      viewList.append(backgroundView)
       let title = "\(titleOfListOfDoctorsSection) (Continued)"
-      runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
+      runningVerticalOffset = newPage(backgroundView: &backgroundView,
+                                      viewList: &viewList,
+                                      header: title)
     }
 
     for medicalProvider in paginatedProvider[sheetIndex]{
@@ -507,6 +517,42 @@ extension MedicationLogEvent{
   }
 }
 
+
+func addFooter(view:inout UIView,leftText:String="",centerText:String="",rightText:String=""){
+
+  let labelWidth = (pageSize.width/3.0)-8.0
+  let leftFooterLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:horizontalMargin,
+                          y: pageSize.height-(leftText.heightEstimate + bottomMargin)),
+           size: CGSize(width:labelWidth,
+                        height: leftText.heightEstimate)))
+  leftFooterLabel.textAlignment = .left
+  leftFooterLabel.text = leftText
+
+  let centerFooterLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:pageSize.width/2-((pageSize.width/3)/2), y:
+      pageSize.height-(centerText.heightEstimate + bottomMargin)),
+           size: CGSize(width:labelWidth,
+                        height: centerText.heightEstimate)))
+  centerFooterLabel.textAlignment = .center
+  centerFooterLabel.text = centerText
+
+  let rightFooterLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x: pageSize.width-labelWidth-horizontalMargin,
+                          y: pageSize.height-(rightText.heightEstimate + bottomMargin)),
+           size: CGSize(width:labelWidth,
+                        height: rightText.heightEstimate)))
+  rightFooterLabel.textAlignment = .right
+  rightFooterLabel.text = rightText
+
+  [leftFooterLabel,centerFooterLabel,rightFooterLabel].forEach{ footerLabel in
+    footerLabel.numberOfLines = 0
+    footerLabel.font = faxBodyFont
+    if debugBounding { footerLabel.showBlackBorder() }
+    view.addSubview(footerLabel)
+  }
+}
+
 func medlogForm(events: [MedicationLogEvent],
                 patient:PatientInfo) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
@@ -528,28 +574,29 @@ func medlogForm(events: [MedicationLogEvent],
   These are provided for purposes of completeness.
 
   """
-  
   runningVerticalOffset = addStandardText(text: bodyText, view: backgroundView, y: runningVerticalOffset)
-  let entriesPerPage = 16
-  runningVerticalOffset = addSubheader("\(events.count) Total Entries [\(entriesPerPage) per page]", view: backgroundView, y: runningVerticalOffset)
+
 
   var viewList:[UIView] = [backgroundView]
   if events.count == 0 {
     runningVerticalOffset = addStandardText(text: "No medication log to report", view: backgroundView, y: runningVerticalOffset)
   }else{
-    //pagination
-    let eventSheets = events.chunk(entriesPerPage)
-    for sheetIndex in 0..<eventSheets.count{
-      //we have multiple pages
 
+    //pagination
+    let eventSheets = events.chunk(firstChunkSize:16, otherChunkSize: 20)
+    runningVerticalOffset = addSubheader("\(events.count) Total Entries: [\(eventSheets[0].count) entries on this page]", view: backgroundView, y: runningVerticalOffset)
+    for sheetIndex in 0..<eventSheets.count{
+
+      //different header for subsequent pages
       if sheetIndex != 0 {
-        //make a new page
-        backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-        viewList.append(backgroundView)
-        let title = "Patient Medication Log (Continued)"
-        runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
+        let title = "Patient Medication Log Continued: [\(eventSheets[sheetIndex].count) entries on this page]"
+        runningVerticalOffset = newPage(backgroundView: &backgroundView,
+                                        viewList: &viewList,
+                                        header: title)
       }
 
+      //we assume we have at least 1 entry for the page, because the chunking algorithm shouldn't
+        //have spit out a chunk otherwise
       runningVerticalOffset = addMedication(dose: "DOSAGE", recordedTime: "TIME RECORDED", plannedTime: "SCHEDULED TIME", view: backgroundView, y: runningVerticalOffset)
       eventSheets[sheetIndex].forEach{ entry in
         if entry.eventType == .markedMedicationTaken{
@@ -558,7 +605,7 @@ func medlogForm(events: [MedicationLogEvent],
                                               plannedTime: entry.sectionName,
                                               view: backgroundView,
                                               y: runningVerticalOffset)
-        }else if entry.eventType == .unmarkedMedicationTaken{
+        } else if entry.eventType == .unmarkedMedicationTaken {
           runningVerticalOffset = removeMedication(dose: entry.doseRendering,
                                                  recordedTime: entry.timeRendering,
                                                  plannedTime: entry.sectionName,
@@ -569,29 +616,12 @@ func medlogForm(events: [MedicationLogEvent],
     }
   }
 
-
   let dateFormatter = DateFormatter()
   dateFormatter.dateStyle = .medium
+  dateFormatter.timeStyle = .medium
   let signingDate = dateFormatter.string(from: Date())
   let documentId = "VL-MEDICATION-LOG-002-B"
-
-  let signatureSuffixText =
-  """
-  Date Generated: \(signingDate)
-
-  DocumentId: \(documentId)
-  """
-  let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
-  let signatureSuffixLabel = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
-           size: CGSize(width:232, height: signatureSuffixHeight)))
-  signatureSuffixLabel.numberOfLines = 0
-  signatureSuffixLabel.font = faxBodyFont
-  if debugBounding { signatureSuffixLabel.showBlackBorder() }
-  signatureSuffixLabel.text = signatureSuffixText
-  backgroundView.addSubview(signatureSuffixLabel)
-  runningVerticalOffset += signatureSuffixLabel.frame.size.height
-  runningVerticalOffset += standardVerticalSpace/2
+  addFooter(view:&backgroundView, leftText: "DocumentId: \(documentId)", rightText: "Exported \(signingDate)")
 
 
   return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
