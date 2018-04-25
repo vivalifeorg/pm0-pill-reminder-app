@@ -408,9 +408,11 @@
                     </navigationBar>
                     <connections>
                         <segue destination="FRw-9P-9ku" kind="relationship" relationship="rootViewController" id="WpB-5n-KgJ"/>
+                        <segue destination="V21-Ra-Lgk" kind="unwind" identifier="unwindFromFaxingAfterCancel" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="05C-Hf-vBt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyJ-zB-CsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="V21-Ra-Lgk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="610" y="971"/>
         </scene>
