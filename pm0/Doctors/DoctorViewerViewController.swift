@@ -192,8 +192,11 @@ class DoctorViewerViewController:UITableViewController{
     }
   }
 
-
   @IBAction func unwindFromFaxingAfterCancel(segue:UIStoryboardSegue){
+
+  }
+
+  @IBAction func unwindFromFaxingAfterSend(segue:UIStoryboardSegue){
 
   }
 
