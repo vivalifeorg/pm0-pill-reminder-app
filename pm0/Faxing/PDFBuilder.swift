@@ -357,6 +357,89 @@ func newPage( backgroundView:inout UIView, viewList:inout [UIView], header:Strin
   return addHeader(header, view: backgroundView, y: topMargin)
 }
 
+
+///Creates a signature block
+func signatureBlock(_ signatureInfo:SignatureInfo, patient:PatientInfo)->UIView{
+  let view=UIView()
+
+  var runningVerticalOffset:CGFloat = 0
+
+  //This is a small drawing above the signature to call attention to it
+  let signatureHeaderLabelText = "▼ Patient Signature (\(patient.lastDocumentName)) ▼ "
+  let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
+  let signatureHeaderLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:0, y: 0),
+           size: CGSize(width:standardFullWidth, height: signatureHeaderHeight)))
+  signatureHeaderLabel.minimumScaleFactor = 1.0
+  signatureHeaderLabel.layer.borderWidth = 0
+  signatureHeaderLabel.numberOfLines = 0
+  signatureHeaderLabel.font = faxBodyFont
+  if debugBounding { signatureHeaderLabel.showBlackBorder() }
+  signatureHeaderLabel.text = signatureHeaderLabelText
+  view.addSubview(signatureHeaderLabel)
+  runningVerticalOffset += signatureHeaderLabel.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
+  //Signature Images are currently coming out at 335:150 on the iPhone x
+  let signatureHeight:CGFloat = 50
+  let signatureImageX = horizontalMargin * 0.25
+  let signatureImageView = UIImageView(frame:
+    CGRect(origin:CGPoint(x:signatureImageX, y: runningVerticalOffset),
+           size: CGSize(width:CGFloat(335/3), height: signatureHeight)))
+  signatureImageView.image = signatureInfo.image
+  signatureImageView.contentMode = .scaleAspectFit
+  signatureImageView.backgroundColor = .clear
+  let buffer = standardVerticalSpace/2
+  var frame = signatureImageView.frame
+  frame.origin.x -= buffer
+  frame.origin.y -= buffer
+  frame.size.width += buffer * 2
+  frame.size.height += buffer * 2
+  let signatureBufferView = UIView(frame: frame)
+  signatureBufferView.layer.borderWidth = 0.25
+  signatureBufferView.layer.borderColor = UIColor.black.cgColor
+  signatureBufferView.addSubview(signatureImageView)
+  signatureImageView.frame = CGRect(origin:CGPoint(x:buffer, y:buffer),size:signatureImageView.frame.size)
+  signatureBufferView.backgroundColor = .clear
+  signatureBufferView.isOpaque = false
+  view.addSubview(signatureBufferView)
+  runningVerticalOffset += signatureBufferView.bounds.size.height
+
+
+  let signatureDateFormatter = DateFormatter()
+  signatureDateFormatter.dateStyle = .medium
+  let signingDate = signatureDateFormatter.string(from: Date())
+
+  let signatureSuffixText = "Signed: \(signingDate)\n \n \n \n"
+  //Adds signature file and date signed.
+  let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
+  let signatureSuffixLabel = UILabel(frameForPDF:
+    CGRect(origin:CGPoint(x:0, y: runningVerticalOffset),
+           size: CGSize(width: signatureBufferView.bounds.width, height: signatureSuffixHeight)))
+  signatureSuffixLabel.numberOfLines = 0
+  signatureSuffixLabel.font = faxBodyFont
+  if debugBounding { signatureSuffixLabel.showBlackBorder() }
+  signatureSuffixLabel.text = signatureSuffixText
+  view.addSubview(signatureSuffixLabel)
+  runningVerticalOffset += signatureSuffixLabel.frame.size.height
+  runningVerticalOffset += standardVerticalSpace/2
+
+
+  let width = view.subviews.map{
+      $0.frame.size.width+$0.frame.origin.x
+    }.reduce(CGFloat(0)){ (lhs:CGFloat,rhs:CGFloat) in
+        max(lhs,rhs)
+    }
+  let height = view.subviews.map{
+    $0.frame.size.height+$0.frame.origin.y
+    }.reduce(CGFloat(0)){ (lhs:CGFloat,rhs:CGFloat) in
+      max(lhs,rhs)
+  }
+  view.frame = CGRect(origin:CGPoint(x:0,y:0),
+                      size:CGSize(width:width, height:height))
+  return view
+}
+
 /**
  Generates a general HIPAA conscent form to allow the patient to allow
     the doctor to use their data for operational purposes,
@@ -433,74 +516,24 @@ func hipaaConsentForm(doctors:[DocumentTopic],
       runningVerticalOffset = addStandardText(text: medicalProvider, view: backgroundView, y: runningVerticalOffset, fontOverride: nil, textAlignment: .left)
     }
   }
+  runningVerticalOffset += standardVerticalSpace
 
-  let dateFormatter = DateFormatter()
-  dateFormatter.dateStyle = .medium
-  let signingDate = dateFormatter.string(from: Date())
-  //Document IDs are made up. Should eventually be tracked in a spreadsheet somewhere
-  let signatureSuffixText =
-  """
-  Date: \(signingDate)
+  //Add the signature, ensure it doesn't go past margin by making a new page if so
+  let sigBlock = signatureBlock(signatureInfo, patient: patient)
+  let sigBlockSpace = (runningVerticalOffset + sigBlock.bounds.size.height + standardVerticalSpace)
+  if sigBlockSpace > pageSize.height - bottomMargin {
+    runningVerticalOffset = newPage(backgroundView: &backgroundView, viewList: &viewList, header: "")
+  }
+  sigBlock.frame = CGRect(origin: CGPoint(x:horizontalMargin,
+                                          y:runningVerticalOffset),
+                          size: sigBlock.bounds.size)
+  backgroundView.addSubview(sigBlock)
+  runningVerticalOffset += sigBlock.bounds.size.height
+  runningVerticalOffset += standardVerticalSpace
 
-  DocumentId: \("VL-HIPAA-CONSENT-001-A")
-  """
-  //Adds signature file and date signed.
-  let signatureSuffixHeight:CGFloat = signatureSuffixText.heightEstimate
-  let signatureSuffixLabel = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: pageSize.height-(signatureSuffixHeight + bottomMargin)),
-           size: CGSize(width:232, height: signatureSuffixHeight)))
-  signatureSuffixLabel.numberOfLines = 0
-  signatureSuffixLabel.font = faxBodyFont
-  if debugBounding { signatureSuffixLabel.showBlackBorder() }
-  signatureSuffixLabel.text = signatureSuffixText
-  backgroundView.addSubview(signatureSuffixLabel)
-  runningVerticalOffset += signatureSuffixLabel.frame.size.height
-  runningVerticalOffset += standardVerticalSpace/2
-
-  //Images are currently coming out at 335:150 on the iPhone x
-  let signatureHeight:CGFloat = 50
-  let signatureImageX = horizontalMargin * 1.25
-  let signatureImageView = UIImageView(frame:
-    CGRect(origin:CGPoint(x:signatureImageX, y: signatureSuffixLabel.frame.origin.y - (1.0 * signatureHeight) - standardVerticalSpace),
-           size: CGSize(width:CGFloat(335/3), height: signatureHeight)))
-  signatureImageView.image = signatureInfo.image
-  signatureImageView.contentMode = .scaleAspectFit
-  signatureImageView.backgroundColor = .clear
-  let buffer = standardVerticalSpace/2
-  var frame = signatureImageView.frame
-  frame.origin.x -= buffer
-  frame.origin.y -= buffer
-  frame.size.width += buffer * 2
-  frame.size.height += buffer * 2
-  let signatureBufferView = UIView(frame: frame)
-  signatureBufferView.layer.borderWidth = 0.25
-  signatureBufferView.layer.borderColor = UIColor.black.cgColor
-  signatureBufferView.addSubview(signatureImageView)
-  signatureImageView.frame = CGRect(origin:CGPoint(x:buffer, y:buffer),size:signatureImageView.frame.size)
-  signatureBufferView.backgroundColor = .clear
-  signatureBufferView.isOpaque = false
-  backgroundView.addSubview(signatureBufferView)
-
-  //This is a small drawing about the signature to call attention to it
-  let signatureHeaderLabelText = "▼ Patient Signature (\(patient.lastDocumentName)) ▼ "
-  let signatureHeaderHeight:CGFloat = signatureHeaderLabelText.heightEstimate
-  let signatureHeaderLabel = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:horizontalMargin, y: signatureBufferView.frame.origin.y - signatureHeaderHeight - standardVerticalSpace),
-           size: CGSize(width:standardFullWidth, height: signatureHeaderHeight)))
-  signatureHeaderLabel.minimumScaleFactor = 1.0
-  signatureHeaderLabel.layer.borderWidth = 0
-  signatureHeaderLabel.numberOfLines = 0
-  signatureHeaderLabel.font = faxBodyFont
-  if debugBounding { signatureHeaderLabel.showBlackBorder() }
-  signatureHeaderLabel.text = signatureHeaderLabelText
-  backgroundView.addSubview(signatureHeaderLabel)
-  runningVerticalOffset += signatureHeaderLabel.frame.size.height
-  runningVerticalOffset += standardVerticalSpace/2
-
-
-
-
-  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
+  let documentId = "VL-HIPAA-RELEASE-000001-A"
+  addStandardFooters(viewList: viewList, documentId: documentId )
+  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
 }
 
 extension MedicationLogEvent{
@@ -521,17 +554,19 @@ extension MedicationLogEvent{
 func addFooter(view:inout UIView,leftText:String="",centerText:String="",rightText:String=""){
 
   let labelWidth = (pageSize.width/3.0)-8.0
+  let labelTop = pageSize.height-bottomMargin+2.0
+
   let leftFooterLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin,
-                          y: pageSize.height-(leftText.heightEstimate + bottomMargin)),
+                          y:labelTop),
            size: CGSize(width:labelWidth,
                         height: leftText.heightEstimate)))
   leftFooterLabel.textAlignment = .left
   leftFooterLabel.text = leftText
 
+
   let centerFooterLabel = UILabel(frameForPDF:
-    CGRect(origin:CGPoint(x:pageSize.width/2-((pageSize.width/3)/2), y:
-      pageSize.height-(centerText.heightEstimate + bottomMargin)),
+    CGRect(origin:CGPoint(x:pageSize.width/2-((pageSize.width/3)/2), y:labelTop),
            size: CGSize(width:labelWidth,
                         height: centerText.heightEstimate)))
   centerFooterLabel.textAlignment = .center
@@ -539,7 +574,7 @@ func addFooter(view:inout UIView,leftText:String="",centerText:String="",rightTe
 
   let rightFooterLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x: pageSize.width-labelWidth-horizontalMargin,
-                          y: pageSize.height-(rightText.heightEstimate + bottomMargin)),
+                          y: labelTop),
            size: CGSize(width:labelWidth,
                         height: rightText.heightEstimate)))
   rightFooterLabel.textAlignment = .right
@@ -616,13 +651,28 @@ func medlogForm(events: [MedicationLogEvent],
     }
   }
 
+
+  let documentId = "VL-MEDICATION-LOG-000002-B"
+  addStandardFooters(viewList: viewList, documentId: documentId )
+  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
+}
+
+//adds footers to bottom of inner documents, counts pages per document
+func addStandardFooters(viewList:[UIView], documentId:String){
+  let exportDate = footerDateFormatter.string(from: Date())
+  for pageIndex in 0..<viewList.count {
+    var page = viewList[pageIndex]
+    let pageNumber = pageIndex + 1
+    addFooter(view:&page,
+              leftText: "DocumentId: \(documentId)",
+      centerText: "Page \(pageNumber)/\(viewList.count)",
+      rightText: "Exported \(exportDate)")
+  }
+}
+
+fileprivate let footerDateFormatter:DateFormatter={
   let dateFormatter = DateFormatter()
   dateFormatter.dateStyle = .medium
   dateFormatter.timeStyle = .medium
-  let signingDate = dateFormatter.string(from: Date())
-  let documentId = "VL-MEDICATION-LOG-002-B"
-  addFooter(view:&backgroundView, leftText: "DocumentId: \(documentId)", rightText: "Exported \(signingDate)")
-
-
-  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-\(documentId).pdf")
-}
+  return dateFormatter
+}()
