@@ -10,7 +10,7 @@ import Foundation
 import PDFGenerator
 
 struct FaxSizes{
-  static let hyperFine = CGSize(width:391.0,height:408.0)
+  static let hyperFine = CGSize(width:391.0,height:408.0) //standard size in 2018
   static let fine = CGSize(width:196.0, height:204.0)
 }
 
@@ -34,8 +34,11 @@ extension UILabel{
 }
 
 
+//one of the few fax friendly typefaces on the iPhone
 let faxBoldFontFaceName = "TrebuchetMS-Bold"
 let faxPlainFontFaceName = "TrebuchetMS"
+
+//These are somewhat winged
 let faxBodyFontSize = 6
 let faxHeaderFontSize = 12
 let faxSubHeaderFontSize = 10
@@ -138,6 +141,7 @@ func addHipaaText(view:UIView, y offset:CGFloat) -> CGFloat{
   return addStandardText(text: body, view: view, y: y)
 }
 
+//These are roughtly "What looks good" and looks alright once faxed on a crappy machine
 let horizontalMargin:CGFloat = 25 //CGFloat(3 * faxHeaderFontSize)
 let topMargin:CGFloat = 25
 let bottomMargin:CGFloat = 25
@@ -198,6 +202,7 @@ func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPat
   var runningVerticalOffset:CGFloat = topMargin
   runningVerticalOffset = addHeader("Cover Page", view: backgroundView, y: runningVerticalOffset)
 
+  //The uppercase A is intentional
   let appBannerInfo = "VivALife: https://www.vivalife.care"
   let bodyText  =
   """
@@ -325,7 +330,7 @@ extension DoctorInfo:DocumentTopic{
 
 
 extension Array{
-///Used to paginate things, this finds discrete sized chunks
+///Used to paginate things, this finds discrete sized chunks of collections
 
   func chunk(firstChunkSize:Int, otherChunkSize:Int) -> [[Element]]{
     let firstChunk = first(n:firstChunkSize)
@@ -351,6 +356,7 @@ extension Array{
   }
 }
 
+///Advances to the next page
 func newPage( backgroundView:inout UIView, viewList:inout [UIView], header:String)->CGFloat{
   backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   viewList.append(backgroundView)
@@ -551,10 +557,11 @@ extension MedicationLogEvent{
 }
 
 
+///Stamps a footer on the bottom of the document page
 func addFooter(view:inout UIView,leftText:String="",centerText:String="",rightText:String=""){
 
   let labelWidth = (pageSize.width/3.0)-8.0
-  let labelTop = pageSize.height-bottomMargin+2.0
+  let labelTop = pageSize.height-bottomMargin+2.0 //In the bottom margin
 
   let leftFooterLabel = UILabel(frameForPDF:
     CGRect(origin:CGPoint(x:horizontalMargin,
