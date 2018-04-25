@@ -336,6 +336,16 @@ extension Array{
   }
 }
 
+
+extension Array{
+
+  func first(n:Int)->Array{
+    if count > n{
+      return Array<Element>(dropLast(count-n))
+    }
+    return self
+  }
+}
 /**
  Generates a general HIPAA conscent form to allow the patient to allow
     the doctor to use their data for operational purposes,
@@ -347,7 +357,7 @@ func hipaaConsentForm(doctors:[DocumentTopic],
                       restrictions:[String] = ["No Restrictions Added by Patient"]) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
-  let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+  var backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
   backgroundView.backgroundColor = VLColors.faxBackgroundColor
 
   let title = "Patient Information Disclosure Consent Form"
@@ -381,14 +391,38 @@ func hipaaConsentForm(doctors:[DocumentTopic],
                                           y: runningVerticalOffset)
 
   ///Perhaps the title needs work
-  runningVerticalOffset = addSubheader("Authorized Providers",
+  let titleOfListOfDoctorsSection = "Authorized Providers"
+  runningVerticalOffset = addSubheader(titleOfListOfDoctorsSection,
                                        view: backgroundView,
                                        y: runningVerticalOffset)
 
   let dedupedDoctors = Array(Set(doctors.map{$0.topicText}))
-  let allProviderText:String = dedupedDoctors.joined()
 
-  runningVerticalOffset = addStandardText(text: allProviderText, view: backgroundView, y: runningVerticalOffset)
+
+  //pagination
+  var viewList = [backgroundView]
+  let entriesPerPage = 3
+  let firstPageThreshold = 2
+  let firstPage = dedupedDoctors.first(n:firstPageThreshold)
+  let rest = Array(dedupedDoctors.dropFirst(2))
+
+  let paginatedProvider:[[String]] = [firstPage] + rest.chunk(entriesPerPage)
+  let pageCount = paginatedProvider.count
+  for sheetIndex in 0..<pageCount{
+      //we have multiple pages
+
+    if sheetIndex != 0 {
+        //make a new page
+      backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
+      viewList.append(backgroundView)
+      let title = "\(titleOfListOfDoctorsSection) (Continued)"
+      runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
+    }
+
+    for medicalProvider in paginatedProvider[sheetIndex]{
+      runningVerticalOffset = addStandardText(text: medicalProvider, view: backgroundView, y: runningVerticalOffset, fontOverride: nil, textAlignment: .left)
+    }
+  }
 
   let dateFormatter = DateFormatter()
   dateFormatter.dateStyle = .medium
@@ -456,7 +490,7 @@ func hipaaConsentForm(doctors:[DocumentTopic],
 
 
 
-  return fileOfPDFForViews([backgroundView], fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
+  return fileOfPDFForViews(viewList, fileSuffix: "\(NSUUID().uuidString)-hipaaReleaseDoc.pdf")
 }
 
 extension MedicationLogEvent{
