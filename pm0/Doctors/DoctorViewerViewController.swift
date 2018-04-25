@@ -67,7 +67,7 @@ class DoctorViewerViewController:UITableViewController{
   @IBOutlet weak var drivingDirectionsButton:VivaButtonA!
   @IBOutlet weak var faxHipaaButton :VivaButtonA!
   @IBOutlet weak var faxMedLogButton:VivaButtonA!
-  @IBOutlet weak var faxPatientHistoryButton:VivaButtonA!
+ // @IBOutlet weak var faxPatientHistoryButton:VivaButtonA!
 
   @IBOutlet weak var faxLabel:UILabel!
   @IBOutlet weak var faxCell:UITableViewCell!
@@ -152,6 +152,17 @@ class DoctorViewerViewController:UITableViewController{
       editor.doctor = doctor!
 
     case "sendHipaaReleaseFromDoctorViewer":
+      let nav = segue.destination as! UINavigationController
+
+      let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))
+
+      var dataFrom = nav.viewControllers.first! as! SendableDocumentMetadata & UIViewController
+      dataFrom.navigationItem.leftBarButtonItem = cancelButton
+      dataFrom.sendableDocumentDestinations = [doctor!].map{
+        DocumentDestination(name:$0.name, value:$0.fax.number)
+      }
+
+    case "sendMedlogFromDoctorViewer":
       let nav = segue.destination as! UINavigationController
 
       let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))
@@ -249,7 +260,7 @@ class DoctorViewerViewController:UITableViewController{
     drivingDirectionsButton.setTitleColor(.black, for: .normal)
     faxHipaaButton.setTitleColor(.black, for: .normal)
     faxMedLogButton.setTitleColor(.black, for: .normal)
-    faxPatientHistoryButton.setTitleColor(.black, for: .normal)
+    //faxPatientHistoryButton.setTitleColor(.black, for: .normal)
 
     loadDoctor(doctor)
   }

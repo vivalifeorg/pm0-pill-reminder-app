@@ -433,7 +433,7 @@ You likely do not need to change this. It is primarily for people taking care of
         <!--Verify Name-->
         <scene sceneID="m5R-c1-IcT">
             <objects>
-                <viewController id="r1e-tv-ipO" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NameScreenInMedlog" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r1e-tv-ipO" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYe-7b-iKi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

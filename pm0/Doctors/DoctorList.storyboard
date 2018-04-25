@@ -320,29 +320,11 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="notImplementedTapped:" destination="jTf-49-tD4" eventType="touchUpInside" id="9mg-fi-2Zb"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XnW-gD-T4p" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="196.5" y="20" width="168.5" height="44"/>
-                                                    <color key="backgroundColor" name="vlWarmTintColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="Sdb-ha-3ze"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                    <color key="tintColor" name="vlWarmTintColor"/>
-                                                    <state key="normal" title="Fax: Patient History">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="notImplementedTapped:" destination="jTf-49-tD4" eventType="touchUpInside" id="jMa-Yb-7ue"/>
+                                                        <segue destination="9hF-eD-7S8" kind="show" identifier="sendMedlogFromDoctorViewer" id="Ym4-6m-gKA"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="smL-co-8ki" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="20" width="168.5" height="44"/>
+                                                    <rect key="frame" x="20" y="20" width="345" height="44"/>
                                                     <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="6aE-86-o5H"/>
@@ -368,12 +350,9 @@
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="gfp-Em-hAq" secondAttribute="bottom" constant="3" id="0e8-in-ZgA"/>
                                                 <constraint firstItem="gfp-Em-hAq" firstAttribute="leading" secondItem="zcq-Sl-6gO" secondAttribute="leading" constant="20" id="IrO-w6-kcS"/>
                                                 <constraint firstItem="smL-co-8ki" firstAttribute="leading" secondItem="zcq-Sl-6gO" secondAttribute="leading" constant="20" id="M7p-AN-Kz8"/>
-                                                <constraint firstItem="XnW-gD-T4p" firstAttribute="leading" secondItem="smL-co-8ki" secondAttribute="trailing" constant="8" id="RAN-AA-Twy"/>
                                                 <constraint firstItem="gfp-Em-hAq" firstAttribute="top" secondItem="smL-co-8ki" secondAttribute="bottom" constant="8" id="SAl-uR-d5U"/>
-                                                <constraint firstItem="smL-co-8ki" firstAttribute="width" secondItem="XnW-gD-T4p" secondAttribute="width" id="SKh-UX-fap"/>
-                                                <constraint firstItem="smL-co-8ki" firstAttribute="top" secondItem="XnW-gD-T4p" secondAttribute="top" id="Ysh-44-F0S"/>
-                                                <constraint firstAttribute="trailing" secondItem="XnW-gD-T4p" secondAttribute="trailing" constant="10" id="co1-OB-OU1"/>
                                                 <constraint firstAttribute="trailing" secondItem="gfp-Em-hAq" secondAttribute="trailing" constant="10" id="fCe-IX-22n"/>
+                                                <constraint firstItem="smL-co-8ki" firstAttribute="width" secondItem="gfp-Em-hAq" secondAttribute="width" id="ms3-Jw-kXe"/>
                                                 <constraint firstItem="smL-co-8ki" firstAttribute="top" secondItem="zcq-Sl-6gO" secondAttribute="top" constant="20" id="wYp-fZ-mZD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -406,7 +385,6 @@
                         <outlet property="faxHipaaButton" destination="smL-co-8ki" id="LFZ-V3-ZdN"/>
                         <outlet property="faxLabel" destination="kY4-Ek-jop" id="0eM-Ny-LJT"/>
                         <outlet property="faxMedLogButton" destination="gfp-Em-hAq" id="FSX-Wh-dbh"/>
-                        <outlet property="faxPatientHistoryButton" destination="XnW-gD-T4p" id="IAn-5e-m9W"/>
                         <outlet property="map" destination="7Yi-nm-dos" id="pCp-Di-4TC"/>
                         <outlet property="mapCell" destination="Mgj-D9-c6n" id="LSy-lw-2EC"/>
                         <outlet property="nameLabel" destination="aEC-k5-6L5" id="PDO-CP-vTU"/>
@@ -418,7 +396,23 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMb-mc-fTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="47"/>
+            <point key="canvasLocation" x="536.79999999999995" y="46.326836581709152"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Bg-Px-gqp">
+            <objects>
+                <navigationController id="9hF-eD-7S8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="szV-ZS-gTe">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FRw-9P-9ku" kind="relationship" relationship="rootViewController" id="WpB-5n-KgJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyJ-zB-CsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="610" y="971"/>
         </scene>
         <!--DataFromScreen-->
         <scene sceneID="szj-7L-FoO">
@@ -429,6 +423,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7NC-Da-As6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1504" y="919"/>
+        </scene>
+        <!--NameScreenInMedlog-->
+        <scene sceneID="PAK-6a-pbf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FaxableDocuments" referencedIdentifier="NameScreenInMedlog" id="FRw-9P-9ku" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="AdU-Sy-0On"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oev-eU-AA6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428" y="1016"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I25-os-PsV">
