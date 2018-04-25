@@ -428,7 +428,66 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2686" y="-563"/>
+            <point key="canvasLocation" x="2707" y="-562"/>
+        </scene>
+        <!--Verify Name-->
+        <scene sceneID="m5R-c1-IcT">
+            <objects>
+                <viewController id="r1e-tv-ipO" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AYe-7b-iKi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IZT-YX-be0">
+                                <rect key="frame" x="20" y="168" width="374" height="30"/>
+                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                <color key="textColor" name="vlEditableFieldTextColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient name on this document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-Lx-Dhi">
+                                <rect key="frame" x="20" y="136" width="268" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WC-Jm-9Ec">
+                                <rect key="frame" x="20" y="218" width="374" height="130.33333333333337"/>
+                                <string key="text">You can change the name that will be shown on the document before sending it. 
+
+You likely do not need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <constraints>
+                            <constraint firstItem="bLh-Ko-n51" firstAttribute="trailing" secondItem="1WC-Jm-9Ec" secondAttribute="trailing" constant="20" id="4SY-ho-w0r"/>
+                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="width" secondItem="IZT-YX-be0" secondAttribute="width" id="Gmy-Zv-lWb"/>
+                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="leading" secondItem="bLh-Ko-n51" secondAttribute="leading" constant="20" id="OuN-KW-Zyy"/>
+                            <constraint firstItem="IZT-YX-be0" firstAttribute="top" secondItem="aDH-Lx-Dhi" secondAttribute="bottom" constant="8" id="Q2r-lQ-cJo"/>
+                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="top" secondItem="IZT-YX-be0" secondAttribute="bottom" constant="20" id="YNW-bY-ASw"/>
+                            <constraint firstItem="IZT-YX-be0" firstAttribute="leading" secondItem="bLh-Ko-n51" secondAttribute="leading" constant="20" id="gWz-3X-fHb"/>
+                            <constraint firstItem="aDH-Lx-Dhi" firstAttribute="leading" secondItem="IZT-YX-be0" secondAttribute="leading" id="hXg-o4-gnI"/>
+                            <constraint firstItem="aDH-Lx-Dhi" firstAttribute="top" secondItem="bLh-Ko-n51" secondAttribute="top" constant="20" id="k0X-yH-BUu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bLh-Ko-n51"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Verify Name" id="stZ-rH-hYw">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="XYl-k0-fDm">
+                            <connections>
+                                <segue destination="fBp-wX-Rmo" kind="show" id="sPS-Pt-Xdx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="IZT-YX-be0" id="byP-BK-gtQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Te-Ib-Ilb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="127"/>
         </scene>
         <!--Preview-->
         <scene sceneID="5qa-un-AyZ">
@@ -685,7 +744,7 @@ You likely do not need to change this. It is primarily for people taking care of
                         <barButtonItem key="rightBarButtonItem" title="Next" id="J46-VT-Umk" userLabel="Next">
                             <color key="tintColor" name="vlWarmTintColor"/>
                             <connections>
-                                <segue destination="fBp-wX-Rmo" kind="show" id="1Z3-Tl-N0J"/>
+                                <segue destination="r1e-tv-ipO" kind="show" id="zWm-0p-AO1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -752,7 +811,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLA-0o-OcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2051" y="134"/>
+            <point key="canvasLocation" x="2657" y="125"/>
         </scene>
         <!--DoctorEntryViewController-->
         <scene sceneID="NUA-f7-DZS">
@@ -768,14 +827,26 @@ You likely do not need to change this. It is primarily for people taking care of
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlDisabledButtonColor">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlDisabledButtonColor">
+            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlEditableFieldTextColor">
             <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlEditableFieldTextColor">
+            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlTextBackgroundAreaColor">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
