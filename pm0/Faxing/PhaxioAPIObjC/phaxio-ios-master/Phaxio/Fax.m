@@ -45,6 +45,7 @@
     return self;
 }
 
+
 -(void)send
 {
     [self sendWithBatchDelay:nil batchCollisionAvoidance:nil callbackUrl:nil cancelTimeout:nil tag:nil tagValue:nil callerId:nil testFail:nil];
@@ -127,9 +128,11 @@
         [parameters setValue:[NSString stringWithFormat:@"%ld", *cancel_timeout] forKey:@"cancel_timeout"];
     }
     
-    if (tag != nil && ![tag isEqualToString:@""])
+    if (tag != nil && ![tag isEqualToString:@""] &&
+        tag_value != nil && ![tag_value isEqualToString:@""])
     {
-        [parameters setValue:tag forKey:@"tag"];
+        NSString* tagKey = [NSString stringWithFormat:@"tag[%@]",tag];
+        [parameters setValue:tag_value forKey:tagKey];
     }
     
     if (caller_id != nil && ![caller_id isEqualToString:@""])

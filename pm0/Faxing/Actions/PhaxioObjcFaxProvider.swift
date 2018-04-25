@@ -22,6 +22,25 @@ func mimeTypeName(_ filename:String)->String{
   }
 }
 
+struct Platform {
+  static var isSimulator: Bool {
+    return TARGET_OS_SIMULATOR != 0
+  }
+}
+
+func userIdentifierV1()->String{
+
+  let doctorName = "WEIVER_".reversed()
+  if Platform.isSimulator{
+    return "*Simulator*"
+  }
+
+  guard let identifier = UIDevice.current.identifierForVendor else {
+    return "*UNKNOWN_DEVICE_TYPE\(doctorName)*"
+  }
+
+  return identifier.description
+}
 
 let phaxioObjcFaxService = FaxService(provider: PhaxioObjcFaxProvider())
 class PhaxioObjcFaxProvider:FaxServiceProvider{
@@ -43,7 +62,15 @@ class PhaxioObjcFaxProvider:FaxServiceProvider{
       return FaxFile(data:data, name:shortFilename, mimeTypeName:mimeType)
     }
     self.completion = completion
-    fax.send()
+    //-(void)sendWithBatchDelay:(NSInteger*)batch_delay batchCollisionAvoidance:(BOOL) batch_collision_avoidance callbackUrl:(NSString*)callback_url cancelTimeout:(NSInteger*)cancel_timeout tag:(NSString*)tag tagValue:(NSString*)tag_value callerId:(NSString*)caller_id testFail:(NSString*)test_fail;
+    fax.send(withBatchDelay: nil,
+             batchCollisionAvoidance: false,
+             callbackUrl: nil,
+             cancelTimeout: nil,
+             tag: "userIdentifierV1",
+             tagValue: userIdentifierV1(),
+             callerId: nil,
+             testFail: nil)
   }
 
   let apiDelegate: PhaxioObjcApiDelegate

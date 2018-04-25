@@ -79,8 +79,17 @@ struct FaxService{
   static func fetchFaxCredentials(toNumber:String,
                                   documentPaths:[DocumentRef],
                                   completion:@escaping (Bool, String, FaxService.Credentials?, FaxService.OtherSenderInfo?)->()){
+
+
+    let encoded = Bundle.main.appStoreReceiptURL.flatMap{
+      (try? Data.init(contentsOf: $0))?.base64EncodedData(options:NSData.Base64EncodingOptions.endLineWithCarriageReturn)
+    }
+
+
     let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
-    let task = URLSession.shared.dataTask(with: URL(string:faxEndpoint)!) { (data, response, error) in
+    var request = URLRequest(url: URL(string:faxEndpoint)!)
+    request.httpBody = encoded
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
       guard let data = data else{
         if let error = error {
