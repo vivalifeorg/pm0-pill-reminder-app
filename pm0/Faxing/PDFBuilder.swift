@@ -671,7 +671,7 @@ func addStandardFooters(viewList:[UIView], documentId:String){
     var page = viewList[pageIndex]
     let pageNumber = pageIndex + 1
     addFooter(view:&page,
-              leftText: "DocumentId: \(documentId)",
+              leftText: "\(documentId)",
       centerText: "Page \(pageNumber)/\(viewList.count)",
       rightText: "Exported \(exportDate)")
   }
