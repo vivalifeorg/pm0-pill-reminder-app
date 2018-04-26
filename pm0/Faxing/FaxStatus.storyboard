@@ -100,7 +100,7 @@
                     <size key="freeformSize" width="320" height="512"/>
                     <connections>
                         <outlet property="faxIcon" destination="3ZD-Ie-EYJ" id="Szk-xy-fnz"/>
-                        <outlet property="faxLeadingSpace" destination="95a-8r-v5M" id="U09-gP-N0a"/>
+                        <outlet property="faxLeadingSpace" destination="95a-8r-v5M" id="OqG-sy-N9N"/>
                         <outlet property="medLogo" destination="VYz-AL-lIh" id="Awn-OY-L7V"/>
                         <outlet property="vivaLogo" destination="ZV0-Nm-wDf" id="i9p-Xc-4rQ"/>
                     </connections>

@@ -32,7 +32,7 @@ class FaxStatusViewController:UIViewController{
                    delay: 0.5,
                    options: [.repeat],
                    animations: { self.animateStep()},
-                   completion: nil)
+                   completion: { _ in self.resetAnimation()})
 
   }
 
