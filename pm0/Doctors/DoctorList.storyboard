@@ -426,10 +426,10 @@
             </objects>
             <point key="canvasLocation" x="1504" y="919"/>
         </scene>
-        <!--NameScreenInMedlog-->
+        <!--medlogFlowRestorationNameController-->
         <scene sceneID="PAK-6a-pbf">
             <objects>
-                <viewControllerPlaceholder storyboardName="FaxableDocuments" referencedIdentifier="NameScreenInMedlog" id="FRw-9P-9ku" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="FaxableDocuments" referencedIdentifier="medlogFlowRestorationNameController" id="FRw-9P-9ku" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="AdU-Sy-0On"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oev-eU-AA6" userLabel="First Responder" sceneMemberID="firstResponder"/>

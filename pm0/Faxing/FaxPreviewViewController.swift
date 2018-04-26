@@ -21,16 +21,22 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
         return
       }
 
+      let insertedDocs = sendableDocuments
+      let totalPageCount = sendableDocuments.singleDocument.pages.count + 1
+      let destination = sendableDocumentDestinations.first?.faxToLine ?? "DOCTOR'S OFFICE"
 
-      let doc = sendableDocuments.singleDocument
-      let tempFileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.pdf"))
-      doc.write(to: tempFileURL)
-      pdfURL = tempFileURL
+        let patientName =  LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME"
+        let cover:DocumentRef = coverPage(totalPageCountIncludingCoverPage:totalPageCount,
+                                          to: destination,
+                                          forPatient:patientName)
 
-      let preview = sendableDocuments.singleDocumentWithMargin
-      let previewUrl = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.preview.pdf"))
-      preview.write(to:previewUrl)
-      pdfPreviewURL = previewUrl
+        let realDocs:[DocumentRef] = [cover] + insertedDocs
+        let preview = realDocs.singleDocumentWithMargin
+        let previewUrl = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.preview.pdf"))
+        preview.write(to:previewUrl)
+            self.pdfPreviewURL = previewUrl
+
+
     }
   }
 
@@ -41,18 +47,10 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
     localization: nil)!
     {
     didSet{
-      guard isViewLoaded else{
-        return
-      }
-      pdfView.document = PDFDocument.init(url: pdfPreviewURL)
+        pdfView?.document = PDFDocument.init(url: pdfPreviewURL)
     }
   }
 
-  var pdfURL:URL = Bundle.main.url(
-    forResource: "PreviewUnavailable",
-    withExtension: "pdf",
-    subdirectory: nil,
-    localization: nil)!
 
 
   @IBOutlet weak var pdfView:PDFView!
@@ -73,23 +71,27 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
       }
       return
     }
-
-    alert = UIAlertController(title: "Fax Status", message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-      self.alert.dismiss(animated: true, completion: {
-        self.dismiss(animated: true, completion: nil) //go back to root
-      })
-    }))
-    self.present(alert,animated: true)
+    DispatchQueue.main.async{
+      self.alert = UIAlertController(title: "Fax Status", message: message, preferredStyle: .alert)
+      self.alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+        self.alert.dismiss(animated: true, completion: {
+          self.dismiss(animated: true, completion: nil) //go back to root
+        })
+      }))
+      self.present(self.alert,animated: true)
+    }
   }
 
   func showFailedFax(message:String){
+
     guard presentedViewController == nil else {
-      presentedViewController?.dismiss(animated: false){
+
+      self.presentedViewController?.dismiss(animated: false){
         self.showFailedFax(message:message)
       }
       return
     }
+
 
     alert = UIAlertController(title: "Fax Failure", message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
@@ -102,9 +104,8 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
 
   var faxNumber = "+18558237571"
   @IBAction func sendShownFax(_:AnyObject){
-    //TODO: Figure out if combined pdf is bad or if API can't take single document due to the file/file[] differences
-    self.performSegue(withIdentifier: "showFaxStatus", sender: self)
-    sendFax(toNumber:faxNumber, documentPaths: sendableDocuments){ isSuccess,msg in
+    //self.performSegue(withIdentifier: "showFaxStatus", sender: self)
+    sendFax(toNumber:sendableDocumentDestinations.first!.value, documentPaths: [pdfPreviewURL]){ isSuccess,msg in
       if isSuccess{
         self.showSuccessfulFax(message:msg)
       }else{
