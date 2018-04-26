@@ -659,11 +659,11 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
   
   func buttonBackgroundImage(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> UIImage! {
 
-    return VivaButtonA.createImageForButton(borderColor:Asset.Colors.vlWarmTintColor.color,
+    return VivaButtonA.createImageForButton(buttonBackgroundColor:Asset.Colors.vlWarmTintColor.color,
                        borderWidth:0.5,
                        cornerRadius: 8,
                        buttonSize: CGSize(width:scrollView.frame.size.width-20, height: 44),
-                       backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
+                       backgroundBehindButtonColor: Asset.Colors.vlCellBackgroundCommon.color)
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

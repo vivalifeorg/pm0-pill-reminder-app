@@ -127,7 +127,6 @@
                                                 </mapView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Xah-FX-jt8" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
                                                     <rect key="frame" x="219" y="10" width="146" height="44"/>
-                                                    <color key="backgroundColor" name="vlWarmTintColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="i3U-lI-TJs"/>
                                                     </constraints>
@@ -806,7 +805,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yzj-WG-7ZG"/>
+        <segue reference="GLq-ic-OTj"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="vlWarmTintColor"/>
 </document>

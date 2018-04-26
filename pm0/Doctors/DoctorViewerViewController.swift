@@ -106,6 +106,7 @@ class DoctorViewerViewController:UITableViewController{
         let region = MKCoordinateRegion(center: $0, span: MKCoordinateSpanMake(0.0675,0.0675) )
         map.setRegion(region, animated: true)
         drivingDirectionsButton.isEnabled = true
+        drivingDirectionsButton.setNeedsDisplay()
       }
     }
   }
@@ -227,6 +228,7 @@ class DoctorViewerViewController:UITableViewController{
 
     map.isUserInteractionEnabled = doctor.address.isMappable
     drivingDirectionsButton.isEnabled = false
+    drivingDirectionsButton.setNeedsDisplay()
     nameLabel.text = doctor.name
     addressLabel.text = doctor.address.displayable
     phoneLabel.text = doctor.phone.number
@@ -261,6 +263,8 @@ class DoctorViewerViewController:UITableViewController{
     }
 
     drivingDirectionsButton.setTitleColor(.black, for: .normal)
+ drivingDirectionsButton.setBackgroundImage(VivaButtonA.createStandardDisabledBackgroundImage(buttonWidth: drivingDirectionsButton.frame.size.width), for: .disabled)
+    drivingDirectionsButton.setNeedsDisplay()
     faxHipaaButton.setTitleColor(.black, for: .normal)
     faxMedLogButton.setTitleColor(.black, for: .normal)
     //faxPatientHistoryButton.setTitleColor(.black, for: .normal)

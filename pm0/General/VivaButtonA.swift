@@ -16,6 +16,7 @@ class VivaButtonA:UIButton{
   override var isEnabled: Bool{
     didSet{
       backgroundColor = bgColor
+      setNeedsDisplay()
     }
   }
 
@@ -43,20 +44,27 @@ class VivaButtonA:UIButton{
     layer.masksToBounds = true
     setTitleColor(.black, for: .normal)
     setTitleColor(Asset.Colors.vlDisabledTextColor.color, for: .disabled)
+
+    let disabledBG = VivaButtonA.createStandardDisabledBackgroundImage(buttonWidth: frame.width)
+    setBackgroundImage(disabledBG, for: .disabled)
+
+    let enabledBG = VivaButtonA.createStandardEnabledBackgroundImage(buttonWidth: frame.width)
+    setBackgroundImage(enabledBG, for: .normal)
   }
 
-  static func createImageForButton(borderColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundColor:UIColor) -> UIImage  {
+  static func createImageForButton(buttonBackgroundColor: UIColor, borderWidth: CGFloat, cornerRadius:CGFloat, buttonSize: CGSize,backgroundBehindButtonColor:UIColor) -> UIImage  {
     UIGraphicsBeginImageContextWithOptions(buttonSize, true, 0.0)
-    backgroundColor.setFill()
+    buttonBackgroundColor.setFill()
 
-
+    //fill in the corners by painting a rect
     let backgroundPath = UIBezierPath(rect: CGRect(origin:.zero, size:buttonSize))
-    Asset.Colors.vlCellBackgroundCommon.color.setFill()
+    backgroundBehindButtonColor.setFill()
     backgroundPath.fill()
 
+    //fill the background by painting a rounded rect
     let bezierPath = UIBezierPath(roundedRect: CGRect(origin:.zero, size:buttonSize),
                                   cornerRadius: cornerRadius)
-    Asset.Colors.vlWarmTintColor.color.setFill()
+    buttonBackgroundColor.setFill()
     bezierPath.fill()
 
     let image = UIGraphicsGetImageFromCurrentImageContext()!
@@ -64,18 +72,18 @@ class VivaButtonA:UIButton{
   }
 
   static func createStandardEnabledBackgroundImage(buttonWidth: CGFloat) -> UIImage  {
-    return VivaButtonA.createImageForButton(borderColor:Asset.Colors.vlWarmTintColor.color,
+    return VivaButtonA.createImageForButton(buttonBackgroundColor:Asset.Colors.vlWarmTintColor.color,
                                      borderWidth:0.5,
                                      cornerRadius: 8,
                                      buttonSize: CGSize(width:buttonWidth, height: 44),
-                                     backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
+                                     backgroundBehindButtonColor: Asset.Colors.vlCellBackgroundCommon.color)
   }
 
   static func createStandardDisabledBackgroundImage(buttonWidth: CGFloat) -> UIImage  {
-    return VivaButtonA.createImageForButton(borderColor:Asset.Colors.vlDisabledButtonColor.color,
+    return VivaButtonA.createImageForButton(buttonBackgroundColor:Asset.Colors.vlDisabledButtonColor.color,
                                             borderWidth:0.5,
                                             cornerRadius: 8,
                                             buttonSize: CGSize(width:buttonWidth, height: 44),
-                                            backgroundColor: Asset.Colors.vlCellBackgroundCommon.color)
+                                            backgroundBehindButtonColor: Asset.Colors.vlCellBackgroundCommon.color)
   }
 }
