@@ -77,6 +77,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-Eg-j1F" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
                                 <rect key="frame" x="20" y="281" width="280" height="34"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="VQG-UH-CdW" kind="unwind" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="Ed2-mK-UvF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
@@ -106,6 +109,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gqc-DU-O2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VQG-UH-CdW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-19.199999999999999" y="139.43028485757122"/>
         </scene>

@@ -20,8 +20,14 @@ class FaxStatusViewController:UIViewController{
       faxLeadingSpace.constant = vivaLogo.frame.origin.x
   }
 
+  @IBAction func cancel(_ sender:AnyObject){
+
+    performSegue(withIdentifier: "CancelSegue", sender: self)
+  }
+
   func animateStep(){
     faxLeadingSpace.constant = medLogo.frame.origin.x
+    self.view.layoutIfNeeded()
   }
 
   override func viewDidAppear(_ animated: Bool) {
