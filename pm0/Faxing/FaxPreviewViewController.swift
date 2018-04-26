@@ -103,6 +103,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
   var faxNumber = "+18558237571"
   @IBAction func sendShownFax(_:AnyObject){
     //TODO: Figure out if combined pdf is bad or if API can't take single document due to the file/file[] differences
+    self.performSegue(withIdentifier: "showFaxStatus", sender: self)
     sendFax(toNumber:faxNumber, documentPaths: sendableDocuments){ isSuccess,msg in
       if isSuccess{
         self.showSuccessfulFax(message:msg)

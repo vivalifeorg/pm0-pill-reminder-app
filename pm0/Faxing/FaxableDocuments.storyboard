@@ -811,7 +811,15 @@ You likely do not need to change this. It is primarily for people taking care of
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLA-0o-OcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="125"/>
+            <point key="canvasLocation" x="2919" y="113"/>
+        </scene>
+        <!--FaxStatusScreen-->
+        <scene sceneID="Ubp-dd-1sX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FaxStatus" referencedIdentifier="FaxStatusScreen" id="jZG-aM-RfQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zkt-sb-idj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3634" y="111"/>
         </scene>
         <!--DoctorEntryViewController-->
         <scene sceneID="NUA-f7-DZS">

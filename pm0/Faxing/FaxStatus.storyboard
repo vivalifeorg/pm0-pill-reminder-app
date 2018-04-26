@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b9c-nd-Zup">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Fax Status View Controller-->
+        <scene sceneID="UQB-k5-5db">
+            <objects>
+                <viewController storyboardIdentifier="FaxStatusScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b9c-nd-Zup" customClass="FaxStatusViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Esg-TD-Eko">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending Fax..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-ak-bjj">
+                                <rect key="frame" x="-0.5" y="40" width="320.5" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" name="vlTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-HP-p2e" userLabel="SwapView">
+                                <rect key="frame" x="0.0" y="80.5" width="320" height="180.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pV3-qc-AQ0" userLabel="SendingView">
+                                        <rect key="frame" x="35" y="57.5" width="250" height="65"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaxAnimFaxPage" translatesAutoresizingMaskIntoConstraints="NO" id="3ZD-Ie-EYJ">
+                                                <rect key="frame" x="15" y="25" width="30" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="5yS-RH-5QY"/>
+                                                    <constraint firstAttribute="height" constant="20" id="fRy-Bx-Q72"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaxAnimForegroundVL" translatesAutoresizingMaskIntoConstraints="NO" id="ZV0-Nm-wDf">
+                                                <rect key="frame" x="0.0" y="5" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="TYq-lE-Evb"/>
+                                                    <constraint firstAttribute="height" constant="60" id="zac-tT-030"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaxAnimForegroundML" translatesAutoresizingMaskIntoConstraints="NO" id="VYz-AL-lIh">
+                                                <rect key="frame" x="190" y="5" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="1xZ-Wy-Y1L"/>
+                                                    <constraint firstAttribute="width" secondItem="VYz-AL-lIh" secondAttribute="height" multiplier="1:1" id="XRK-C2-hYk"/>
+                                                    <constraint firstAttribute="width" constant="60" id="mkG-KO-K1m"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="3ZD-Ie-EYJ" firstAttribute="leading" secondItem="pV3-qc-AQ0" secondAttribute="leading" constant="15" id="95a-8r-v5M"/>
+                                            <constraint firstItem="3ZD-Ie-EYJ" firstAttribute="centerY" secondItem="ZV0-Nm-wDf" secondAttribute="centerY" id="HZV-mM-YuM"/>
+                                            <constraint firstAttribute="height" constant="65" id="PQY-v1-pTD"/>
+                                            <constraint firstAttribute="trailing" secondItem="VYz-AL-lIh" secondAttribute="trailing" id="SHS-a1-jcb"/>
+                                            <constraint firstAttribute="width" constant="250" id="d6L-P5-Z4I"/>
+                                            <constraint firstItem="ZV0-Nm-wDf" firstAttribute="top" secondItem="pV3-qc-AQ0" secondAttribute="top" constant="5" id="fSh-kv-79z"/>
+                                            <constraint firstItem="ZV0-Nm-wDf" firstAttribute="leading" secondItem="pV3-qc-AQ0" secondAttribute="leading" id="fYP-Xd-pm4"/>
+                                            <constraint firstItem="VYz-AL-lIh" firstAttribute="top" secondItem="pV3-qc-AQ0" secondAttribute="top" constant="5" id="zFc-11-c6h"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180.5" id="P2d-LC-Tyr"/>
+                                    <constraint firstItem="pV3-qc-AQ0" firstAttribute="centerY" secondItem="pPv-HP-p2e" secondAttribute="centerY" id="QyB-ya-RiE"/>
+                                    <constraint firstItem="pV3-qc-AQ0" firstAttribute="centerX" secondItem="pPv-HP-p2e" secondAttribute="centerX" id="Wnm-zz-ptM"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-Eg-j1F" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
+                                <rect key="frame" x="20" y="281" width="280" height="34"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <constraints>
+                            <constraint firstItem="tiI-Eg-j1F" firstAttribute="width" secondItem="Esg-TD-Eko" secondAttribute="width" constant="-40" id="3Hn-Ev-GhI"/>
+                            <constraint firstItem="tyi-ak-bjj" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="LHB-Kv-PlF"/>
+                            <constraint firstItem="tyi-ak-bjj" firstAttribute="top" secondItem="Cpm-jL-Hzx" secondAttribute="top" constant="20" id="MWa-ap-39t"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="leading" secondItem="Cpm-jL-Hzx" secondAttribute="leading" id="OR2-rv-tBC"/>
+                            <constraint firstItem="tiI-Eg-j1F" firstAttribute="top" secondItem="pPv-HP-p2e" secondAttribute="bottom" constant="20" id="Q8E-Fp-7Ud"/>
+                            <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="pPv-HP-p2e" secondAttribute="trailing" id="Qfv-Se-7HM"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="top" secondItem="tyi-ak-bjj" secondAttribute="bottom" constant="20" id="XSO-qi-26z"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="jkr-si-YNG"/>
+                            <constraint firstItem="tiI-Eg-j1F" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="p5h-rb-H8u"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="tfK-bh-6Zv"/>
+                            <constraint firstItem="tyi-ak-bjj" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="yQn-5Y-2v5"/>
+                            <constraint firstItem="Cpm-jL-Hzx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tiI-Eg-j1F" secondAttribute="bottom" constant="8" id="zEQ-TW-6gV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cpm-jL-Hzx"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="512"/>
+                    <connections>
+                        <outlet property="faxIcon" destination="3ZD-Ie-EYJ" id="Szk-xy-fnz"/>
+                        <outlet property="faxLeadingSpace" destination="95a-8r-v5M" id="U09-gP-N0a"/>
+                        <outlet property="medLogo" destination="VYz-AL-lIh" id="Awn-OY-L7V"/>
+                        <outlet property="vivaLogo" destination="ZV0-Nm-wDf" id="i9p-Xc-4rQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gqc-DU-O2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19.199999999999999" y="139.43028485757122"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="FaxAnimFaxPage" width="138" height="108"/>
+        <image name="FaxAnimForegroundML" width="360" height="360"/>
+        <image name="FaxAnimForegroundVL" width="360" height="360"/>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

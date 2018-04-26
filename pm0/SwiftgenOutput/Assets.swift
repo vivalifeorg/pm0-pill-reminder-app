@@ -71,6 +71,12 @@ enum Asset {
     static let qrCodeForCover = ImageAsset(name: "QRCodeForCover")
     static let linkToApp = ImageAsset(name: "linkToApp")
   }
+  enum FaxAnim {
+    static let faxAnimBackground = ImageAsset(name: "FaxAnimBackground")
+    static let faxAnimFaxPage = ImageAsset(name: "FaxAnimFaxPage")
+    static let faxAnimForegroundML = ImageAsset(name: "FaxAnimForegroundML")
+    static let faxAnimForegroundVL = ImageAsset(name: "FaxAnimForegroundVL")
+  }
   enum Tab {
     static let tabDoc = ImageAsset(name: "Tab-Doc")
     static let tabFaxing = ImageAsset(name: "Tab-Faxing")
@@ -101,6 +107,10 @@ enum Asset {
     Fax.exampleFaxSignature,
     Fax.qrCodeForCover,
     Fax.linkToApp,
+    FaxAnim.faxAnimBackground,
+    FaxAnim.faxAnimFaxPage,
+    FaxAnim.faxAnimForegroundML,
+    FaxAnim.faxAnimForegroundVL,
     Tab.tabDoc,
     Tab.tabFaxing,
     Tab.tabMyDay,

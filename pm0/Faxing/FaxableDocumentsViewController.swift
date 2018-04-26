@@ -79,10 +79,11 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
   }
 
   var pdfPreview = UIAlertController()
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.row == 1{
+    if indexPath.row == 1 {
       performSegue(withIdentifier: sendInfoFaxSegueIdentifier, sender: self)
-    } else if indexPath.row == 0{
+    } else if indexPath.row == 0 {
       exportMedicationLog(self)
     }else{
       showUnimplemented()
