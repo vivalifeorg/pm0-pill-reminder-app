@@ -8,6 +8,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import AVFoundation
 
 func loadDeviceID()->DeviceIdentifier{
   guard let devId = LocalStorage.DeviceStore.load().first else {
@@ -504,7 +505,7 @@ extension UpcomingDayViewController{
     recordMedicationEvent(event)
 
     if shouldNowBeChecked {
-      UIImpactFeedbackGenerator().impactOccurred() // They are checking they took a pill, give feedback
+      AudioServicesPlaySystemSound (1306)
     }
   }
 

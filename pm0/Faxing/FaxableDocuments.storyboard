@@ -820,16 +820,17 @@ You likely do not need to change this. It is primarily for people taking care of
                         <barButtonItem key="rightBarButtonItem" title="Send" id="9Zz-fw-IVd">
                             <connections>
                                 <action selector="sendShownFax:" destination="fBp-wX-Rmo" id="g0B-5L-eRA"/>
-                                <segue destination="jZG-aM-RfQ" kind="presentation" id="OJF-26-0qA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="pdfView" destination="dCb-Px-qDy" id="4bl-hG-oNq"/>
                         <segue destination="jZG-aM-RfQ" kind="presentation" identifier="showFaxStatus" id="S0b-hn-LMa"/>
+                        <segue destination="TiG-1U-EYD" kind="unwind" identifier="unwindFromFaxingAfterSend" unwindAction="unwindFromFaxingAfterSendWithSegue:" id="8jl-bE-CPw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLA-0o-OcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TiG-1U-EYD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2919" y="113"/>
         </scene>
@@ -864,7 +865,6 @@ You likely do not need to change this. It is primarily for people taking care of
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S0b-hn-LMa"/>
         <segue reference="av5-uh-Se6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="vlWarmTintColor"/>
