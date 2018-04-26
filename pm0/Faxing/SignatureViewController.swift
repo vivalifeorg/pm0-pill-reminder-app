@@ -113,9 +113,9 @@ class SignatureViewController:UIViewController, PDFHandler, SendableDocumentMeta
       signatureInfo: signature,
       restrictions: restrictions)
 
-    let cover = coverPage(totalPageCountIncludingCoverPage: sendableDocuments.singleDocument.pages.count + 1, to: sendableDocumentDestinations.first?.faxToLine ?? "DOCTOR'S OFFICE", forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
 
-    handler.sendableDocuments = [cover, hipaaForm]
+
+    handler.sendableDocuments = [hipaaForm]
     handler.restrictions = restrictions
     handler.sendableDocumentTopics = sendableDocumentTopics
     handler.sendableDocumentDestinations = sendableDocumentDestinations

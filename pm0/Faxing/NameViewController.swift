@@ -32,8 +32,7 @@ class NameViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
 
     if restorationIdentifier == medlogFlowRestorationNameController {
       let medlog = medlogForm(events: LocalStorage.MedicationLogStore.load().reversed(), patient: LocalStorage.UserInfoStore.loadSingle()!)
-      let cover = coverPage(totalPageCountIncludingCoverPage: sendableDocuments.singleDocument.pageCount + 1, to: handler.sendableDocumentDestinations.first?.faxToLine ?? "DOCTOR'S OFFICE", forPatient: LocalStorage.UserInfoStore.load().first?.lastDocumentName ?? "PATIENT NAME")
-      sendableDocuments = [cover,medlog]
+      sendableDocuments = [medlog]
     }
     handler.sendableDocuments = sendableDocuments
   }
