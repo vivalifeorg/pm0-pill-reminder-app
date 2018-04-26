@@ -42,9 +42,6 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
 
     if restorationIdentifier != medlogFlowSendRestorationIdentifier {
       handler.sendableDocuments = sendableDocuments 
-    }else{
-      let medlog = medlogForm(events: LocalStorage.MedicationLogStore.load().reversed(), patient: LocalStorage.UserInfoStore.loadSingle()!)
-      handler.sendableDocuments = [medlog]
     }
   }
 
