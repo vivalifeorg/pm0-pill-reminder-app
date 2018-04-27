@@ -34,7 +34,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @IBAction func exportMedicationLog(_ sender: Any) {
-    performSegue(withIdentifier: "sendMedicationLog", sender: self)
+    performSegue(withIdentifier:StoryboardSegue.FaxableDocuments.sendMedicationLog.rawValue, sender: self)
 
   }
 
@@ -89,7 +89,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
       showUnimplemented()
     }
   }
-  let sendInfoFaxSegueIdentifier = "sendInfoFaxSegue"
+  let sendInfoFaxSegueIdentifier = StoryboardSegue.FaxableDocuments.sendInfoFaxSegue.rawValue
 
   var pdfsToSend:[URL] = []
 
@@ -98,7 +98,7 @@ class FaxableDocumentsViewController:UITableViewController,UIDocumentInteraction
 
 
   @objc func cancelFax(){
-    presentedViewController?.performSegue(withIdentifier: "unwindFromFaxingAfterCancel", sender: presentedViewController!)
+    presentedViewController?.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterCancel.rawValue, sender: presentedViewController!)
   }
 
   

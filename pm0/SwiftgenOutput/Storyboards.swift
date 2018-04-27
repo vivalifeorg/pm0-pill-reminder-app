@@ -96,20 +96,10 @@ enum StoryboardScene {
 
     static let initialScene = InitialSceneType<UIViewController>(storyboard: LaunchScreen.self)
   }
-  enum LaunchScreen: StoryboardType {
-    static let storyboardName = "LaunchScreen"
-
-    static let initialScene = InitialSceneType<UIViewController>(storyboard: LaunchScreen.self)
-  }
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
     static let initialScene = InitialSceneType<UITabBarController>(storyboard: Main.self)
-  }
-  enum Main: StoryboardType {
-    static let storyboardName = "Main"
-
-    static let initialScene = InitialSceneType<ViewController>(storyboard: Main.self)
   }
   enum PrescriptionEntryViewController: StoryboardType {
     static let storyboardName = "PrescriptionEntryViewController"

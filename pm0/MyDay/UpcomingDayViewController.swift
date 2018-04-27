@@ -677,7 +677,7 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
 
 
   func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-    performSegue(withIdentifier: "addPrescriptionSegue", sender: self)
+    performSegue(withIdentifier: StoryboardSegue.UpcomingDay.addPrescriptionSegue.rawValue, sender: self)
   }
 
   func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {

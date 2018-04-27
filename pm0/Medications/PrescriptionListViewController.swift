@@ -128,7 +128,7 @@ class PrescriptionListViewController: UIViewController {
   }
 
   func showEditRxViewController(){
-    self.performSegue(withIdentifier: "showPrescriptionAddEntry", sender: self)
+    self.performSegue(withIdentifier: StoryboardSegue.PrescriptionListViewController.showPrescriptionAddEntry.rawValue, sender: self)
   }
 
   func editRxAction(_ action:UITableViewRowAction, indexPath:IndexPath){
@@ -266,7 +266,7 @@ extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSet
   }
 
   func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-    performSegue(withIdentifier: "addPrescriptionSegue", sender: self)
+    performSegue(withIdentifier: StoryboardSegue.PrescriptionListViewController.showPrescriptionAddEntry.rawValue, sender: self)
   }
 }
 

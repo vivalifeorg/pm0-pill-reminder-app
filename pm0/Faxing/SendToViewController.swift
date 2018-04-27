@@ -147,7 +147,7 @@ func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
 
 
 func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
-  performSegue(withIdentifier: "AddDoctorFromSendToScreen", sender: self)
+  performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.addDoctorFromSendToScreen.rawValue, sender: self)
 }
 
 func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
@@ -156,7 +156,7 @@ func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
 
   @IBAction func unwindToDoctorList(segue:UIStoryboardSegue){
 
-    guard segue.identifier == "savedDoctorEditOrNew" else{
+    guard segue.identifier == StoryboardSegue.DoctorList.savedDoctorEditOrNew.rawValue else{
       return
     }
     let doctorItem = (segue.source as! DoctorEntryViewController).doctor

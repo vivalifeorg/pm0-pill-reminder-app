@@ -150,7 +150,7 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "savingScheduleSegue" {
+    if segue.identifier == StoryboardSegue.PrescriptionEntryViewController.savingScheduleSegue.rawValue {
       schedule.ensureNonEmptyName()
 
       var userSchedules = LocalStorage.ScheduleStore.User.load()

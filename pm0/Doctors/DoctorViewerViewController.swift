@@ -140,7 +140,7 @@ class DoctorViewerViewController:UITableViewController{
 
   @objc func cancelFax(){
     presentedViewController?.performSegue(
-      withIdentifier: "unwindFromFaxingAfterCancel",
+      withIdentifier:  StoryboardSegue.DoctorList.unwindFromFaxingAfterCancel.rawValue,
       sender: presentedViewController!
     )
   }
@@ -148,11 +148,11 @@ class DoctorViewerViewController:UITableViewController{
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.identifier{
 
-    case "editDoctor":
+    case StoryboardSegue.DoctorList.editDoctor.rawValue:
       let editor = segue.destination as! DoctorEntryViewController
       editor.doctor = doctor!
 
-    case "sendHipaaReleaseFromDoctorViewer":
+    case StoryboardSegue.DoctorList.sendHipaaReleaseFromDoctorViewer.rawValue:
       let nav = segue.destination as! UINavigationController
 
       let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))
@@ -163,7 +163,7 @@ class DoctorViewerViewController:UITableViewController{
         DocumentDestination(name:$0.name, value:$0.fax.number)
       }
 
-    case "sendMedlogFromDoctorViewer":
+    case StoryboardSegue.DoctorList.sendMedlogFromDoctorViewer.rawValue:
       let nav = segue.destination as! UINavigationController
 
       let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DoctorViewerViewController.cancelFax))

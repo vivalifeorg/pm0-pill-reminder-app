@@ -589,7 +589,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     lastSelectedDrug = drugSelection
   }
 
-  let showPrescriptionHelpSegue = "showPrescriptionHelp"
+  let showPrescriptionHelpSegue = StoryboardSegue.PrescriptionEntryViewController.showPrescriptionHelp.rawValue
 
   func showHelp(_ helpInfo:NSAttributedString){
     self.helpInfo = helpInfo

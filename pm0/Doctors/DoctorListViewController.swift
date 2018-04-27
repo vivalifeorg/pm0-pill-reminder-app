@@ -14,7 +14,7 @@ import UIKit
 class DoctorListViewController:UITableViewController{
 
   var doctors = [DoctorInfo]()
-  let editSegueIdentifier = "editDoctorSegue"
+  let editSegueIdentifier = StoryboardSegue.DoctorList.editDoctorSegue.rawValue
   var lastTappedDoctorIndex:Int? = nil
 
   override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +51,7 @@ class DoctorListViewController:UITableViewController{
     doctorEntryViewController.doctor = doctors[doctorInfoAtIndex]
   }
 
-  let viewSegueIdentifier = "viewDoctorSegue"
+  let viewSegueIdentifier = StoryboardSegue.DoctorList.viewDoctorSegue.rawValue
   func prepareToView(segue:UIStoryboardSegue, doctorInfoAtIndex:Int){
     let vc = segue.destination as! DoctorViewerViewController
     vc.doctor = doctors[doctorInfoAtIndex]
@@ -98,7 +98,8 @@ class DoctorListViewController:UITableViewController{
   
   @IBAction func unwindToDoctorList(segue:UIStoryboardSegue){
     clearSelection()
-    guard segue.identifier == "savedDoctorEditOrNew" else{
+    
+    guard segue.identifier == StoryboardSegue.DoctorList.savedDoctorEditOrNew.rawValue else{
       return
     }
     let doctorItem = (segue.source as! DoctorEntryViewController).doctor

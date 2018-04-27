@@ -88,7 +88,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
 
     }
     DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-      self.performSegue(withIdentifier: "unwindFromFaxingAfterSend", sender: self)
+      self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterSend.rawValue, sender: self)
     }
   }
 
@@ -99,17 +99,17 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
     }
     faxStatusVC.updateStatus(message: "Fax failed to send:\n \(message)", cancelButtonEnabled: true)
     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-      self.performSegue(withIdentifier: "unwindFromFaxingAfterSend", sender: self)
+      self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterSend.rawValue, sender: self)
     }
   }
 
   @IBAction func unwindFromFaxingAfterSend(segue:UIStoryboardSegue){
-    self.performSegue(withIdentifier: "unwindFromFaxingAfterSend", sender: self)
+    self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterSend.rawValue, sender: self)
   }
 
   var faxNumber = "+18558237571"
   @IBAction func sendShownFax(_:AnyObject){
-    self.performSegue(withIdentifier: "showFaxStatus", sender: self)
+    self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.showFaxStatus.rawValue, sender: self)
     sendFax(toNumber:sendableDocumentDestinations.first!.value, documentPaths: [pdfPreviewURL]){ isSuccess,msg in
       DispatchQueue.main.async{
         if isSuccess{
