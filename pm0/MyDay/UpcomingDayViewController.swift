@@ -505,7 +505,7 @@ extension UpcomingDayViewController{
     recordMedicationEvent(event)
 
     if shouldNowBeChecked {
-      AudioServicesPlaySystemSound (1306)
+      AudioServicesPlaySystemSound (4095)
     }
   }
 
