@@ -226,7 +226,7 @@ struct Timeslot:Hashable,Codable{
   static var sortedSystemTimeslots:[Timeslot]{
     DefaultTimeslots.ensureDefaultsExist()
 
-    return LocalStorage.TimeslotStore.System.load().sorted(by: { (lhs, rhs) -> Bool in
+    return LocalStorage.TimeslotStore.Standard.load().sorted(by: { (lhs, rhs) -> Bool in
       lhs.offsetFromDayStart < rhs.offsetFromDayStart
     })
   }
@@ -285,11 +285,11 @@ enum DefaultTimeslots{
   }
 
   static func ensureDefaultsExist(){
-    guard LocalStorage.TimeslotStore.System.load().isEmpty else{
+    guard LocalStorage.TimeslotStore.Standard.load().isEmpty else{
       return
     }
 
-    LocalStorage.TimeslotStore.System.save(DefaultTimeslots.defaultTimeslots)
+    LocalStorage.TimeslotStore.Standard.save(DefaultTimeslots.defaultTimeslots)
   }
 }
 
@@ -582,7 +582,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
     nameLine.searchTextField?.text = drugSelection.name
     unitLine.searchTextField?.text = [drugSelection.activeStrength,
-                                      drugSelection.unit].flatMap{$0}.joined(separator:" ")
+                                      drugSelection.unit].compactMap{$0}.joined(separator:" ")
     formLine.searchTextField?.text = drugSelection.dosageForm
     lastSelectedDrug = drugSelection
   }

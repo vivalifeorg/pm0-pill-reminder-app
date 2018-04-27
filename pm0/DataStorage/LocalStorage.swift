@@ -71,7 +71,7 @@ enum LocalStorage{
     static var User:KeychainPersistor<GlobalTimeslot>{
       return KeychainPersistor(key:.userTimeslots)
     }
-    static var System:KeychainPersistor<GlobalTimeslot>{
+    static var Standard:KeychainPersistor<GlobalTimeslot>{
       return KeychainPersistor(key:.systemTimeslots)
     }
   }
@@ -80,7 +80,7 @@ enum LocalStorage{
     static var User:KeychainPersistor<Schedule>{
       return KeychainPersistor(key:.userSchedules)
     }
-    static var System:KeychainPersistor<Schedule>{
+    static var Standard:KeychainPersistor<Schedule>{
       return KeychainPersistor(key:.systemSchedules)
     }
   }

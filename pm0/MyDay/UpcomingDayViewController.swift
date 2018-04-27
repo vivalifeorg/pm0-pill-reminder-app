@@ -495,7 +495,7 @@ extension UpcomingDayViewController{
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let wasPreviouslyChecked = sections[indexPath.section].medications[indexPath.row].isTaken
     let shouldNowBeChecked = !wasPreviouslyChecked
-    //print("\(indexPath) should now be checked? \(shouldNowBeChecked)")
+    
     sections[indexPath.section].medications[indexPath.row].isTaken = shouldNowBeChecked
 
     let dosage = sections[indexPath.section].medications[indexPath.row].dosage
