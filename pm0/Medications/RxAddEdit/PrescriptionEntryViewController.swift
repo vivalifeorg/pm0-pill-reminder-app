@@ -608,16 +608,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       entryInfo = rx.editInfo
     }
 
-    /*
-     [[NSNotificationCenter defaultCenter] addObserver:self
-     selector:@selector(keyboardWasShown:)
-     name:UIKeyboardDidShowNotification object:nil];
 
-     [[NSNotificationCenter defaultCenter] addObserver:self
-     selector:@selector(keyboardWillBeHidden:)
-     name:UIKeyboardWillHideNotification object:nil];
-     NotificationCenter.default.addObserver(self, selector: keyboardShow, name: "keyboardWillShow", object: <#T##Any?#>)
-     */
     configureSearchField(nameLine.searchTextField)
     configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 

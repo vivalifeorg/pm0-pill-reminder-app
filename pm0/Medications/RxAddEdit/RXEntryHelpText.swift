@@ -14,13 +14,13 @@ enum RXEntryHelpText{
 
     Enter in a *short* memorable name for your medication.
 
-    Feel free to shorten the text the search box inserted for you if you selected one from the list that shows up after you start typing. Selecting an item from that list will also insert starting values in the quantity and unit fields.
+    If you selected your medication from the search box, you can shorten/change the name without a problem.
     """
   static let formHelpText =
   """
     # Describe the form of the medication
 
-    Describe what a *single* pill looks like. You will input quantity later.
+    Describe what a *single* pill looks like. You will input the quantity you take at one time later.
 
     For example, if you take two orange 200mg tablets every six hours, put "**tablet**" here.
 

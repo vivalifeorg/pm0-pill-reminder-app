@@ -141,6 +141,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Prescriber"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. Dr Amy Sharma"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -166,6 +167,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Pharmacy"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g. CVS"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlusHidden" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -557,9 +559,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
