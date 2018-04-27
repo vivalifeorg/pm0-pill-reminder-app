@@ -33,6 +33,13 @@ struct VLFonts{
   }
 }
 
+let searchCellHeight:CGFloat = 80.0
+extension SearchTextField{
+  public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    return searchCellHeight
+  }
+}
+
 
 let debugMarkdown = false
 extension String{
@@ -468,7 +475,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
   func configureSearchField(_ field:SearchTextField){
     field.theme = SearchTextFieldTheme.darkTheme()
     field.theme.font  = UIFont.systemFont(ofSize: 20)
-    field.theme.cellHeight = 80
+    field.theme.cellHeight = searchCellHeight
     field.theme.bgColor = popupBackgroundColor
     field.highlightAttributes =  [
       NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):
@@ -647,16 +654,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     prescriberLine.searchTextField.startSuggestingInmediately = true
 
 
-//    configureSearchField(scheduleLine.searchTextField)
-//    configureHeader(scheduleLine.searchTextField, withText: "Tap one or type 'Custom'")
-//    scheduleLine.searchTextField.filterItems(
-//      schedules.map{SearchTextFieldItem(listable:$0)})
-//    scheduleLine.helpInfo = RXEntryHelpText.scheduleHelpText.renderMarkdownAsAttributedString
-//    scheduleLine.helper = self
-
-
-
-
     pharmacyLine.helpInfo = RXEntryHelpText.pharmacyHelpText.renderMarkdownAsAttributedString
     pharmacyLine.helper = self
 
@@ -671,7 +668,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     \EntryInfo.unitDescription:\PrescriptionEntryViewController.unitLine.searchTextField.text,
     \EntryInfo.form:\PrescriptionEntryViewController.formLine.searchTextField.text,
     \EntryInfo.quantityOfUnits:\PrescriptionEntryViewController.quantityLine.searchTextField.text,
-   // \EntryInfo.schedule:\PrescriptionEntryViewController.scheduleLine.searchTextField.text,
     \EntryInfo.prescribingDoctor:\PrescriptionEntryViewController.prescriberLine.searchTextField.text,
     \EntryInfo.pharmacy:\PrescriptionEntryViewController.pharmacyLine.searchTextField.text,
     \EntryInfo.condition:\PrescriptionEntryViewController.conditionLine.searchTextField.text,

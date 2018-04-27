@@ -80,8 +80,6 @@ enum RXEntryHelpText{
     # Prescriber
 
     This is the person who wrote your prescription. They are typically a doctor or nurse practitioner. This will be on the medication bottle and prescription.
-
-    Tap the circled plus button to select a doctor formerly entered into the app.
     """
 
   static let scheduleHelpText =
@@ -99,7 +97,6 @@ enum RXEntryHelpText{
 
     Write where you pick up this medication from. If an over the counter drug, feel free to leave this blank.
 
-    Tap the circled plus button to select a pharmacy formerly entered into the app.
     """
 
   static let conditionHelpText =

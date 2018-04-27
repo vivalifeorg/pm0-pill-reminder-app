@@ -31,6 +31,8 @@ extension UIView {
 @IBDesignable
 class PrescriptionLineEntry: UIView{
 
+  static let lineHeight:CGFloat = 98.0
+
   @IBOutlet var contentView:UIView!
   @IBOutlet var addFromContactsButton:UIButton!
   @IBOutlet var showHelpButton:UIButton!
@@ -110,7 +112,7 @@ class PrescriptionLineEntry: UIView{
     
     translatesAutoresizingMaskIntoConstraints = false
     let views = ["PrescriptionLineEntry":contentView!]
-    let metrics = ["FixedHeight":98.0]
+    let metrics = ["FixedHeight":PrescriptionLineEntry.lineHeight]
     addConstraints(
       NSLayoutConstraint.constraints(
         withVisualFormat: "H:|[PrescriptionLineEntry]|",
