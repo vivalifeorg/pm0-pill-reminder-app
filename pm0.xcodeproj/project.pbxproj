@@ -69,6 +69,7 @@
 		89F4D05B2072DDC700CC60E9 /* TimeslotEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */; };
 		89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */; };
 		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
+		89FFFE7D209391EF000EDB65 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FFFE7C209391EF000EDB65 /* Storyboards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		89F4D05A2072DDC700CC60E9 /* TimeslotEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotEditorViewController.swift; sourceTree = "<group>"; };
 		89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
+		89FFFE7C209391EF000EDB65 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 		890D4258206C16A800C20F82 /* SwiftgenOutput */ = {
 			isa = PBXGroup;
 			children = (
+				89FFFE7C209391EF000EDB65 /* Storyboards.swift */,
 				890D4259206C16A800C20F82 /* Assets.swift */,
 			);
 			path = SwiftgenOutput;
@@ -569,7 +572,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n";
+			shellScript = "SWIFTGEN=\"$PODS_ROOT\"/SwiftGen/bin/swiftgen\n\n# generate assets (use yaml config file because these are a known location)\n${SWIFTGEN}\n\n# generate storyboards\n${SWIFTGEN} storyboards -o ${PROJECT_DIR}/pm0/SwiftgenOutput/Storyboards.swift -t swift4 \"$PROJECT_DIR\"  --param module=${PRODUCT_MODULE_NAME}\n\n\n";
 		};
 		89B685722052D12C00D2406E /* Zero Build Date to fix Source Control */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -666,6 +669,7 @@
 				89987ABC20754F710057E685 /* RestrictionsViewController.swift in Sources */,
 				8964CC632049EDE00028AB21 /* PillDisplayLabel.swift in Sources */,
 				890FC4E420925A9A009EAA52 /* FaxStatusViewController.swift in Sources */,
+				89FFFE7D209391EF000EDB65 /* Storyboards.swift in Sources */,
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				8991A9BC208E6BE300CCD703 /* NameViewController.swift in Sources */,
 				89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */,
