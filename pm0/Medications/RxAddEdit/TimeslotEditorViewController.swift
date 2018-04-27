@@ -132,7 +132,7 @@ class TimeslotEditorViewController:UITableViewController{
     return userProposedName
   }
 
-  func saveTimeslotChanges(indexPath:IndexPath){
+  func saveTimeslotChanges(indexPath:IndexPath,oldName:String?, newName:String?){
 
     if areTimeslotsOrderedMonotonically{
       tableView.reloadRows(at: [indexPath], with: .none)
@@ -143,14 +143,23 @@ class TimeslotEditorViewController:UITableViewController{
       tableView.reloadRows(at: sectionIndexPaths, with: .automatic)
     }
 
-
     LocalStorage.TimeslotStore.User.save(timeslots[0])
     LocalStorage.TimeslotStore.Standard.save(timeslots[1])
 
     var timeslotsByName:[String:Timeslot] = [:]
     let allTimeslots = timeslots[0] + timeslots[1]
     for timeslot in allTimeslots{
-      timeslotsByName[timeslot.name] = timeslot
+      //changing names
+      if timeslot.name == newName,
+        let oldName = oldName,
+        let newName = newName{
+        var updatedTimeslot = timeslot
+        updatedTimeslot.name = newName
+        timeslotsByName[oldName] = updatedTimeslot // We have to index using the old name to find it
+      }else{
+        //changing times/other part of changing names for non-changed items
+        timeslotsByName[timeslot.name] = timeslot
+      }
     }
 
     //Update old user schedules
@@ -211,9 +220,14 @@ class TimeslotEditorViewController:UITableViewController{
         let minuteOffset=minuteOffset{
         self.timeslots[indexPath.section][indexPath.row].hourOffset = hourOffset
         self.timeslots[indexPath.section][indexPath.row].minuteOffset = minuteOffset
-        self.saveTimeslotChanges(indexPath: indexPath)
+        self.saveTimeslotChanges(indexPath: indexPath,oldName:nil, newName:nil)
       }else if let nameUpdate=nameUpdate {
-        self.timeslots[indexPath.section][indexPath.row].name = self.fixedTimeslotName(nameUpdate,at:indexPath)
+        let oldName = self.timeslots[indexPath.section][indexPath.row].name
+        let newName = self.fixedTimeslotName(nameUpdate,at:indexPath)
+        self.timeslots[indexPath.section][indexPath.row].name = newName
+        self.saveTimeslotChanges(indexPath: indexPath,
+                                 oldName:oldName,
+                                 newName:newName)
       }
     }
 
