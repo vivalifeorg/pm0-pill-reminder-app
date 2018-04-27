@@ -40,8 +40,12 @@ class ScheduleListViewController:UITableViewController{
 
   var entryInfo:EntryInfo?
 
-  private var customSchedules:[Schedule] = LocalStorage.ScheduleStore.User.load()
-  private var standardSchedules:[Schedule] = LocalStorage.ScheduleStore.Standard.load()
+  func loadSchedules(){
+     customSchedules = LocalStorage.ScheduleStore.User.load()
+     standardSchedules = LocalStorage.ScheduleStore.Standard.load()
+  }
+  private var customSchedules:[Schedule] = []
+  private var standardSchedules:[Schedule] = []
 
   private var scheduleDatasource:[[Schedule]] {
     if isShowingCustom {
@@ -63,6 +67,11 @@ class ScheduleListViewController:UITableViewController{
     }
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    loadSchedules()
+    tableView.reloadData()
+    super.viewWillAppear(animated)
+  }
   override func viewDidLoad() {
     if standardSchedules.count == 0 {
       LocalStorage.ScheduleStore.Standard.save(defaultSchedules)
