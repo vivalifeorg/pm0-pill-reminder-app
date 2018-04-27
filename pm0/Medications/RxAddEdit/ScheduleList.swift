@@ -13,19 +13,19 @@ var defaultSchedules = [
            aliases:["Once per day",
                     "Immeadiately upon awakening",
                     "Before breakfast",
-                    "First thing"], timeslots: [DefaultTimeslots.wakeUp]),
+                    "First thing"], timeslots: [StandardTimeslots.wakeUp]),
   Schedule(name:"With Breakfast",
            aliases:["Once a day with food",
                     "Early in the day with food",
-                    "First thing in the morning with food"], timeslots: [DefaultTimeslots.breakfast]),
+                    "First thing in the morning with food"], timeslots: [StandardTimeslots.breakfast]),
   Schedule(name:"With Lunch",
            aliases:["Once a day with food",
                     "Early in the day with food",
-                    "Avoid taking with alcohol"], timeslots: [DefaultTimeslots.lunch]),
+                    "Avoid taking with alcohol"], timeslots: [StandardTimeslots.lunch]),
   Schedule(name:"With Breakfast and Dinner",
            aliases:["Twice a day with food",
                     "At least 6 hours apart",
-                    "At least 4 hours apart"], timeslots: [DefaultTimeslots.breakfast,DefaultTimeslots.dinner])
+                    "At least 4 hours apart"], timeslots: [StandardTimeslots.breakfast,StandardTimeslots.dinner])
 ]
 
 class ScheduleListViewController:UITableViewController{

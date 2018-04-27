@@ -223,8 +223,8 @@ struct Timeslot:Hashable,Codable{
     return nil
   }
 
-  static var sortedSystemTimeslots:[Timeslot]{
-    DefaultTimeslots.ensureDefaultsExist()
+  static var sortedStandardTimeslots:[Timeslot]{
+    StandardTimeslots.ensureStandardsExist()
 
     return LocalStorage.TimeslotStore.Standard.load().sorted(by: { (lhs, rhs) -> Bool in
       lhs.offsetFromDayStart < rhs.offsetFromDayStart
@@ -248,7 +248,7 @@ enum SlotType:String,Codable{
   case custom
 }
 
-enum DefaultTimeslots{
+enum StandardTimeslots{
   static let breakfast = Timeslot(name:"Breakfast",
                                   slotType:.meal, hourOffset:8, minuteOffset:00)
 
@@ -270,26 +270,26 @@ enum DefaultTimeslots{
   static let bedTime = Timeslot(name:"Bedtime",
                                      slotType:.sleep, hourOffset:21, minuteOffset:30)
 
-  static let defaultTimeslots:[Timeslot] = [
-    DefaultTimeslots.wakeUp,
-    DefaultTimeslots.breakfast,
-    DefaultTimeslots.morningSnack,
-    DefaultTimeslots.lunch,
-    DefaultTimeslots.afternoonSnack,
-    DefaultTimeslots.dinner,
-    DefaultTimeslots.bedTime
+  static let allStandardTimeslots:[Timeslot] = [
+    StandardTimeslots.wakeUp,
+    StandardTimeslots.breakfast,
+    StandardTimeslots.morningSnack,
+    StandardTimeslots.lunch,
+    StandardTimeslots.afternoonSnack,
+    StandardTimeslots.dinner,
+    StandardTimeslots.bedTime
   ]
 
   static var defaultTimeslot:Timeslot {
-    return DefaultTimeslots.wakeUp
+    return StandardTimeslots.wakeUp
   }
 
-  static func ensureDefaultsExist(){
+  static func ensureStandardsExist(){
     guard LocalStorage.TimeslotStore.Standard.load().isEmpty else{
       return
     }
 
-    LocalStorage.TimeslotStore.Standard.save(DefaultTimeslots.defaultTimeslots)
+    LocalStorage.TimeslotStore.Standard.save(StandardTimeslots.allStandardTimeslots)
   }
 }
 

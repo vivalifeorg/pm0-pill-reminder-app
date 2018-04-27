@@ -34,14 +34,14 @@ enum LocalStorage{
   enum KeychainKey:String,Codable{
     case userPrescriptions
     case userDoctors
+    
+    case userInfo
 
     case userTimeslots
-
-    case userInfo
     case systemTimeslots
     
     case userSchedules
-    case systemSchedules
+    case standardSchedules
 
     case userDeviceInfo
     case userMedicationLog
@@ -81,7 +81,7 @@ enum LocalStorage{
       return KeychainPersistor(key:.userSchedules)
     }
     static var Standard:KeychainPersistor<Schedule>{
-      return KeychainPersistor(key:.systemSchedules)
+      return KeychainPersistor(key:.standardSchedules)
     }
   }
 }

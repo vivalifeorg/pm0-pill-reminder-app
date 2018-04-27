@@ -40,18 +40,27 @@ class ScheduleDetailViewController:UITableViewController{
     return !userTimeslots.isEmpty
   }
 
-  private var userTimeslots:[Timeslot] = LocalStorage.TimeslotStore.User.load()
-  private var defaultTimeslots:[Timeslot] = Timeslot.sortedSystemTimeslots
+  private func refreshTimeslots(){
+    userTimeslots = LocalStorage.TimeslotStore.User.load()
+    standardTimeslots = Timeslot.sortedStandardTimeslots
+  }
+
+  private var userTimeslots:[Timeslot] = []
+  private var standardTimeslots:[Timeslot] = []
 
   // Custom timeslots are above system timeslots so the user is more likely to see them
   private var timeslotDatasource:[[Timeslot]] {
     if isShowingCustom {
-      return [[], userTimeslots, defaultTimeslots]
+      return [[], userTimeslots, standardTimeslots]
     }else{
-      return [[], defaultTimeslots]
+      return [[], standardTimeslots]
     }
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    refreshTimeslots()
+    self.tableView.reloadData()
+  }
   var schedule:Schedule = Schedule(name:"",aliases:[],timeslots:[])
 
   func accessoryFor(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCellAccessoryType {
@@ -92,15 +101,10 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    switch section{
-    case 0:
-      return ""
-    case 1:
-      return "Custom Timeslots"
-    case 2:
-      return "Standard Timeslots"
-    default:
-      return ""
+    if isShowingCustom {
+      return ["","Custom Timeslots", "Standard Timeslots",""][section]
+    }else {
+      return ["","Standard Timeslots",""][section]
     }
   }
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
