@@ -40,9 +40,8 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
         selectedDoctors.map{DocumentDestination(name:$0.name, value:$0.fax.number)} :
         sendableDocumentDestinations
 
-    if restorationIdentifier != medlogFlowSendRestorationIdentifier {
-      handler.sendableDocuments = sendableDocuments 
-    }
+
+    handler.sendableDocuments = sendableDocuments 
   }
 
   var isSendToScreen:Bool {

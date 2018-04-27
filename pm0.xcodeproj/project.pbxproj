@@ -70,6 +70,7 @@
 		89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */; };
 		89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9C44D20323EA50072FF7C /* FDADatabase.swift */; };
 		89FFFE7D209391EF000EDB65 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FFFE7C209391EF000EDB65 /* Storyboards.swift */; };
+		89FFFE7F2093BAA1000EDB65 /* HistoryLengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FFFE7E2093BAA1000EDB65 /* HistoryLengthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		89F4D05C2073C2D600CC60E9 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		89F9C44D20323EA50072FF7C /* FDADatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDADatabase.swift; sourceTree = "<group>"; };
 		89FFFE7C209391EF000EDB65 /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		89FFFE7E2093BAA1000EDB65 /* HistoryLengthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLengthViewController.swift; sourceTree = "<group>"; };
 		A30DB4441D0C7E3FCCFF377C /* Pods-pm0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pm0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pm0/Pods-pm0.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0285C44E7FBEA9BBB1F248 /* Pods_pm0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pm0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -295,6 +297,7 @@
 			children = (
 				8991A9C4208F9BBC00CCD703 /* MedlogDrawables */,
 				89A5168C205879ED0069D9AE /* FaxableDocuments.storyboard */,
+				89FFFE7E2093BAA1000EDB65 /* HistoryLengthViewController.swift */,
 				898BC945206196DA006ED4CF /* FaxableDocumentsViewController.swift */,
 				890FC4E12092439D009EAA52 /* FaxStatus.storyboard */,
 				890FC4E320925A9A009EAA52 /* FaxStatusViewController.swift */,
@@ -689,6 +692,7 @@
 				8991A9CA208FB11400CCD703 /* FaxMedlogEntryGenerated.swift in Sources */,
 				898BC94020614A4A006ED4CF /* PDFBuilder.swift in Sources */,
 				890CD2FC206458DE009DF10A /* HelpViewController.swift in Sources */,
+				89FFFE7F2093BAA1000EDB65 /* HistoryLengthViewController.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
