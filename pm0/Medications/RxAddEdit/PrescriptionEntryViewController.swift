@@ -610,7 +610,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
 
     configureSearchField(nameLine.searchTextField)
-    configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
+    //configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
 
     //updateDrugsPopup()
 
@@ -640,7 +640,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
     doctors = LocalStorage.DoctorStore.load()
     configureSearchField(prescriberLine.searchTextField)
-    //configureHeader(prescriberLine.searchTextField, withText: "Type new name or tap existing")
     prescriberLine.searchTextField.filterItems(
       doctors.map{SearchTextFieldItem(listable:$0)})
     prescriberLine.helpInfo = RXEntryHelpText.prescriberHelpText.renderMarkdownAsAttributedString
