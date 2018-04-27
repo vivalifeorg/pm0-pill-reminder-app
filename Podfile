@@ -3,7 +3,7 @@ platform :ios, '11.0'
 use_frameworks!
 
 target "pm0" do
-  pod "SearchTextField", :git => 'https://github.com/apasccon/SearchTextField', :commit => '97cb555c4721cd80257022637ee255dc812eda3a',  :inhibit_warnings => true #dropdown used in entry screen
+  pod "SearchTextField", :git => 'https://github.com/langford/SearchTextField', :commit => '9b329767b7ba129ede51c1346b29c0a8a672db62',  :inhibit_warnings => true #dropdown used in entry screen
   pod 'SQLite.swift', '~> 0.11.4',   :inhibit_warnings => true #SQLite Driver
   pod 'DZNEmptyDataSet',  :inhibit_warnings => true #Shows empty view for UITableView/UICollectionView
   pod 'KeychainAccess', :inhibit_warnings => true #Secure Storage Wrapper
