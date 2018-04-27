@@ -40,7 +40,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
                                           forPatient:patientName)
 
         let realDocs:[DocumentRef] = [cover] + insertedDocs
-        let preview = realDocs.singleDocumentWithMargin
+        let preview = realDocs.singleDocument
         let previewUrl = URL(fileURLWithPath: NSTemporaryDirectory().appending("unified.preview.pdf"))
         preview.write(to:previewUrl)
             self.pdfPreviewURL = previewUrl

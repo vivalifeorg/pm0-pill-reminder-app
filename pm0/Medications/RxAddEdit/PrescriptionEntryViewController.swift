@@ -485,8 +485,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     ]
     field.theme.separatorColor = UIColor.darkGray
     field.tableBottomMargin = 0
-
-    debugPrint("field.tableBottomMargin: \(field.tableBottomMargin)")
   }
 
   func configureHeader(_ field:SearchTextField, withText headerText:String){

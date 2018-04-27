@@ -649,7 +649,7 @@ You likely do not need to change this. It is primarily for people taking care of
                     <navigationItem key="navigationItem" title="Signing" id="72F-ht-iCv">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="LGU-jv-mQB">
                             <connections>
-                                <segue destination="xZa-fJ-BhG" kind="push" identifier="doneSigning" id="SAq-y3-48V"/>
+                                <segue destination="xZa-fJ-BhG" kind="show" identifier="doneSigning" id="SAq-y3-48V"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

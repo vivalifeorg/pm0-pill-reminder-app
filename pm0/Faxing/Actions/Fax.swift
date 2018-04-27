@@ -30,16 +30,8 @@ extension PDFDocument{
 }
 
 extension Array where Element == DocumentRef{
-  var singleDocument:PDFDocument {
-    let allPages = flatMap{PDFDocument(url: $0)}.map{$0.pages}.flatMap{$0}
-    let doc = PDFDocument()
-    allPages.forEach { (page) in
-      doc.insert(page, at: doc.pageCount)
-    }
-    return doc
-  }
 
-  var singleDocumentWithMargin:PDFDocument {
+  var singleDocument:PDFDocument {
     let allPages = compactMap{PDFDocument(url: $0)}.flatMap{$0.pages}
     let doc = PDFDocument()
     allPages.forEach { (page) in

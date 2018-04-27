@@ -524,19 +524,21 @@ extension UpcomingDayViewController{
     if let helpVC = segue.destination as? HelpViewController {
       helpVC.helpText =
         """
-          This screen is a checklist of doses to take. Here is how to ensure you take all your medication as the day goes on:
+          This screen shows what doses of medication you need to take. Come here every day and check off your medication every time you administer it. Each large line shows a dose of medication you need to take.
 
-          As you take each dose, tap the dose here to check it off. If you tap the wrong one, tap again to uncheck it.
+          As you take each dose, tap it to check it off.
 
-          The >>> indicator points at your next dose today. If you have a lot of doses, this helps you keep track that you didn't miss one early on.
+          If you tap the wrong one, you can tap again to uncheck it.
 
-          Each time of day says how many items are remaining for that time.
+          The >>> indicator points at your next dose. If you have a lot of doses, this helps you keep track that you didn't miss one early on.
+
+          The medications are grouped by time of day in which you take them. Each group shows you how many items are remaining for that group, or a white checkmark if you've taken them all.
 
           ## Related Screens
 
           More medications and prescriptions can be added in the Medications tab.
 
-          These logs can be exported in the Faxing tab.
+          These logs can be exported in the Faxing tab for all days that you've entered information into the app.
         """.renderMarkdownAsAttributedString
       helpVC.title = "\(tabBarItem.title ?? "") Tab Help"
       return
