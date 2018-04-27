@@ -311,7 +311,8 @@ class UpcomingDayViewController: UITableViewController {
         var dosesAtTime = times[time.offsetFromDayStart] ?? []
         dosesAtTime.append(dose)
         times[time.offsetFromDayStart] = dosesAtTime
-        if let name = time.name, name != "" {
+        let name = time.name
+        if name != "" {
           var nameList = timeNames[time.offsetFromDayStart] ?? []
           nameList.append(name)
           timeNames[time.offsetFromDayStart] = nameList

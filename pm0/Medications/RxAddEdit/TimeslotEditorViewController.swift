@@ -143,8 +143,55 @@ class TimeslotEditorViewController:UITableViewController{
       tableView.reloadRows(at: sectionIndexPaths, with: .automatic)
     }
 
+
     LocalStorage.TimeslotStore.User.save(timeslots[0])
     LocalStorage.TimeslotStore.Standard.save(timeslots[1])
+
+    var timeslotsByName:[String:Timeslot] = [:]
+    let allTimeslots = timeslots[0] + timeslots[1]
+    for timeslot in allTimeslots{
+      timeslotsByName[timeslot.name] = timeslot
+    }
+
+    //Update old user schedules
+    let oldUserSchedules:[Schedule] = LocalStorage.ScheduleStore.User.load()
+    let newUserSchedules:[Schedule] = oldUserSchedules.map{ (oldSchedule:Schedule) in
+      var newSchedule = oldSchedule //make a copy
+      newSchedule.timeslots = oldSchedule.timeslots.map{timeslotsByName[$0.name] ?? $0} //replace them by name
+      return newSchedule
+    }
+    LocalStorage.ScheduleStore.User.save(newUserSchedules)
+
+    //Update old standard schedules
+    let oldStandardSchedules:[Schedule] = LocalStorage.ScheduleStore.Standard.load()
+    let newStandardSchedules:[Schedule] = oldStandardSchedules.map{ (oldSchedule:Schedule) in
+      var newSchedule = oldSchedule //make a copy
+      newSchedule.timeslots = oldSchedule.timeslots.map{timeslotsByName[$0.name] ?? $0} //replace them by name
+      return newSchedule
+    }
+    LocalStorage.ScheduleStore.Standard.save(newStandardSchedules)
+
+    var schedulesByName:[String:Schedule] = [:]
+    let allSchedules = newUserSchedules + newStandardSchedules
+    for schedule in allSchedules{
+      schedulesByName[schedule.name] = schedule
+    }
+
+    //update old prescriptions with new schedules/timeslots
+    let oldUserPrescriptions:[Prescription] = LocalStorage.PrescriptionStore.load()
+    let newUserPrescriptions:[Prescription] = oldUserPrescriptions.map{ (oldPrescription:Prescription) in
+      var newPrescription = oldPrescription //make a copy
+      if var dosage = oldPrescription.dosage{
+        if let schedule = schedulesByName[dosage.schedule.name] {
+          dosage.schedule = schedule
+          newPrescription.dosage = dosage
+        }
+      }
+      return newPrescription
+    }
+    LocalStorage.PrescriptionStore.save(newUserPrescriptions)
+
+
   }
 
   func editTimeslotAt(at indexPath:IndexPath){

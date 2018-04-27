@@ -154,15 +154,16 @@ extension Array where Element == Timeslot {
 }
 
 struct Timeslot:Hashable,Codable{
+  let itemRef:UUID = UUID()
   var hashValue: Int {
-    return "\(name ?? "non-named")\(slotType)".hashValue
+    return "\(fauxName ?? "non-named")\(slotType)".hashValue
   }
 
   static func >(lhs:Timeslot, rhs:Timeslot)->Bool{
     if lhs.offsetFromDayStart != rhs.offsetFromDayStart{
       return lhs.offsetFromDayStart > rhs.offsetFromDayStart
     }else{
-      return lhs.name ?? "" > rhs.name ?? ""
+      return lhs.fauxName ?? "" > rhs.fauxName ?? ""
     }
   }
 
@@ -170,8 +171,10 @@ struct Timeslot:Hashable,Codable{
     return !(lhs > rhs) && (lhs != rhs)
   }
 
-
-  var name:String?
+  var fauxName:String?{
+    return name
+  }
+  var name:String
 
   var slotType:SlotType
 
@@ -204,7 +207,7 @@ struct Timeslot:Hashable,Codable{
   
   var description:String{
     let timeStr = timeString
-    if let name = name, name != "" {
+    if name != "" {
       return "\(name)@\(timeStr)"
     } else {
       return timeStr
@@ -233,7 +236,7 @@ struct Timeslot:Hashable,Codable{
 
 
 
-  init(name:String?, slotType:SlotType, hourOffset:HourOffset, minuteOffset:MinuteOffset){
+  init(name:String, slotType:SlotType, hourOffset:HourOffset, minuteOffset:MinuteOffset){
     self.name = name
     self.slotType = slotType
     self.hourOffset = hourOffset
