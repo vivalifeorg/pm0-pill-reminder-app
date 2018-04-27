@@ -85,7 +85,7 @@ class TimeslotEditorViewController:UITableViewController{
 
   var datePicker:UIDatePicker? = nil
   var timeslots:[[Timeslot]] = [LocalStorage.TimeslotStore.User.load(),
-                                LocalStorage.TimeslotStore.Standard.load()]
+                                Timeslot.sortedSystemTimeslots]
 
   let customSectionIndex = 0
 

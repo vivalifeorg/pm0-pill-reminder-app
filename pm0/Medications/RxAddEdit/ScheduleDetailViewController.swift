@@ -41,7 +41,7 @@ class ScheduleDetailViewController:UITableViewController{
   }
 
   private var userTimeslots:[Timeslot] = LocalStorage.TimeslotStore.User.load()
-  private var defaultTimeslots:[Timeslot] = LocalStorage.TimeslotStore.Standard.load()
+  private var defaultTimeslots:[Timeslot] = Timeslot.sortedSystemTimeslots
 
   // Custom timeslots are above system timeslots so the user is more likely to see them
   private var timeslotDatasource:[[Timeslot]] {
