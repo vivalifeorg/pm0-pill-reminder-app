@@ -128,7 +128,7 @@ class ScheduleDetailViewController:UITableViewController{
       let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleDetailNameCell", for: indexPath)  as! ScheduleDetailNameCell
       cell.nameField?.text = schedule.name
       cell.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
-      cell.nameField?.textColor = Asset.Colors.vlEditableTextColor.color
+      cell.nameField?.textColor = Asset.Colors.vlEditableFieldTextColor.color
       cell.nameField?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.nameField?.placeholder = "e.g. Before Meetings"
       cell.nameField?.placeholderColor = UIColor.darkGray
