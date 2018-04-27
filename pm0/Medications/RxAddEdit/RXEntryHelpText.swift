@@ -72,7 +72,7 @@ enum RXEntryHelpText{
 
     For example, if you take two 200mg pills every six hours, you put "**2**" here, as that's how much you take at a single time.
 
-    If your medication is something liquid or powdered that you take a measured amount of, you most likely should put the amount of units of it you take here here. For example, for "10mL of 160 mg/5ml solution", put "**10ml**"
+    If your medication is something liquid or powdered that you take a measured amount of, you most likely should put the amount of units of it you take here here. So, if you were prescribed "10mL of 160 mg/5ml solution", you should put "**10ml**" here.
     """
 
   static let prescriberHelpText =
@@ -106,7 +106,7 @@ enum RXEntryHelpText{
   """
     # Condition
 
-    Write what condition or impairment that motivates you to take this medication. This helps you discuss your entire treatment plan with every doctor trying to help you.
+    Say what condition or impairment that motivates you to take this medication. This helps you discuss your entire treatment plan with every doctor trying to help you.
 
     This also helps you clean up after recovering from something like a surgery or other intermittant occasion where you will not need many of the medications long term.
     """
