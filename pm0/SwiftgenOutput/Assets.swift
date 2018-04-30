@@ -59,6 +59,8 @@ enum Asset {
     static let vlTextBackgroundAreaColor = ColorAsset(name: "vlTextBackgroundAreaColor")
     static let vlTextColor = ColorAsset(name: "vlTextColor")
     static let vlWarmTintColor = ColorAsset(name: "vlWarmTintColor")
+    static let vlZebraDarker = ColorAsset(name: "vlZebraDarker")
+    static let vlZebraLighter = ColorAsset(name: "vlZebraLighter")
   }
   enum Empty {
     static let emptyDoc = ImageAsset(name: "Empty-Doc")
@@ -99,6 +101,8 @@ enum Asset {
     Colors.vlTextBackgroundAreaColor,
     Colors.vlTextColor,
     Colors.vlWarmTintColor,
+    Colors.vlZebraDarker,
+    Colors.vlZebraLighter,
   ]
   static let allImages: [ImageAsset] = [
     Empty.emptyDoc,

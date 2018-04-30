@@ -27,24 +27,40 @@ import UIKit
 
 extension Timeslot{
 
-  var floridDescription:NSAttributedString{
+  func floridDescription(foregroundColor:UIColor = Asset.Colors.vlTextColor.color,
+                         backgroundColor:UIColor = Asset.Colors.vlCellBackgroundCommon.color) -> NSAttributedString{
 
+    let alignedRight = NSMutableParagraphStyle()
+    alignedRight.alignment = .right
+
+    let captionFont = UIFont.preferredFont(forTextStyle: .caption1)
     let labelAttributes: [NSAttributedStringKey: Any] = [
-      .foregroundColor:Asset.Colors.vlTextColor.color,
-      .strokeWidth:-1.9,
-      .font :UIFont.monospacedDigitSystemFont(ofSize: 20,weight:.bold)
-    ]
-    let scheduleTextAttributes: [NSAttributedStringKey: Any] = [
-      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
-      .strokeWidth:-0.1
+      .foregroundColor:foregroundColor,
+      .backgroundColor:backgroundColor,
+      .strokeWidth:-1.0,
+      .font :UIFont.monospacedDigitSystemFont(ofSize:captionFont.pointSize,weight:.black),
+      .paragraphStyle:alignedRight
     ]
 
-    if name != "" {
-      return NSAttributedString(string:"\(name) @ ") +
-        NSAttributedString(string:"\(timeString)", attributes:labelAttributes)
-    } else {
-      return NSAttributedString(string:"\(timeString)", attributes:labelAttributes)
-    }
+
+    let paddedTimeString = timeString.padding(toLength: 10, withPad: " ", startingAt: 0)
+    let displayCorrectedTimeString = "  \(paddedTimeString) \t\(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
+    return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes)
+
+  }
+}
+
+struct Zebra: IteratorProtocol {
+  mutating func next() -> Bool? {
+    return next()
+  }
+
+  var isDark = false
+
+  mutating func next() -> Bool {
+    let currentDark = !isDark
+    isDark = currentDark
+    return currentDark
   }
 }
 
@@ -78,6 +94,8 @@ extension Dosage{
                               attributes:doseAttributes)
   }
 
+
+  
   var extendedAttributedBody:NSAttributedString{
 
 
@@ -95,9 +113,17 @@ extension Dosage{
       NSAttributedString(string:schedule.name, attributes:scheduleTextAttributes)
 
     let timeslotIndent = NSAttributedString(string:"    ")
-    let timeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
+    var zebra = Zebra()
+    let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
       lhs < rhs
-    }).map{timeslotIndent + $0.floridDescription}
+    })
+    let timeslots:[NSAttributedString] = sortedTimeslots.map{ (timeslot:Timeslot) in
+      if zebra.next(){
+        return timeslotIndent + timeslot.floridDescription( backgroundColor:Asset.Colors.vlZebraDarker.color)
+      }else{
+        return timeslotIndent + timeslot.floridDescription(backgroundColor: Asset.Colors.vlZebraLighter.color)
+      }
+    }
     let newline = NSAttributedString(string:"\n")
 
     let otherLines:[NSAttributedString] = [scheduleHeader] + timeslots
