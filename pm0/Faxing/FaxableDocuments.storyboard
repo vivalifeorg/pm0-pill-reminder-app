@@ -859,9 +859,11 @@ You can also leave this blank.</string>
                     <connections>
                         <outlet property="pdfView" destination="wGa-FR-apQ" id="7sQ-nF-Lak"/>
                         <segue destination="zfx-C3-GlH" kind="presentation" identifier="showFaxStatus" id="p25-xa-VeQ"/>
+                        <segue destination="pda-xL-0bd" kind="unwind" identifier="unwindFromFaxingAfterSend" unwindAction="unwindFromFaxingAfterSendWithSegue:" id="5Lc-MB-W4v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVi-kX-PFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="pda-xL-0bd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4997" y="-547"/>
         </scene>
