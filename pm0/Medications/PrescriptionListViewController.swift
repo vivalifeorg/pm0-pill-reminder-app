@@ -30,16 +30,14 @@ extension Timeslot{
   func floridDescription(foregroundColor:UIColor = Asset.Colors.vlTextColor.color,
                          backgroundColor:UIColor = Asset.Colors.vlCellBackgroundCommon.color) -> NSAttributedString{
 
-    let alignedRight = NSMutableParagraphStyle()
-    alignedRight.alignment = .right
+
 
     let captionFont = UIFont.preferredFont(forTextStyle: .caption1)
     let labelAttributes: [NSAttributedStringKey: Any] = [
       .foregroundColor:foregroundColor,
       .backgroundColor:backgroundColor,
       .strokeWidth:-1.0,
-      .font :UIFont.monospacedDigitSystemFont(ofSize:captionFont.pointSize,weight:.black),
-      .paragraphStyle:alignedRight
+      .font :UIFont.monospacedDigitSystemFont(ofSize:captionFont.pointSize,weight:.black)
     ]
 
 
