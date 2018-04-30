@@ -11,6 +11,12 @@ class PrescriptionDisplayView:UIView{
   @IBOutlet weak var title:UILabel!
   @IBOutlet weak var body:UILabel!
 
+  public var showExtended:Bool = false{
+    didSet{
+      updateLabels()
+    }
+  }
+
   override func awakeFromNib(){
     super.awakeFromNib()
     updateLabels()
@@ -20,7 +26,11 @@ class PrescriptionDisplayView:UIView{
     guard title != nil, body != nil else {return}
 
     title?.attributedText = dosage?.attributedTitle
-    body?.attributedText = dosage?.attributedBody
+    if showExtended {
+      body?.attributedText = dosage?.extendedAttributedBody
+    }else{
+      body?.attributedText = dosage?.attributedBody
+    }
   }
 
   var dosage:Dosage? = nil{

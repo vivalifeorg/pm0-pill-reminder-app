@@ -55,6 +55,7 @@ enum Asset {
     static let vlEditableFieldTextColor = ColorAsset(name: "vlEditableFieldTextColor")
     static let vlEditableTextColor = ColorAsset(name: "vlEditableTextColor")
     static let vlEmptyStateText = ColorAsset(name: "vlEmptyStateText")
+    static let vlSecondaryTextColor = ColorAsset(name: "vlSecondaryTextColor")
     static let vlTextBackgroundAreaColor = ColorAsset(name: "vlTextBackgroundAreaColor")
     static let vlTextColor = ColorAsset(name: "vlTextColor")
     static let vlWarmTintColor = ColorAsset(name: "vlWarmTintColor")
@@ -94,6 +95,7 @@ enum Asset {
     Colors.vlEditableFieldTextColor,
     Colors.vlEditableTextColor,
     Colors.vlEmptyStateText,
+    Colors.vlSecondaryTextColor,
     Colors.vlTextBackgroundAreaColor,
     Colors.vlTextColor,
     Colors.vlWarmTintColor,

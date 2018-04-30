@@ -11,27 +11,97 @@ import DZNEmptyDataSet
 import UIKit
 
 
+extension NSAttributedString{
+  // concatenate attributed strings
+  static func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
+  {
+    let result = NSMutableAttributedString()
+    result.append(left)
+    result.append(right)
+    return result
+  }
+}
+
 import UIKit
+
+
+extension Timeslot{
+
+  var floridDescription:NSAttributedString{
+
+    let labelAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:Asset.Colors.vlTextColor.color,
+      .strokeWidth:-1.9,
+      .font :UIFont.monospacedDigitSystemFont(ofSize: 20,weight:.bold)
+    ]
+    let scheduleTextAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
+      .strokeWidth:-0.1
+    ]
+
+    if name != "" {
+      return NSAttributedString(string:"\(name) @ ") +
+        NSAttributedString(string:"\(timeString)", attributes:labelAttributes)
+    } else {
+      return NSAttributedString(string:"\(timeString)", attributes:labelAttributes)
+    }
+  }
+}
+
 extension Dosage{
 
-  var quantityExpression:String{
-    if let quantity = quantity {
-      return "\(quantity) of"
-    }else{
-      return ""
-    }
+  private var titleAttributes: [NSAttributedStringKey: Any] {
+    return [
+      .foregroundColor:Asset.Colors.vlTextColor.color,
+      .strokeWidth:-3.0 //makes it "bold" no matter what the font
+    ]
   }
 
   var attributedTitle:NSAttributedString{
-    return NSAttributedString(string:"\(name)")
+    return NSAttributedString(string:name,
+                              attributes:titleAttributes)
   }
 
   var bodyString:String{
     return "\(quantity.followedByIfNotNil(" of "))\(unitDescription.spaceAfterOrEmpty)\(form ?? "")"
   }
-  
+
+  var doseAttributes: [NSAttributedStringKey: Any]{
+    return  [
+      .foregroundColor:Asset.Colors.vlTextColor.color,
+      .obliqueness:0.1
+    ]
+  }
   var attributedBody:NSAttributedString{
-    return NSAttributedString(string:bodyString)
+
+    return NSAttributedString(string:bodyString,
+                              attributes:doseAttributes)
+  }
+
+  var extendedAttributedBody:NSAttributedString{
+
+
+    let labelAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:Asset.Colors.vlTextColor.color,
+      .strokeWidth:-1.9
+    ]
+    let scheduleTextAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
+      .strokeWidth:-0.1
+    ]
+
+    let take = NSAttributedString(string:" Take: ",attributes:labelAttributes) + NSAttributedString(string: bodyString)
+    let scheduleHeader = NSAttributedString(string:" Schedule: ",attributes:labelAttributes) +
+      NSAttributedString(string:schedule.name, attributes:scheduleTextAttributes)
+
+    let timeslotIndent = NSAttributedString(string:"    ")
+    let timeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
+      lhs < rhs
+    }).map{timeslotIndent + $0.floridDescription}
+    let newline = NSAttributedString(string:"\n")
+
+    let otherLines:[NSAttributedString] = [scheduleHeader] + timeslots
+    return otherLines.reduce(take){$0 + newline + $1}
   }
 }
 
@@ -41,9 +111,9 @@ extension Prescription{
     return dosage?.description ?? "Drug"
   }
 
-  var subTitle:String{
-    return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
-  }
+//  var subTitle:String{
+//    return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
+//  }
 }
 
 struct PrescriptionListViewModel{
@@ -196,6 +266,7 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
   func tableView(_ tableView:UITableView, cellForRowAt path: IndexPath) ->UITableViewCell{
     let cell = tableView.dequeueReusableCell(withIdentifier: PrescriptionListViewController.cellIdentifier, for:path) as! PrescriptionListViewControllerCell
     cell.prescriptionDisplayView?.dosage = viewModel[path].dosage
+    cell.prescriptionDisplayView?.showExtended = true
 
 
     //let isSelected = tableView.indexPathsForSelectedRows?.contains(path) ?? false

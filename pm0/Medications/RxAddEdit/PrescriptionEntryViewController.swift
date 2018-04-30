@@ -153,6 +153,7 @@ extension Array where Element == Timeslot {
   }
 }
 
+
 struct Timeslot:Hashable,Codable{
   let itemRef:UUID = UUID()
   var hashValue: Int {
@@ -204,7 +205,8 @@ struct Timeslot:Hashable,Codable{
 
     return dateFormatter.string(from: today.date!)
   }
-  
+
+
   var description:String{
     let timeStr = timeString
     if name != "" {
