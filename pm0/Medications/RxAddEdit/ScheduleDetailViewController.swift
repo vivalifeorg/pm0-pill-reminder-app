@@ -120,6 +120,8 @@ class ScheduleDetailViewController:UITableViewController{
       }
   }
 
+  
+
 
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,6 +144,7 @@ class ScheduleDetailViewController:UITableViewController{
       cell.textLabel?.text = timeslot.name
       cell.detailTextLabel?.isHidden = false
       cell.detailTextLabel?.text = timeslot.timeString
+      
       cell.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
       cell.textLabel?.textColor = Asset.Colors.vlTextColor.color
       cell.textLabel?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color

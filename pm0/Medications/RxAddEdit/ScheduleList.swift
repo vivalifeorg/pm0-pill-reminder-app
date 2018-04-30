@@ -109,6 +109,37 @@ class ScheduleListViewController:UITableViewController{
     return sectionNameDatasource[section]
   }
 
+
+  func detailTextForSchedule(schedule:Schedule,
+                             scheduleHeader:NSAttributedString?=nil)->NSAttributedString{
+
+    let timeslotIndent = NSAttributedString(string:"    ")
+    var zebra = Zebra()
+    let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
+      lhs < rhs
+    })
+    let timeslots:[NSAttributedString] = sortedTimeslots.map{ (timeslot:Timeslot) in
+      if zebra.next(){
+        return timeslotIndent + timeslot.floridDescription( backgroundColor:Asset.Colors.vlZebraDarker.color)
+      }else{
+        return timeslotIndent + timeslot.floridDescription(backgroundColor: Asset.Colors.vlZebraLighter.color)
+      }
+    }
+    let newline = NSAttributedString(string:"\n")
+
+    let otherLines:[NSAttributedString]
+    if let scheduleHeader = scheduleHeader {
+      otherLines =  [scheduleHeader] + timeslots
+    }else{
+      otherLines = timeslots
+    }
+    guard let first = otherLines.first else{
+      return NSAttributedString()
+    }
+    let rest = otherLines.dropFirst()
+    return rest.reduce(first){$0 + newline + $1}
+  }
+
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -116,11 +147,14 @@ class ScheduleListViewController:UITableViewController{
     let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ??     UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
     cell.textLabel?.textColor = Asset.Colors.vlTextColor.color
     cell.detailTextLabel?.textColor = Asset.Colors.vlTextColor.color
+    cell.detailTextLabel?.numberOfLines = 0
+    cell.detailTextLabel?.lineBreakMode = .byWordWrapping
     cell.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
 
     let schedule = scheduleForIndexPath(indexPath)
     cell.textLabel?.text = schedule.title
-    cell.detailTextLabel?.text = schedule.timeslots.map{$0.description}.joined(separator: ", ")
+    //cell.detailTextLabel?.text = schedule.timeslots.map{$0.description}.joined(separator: ", ")
+    cell.detailTextLabel?.attributedText = detailTextForSchedule(schedule: schedule)
 
     let isChecked = (scheduleSelection != nil) &&
                       (scheduleSelection! == scheduleForIndexPath(indexPath))
