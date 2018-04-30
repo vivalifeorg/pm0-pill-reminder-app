@@ -27,10 +27,8 @@ import UIKit
 
 extension Timeslot{
 
-  func floridDescription(foregroundColor:UIColor = Asset.Colors.vlTextColor.color,
+  func floridDescription(maxTimeWidth:Int = 12, foregroundColor:UIColor = Asset.Colors.vlTextColor.color,
                          backgroundColor:UIColor = Asset.Colors.vlCellBackgroundCommon.color) -> NSAttributedString{
-
-
 
     let captionFont = UIFont.preferredFont(forTextStyle: .caption1)
     let labelAttributes: [NSAttributedStringKey: Any] = [
@@ -41,7 +39,12 @@ extension Timeslot{
     ]
 
 
-    let paddedTimeString = timeString.padding(toLength: 10, withPad: " ", startingAt: 0)
+    var paddedTimeString = timeString
+    while paddedTimeString.count < maxTimeWidth{
+      paddedTimeString = " \(paddedTimeString)"
+    }
+
+
     let displayCorrectedTimeString = "  \(paddedTimeString) \t\(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
     return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes)
 
@@ -83,7 +86,7 @@ extension Dosage{
   var doseAttributes: [NSAttributedStringKey: Any]{
     return  [
       .foregroundColor:Asset.Colors.vlTextColor.color,
-      .obliqueness:0.1
+      .obliqueness:0.2
     ]
   }
   var attributedBody:NSAttributedString{
@@ -108,9 +111,9 @@ extension Dosage{
 
     let take = NSAttributedString(string:" Take: ",attributes:labelAttributes) + NSAttributedString(string: bodyString)
     let scheduleHeader = NSAttributedString(string:" Schedule: ",attributes:labelAttributes) +
-      NSAttributedString(string:schedule.name, attributes:scheduleTextAttributes)
+      NSAttributedString(string:"", attributes:scheduleTextAttributes)
 
-    let timeslotIndent = NSAttributedString(string:"    ")
+    let timeslotIndent = NSAttributedString(string:"  ")
     var zebra = Zebra()
     let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
       lhs < rhs
