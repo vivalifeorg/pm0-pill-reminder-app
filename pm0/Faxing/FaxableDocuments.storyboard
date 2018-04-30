@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f4T-WS-Wu4">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,23 +19,23 @@
             <objects>
                 <tableViewController title="Faxing" id="hgT-1R-QPE" customClass="FaxableDocumentsViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gWh-sK-qsu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="Nj7-fe-h2x">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send these documents to your doctors to save time filling out paperwork in the waiting room" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljl-d4-jSp">
-                                    <rect key="frame" x="20" y="12" width="374" height="56"/>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send these documents ahead of time to save time filling out paperwork in the waiting room" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljl-d4-jSp">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <color key="textColor" name="vlSecondaryTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WlT-Yl-SBI">
-                                    <rect key="frame" x="0.0" y="79.333333333333329" width="414" height="0.6666666666666714"/>
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
                                     <color key="backgroundColor" name="vlZebraDarker"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="v9f-b6-2cB"/>
@@ -55,14 +57,14 @@
                             <tableViewSection id="vGD-EM-HQj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FI9-oD-eT4" detailTextLabel="FVQ-7p-vxN" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="rqn-1E-prm">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="80" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rqn-1E-prm" id="xk5-Sj-sIo">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="69.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="69.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Medication Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="FI9-oD-eT4">
-                                                    <rect key="frame" x="20" y="12.333333333333336" width="134.33333333333334" height="24"/>
+                                                    <rect key="frame" x="16" y="12.333333333333336" width="134.33333333333334" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -70,7 +72,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Show how you're taking your meds, and when. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="FVQ-7p-vxN">
-                                                    <rect key="frame" x="20" y="40" width="265.33333333333331" height="14.333333333333334"/>
+                                                    <rect key="frame" x="16" y="40" width="265.33333333333331" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -82,14 +84,14 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Information Release Form" textLabel="vx5-bN-D1W" detailTextLabel="2Xl-5L-cEg" style="IBUITableViewCellStyleSubtitle" id="5WE-qF-7oh">
-                                        <rect key="frame" x="0.0" y="150" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="5WE-qF-7oh" id="oKJ-s9-laZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Information Release Form" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="vx5-bN-D1W">
-                                                    <rect key="frame" x="20" y="-5" width="221" height="24"/>
+                                                    <rect key="frame" x="16" y="-5" width="221" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -97,7 +99,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Let your doctors transfer medical records between one another." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="2Xl-5L-cEg">
-                                                    <rect key="frame" x="20" y="19" width="289.66666666666669" height="30.333333333333332"/>
+                                                    <rect key="frame" x="16" y="19" width="289.66666666666669" height="30.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -110,14 +112,14 @@
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="W1P-Gt-87v" detailTextLabel="CEc-3s-leK" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="5d7-3u-RqJ">
-                                        <rect key="frame" x="0.0" y="194" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="194" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5d7-3u-RqJ" id="mPJ-S2-RWE">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="69.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="69.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Patient History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="W1P-Gt-87v">
-                                                    <rect key="frame" x="20" y="4.3333333333333357" width="127" height="24"/>
+                                                    <rect key="frame" x="16" y="4.3333333333333357" width="127" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -125,7 +127,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Reduce errors and save time by filling this out once here then sending it to your doctor before your visit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="CEc-3s-leK">
-                                                    <rect key="frame" x="20" y="32" width="350" height="30.333333333333332"/>
+                                                    <rect key="frame" x="16" y="32" width="321.33333333333331" height="30.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -163,22 +165,22 @@
             <objects>
                 <tableViewController storyboardIdentifier="SendToScreen" title="Send To" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sgj-Sf-wfT" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t36-Vw-gJY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="6OA-ev-JG1">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Who are you letting get your medical data?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZ2-aB-8We">
-                                    <rect key="frame" x="20.666666666666657" y="12" width="374" height="56"/>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Who are you sending this to? (Usually a doctor you just started seeing)." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZ2-aB-8We">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <color key="textColor" name="vlSecondaryTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7W-5e-xdV">
-                                    <rect key="frame" x="0.0" y="79.333333333333329" width="414" height="0.6666666666666714"/>
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
                                     <color key="backgroundColor" name="vlZebraDarker"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="h2p-QK-jr7"/>
@@ -198,21 +200,21 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorSelectCell" textLabel="lEg-Uc-NKX" detailTextLabel="vIa-wi-r8w" style="IBUITableViewCellStyleSubtitle" id="HH3-7G-HHS">
-                                <rect key="frame" x="0.0" y="108" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HH3-7G-HHS" id="2fM-sd-8US">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEg-Uc-NKX">
-                                            <rect key="frame" x="20.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="16.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" name="vlTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="vIa-wi-r8w">
-                                            <rect key="frame" x="19.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="15.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" name="vlTextColor"/>
@@ -261,7 +263,7 @@
             <objects>
                 <navigationController id="TUk-QA-EgF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="d6G-tO-efh">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -288,7 +290,7 @@
                 <navigationController id="Upl-0q-f9W" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="KJ3-GQ-nVk">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -304,22 +306,22 @@
             <objects>
                 <tableViewController storyboardIdentifier="DataFromScreen" title="Data From" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4ZZ-kK-Nan" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pVt-e3-8NS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="zDf-GJ-MpW">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Who should they be able to get data from?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5K-IN-YJz">
-                                    <rect key="frame" x="20" y="12" width="374" height="56"/>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Who should they be able to get data from? This is usually other doctors of yours." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5K-IN-YJz">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <color key="textColor" name="vlSecondaryTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aax-rb-oEl">
-                                    <rect key="frame" x="0.0" y="79.333333333333329" width="414" height="0.6666666666666714"/>
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
                                     <color key="backgroundColor" name="vlZebraDarker"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="ljg-Es-eB4"/>
@@ -339,21 +341,21 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorDataFromSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorDataFromSelectCell" textLabel="v3O-Y1-u6H" detailTextLabel="H2Y-Vl-z2o" style="IBUITableViewCellStyleSubtitle" id="5nY-V7-3sa">
-                                <rect key="frame" x="0.0" y="108" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5nY-V7-3sa" id="l3Q-dW-Aiy">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="v3O-Y1-u6H">
-                                            <rect key="frame" x="20.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="16.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" name="vlTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H2Y-Vl-z2o">
-                                            <rect key="frame" x="19.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="15.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" name="vlTextColor"/>
@@ -391,45 +393,62 @@
             <objects>
                 <viewController id="w6b-nS-TNt" customClass="RestrictionsViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WsE-b3-ALI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV7-Si-FYF">
-                                <rect key="frame" x="20" y="136" width="374" height="64.333333333333314"/>
-                                <string key="text">You can request doctors do not use your data in a specific manner. For instance, you may request adoption status not be shared with a child. </string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
-                                <rect key="frame" x="20" y="252.33333333333334" width="374" height="370.66666666666663"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1S-62-mZK">
+                                <rect key="frame" x="0.0" y="140" width="375" height="149.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9u-Kj-W3h">
+                                        <rect key="frame" x="20" y="12.66666666666665" width="335" height="125.33333333333331"/>
+                                        <string key="text">You can request doctors do not use your data in a specific manner. For instance, you may request adoption status not be shared with a child. 
+
+You can also leave this blank.</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-Lj-EAD">
+                                        <rect key="frame" x="0.0" y="148.66666666666669" width="375" height="0.66666666666665719"/>
+                                        <color key="backgroundColor" name="vlZebraDarker"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="Poi-Ab-dB7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="vlZebraDarker"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Uda-Lj-EAD" secondAttribute="bottom" id="J0P-AP-78T"/>
+                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="width" secondItem="t1S-62-mZK" secondAttribute="width" constant="-40" id="WqS-Pw-THM"/>
+                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="centerX" secondItem="t1S-62-mZK" secondAttribute="centerX" id="bN2-8Q-erw"/>
+                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="centerY" secondItem="t1S-62-mZK" secondAttribute="centerY" id="cmu-hs-7NR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uda-Lj-EAD" secondAttribute="trailing" id="jvz-Tv-fH9"/>
+                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="height" secondItem="t1S-62-mZK" secondAttribute="height" constant="-24" id="rFo-H2-Neo"/>
+                                    <constraint firstItem="Uda-Lj-EAD" firstAttribute="leading" secondItem="t1S-62-mZK" secondAttribute="leading" id="yZI-l7-DoR"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
+                                <rect key="frame" x="20" y="309.33333333333326" width="335" height="355.66666666666674"/>
                                 <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
                                 <color key="textColor" name="vlEditableFieldTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="9"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restrictions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-2X-C5G">
-                                <rect key="frame" x="20" y="220.33333333333334" width="109" height="24"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
-                            <constraint firstItem="MV7-Si-FYF" firstAttribute="top" secondItem="EEV-zf-cF8" secondAttribute="top" constant="20" id="4fN-et-sDk"/>
-                            <constraint firstItem="MV7-Si-FYF" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="93I-7U-tnx"/>
+                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="t1S-62-mZK" secondAttribute="bottom" constant="20" id="Abb-RP-fMz"/>
                             <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="SI0-Lk-c2W" secondAttribute="trailing" constant="20" id="E3v-GI-67Z"/>
                             <constraint firstItem="SI0-Lk-c2W" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="IYX-J8-AVM"/>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="8Ib-2X-C5G" secondAttribute="bottom" constant="8" id="RcG-vX-BOu"/>
-                            <constraint firstItem="8Ib-2X-C5G" firstAttribute="leading" secondItem="SI0-Lk-c2W" secondAttribute="leading" id="dLb-el-epf"/>
-                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="MV7-Si-FYF" secondAttribute="trailing" constant="20" id="iLm-Ci-TbL"/>
-                            <constraint firstItem="8Ib-2X-C5G" firstAttribute="top" secondItem="MV7-Si-FYF" secondAttribute="bottom" constant="20" id="kFV-RI-Lvt"/>
+                            <constraint firstItem="t1S-62-mZK" firstAttribute="centerX" secondItem="EEV-zf-cF8" secondAttribute="centerX" id="NPi-9D-ysZ"/>
+                            <constraint firstItem="t1S-62-mZK" firstAttribute="width" secondItem="WsE-b3-ALI" secondAttribute="width" id="UCm-0Z-tnL"/>
+                            <constraint firstItem="EEV-zf-cF8" firstAttribute="top" secondItem="t1S-62-mZK" secondAttribute="top" id="cjc-pr-U92"/>
                             <constraint firstItem="EEV-zf-cF8" firstAttribute="bottom" secondItem="SI0-Lk-c2W" secondAttribute="bottom" constant="20" id="oHF-YH-XxH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EEV-zf-cF8"/>
@@ -454,42 +473,88 @@
             <objects>
                 <viewController id="vCa-jE-kf3" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k2s-N3-Omi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVC-6B-iK7">
-                                <rect key="frame" x="20" y="168" width="374" height="30"/>
-                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
-                                <color key="textColor" name="vlEditableFieldTextColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient name on this document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdo-9F-2jj">
-                                <rect key="frame" x="20" y="136" width="268" height="24"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSD-2f-wXo">
-                                <rect key="frame" x="20" y="218" width="374" height="130.33333333333337"/>
-                                <string key="text">You can change the name that will be shown on the document before sending it. 
-
-You likely do not need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKW-AL-8xg">
+                                <rect key="frame" x="0.0" y="140" width="375" height="65.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="You can change the name that will be shown on the document before sending it. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn9-w9-7og">
+                                        <rect key="frame" x="20" y="12.666666666666661" width="335" height="41.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-sf-ZHz">
+                                        <rect key="frame" x="0.0" y="64.666666666666657" width="375" height="0.6666666666666714"/>
+                                        <color key="backgroundColor" name="vlZebraDarker"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="J2M-ZL-0es"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="vlZebraDarker"/>
+                                <constraints>
+                                    <constraint firstItem="nn9-w9-7og" firstAttribute="height" secondItem="dKW-AL-8xg" secondAttribute="height" constant="-24" id="EtI-yi-2zw"/>
+                                    <constraint firstItem="nn9-w9-7og" firstAttribute="width" secondItem="dKW-AL-8xg" secondAttribute="width" constant="-40" id="MHq-aD-fjI"/>
+                                    <constraint firstItem="nn9-w9-7og" firstAttribute="centerY" secondItem="dKW-AL-8xg" secondAttribute="centerY" id="Xqr-gl-dsJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dh2-sf-ZHz" secondAttribute="trailing" id="bqy-sP-f4X"/>
+                                    <constraint firstAttribute="bottom" secondItem="dh2-sf-ZHz" secondAttribute="bottom" id="gf0-LB-r5v"/>
+                                    <constraint firstItem="nn9-w9-7og" firstAttribute="centerX" secondItem="dKW-AL-8xg" secondAttribute="centerX" id="lzX-GC-cix"/>
+                                    <constraint firstItem="dh2-sf-ZHz" firstAttribute="leading" secondItem="dKW-AL-8xg" secondAttribute="leading" id="rzo-Oa-Co5"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8I8-yt-fBJ">
+                                <rect key="frame" x="0.0" y="205" width="375" height="573"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CdK-LJ-Eba">
+                                        <rect key="frame" x="20" y="16" width="335" height="30"/>
+                                        <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                        <accessibility key="accessibilityConfiguration" label="Patient Name"/>
+                                        <color key="textColor" name="vlEditableFieldTextColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udM-tG-Qph">
+                                        <rect key="frame" x="20" y="8" width="335" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" name="vlTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-5V-RiD">
+                                        <rect key="frame" x="20" y="54" width="335" height="46.333333333333343"/>
+                                        <string key="text">You probably don't need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                <constraints>
+                                    <constraint firstItem="udM-tG-Qph" firstAttribute="top" secondItem="X6i-Uc-Iyu" secondAttribute="top" constant="8" id="8ws-3E-TAt"/>
+                                    <constraint firstItem="udM-tG-Qph" firstAttribute="leading" secondItem="CdK-LJ-Eba" secondAttribute="leading" id="JxP-9H-pJK"/>
+                                    <constraint firstItem="CdK-LJ-Eba" firstAttribute="leading" secondItem="X6i-Uc-Iyu" secondAttribute="leading" constant="20" id="Jxc-bh-Fjz"/>
+                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="leading" secondItem="X6i-Uc-Iyu" secondAttribute="leading" constant="20" id="Tbc-8I-up6"/>
+                                    <constraint firstItem="X6i-Uc-Iyu" firstAttribute="trailing" secondItem="CdK-LJ-Eba" secondAttribute="trailing" constant="19.999999999999773" id="cOx-j9-VkY"/>
+                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="width" secondItem="CdK-LJ-Eba" secondAttribute="width" id="i70-X5-eiN"/>
+                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="top" secondItem="CdK-LJ-Eba" secondAttribute="bottom" constant="8" id="iTN-nh-AOZ"/>
+                                    <constraint firstItem="CdK-LJ-Eba" firstAttribute="top" secondItem="udM-tG-Qph" secondAttribute="bottom" constant="8" id="ksX-T8-OtR"/>
+                                    <constraint firstItem="X6i-Uc-Iyu" firstAttribute="trailing" secondItem="bUd-5V-RiD" secondAttribute="trailing" constant="20" id="sDG-ii-Aam"/>
+                                    <constraint firstItem="udM-tG-Qph" firstAttribute="trailing" secondItem="CdK-LJ-Eba" secondAttribute="trailing" id="tze-im-eqa"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="X6i-Uc-Iyu"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
-                            <constraint firstItem="qVC-6B-iK7" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="20" id="F0O-LF-Rpq"/>
-                            <constraint firstItem="BSD-2f-wXo" firstAttribute="width" secondItem="qVC-6B-iK7" secondAttribute="width" id="JhX-as-feD"/>
-                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="trailing" secondItem="BSD-2f-wXo" secondAttribute="trailing" constant="20" id="K6E-yh-k0p"/>
-                            <constraint firstItem="rdo-9F-2jj" firstAttribute="top" secondItem="Nyw-bx-XiV" secondAttribute="top" constant="20" id="L09-7p-lGM"/>
-                            <constraint firstItem="rdo-9F-2jj" firstAttribute="leading" secondItem="qVC-6B-iK7" secondAttribute="leading" id="ZVg-lV-SGi"/>
-                            <constraint firstItem="BSD-2f-wXo" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" constant="20" id="lW4-Up-YBt"/>
-                            <constraint firstItem="qVC-6B-iK7" firstAttribute="top" secondItem="rdo-9F-2jj" secondAttribute="bottom" constant="8" id="vAY-8B-NXW"/>
-                            <constraint firstItem="BSD-2f-wXo" firstAttribute="top" secondItem="qVC-6B-iK7" secondAttribute="bottom" constant="20" id="w5K-Pv-5NH"/>
+                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="trailing" secondItem="Nyw-bx-XiV" secondAttribute="trailing" id="8Xg-gC-Qut"/>
+                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="bottom" secondItem="Nyw-bx-XiV" secondAttribute="bottom" constant="93" id="CGa-ET-cmM"/>
+                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="top" secondItem="dKW-AL-8xg" secondAttribute="top" id="WbS-tw-aFw"/>
+                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="top" secondItem="dKW-AL-8xg" secondAttribute="bottom" id="Xaf-Jg-eMI"/>
+                            <constraint firstItem="dKW-AL-8xg" firstAttribute="centerX" secondItem="Nyw-bx-XiV" secondAttribute="centerX" id="gtL-wN-Oss"/>
+                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" id="oE5-Kt-Z1b"/>
+                            <constraint firstItem="dKW-AL-8xg" firstAttribute="width" secondItem="k2s-N3-Omi" secondAttribute="width" id="r15-qZ-fPK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nyw-bx-XiV"/>
                     </view>
@@ -501,7 +566,7 @@ You likely do not need to change this. It is primarily for people taking care of
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="nameField" destination="qVC-6B-iK7" id="Ixm-iu-vg3"/>
+                        <outlet property="nameField" destination="CdK-LJ-Eba" id="ImZ-NC-9rz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -513,42 +578,90 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <viewController storyboardIdentifier="medlogFlowRestorationNameController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="r1e-tv-ipO" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AYe-7b-iKi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IZT-YX-be0">
-                                <rect key="frame" x="20" y="168" width="374" height="30"/>
-                                <color key="backgroundColor" name="vlDisabledButtonColor"/>
-                                <color key="textColor" name="vlEditableFieldTextColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient name on this document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-Lx-Dhi">
-                                <rect key="frame" x="20" y="136" width="268" height="24"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WC-Jm-9Ec">
-                                <rect key="frame" x="20" y="218" width="374" height="130.33333333333337"/>
-                                <string key="text">You can change the name that will be shown on the document before sending it. 
-
-You likely do not need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhp-m9-oWP">
+                                <rect key="frame" x="0.0" y="140" width="375" height="65.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="You can change the name that will be shown on the document before sending it. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6P-7i-j3H">
+                                        <rect key="frame" x="20" y="12.666666666666661" width="335" height="41.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZC-Ed-Wxr">
+                                        <rect key="frame" x="0.0" y="64.666666666666657" width="375" height="0.6666666666666714"/>
+                                        <color key="backgroundColor" name="vlZebraDarker"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="BC0-Z3-mI3"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="vlZebraDarker"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fZC-Ed-Wxr" secondAttribute="trailing" id="EML-Xt-kbQ"/>
+                                    <constraint firstItem="Q6P-7i-j3H" firstAttribute="width" secondItem="Mhp-m9-oWP" secondAttribute="width" constant="-40" id="Eje-vw-lpX"/>
+                                    <constraint firstItem="Q6P-7i-j3H" firstAttribute="height" secondItem="Mhp-m9-oWP" secondAttribute="height" constant="-24" id="HQC-Pg-Lah"/>
+                                    <constraint firstItem="Q6P-7i-j3H" firstAttribute="centerX" secondItem="Mhp-m9-oWP" secondAttribute="centerX" id="QdM-gv-HIy"/>
+                                    <constraint firstAttribute="bottom" secondItem="fZC-Ed-Wxr" secondAttribute="bottom" id="RIs-C6-gnz"/>
+                                    <constraint firstItem="Q6P-7i-j3H" firstAttribute="centerY" secondItem="Mhp-m9-oWP" secondAttribute="centerY" id="UwQ-hb-W9x"/>
+                                    <constraint firstItem="fZC-Ed-Wxr" firstAttribute="leading" secondItem="Mhp-m9-oWP" secondAttribute="leading" id="cBl-Tx-US4"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIU-gL-OOc">
+                                <rect key="frame" x="0.0" y="205" width="375" height="482"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yrg-KI-gie">
+                                        <rect key="frame" x="20" y="16" width="335" height="30"/>
+                                        <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                        <accessibility key="accessibilityConfiguration" label="Patient Name"/>
+                                        <color key="textColor" name="vlEditableFieldTextColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDi-qx-rWx">
+                                        <rect key="frame" x="20" y="8" width="335" height="0.0"/>
+                                        <accessibility key="accessibilityConfiguration" label="Patient Name"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <color key="textColor" name="vlTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYs-aN-gUT">
+                                        <rect key="frame" x="20" y="54" width="335" height="46.333333333333343"/>
+                                        <string key="text">You probably don't need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                <constraints>
+                                    <constraint firstItem="Yrg-KI-gie" firstAttribute="leading" secondItem="nbM-V6-5ge" secondAttribute="leading" constant="20" id="3Km-hU-Zmd"/>
+                                    <constraint firstItem="yYs-aN-gUT" firstAttribute="leading" secondItem="nbM-V6-5ge" secondAttribute="leading" constant="20" id="A9v-JV-Sh1"/>
+                                    <constraint firstItem="aDi-qx-rWx" firstAttribute="top" secondItem="nbM-V6-5ge" secondAttribute="top" constant="8" id="Jwy-no-OuK"/>
+                                    <constraint firstItem="nbM-V6-5ge" firstAttribute="trailing" secondItem="Yrg-KI-gie" secondAttribute="trailing" constant="19.999999999999773" id="g5T-1z-5zd"/>
+                                    <constraint firstItem="Yrg-KI-gie" firstAttribute="top" secondItem="aDi-qx-rWx" secondAttribute="bottom" constant="8" id="lXh-FE-wpZ"/>
+                                    <constraint firstItem="aDi-qx-rWx" firstAttribute="leading" secondItem="Yrg-KI-gie" secondAttribute="leading" id="mP1-Gr-eLS"/>
+                                    <constraint firstItem="yYs-aN-gUT" firstAttribute="width" secondItem="Yrg-KI-gie" secondAttribute="width" id="mnF-tu-LNx"/>
+                                    <constraint firstItem="nbM-V6-5ge" firstAttribute="trailing" secondItem="yYs-aN-gUT" secondAttribute="trailing" constant="20" id="rqe-tG-ten"/>
+                                    <constraint firstItem="yYs-aN-gUT" firstAttribute="top" secondItem="Yrg-KI-gie" secondAttribute="bottom" constant="8" id="t4e-NV-NoR"/>
+                                    <constraint firstItem="aDi-qx-rWx" firstAttribute="trailing" secondItem="Yrg-KI-gie" secondAttribute="trailing" id="wN0-mx-QYw"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="nbM-V6-5ge"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
-                            <constraint firstItem="bLh-Ko-n51" firstAttribute="trailing" secondItem="1WC-Jm-9Ec" secondAttribute="trailing" constant="20" id="4SY-ho-w0r"/>
-                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="width" secondItem="IZT-YX-be0" secondAttribute="width" id="Gmy-Zv-lWb"/>
-                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="leading" secondItem="bLh-Ko-n51" secondAttribute="leading" constant="20" id="OuN-KW-Zyy"/>
-                            <constraint firstItem="IZT-YX-be0" firstAttribute="top" secondItem="aDH-Lx-Dhi" secondAttribute="bottom" constant="8" id="Q2r-lQ-cJo"/>
-                            <constraint firstItem="1WC-Jm-9Ec" firstAttribute="top" secondItem="IZT-YX-be0" secondAttribute="bottom" constant="20" id="YNW-bY-ASw"/>
-                            <constraint firstItem="IZT-YX-be0" firstAttribute="leading" secondItem="bLh-Ko-n51" secondAttribute="leading" constant="20" id="gWz-3X-fHb"/>
-                            <constraint firstItem="aDH-Lx-Dhi" firstAttribute="leading" secondItem="IZT-YX-be0" secondAttribute="leading" id="hXg-o4-gnI"/>
-                            <constraint firstItem="aDH-Lx-Dhi" firstAttribute="top" secondItem="bLh-Ko-n51" secondAttribute="top" constant="20" id="k0X-yH-BUu"/>
+                            <constraint firstItem="MIU-gL-OOc" firstAttribute="centerX" secondItem="bLh-Ko-n51" secondAttribute="centerX" id="9sI-sl-Gia"/>
+                            <constraint firstItem="Mhp-m9-oWP" firstAttribute="width" secondItem="AYe-7b-iKi" secondAttribute="width" id="Au1-cO-hUB"/>
+                            <constraint firstItem="MIU-gL-OOc" firstAttribute="width" secondItem="AYe-7b-iKi" secondAttribute="width" id="Fgz-Yd-yaU"/>
+                            <constraint firstItem="MIU-gL-OOc" firstAttribute="top" secondItem="Mhp-m9-oWP" secondAttribute="bottom" id="Jss-9U-bHs"/>
+                            <constraint firstItem="MIU-gL-OOc" firstAttribute="bottom" secondItem="bLh-Ko-n51" secondAttribute="bottom" constant="2" id="R1v-Tn-B5y"/>
+                            <constraint firstItem="Mhp-m9-oWP" firstAttribute="top" secondItem="bLh-Ko-n51" secondAttribute="top" id="SZ3-af-OqX"/>
+                            <constraint firstItem="Mhp-m9-oWP" firstAttribute="bottom" secondItem="MIU-gL-OOc" secondAttribute="top" id="bCO-bq-SmZ"/>
+                            <constraint firstItem="Mhp-m9-oWP" firstAttribute="centerX" secondItem="bLh-Ko-n51" secondAttribute="centerX" id="t4k-Jn-j1T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bLh-Ko-n51"/>
                     </view>
@@ -560,7 +673,7 @@ You likely do not need to change this. It is primarily for people taking care of
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="nameField" destination="IZT-YX-be0" id="byP-BK-gtQ"/>
+                        <outlet property="nameField" destination="Yrg-KI-gie" id="yFn-gq-UdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Te-Ib-Ilb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -572,22 +685,22 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <tableViewController title="History Length" id="8WQ-cV-Abu" customClass="HistoryLengthViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iIA-43-ivV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="PRh-wh-n4H">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send an appropriate amount of data for the reason you're going into the doctor." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-k5-hBO">
-                                    <rect key="frame" x="20.666666666666657" y="12" width="374" height="56"/>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Select an appropriate amount of data for the reason you're going into the doctor." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-k5-hBO">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <color key="textColor" name="vlSecondaryTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-2Q-4jJ">
-                                    <rect key="frame" x="0.0" y="79.333333333333329" width="414" height="0.6666666666666714"/>
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
                                     <color key="backgroundColor" name="vlZebraDarker"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="STA-Jn-gLc"/>
@@ -609,14 +722,14 @@ You likely do not need to change this. It is primarily for people taking care of
                             <tableViewSection id="IKW-U4-olS">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" textLabel="Ay5-fy-Ta9" style="IBUITableViewCellStyleDefault" id="Qh0-fn-084">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="80" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qh0-fn-084" id="AdT-7g-zFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Last 30 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Ay5-fy-Ta9">
-                                                    <rect key="frame" x="20" y="0.0" width="350" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="319" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="vlTextColor"/>
@@ -627,14 +740,14 @@ You likely do not need to change this. It is primarily for people taking care of
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="ech-Il-IqQ" style="IBUITableViewCellStyleDefault" id="ktt-Kg-qlG">
-                                        <rect key="frame" x="0.0" y="124" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="124" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ktt-Kg-qlG" id="UNy-QU-tfd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Last 90 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="ech-Il-IqQ">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="vlTextColor"/>
@@ -645,14 +758,14 @@ You likely do not need to change this. It is primarily for people taking care of
                                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="qbO-0l-ETE" style="IBUITableViewCellStyleDefault" id="bCO-fP-tGZ">
-                                        <rect key="frame" x="0.0" y="168" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="168" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bCO-fP-tGZ" id="dXm-PT-HcM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="qbO-0l-ETE">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" name="vlTextColor"/>
@@ -687,21 +800,21 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <viewController id="xZa-fJ-BhG" customClass="FaxPreviewViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g7E-b1-xwl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4P-th-f5K">
-                                <rect key="frame" x="0.0" y="116" width="414" height="85.666666666666686"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="85.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="When you're sure this is what you want to send, just tap Send. Your information will be faxed immeadiately." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJL-I2-LkM">
-                                        <rect key="frame" x="20" y="12.000000000000004" width="374" height="62.333333333333343"/>
+                                        <rect key="frame" x="20" y="12.000000000000004" width="335" height="62.333333333333343"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <color key="textColor" name="vlSecondaryTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rpv-A8-6wV">
-                                        <rect key="frame" x="0.0" y="85" width="414" height="0.6666666666666714"/>
+                                        <rect key="frame" x="0.0" y="85" width="375" height="0.6666666666666714"/>
                                         <color key="backgroundColor" name="vlZebraDarker"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="Vi2-EP-kQJ"/>
@@ -720,7 +833,7 @@ You likely do not need to change this. It is primarily for people taking care of
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-FR-apQ" userLabel="PDFViewContainer" customClass="PDFView">
-                                <rect key="frame" x="0.0" y="201.66666666666666" width="414" height="441.33333333333337"/>
+                                <rect key="frame" x="0.0" y="225.66666666666666" width="375" height="459.33333333333337"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
                         </subviews>
@@ -757,34 +870,63 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <viewController title="Signing" id="OkB-dV-NGA" customClass="SignatureViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bwb-Tp-sE7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2R-TX-QEZ" userLabel="InfoView">
+                                <rect key="frame" x="0.0" y="140" width="375" height="86.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Sign here with your finger. You will be able to see the document and double check it before it is sent." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1E-AA-8vc">
+                                        <rect key="frame" x="20" y="12.000000000000004" width="335" height="62.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBO-TD-11q">
+                                        <rect key="frame" x="0.0" y="85.666666666666657" width="375" height="0.6666666666666714"/>
+                                        <color key="backgroundColor" name="vlZebraDarker"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="lsM-Co-P5f"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="vlZebraDarker"/>
+                                <constraints>
+                                    <constraint firstItem="E1E-AA-8vc" firstAttribute="centerY" secondItem="G2R-TX-QEZ" secondAttribute="centerY" id="J8N-bc-tjq"/>
+                                    <constraint firstItem="E1E-AA-8vc" firstAttribute="width" secondItem="G2R-TX-QEZ" secondAttribute="width" constant="-40" id="LmG-Sz-kKK"/>
+                                    <constraint firstAttribute="trailing" secondItem="WBO-TD-11q" secondAttribute="trailing" id="NOT-d7-reT"/>
+                                    <constraint firstItem="E1E-AA-8vc" firstAttribute="centerX" secondItem="G2R-TX-QEZ" secondAttribute="centerX" id="Z1e-Qk-Uz8"/>
+                                    <constraint firstItem="WBO-TD-11q" firstAttribute="leading" secondItem="G2R-TX-QEZ" secondAttribute="leading" id="am9-8w-ZOD"/>
+                                    <constraint firstAttribute="bottom" secondItem="WBO-TD-11q" secondAttribute="bottom" id="q8g-gG-njI"/>
+                                    <constraint firstItem="E1E-AA-8vc" firstAttribute="height" secondItem="G2R-TX-QEZ" secondAttribute="height" constant="-24" id="vex-ot-GSI"/>
+                                </constraints>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUY-oZ-lRe">
-                                <rect key="frame" x="0.0" y="116" width="414" height="527"/>
+                                <rect key="frame" x="0.0" y="226.33333333333334" width="375" height="458.66666666666663"/>
                                 <subviews>
                                     <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbV-nB-Eme" userLabel="Container">
-                                        <rect key="frame" x="20" y="20" width="374" height="150"/>
+                                        <rect key="frame" x="20" y="20" width="335" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O71-XJ-tXT">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
                                                 <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" text="Patient Signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1L-bk-FaL">
-                                                <rect key="frame" x="16" y="121" width="131" height="25"/>
+                                                <rect key="frame" x="16" y="120.99999999999997" width="131" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDA-63-8hR" userLabel="Line">
-                                                <rect key="frame" x="8" y="118" width="358" height="2"/>
+                                                <rect key="frame" x="8" y="117.99999999999997" width="319" height="2"/>
                                                 <color key="backgroundColor" name="vlTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="Bqx-fy-ep0"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dqd-sT-NVc" userLabel="Background" customClass="SignatureView" customModule="SwiftySignature">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="jHT-jG-5b0"/>
                                                 </constraints>
@@ -808,8 +950,14 @@ You likely do not need to change this. It is primarily for people taking care of
                                             <constraint firstItem="O71-XJ-tXT" firstAttribute="width" secondItem="Dqd-sT-NVc" secondAttribute="width" id="tTA-Sh-3H4"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your signature is only stored  in the fax." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1w0-Ud-qwK">
+                                        <rect key="frame" x="20" y="177.99999999999997" width="335" height="13.333333333333343"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                        <color key="textColor" name="vlSecondaryTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97J-e3-YcE" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="178" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="199.99999999999997" width="335" height="44"/>
                                         <color key="backgroundColor" name="vlWarmTintColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="DRJ-bf-RQj"/>
@@ -822,33 +970,30 @@ You likely do not need to change this. It is primarily for people taking care of
                                             <action selector="signatureClear:" destination="OkB-dV-NGA" eventType="touchUpInside" id="PwA-Y0-3s9"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will have a chance to preview the document before it is sent" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPD-AW-p66">
-                                        <rect key="frame" x="20" y="346" width="374" height="42.333333333333314"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <color key="textColor" name="vlTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="97J-e3-YcE" firstAttribute="top" secondItem="NbV-nB-Eme" secondAttribute="bottom" constant="8" id="2HB-Jw-WKr"/>
                                     <constraint firstAttribute="trailing" secondItem="97J-e3-YcE" secondAttribute="trailing" constant="20" id="7wh-Tr-mTT"/>
-                                    <constraint firstItem="rPD-AW-p66" firstAttribute="top" secondItem="97J-e3-YcE" secondAttribute="bottom" priority="999" constant="124" id="Htu-tv-2MQ"/>
+                                    <constraint firstItem="1w0-Ud-qwK" firstAttribute="centerX" secondItem="CUY-oZ-lRe" secondAttribute="centerX" id="AUU-gq-ffU"/>
                                     <constraint firstAttribute="trailing" secondItem="NbV-nB-Eme" secondAttribute="trailing" constant="20" id="LIt-8I-sc5"/>
-                                    <constraint firstItem="rPD-AW-p66" firstAttribute="centerX" secondItem="CUY-oZ-lRe" secondAttribute="centerX" id="OVN-LG-EbW"/>
+                                    <constraint firstItem="1w0-Ud-qwK" firstAttribute="top" secondItem="NbV-nB-Eme" secondAttribute="bottom" constant="8" id="LNg-I0-NS0"/>
+                                    <constraint firstItem="1w0-Ud-qwK" firstAttribute="bottom" secondItem="97J-e3-YcE" secondAttribute="topMargin" constant="-16.670000000000002" id="Osv-IH-UbV"/>
                                     <constraint firstItem="NbV-nB-Eme" firstAttribute="leading" secondItem="CUY-oZ-lRe" secondAttribute="leading" constant="20" id="PyH-4U-fPE"/>
                                     <constraint firstItem="NbV-nB-Eme" firstAttribute="top" secondItem="CUY-oZ-lRe" secondAttribute="top" constant="20" id="Wo9-Ee-EE1"/>
                                     <constraint firstItem="97J-e3-YcE" firstAttribute="leading" secondItem="CUY-oZ-lRe" secondAttribute="leading" constant="20" id="c6R-NT-GJJ"/>
-                                    <constraint firstItem="rPD-AW-p66" firstAttribute="width" secondItem="CUY-oZ-lRe" secondAttribute="width" constant="-40" id="kSk-g9-lCL"/>
+                                    <constraint firstItem="1w0-Ud-qwK" firstAttribute="width" secondItem="97J-e3-YcE" secondAttribute="width" id="qpr-cF-8K4"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
+                            <constraint firstItem="G2R-TX-QEZ" firstAttribute="width" secondItem="8c2-IP-XNj" secondAttribute="width" id="0ZF-yT-3AT"/>
                             <constraint firstItem="CUY-oZ-lRe" firstAttribute="width" secondItem="8c2-IP-XNj" secondAttribute="width" id="5zg-p2-sLl"/>
                             <constraint firstItem="8c2-IP-XNj" firstAttribute="bottom" secondItem="CUY-oZ-lRe" secondAttribute="bottom" id="G0S-Bt-G78"/>
-                            <constraint firstItem="8c2-IP-XNj" firstAttribute="top" secondItem="CUY-oZ-lRe" secondAttribute="top" id="Xjx-ip-K6v"/>
+                            <constraint firstItem="G2R-TX-QEZ" firstAttribute="centerX" secondItem="8c2-IP-XNj" secondAttribute="centerX" id="QBW-q5-hhe"/>
                             <constraint firstItem="CUY-oZ-lRe" firstAttribute="trailing" secondItem="8c2-IP-XNj" secondAttribute="trailing" id="eFP-zw-wMY"/>
                             <constraint firstItem="CUY-oZ-lRe" firstAttribute="leading" secondItem="8c2-IP-XNj" secondAttribute="leading" id="qSA-OF-Oov"/>
+                            <constraint firstItem="CUY-oZ-lRe" firstAttribute="top" secondItem="G2R-TX-QEZ" secondAttribute="bottom" id="ti1-H2-Vd2"/>
+                            <constraint firstItem="8c2-IP-XNj" firstAttribute="top" secondItem="G2R-TX-QEZ" secondAttribute="top" id="xRM-jF-bf9"/>
                             <constraint firstItem="8c2-IP-XNj" firstAttribute="trailing" secondItem="CUY-oZ-lRe" secondAttribute="trailing" id="xSh-T3-ty1"/>
                             <constraint firstItem="CUY-oZ-lRe" firstAttribute="leading" secondItem="8c2-IP-XNj" secondAttribute="leading" id="ywK-kM-Ydz"/>
                         </constraints>
@@ -877,7 +1022,7 @@ You likely do not need to change this. It is primarily for people taking care of
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="fd9-XS-fDb">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -894,7 +1039,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 <navigationController id="CG2-A8-7om" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="FLa-dy-q07">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -922,22 +1067,22 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <tableViewController storyboardIdentifier="SendToViewControllerInMedFlow" title="Send To" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yNP-K7-aYo" customClass="SendToViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g5k-gw-Tnr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="NkG-hA-0E3">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Where are you sending this log of medication you took?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kn6-0E-aFo">
-                                    <rect key="frame" x="20" y="12" width="374" height="56"/>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Select the doctor you are sending the medication log to. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kn6-0E-aFo">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <color key="textColor" name="vlSecondaryTextColor"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKf-lK-OkR">
-                                    <rect key="frame" x="0.0" y="79.333333333333329" width="414" height="0.6666666666666714"/>
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
                                     <color key="backgroundColor" name="vlZebraDarker"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="hoE-Vl-59j"/>
@@ -957,21 +1102,21 @@ You likely do not need to change this. It is primarily for people taking care of
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DoctorSelectCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="DoctorSelectCell" textLabel="6E1-nz-BO5" detailTextLabel="ncX-Hs-KHp" style="IBUITableViewCellStyleSubtitle" id="Y7Q-Ee-Sgb">
-                                <rect key="frame" x="0.0" y="108" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y7Q-Ee-Sgb" id="IBB-WX-f8W">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="6E1-nz-BO5">
-                                            <rect key="frame" x="20.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                            <rect key="frame" x="16.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" name="vlTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="ncX-Hs-KHp">
-                                            <rect key="frame" x="19.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
+                                            <rect key="frame" x="15.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" name="vlTextColor"/>
@@ -1021,7 +1166,7 @@ You likely do not need to change this. It is primarily for people taking care of
                 <navigationController id="SVK-NG-V54" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="vX2-OW-A2U">
-                        <rect key="frame" x="0.0" y="20" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1037,21 +1182,21 @@ You likely do not need to change this. It is primarily for people taking care of
             <objects>
                 <viewController storyboardIdentifier="Preview2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fBp-wX-Rmo" customClass="FaxPreviewViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RSm-ry-4TP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-kM-Tct">
-                                <rect key="frame" x="0.0" y="116" width="414" height="85.666666666666686"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="85.666666666666686"/>
                                 <subviews>
                                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="When you're sure this is what you want to send, just tap Send. Your information will be faxed immeadiately." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mG-RD-xJJ">
-                                        <rect key="frame" x="20" y="12.000000000000004" width="374" height="62.333333333333343"/>
+                                        <rect key="frame" x="20" y="12.000000000000004" width="335" height="62.333333333333343"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <color key="textColor" name="vlSecondaryTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCs-n9-in2">
-                                        <rect key="frame" x="0.0" y="85" width="414" height="0.6666666666666714"/>
+                                        <rect key="frame" x="0.0" y="85" width="375" height="0.6666666666666714"/>
                                         <color key="backgroundColor" name="vlZebraDarker"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="ZJQ-u8-0Q5"/>
@@ -1070,7 +1215,7 @@ You likely do not need to change this. It is primarily for people taking care of
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCb-Px-qDy" userLabel="PDFViewContainer" customClass="PDFView">
-                                <rect key="frame" x="0.0" y="201.66666666666666" width="414" height="441.33333333333337"/>
+                                <rect key="frame" x="0.0" y="225.66666666666666" width="375" height="459.33333333333337"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
                         </subviews>
@@ -1126,23 +1271,50 @@ You likely do not need to change this. It is primarily for people taking care of
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlDisabledButtonColor">
-            <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlDisabledButtonColor">
+            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlEditableFieldTextColor">
             <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="vlEditableFieldTextColor">
+            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="vlEditableFieldTextColor">
+            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlSecondaryTextColor">
             <color red="0.93300002813339233" green="0.93300002813339233" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlSecondaryTextColor">
             <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1159,11 +1331,29 @@ You likely do not need to change this. It is primarily for people taking care of
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlWarmTintColor">
             <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
             <color red="0.074000000953674316" green="0.13400000333786011" blue="0.21299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlZebraDarker">
             <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
