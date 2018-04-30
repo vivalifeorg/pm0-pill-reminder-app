@@ -79,6 +79,47 @@ func timeConfigurationSheet(currentDate:Date,width:CGFloat, editText:String? = n
   return alertSheet
 }
 
+extension Optional where Wrapped == String{
+
+  func followedByIfNotNil(_ text:String)->String{
+    guard let some = self else {
+      return ""
+    }
+    return "\(some)\(text)"
+  }
+
+  func appendingIfNotNil(_ text:String?)->String{
+    guard let text = text,
+          let selftext = self else{
+      return ""
+    }
+    return "\(text)\(selftext)"
+  }
+
+  ///This returns an empty string if the string is nil, or the string preceeded by a space if the string if the string is not nil.  Useful for constructing user-facing strings out of String? instances.
+  ///  ex: "This is a\(adjective.spaceBeforeValueOrEmpty) dog\(itemName.spaceBeforeValueOrEmpty)"
+  ///  will produce these kinds of output: "This is a good dog", "This is a dog",
+  ///    "This is a dog bowl, "This is a blue dog bowl"
+  var spaceBeforeOrEmpty:String{
+    guard self != nil else {
+      return ""
+    }
+    return " \(self!)"
+  }
+
+  ///This returns an empty string if the string is nil, or the string followed by a space if the string if the string is not nil.  Useful for constructing user-facing strings out of String? instances.
+  ///  ex: "\(dogName.spaceAfterValueOrEmpty)Stats"
+  ///  will produce these kinds of output: "Sport Stats", "Spot Status",
+  ///    "Mary Stats", "Stats"
+  var spaceAfterOrEmpty:String{
+    guard self != nil else {
+      return ""
+    }
+    return self.followedByIfNotNil(" ")
+  }
+
+
+}
 
 class TimeslotEditorViewController:UITableViewController{
 
@@ -213,7 +254,7 @@ class TimeslotEditorViewController:UITableViewController{
     let sheet = timeConfigurationSheet(currentDate:currentDate,
                                        width:view.frame.size.width-20.0,
                                        editText:editableName,
-                                       title:"Editing \"\(timeslot.name ?? "Slot")\"",
+                                       title:"Editing \"\(timeslot.name)\"",
     message:""){ hourOffset, minuteOffset, nameUpdate in
 
       if let hourOffset=hourOffset,
@@ -288,7 +329,7 @@ class TimeslotEditorViewController:UITableViewController{
   func deleteTimeslotTableRowAction(_ action:UITableViewRowAction, indexPath:IndexPath){
     // delete item at indexPath
     let timeslot = timeslots[indexPath.section][indexPath.row]
-    let alert = UIAlertController(title: "Delete Timeslot?",                                  message: "Are you sure you want to delete \(timeslot.name ?? "this timeslot")?",
+    let alert = UIAlertController(title: "Delete Timeslot?",                                  message: "Are you sure you want to delete \(timeslot.name)?",
                                   preferredStyle: .alert)
 
     alert.addAction(

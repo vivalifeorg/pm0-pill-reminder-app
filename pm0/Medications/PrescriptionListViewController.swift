@@ -16,24 +16,18 @@ extension Dosage{
 
   var quantityExpression:String{
     if let quantity = quantity {
-      return "\(quantity) of "
+      return "\(quantity) of"
     }else{
       return ""
     }
   }
 
-  var attributedString:NSAttributedString{
-
-    let str =
-      "**\(name)**,<br/>\(quantityExpression)\(unitDescription ?? form ?? "dose")".renderMarkdownAsAttributedString
-    return str
-  }
   var attributedTitle:NSAttributedString{
     return NSAttributedString(string:"\(name)")
   }
 
   var bodyString:String{
-    return "\(quantityExpression)\(unitDescription ?? "") \(form ?? "")"
+    return "\(quantity.followedByIfNotNil(" of "))\(unitDescription.spaceAfterOrEmpty)\(form ?? "")"
   }
   
   var attributedBody:NSAttributedString{
@@ -46,9 +40,7 @@ extension Prescription{
   var title:String{
     return dosage?.description ?? "Drug"
   }
-  var attributedTitle:NSAttributedString{
-    return dosage!.attributedString
-  }
+
   var subTitle:String{
     return conditionPrescribedFor.map{"for \($0)"} ?? "for <Condition>"
   }

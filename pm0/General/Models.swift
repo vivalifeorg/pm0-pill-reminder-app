@@ -31,7 +31,7 @@ struct Dosage:Codable{
   var quantity:String?
 
   var description:String{
-    return "\(name), \(quantity ?? "1" ) of \(unitDescription ?? "") \(form ?? "UNITS")"
+    return "\(name), \(quantity ?? "1" ) of\(unitDescription.spaceBeforeOrEmpty) \(form ?? "UNITS")"
   }
   var schedule:Schedule
   var shortName:String{
