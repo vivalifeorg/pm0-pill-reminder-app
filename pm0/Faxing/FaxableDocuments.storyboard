@@ -1002,7 +1002,7 @@ You can also leave this blank.</string>
                         <viewLayoutGuide key="safeArea" id="8c2-IP-XNj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Signing" id="72F-ht-iCv">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="LGU-jv-mQB">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="LGU-jv-mQB">
                             <connections>
                                 <segue destination="xZa-fJ-BhG" kind="show" identifier="doneSigning" id="SAq-y3-48V"/>
                             </connections>
