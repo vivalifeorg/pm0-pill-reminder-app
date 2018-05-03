@@ -69,7 +69,6 @@ struct EntryInfo:Codable{
   var form:String?
   var unitDescription:String?
   var quantityOfUnits:String?
-  var schedule:String?
   var scheduleSelection:Schedule? 
   var prescribingDoctor:String?
   var pharmacy:String?

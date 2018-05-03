@@ -679,17 +679,9 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     \EntryInfo.condition:\PrescriptionEntryViewController.conditionLine.searchTextField.text,
   ]
 
+  var schedule:Schedule? //holds value for edits. 
+
   var entryInfo:EntryInfo{
-    get{
-
-      var entry = EntryInfo()
-      for transform in mapping{
-        entry[keyPath: transform.key] = self[keyPath:transform.value]
-      }
-
-      entry.drugDBSelection = lastSelectedDrug?.raw
-      return entry
-    }
     set{
       guard nameLine != nil else {
         //prevents firing from the didSet/prepare handler before view is loaded
@@ -701,8 +693,21 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
         let text = entry[keyPath: transform.key]
         self[keyPath:transform.value] = text
       }
+      schedule = entry.scheduleSelection
       lastSelectedDrug = entry.drugDBSelection.flatMap{DisplayDrug($0)}
     }
+
+    get{
+
+      var entry = EntryInfo()
+      for transform in mapping{
+        entry[keyPath: transform.key] = self[keyPath:transform.value]
+      }
+      entry.scheduleSelection = schedule
+      entry.drugDBSelection = lastSelectedDrug?.raw
+      return entry
+    }
+
   }
 
   let multiplicationSign = "×"

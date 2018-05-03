@@ -31,16 +31,20 @@ var defaultSchedules = [
 
 
 class ScheduleListViewController:UITableViewController{
-  var scheduleSelection:Schedule? = nil {
-    didSet{
-      guard let scheduleSelection = scheduleSelection else{
-        return
-      }
-      entryInfo?.scheduleSelection = scheduleSelection
+  var scheduleSelection:Schedule? {
+    set{
+      entryInfo?.scheduleSelection = newValue
+    }
+    get{
+      return entryInfo?.scheduleSelection
     }
   }
 
-  var entryInfo:EntryInfo?
+  var entryInfo:EntryInfo? = nil{
+    didSet{
+      tableView?.reloadData()
+    }
+  }
 
   func loadSchedules(){
      customSchedules = LocalStorage.ScheduleStore.User.load()
@@ -74,6 +78,7 @@ class ScheduleListViewController:UITableViewController{
     tableView.reloadData()
     super.viewWillAppear(animated)
   }
+
   override func viewDidLoad() {
     if LocalStorage.ScheduleStore.Standard.load().count == 0 {
       LocalStorage.ScheduleStore.Standard.save(defaultSchedules)
@@ -106,8 +111,6 @@ class ScheduleListViewController:UITableViewController{
   override func numberOfSections(in tableView: UITableView) -> Int {
     return isShowingCustom ? 2 : 1
   }
-
-
 
   override func tableView(_ tableView: UITableView,
                           willDisplayHeaderView view: UIView,
@@ -148,6 +151,7 @@ class ScheduleListViewController:UITableViewController{
     }else{
       otherLines = timeslots
     }
+    
     guard let first = otherLines.first else{
       return NSAttributedString()
     }
@@ -168,13 +172,11 @@ class ScheduleListViewController:UITableViewController{
 
     let schedule = scheduleForIndexPath(indexPath)
     cell.textLabel?.text = schedule.title
-    //cell.detailTextLabel?.text = schedule.timeslots.map{$0.description}.joined(separator: ", ")
     cell.detailTextLabel?.attributedText = detailTextForSchedule(schedule: schedule)
 
     let isChecked = (scheduleSelection != nil) &&
                       (scheduleSelection! == scheduleForIndexPath(indexPath))
     cell.accessoryType = isChecked ? .checkmark : .none
-
     cell.selectedBackgroundView = UIView()
     return cell
   }
