@@ -169,12 +169,30 @@ class UpcomingDayViewController: UITableViewController {
 
   var medicationTakenEventLog:[MedicationLogEvent] = []
 
+
+
+  func updateDateDisplay(forDay displayDay:Date){
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .ordinal
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE,  MMMM "
+
+    let day:Int = Calendar.current.component(.day, from: displayDay)
+    let dayNumber = NSNumber(value:day)
+    let dateString = "\(dateFormatter.string(from:displayDay))\(numberFormatter.string(from:dayNumber) ?? day.description)"
+
+    //Only set the *top* bar, leave the tab bar as "My Day"
+    self.navigationItem.title = dateString
+  }
+
   override func viewDidAppear(_ animated: Bool) {
     print("View Did Appear: my day")
     let possiblyUpdatedDosages = LocalStorage.PrescriptionStore.load().compactMap{$0.dosage}
     if possiblyUpdatedDosages != scheduledDosages{
       scheduledDosages = possiblyUpdatedDosages
     }
+
+    updateDateDisplay(forDay:Date())
     super.viewDidAppear(animated)
   }
   override func viewDidLoad() {
