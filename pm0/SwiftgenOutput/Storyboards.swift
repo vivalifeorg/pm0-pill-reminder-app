@@ -142,6 +142,7 @@ enum StoryboardSegue {
   }
   enum Main: String, SegueType {
     case goToApp
+    case unwindToStart
   }
   enum PrescriptionEntryViewController: String, SegueType {
     case addCustomScheduleSegue

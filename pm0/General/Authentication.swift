@@ -21,16 +21,62 @@ func isUserUsingStrongEnoughAuthentication()->Bool{
  Checks to see if the owner of the phone has it in their posession
  */
 func authenticateUser(completion:@escaping (Bool)->()) {
-  //poboyAuthState = .authenticating
+  vlAuthState = .authenticating
   let context = LAContext()
   context.evaluatePolicy( LAPolicy.deviceOwnerAuthentication,
-                          localizedReason: "Sign into your device to proceed") { success, error in
+                          localizedReason: "Sign into your device to proceed.\n\nThis uses your normal iOS passcode, TouchID, or FaceID.") { success, error in
                             if success {
                               print("Auth worked")
+                              vlAuthState = .authenticated
                               completion(true)
                             }else{
                               print("auth failed")
+                              vlAuthState = .notAuthenticted
                               completion(false)
                             }
+  }
+}
+
+
+enum VLAuthenticationState{
+  case authenticated
+  case notAuthenticted
+  case authenticating
+}
+
+class VLNeedsAuthAgainNotification:NSNotification{
+  static var name:NSNotification.Name{
+    return  NSNotification.Name(rawValue: "VLNeedsAuthAgainNotification")
+  }
+}
+
+class VLFailedAuthNotification:NSNotification{
+  static var name:NSNotification.Name{
+    return  NSNotification.Name(rawValue: "VLFailedAuthNotification")
+  }
+}
+
+class VLSuccededAuthNotification:NSNotification{
+  static var name:NSNotification.Name{
+    return  NSNotification.Name(rawValue: "VLSuccededAuthNotification")
+  }
+}
+
+var vlAuthState:VLAuthenticationState = .notAuthenticted {
+  willSet{
+
+    let old = vlAuthState
+    let toNew = newValue
+
+    switch (old,toNew) {
+    case (.authenticating,.notAuthenticted):
+      NotificationCenter.default.post(name: VLFailedAuthNotification.name, object: nil)
+
+    case (.authenticating,.authenticated):
+      NotificationCenter.default.post(name: VLSuccededAuthNotification.name, object: nil)
+
+    default:
+      break
+    }
   }
 }

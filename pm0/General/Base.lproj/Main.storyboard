@@ -94,9 +94,11 @@
                         <segue destination="SvV-ys-2Zl" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="Gqp-oU-mPV" kind="relationship" relationship="viewControllers" id="JC3-6h-TPk"/>
                         <segue destination="aSQ-xe-HhJ" kind="relationship" relationship="viewControllers" id="pl5-K3-19b"/>
+                        <segue destination="6wZ-L5-o3k" kind="unwind" identifier="unwindToStart" unwindAction="unwindToStartWithSegue:" id="tlu-4v-oTP"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+                <exit id="6wZ-L5-o3k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
