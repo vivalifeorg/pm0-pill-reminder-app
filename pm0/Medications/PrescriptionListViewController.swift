@@ -112,30 +112,18 @@ extension Dosage{
 
 
 
-    let timeslotIndent = NSAttributedString(string:" ")
-    var zebra = Zebra()
-    let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
-      lhs < rhs
-    })
-    let timeslots:[NSAttributedString] = sortedTimeslots.map{ (timeslot:Timeslot) in
-      if zebra.next(){
-        return timeslotIndent + timeslot.floridDescription( backgroundColor:Asset.Colors.vlZebraDarker.color)
-      }else{
-        return timeslotIndent + timeslot.floridDescription(backgroundColor: Asset.Colors.vlZebraLighter.color)
-      }
-    }
+
     let newline = NSAttributedString(string:"\n")
 
     let take = NSAttributedString(string:" Take: ",attributes:labelAttributes) + NSAttributedString(string: bodyString)
-    let scheduleHeader = NSMutableAttributedString(string:" Schedule: ",attributes:labelAttributes)
+    let scheduleTitle = NSMutableAttributedString(string:" Schedule: ",attributes:labelAttributes)
 
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = 2
-    scheduleHeader.addAttributes([NSAttributedStringKey.paragraphStyle:paragraphStyle],
-      range: NSRange(location: 0, length: scheduleHeader.string.count))
+    scheduleTitle.addAttributes([NSAttributedStringKey.paragraphStyle:paragraphStyle],
+      range: NSRange(location: 0, length: scheduleTitle.string.count))
 
-    let otherLines:[NSAttributedString] = [scheduleHeader] + timeslots
-    return otherLines.reduce(take){$0 + newline + $1}
+    return schedule.tabularDisplay(header:take+newline+scheduleTitle,indentation: " ")
   }
 }
 

@@ -8,6 +8,41 @@
 
 import UIKit
 
+extension Schedule{
+
+func tabularDisplay(header:NSAttributedString?=nil,
+                           indentation:String="")->NSAttributedString{
+  let schedule = self
+
+  let timeslotIndent = NSAttributedString(string:indentation)
+  var zebra = Zebra()
+  let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
+    lhs < rhs
+  })
+  let timeslots:[NSAttributedString] = sortedTimeslots.map{ (timeslot:Timeslot) in
+    if zebra.next(){
+      return timeslotIndent + timeslot.floridDescription( backgroundColor:Asset.Colors.vlZebraDarker.color)
+    }else{
+      return timeslotIndent + timeslot.floridDescription(backgroundColor: Asset.Colors.vlZebraLighter.color)
+    }
+  }
+  let newline = NSAttributedString(string:"\n")
+
+  let otherLines:[NSAttributedString]
+  if let scheduleHeader = header {
+    otherLines =  [scheduleHeader] + timeslots
+  }else{
+    otherLines = timeslots
+  }
+
+  guard let first = otherLines.first else{
+    return NSAttributedString()
+  }
+  let rest = otherLines.dropFirst()
+  return rest.reduce(first){$0 + newline + $1}
+}
+}
+
 var defaultSchedules = [
   Schedule(name:"When I wake up in the morning",
            aliases:["Once per day",
@@ -128,36 +163,7 @@ class ScheduleListViewController:UITableViewController{
     return sectionNameDatasource[section]
   }
 
-  func detailTextForSchedule(schedule:Schedule,
-                             scheduleHeader:NSAttributedString?=nil)->NSAttributedString{
 
-    let timeslotIndent = NSAttributedString(string:"    ")
-    var zebra = Zebra()
-    let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
-      lhs < rhs
-    })
-    let timeslots:[NSAttributedString] = sortedTimeslots.map{ (timeslot:Timeslot) in
-      if zebra.next(){
-        return timeslotIndent + timeslot.floridDescription( backgroundColor:Asset.Colors.vlZebraDarker.color)
-      }else{
-        return timeslotIndent + timeslot.floridDescription(backgroundColor: Asset.Colors.vlZebraLighter.color)
-      }
-    }
-    let newline = NSAttributedString(string:"\n")
-
-    let otherLines:[NSAttributedString]
-    if let scheduleHeader = scheduleHeader {
-      otherLines =  [scheduleHeader] + timeslots
-    }else{
-      otherLines = timeslots
-    }
-    
-    guard let first = otherLines.first else{
-      return NSAttributedString()
-    }
-    let rest = otherLines.dropFirst()
-    return rest.reduce(first){$0 + newline + $1}
-  }
 
   override func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -172,7 +178,7 @@ class ScheduleListViewController:UITableViewController{
 
     let schedule = scheduleForIndexPath(indexPath)
     cell.textLabel?.text = schedule.title
-    cell.detailTextLabel?.attributedText = detailTextForSchedule(schedule: schedule)
+    cell.detailTextLabel?.attributedText = schedule.tabularDisplay()
 
     let isChecked = (scheduleSelection != nil) &&
                       (scheduleSelection! == scheduleForIndexPath(indexPath))
