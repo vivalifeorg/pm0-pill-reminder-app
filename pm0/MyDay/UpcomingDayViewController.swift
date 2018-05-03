@@ -194,7 +194,6 @@ class UpcomingDayViewController: UITableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     updateData()
-    updateDateDisplay(forDay:Date())
     super.viewDidAppear(animated)
   }
 
@@ -450,6 +449,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   override func viewWillAppear(_ animated: Bool) {
+    updateDateDisplay(forDay:Date())
     loadDosages()
     loadMedicationLog()
     tableView.reloadData()
