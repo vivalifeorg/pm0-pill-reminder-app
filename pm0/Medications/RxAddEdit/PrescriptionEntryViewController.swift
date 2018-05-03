@@ -190,6 +190,8 @@ struct Timeslot:Hashable,Codable{
 
    */
 
+ 
+
   var timeString:String{
     var today = Calendar.current.dateComponents(in: Calendar.current.timeZone, from: Date())
     today.second = 0

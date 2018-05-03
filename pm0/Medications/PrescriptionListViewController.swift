@@ -41,8 +41,8 @@ extension Timeslot{
     let labelAttributes: [NSAttributedStringKey: Any] = [
       .foregroundColor:foregroundColor,
       .backgroundColor:backgroundColor,
-      .strokeWidth:-1.0,
-      .font: UIFont(name: "Menlo-Bold", size: preferredFont.pointSize) as Any
+      .strokeWidth:-2.0,
+      .font: UIFont(name: "CourierNewPSMT", size: preferredFont.pointSize) as Any
     ]
 
     let itemAttributes: [NSAttributedStringKey: Any] = [
@@ -52,13 +52,13 @@ extension Timeslot{
       .font: preferredFont as Any
     ]
 
-    var paddedTimeString = timeString
+    var paddedTimeString = timeString.replacingOccurrences(of: " ", with: "")
     while paddedTimeString.count < maxTimeWidth{
       paddedTimeString = " \(paddedTimeString)"
     }
 
     let displayCorrectedTimeString = "   \(paddedTimeString)"
-    let itemString = " ┆ \(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
+    let itemString = "    \(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
     return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes) +
            NSAttributedString(string:itemString, attributes:itemAttributes)
 
