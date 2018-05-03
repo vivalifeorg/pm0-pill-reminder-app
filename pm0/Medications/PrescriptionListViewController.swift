@@ -270,6 +270,15 @@ class PrescriptionListViewController: UIViewController {
   @IBAction func addTapped(_ sender:UIButton){
   }
 
+
+  @objc func refreshData(_ sender:Any){
+    viewModel.prescriptions = LocalStorage.PrescriptionStore.load()
+    tableView.reloadData()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      self.tableView?.refreshControl?.endRefreshing()
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -278,6 +287,8 @@ class PrescriptionListViewController: UIViewController {
     tableView.emptyDataSetSource = self;
     tableView.emptyDataSetDelegate = self;
     tableView.tableHeaderView = UIView()
+    tableView.refreshControl = UIRefreshControl()
+    tableView.refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
   }
 
   override func viewWillAppear(_ animated: Bool) {
