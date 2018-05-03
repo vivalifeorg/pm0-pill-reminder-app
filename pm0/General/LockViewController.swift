@@ -24,7 +24,9 @@ Onboarding screens will go here for the first run (still WIP).
       alert.dismiss(animated: true, completion: nil)
     }))
     alertController = alert
-    alert.show(self, sender: self)
+    present(alertController!, animated: true) {
+
+    }
   }
 
   @IBAction func unwindToStart(segue:UIStoryboardSegue){
