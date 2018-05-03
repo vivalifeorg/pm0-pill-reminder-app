@@ -284,7 +284,18 @@ class TimeslotEditorViewController:UITableViewController{
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return timeslots[section].count
   }
+  override func tableView(_ tableView: UITableView,
+                          willDisplayHeaderView view: UIView,
+                          forSection section: Int){
+    print("Will display \(view) \(view.subviews)")
+    guard let header = view as? UITableViewHeaderFooterView else {
+      return
+    }
 
+    header.textLabel?.textColor = Asset.Colors.vlTextColor.color
+    header.backgroundView?.backgroundColor = VLColors.tableViewSectionHeaderBackgroundColor
+  }
+  
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     switch section{
     case customSectionIndex where timeslots[customSectionIndex].isEmpty:
