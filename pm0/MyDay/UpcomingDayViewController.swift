@@ -185,16 +185,29 @@ class UpcomingDayViewController: UITableViewController {
     self.navigationItem.title = dateString
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    print("View Did Appear: my day")
+  func updateData(){
     let possiblyUpdatedDosages = LocalStorage.PrescriptionStore.load().compactMap{$0.dosage}
     if possiblyUpdatedDosages != scheduledDosages{
       scheduledDosages = possiblyUpdatedDosages
     }
+  }
 
+  override func viewDidAppear(_ animated: Bool) {
+    updateData()
     updateDateDisplay(forDay:Date())
     super.viewDidAppear(animated)
   }
+
+  @objc func refreshDateAndData(_ sender:Any){
+    updateData()
+    updateDateDisplay(forDay:Date())
+    tableView.reloadData()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      self.tableView?.refreshControl?.endRefreshing()
+    }
+  }
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -208,6 +221,8 @@ class UpcomingDayViewController: UITableViewController {
     tableView.emptyDataSetDelegate = self;
     tableView.tintColor = UIColor.white
 
+    tableView.refreshControl = UIRefreshControl()
+    tableView.refreshControl?.addTarget(self, action: #selector(refreshDateAndData(_:)), for: .valueChanged)
     
 
 
