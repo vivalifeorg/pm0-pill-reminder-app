@@ -51,4 +51,8 @@ class FaxStatusViewController:UIViewController{
   override func viewWillDisappear(_ animated: Bool) {
     stopAnimations()
   }
+
+  override func viewDidLoad() {
+    self.view.backgroundColor = UIColor(patternImage:  Asset.Lock.lockBG.image)
+  }
 }

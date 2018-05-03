@@ -42,6 +42,7 @@ class VivaButtonA:UIButton{
   override func awakeFromNib() {
     layer.cornerRadius = 8.0
     layer.masksToBounds = true
+    layer.shadowColor = UIColor.black.cgColor
     setTitleColor(.black, for: .normal)
     setTitleColor(Asset.Colors.vlDisabledTextColor.color, for: .disabled)
 

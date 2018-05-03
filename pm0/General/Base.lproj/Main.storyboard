@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bKl-4F-fZl">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Locked-->
+        <scene sceneID="Dgy-QC-cyw">
+            <objects>
+                <viewController title="Locked" id="bKl-4F-fZl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7eE-Uh-Qd5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockBG" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-8N-5gg">
+                                <rect key="frame" x="-20" y="-20" width="415" height="852"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9a-Ox-7s2">
+                                <rect key="frame" x="20" y="710" width="335" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="SJg-YK-aqs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Unlock" backgroundImage="ButtonBG">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" red="0.17102254929999999" green="0.40408435459999997" blue="0.64715838429999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="5" height="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="v9T-np-ZQx"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockPulse" translatesAutoresizingMaskIntoConstraints="NO" id="htP-ak-SXu">
+                                <rect key="frame" x="-10" y="213.66666666666663" width="395" height="395"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="htP-ak-SXu" secondAttribute="height" multiplier="1:1" id="dGW-Sf-qgJ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Iv1-8N-5gg" firstAttribute="top" secondItem="7eE-Uh-Qd5" secondAttribute="top" constant="-20" id="7IZ-Ih-222"/>
+                            <constraint firstItem="eZe-Q6-Vwg" firstAttribute="leading" secondItem="htP-ak-SXu" secondAttribute="leading" constant="10" id="FMK-pX-Izg"/>
+                            <constraint firstAttribute="trailing" secondItem="Iv1-8N-5gg" secondAttribute="trailing" constant="-20" id="LSo-0I-ume"/>
+                            <constraint firstItem="htP-ak-SXu" firstAttribute="trailing" secondItem="eZe-Q6-Vwg" secondAttribute="trailing" constant="10" id="Lix-hM-nPO"/>
+                            <constraint firstAttribute="bottom" secondItem="Iv1-8N-5gg" secondAttribute="bottom" constant="-20" id="RQz-WH-zAc"/>
+                            <constraint firstItem="eZe-Q6-Vwg" firstAttribute="bottom" secondItem="m9a-Ox-7s2" secondAttribute="bottom" constant="20" id="Y80-oW-cCe"/>
+                            <constraint firstItem="m9a-Ox-7s2" firstAttribute="width" secondItem="eZe-Q6-Vwg" secondAttribute="width" constant="-40" id="ZPB-31-555"/>
+                            <constraint firstItem="m9a-Ox-7s2" firstAttribute="centerX" secondItem="eZe-Q6-Vwg" secondAttribute="centerX" id="m6b-79-95k"/>
+                            <constraint firstItem="htP-ak-SXu" firstAttribute="centerY" secondItem="eZe-Q6-Vwg" secondAttribute="centerY" id="qx7-7K-nSI"/>
+                            <constraint firstItem="Iv1-8N-5gg" firstAttribute="leading" secondItem="7eE-Uh-Qd5" secondAttribute="leading" constant="-20" id="y00-JD-k78"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eZe-Q6-Vwg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6h-ch-7c8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-919.20000000000005" y="1.4778325123152709"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -73,6 +139,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ButtonBG" width="655" height="96"/>
+        <image name="LockBG" width="772" height="1366"/>
+        <image name="LockPulse" width="750" height="426"/>
         <image name="Tab-Doc" width="23" height="23"/>
     </resources>
     <color key="tintColor" name="vlWarmTintColor"/>

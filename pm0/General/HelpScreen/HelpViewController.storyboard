@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9rV-5f-FxO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9rV-5f-FxO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +33,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HR6-ue-RON" secondAttribute="trailing" constant="8" id="2Xa-to-9ek"/>
                                             <constraint firstAttribute="bottom" secondItem="HR6-ue-RON" secondAttribute="bottom" constant="8" id="SfF-ux-r3Q"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.16830222310000001" green="0.28917384149999997" blue="0.37265697120000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="vlZebraDarker"/>
                         <constraints>
                             <constraint firstItem="R9i-0j-fHW" firstAttribute="bottom" secondItem="zns-Th-wzv" secondAttribute="bottom" id="CpM-mF-ikA"/>
                             <constraint firstItem="R9i-0j-fHW" firstAttribute="leading" secondItem="zns-Th-wzv" secondAttribute="leading" id="DsN-Ej-www"/>
@@ -70,5 +70,10 @@
             <point key="canvasLocation" x="3361" y="-449"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000953674316" green="0.13400000333786011" blue="0.21299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
     <color key="tintColor" name="vlWarmTintColor"/>
 </document>
