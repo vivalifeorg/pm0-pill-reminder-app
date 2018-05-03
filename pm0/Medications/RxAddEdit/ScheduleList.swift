@@ -28,6 +28,8 @@ var defaultSchedules = [
                     "At least 4 hours apart"], timeslots: [StandardTimeslots.breakfast,StandardTimeslots.dinner])
 ]
 
+
+
 class ScheduleListViewController:UITableViewController{
   var scheduleSelection:Schedule? = nil {
     didSet{
@@ -78,7 +80,7 @@ class ScheduleListViewController:UITableViewController{
       standardSchedules = LocalStorage.ScheduleStore.Standard.load()
       tableView.reloadData()
     }
-    
+
     updateDoneButton()
   }
 
@@ -105,10 +107,23 @@ class ScheduleListViewController:UITableViewController{
     return isShowingCustom ? 2 : 1
   }
 
+
+
+  override func tableView(_ tableView: UITableView,
+                          willDisplayHeaderView view: UIView,
+                          forSection section: Int){
+    print("Will display \(view) \(view.subviews)")
+    guard let header = view as? UITableViewHeaderFooterView else {
+      return
+    }
+
+    header.textLabel?.textColor = Asset.Colors.vlTextColor.color
+    header.backgroundView?.backgroundColor = VLColors.tableViewSectionHeaderBackgroundColor
+  }
+
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return sectionNameDatasource[section]
   }
-
 
   func detailTextForSchedule(schedule:Schedule,
                              scheduleHeader:NSAttributedString?=nil)->NSAttributedString{
