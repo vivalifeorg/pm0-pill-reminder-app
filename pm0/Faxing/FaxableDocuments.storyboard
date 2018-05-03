@@ -1273,59 +1273,14 @@ You can also leave this blank.</string>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlDisabledButtonColor">
-            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <namedColor name="vlDisabledButtonColor">
             <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlEditableFieldTextColor">
             <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlEditableFieldTextColor">
-            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlEditableFieldTextColor">
-            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="vlSecondaryTextColor">
             <color red="0.93300002813339233" green="0.93300002813339233" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="vlSecondaryTextColor">
-            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlTextBackgroundAreaColor">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1333,44 +1288,8 @@ You can also leave this blank.</string>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlTextColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="vlWarmTintColor">
             <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000953674316" green="0.13400000333786011" blue="0.21299999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="vlZebraDarker">
-            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlZebraDarker">
             <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
