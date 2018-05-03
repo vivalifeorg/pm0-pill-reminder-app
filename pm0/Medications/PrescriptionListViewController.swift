@@ -52,13 +52,13 @@ extension Timeslot{
       .font: preferredFont as Any
     ]
 
-    var paddedTimeString = timeString.replacingOccurrences(of: " ", with: "")
+    var paddedTimeString = timeString
     while paddedTimeString.count < maxTimeWidth{
       paddedTimeString = " \(paddedTimeString)"
     }
 
     let displayCorrectedTimeString = "   \(paddedTimeString)"
-    let itemString = "    \(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
+    let itemString = "     \(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
     return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes) +
            NSAttributedString(string:itemString, attributes:itemAttributes)
 
