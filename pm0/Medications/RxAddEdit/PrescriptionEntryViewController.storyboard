@@ -246,7 +246,7 @@
             </objects>
             <point key="canvasLocation" x="2700" y="-447"/>
         </scene>
-        <!--Schedules-->
+        <!--Schedule-->
         <scene sceneID="g2p-H9-a01">
             <objects>
                 <tableViewController id="Br7-0M-hLe" customClass="ScheduleListViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
@@ -256,8 +256,38 @@
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <color key="sectionIndexColor" name="vlTextColor"/>
                         <color key="sectionIndexBackgroundColor" name="vlCellBackgroundCommon"/>
+                        <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="87X-kB-axZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="What daily activities are happening when you take this? Select a schedule or create one." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEM-7n-DhQ">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                    <color key="textColor" name="vlSecondaryTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnP-Fc-x8F">
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
+                                    <color key="backgroundColor" name="vlZebraDarker"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="OH1-kO-RLu"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="vlZebraDarker"/>
+                            <constraints>
+                                <constraint firstItem="tEM-7n-DhQ" firstAttribute="height" secondItem="87X-kB-axZ" secondAttribute="height" constant="-24" id="235-w7-U4d"/>
+                                <constraint firstItem="tEM-7n-DhQ" firstAttribute="centerY" secondItem="87X-kB-axZ" secondAttribute="centerY" id="Lcy-wg-r6L"/>
+                                <constraint firstItem="tEM-7n-DhQ" firstAttribute="centerX" secondItem="87X-kB-axZ" secondAttribute="centerX" id="Xjm-G7-uKu"/>
+                                <constraint firstAttribute="trailing" secondItem="hnP-Fc-x8F" secondAttribute="trailing" id="dqY-jX-XnF"/>
+                                <constraint firstItem="hnP-Fc-x8F" firstAttribute="leading" secondItem="87X-kB-axZ" secondAttribute="leading" id="fRm-7a-SQw"/>
+                                <constraint firstAttribute="bottom" secondItem="hnP-Fc-x8F" secondAttribute="bottom" id="li8-Z8-5wW"/>
+                                <constraint firstItem="tEM-7n-DhQ" firstAttribute="width" secondItem="87X-kB-axZ" secondAttribute="width" constant="-40" id="snc-2n-Byc"/>
+                            </constraints>
+                        </view>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QgY-p7-053">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="80" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                             <items>
@@ -285,7 +315,7 @@
                             <outlet property="delegate" destination="Br7-0M-hLe" id="ffn-Ha-GB9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedules" largeTitleDisplayMode="always" id="1XZ-kb-hFe" userLabel="Schedule">
+                    <navigationItem key="navigationItem" title="Schedule" largeTitleDisplayMode="always" id="1XZ-kb-hFe" userLabel="Schedule">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="K41-vb-eU9">
                             <connections>
                                 <segue destination="a1b-nA-wEX" kind="unwind" unwindAction="unwindToPrescriptionListWithSegue:" id="cYi-EK-d0N"/>
@@ -436,9 +466,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <color key="sectionIndexBackgroundColor" name="vlCellBackgroundCommon"/>
+                        <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="5tF-0G-kJA">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Create custom timeslots, such as &quot;Tea time&quot; or change the times for the pre-set timeslots." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZr-rg-toD">
+                                    <rect key="frame" x="20" y="12" width="335" height="56"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                    <color key="textColor" name="vlSecondaryTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9U-wE-UNf">
+                                    <rect key="frame" x="0.0" y="79.333333333333329" width="375" height="0.6666666666666714"/>
+                                    <color key="backgroundColor" name="vlZebraDarker"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="JUL-KZ-xzy"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="vlZebraDarker"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="T9U-wE-UNf" secondAttribute="bottom" id="9Ha-Zy-SLb"/>
+                                <constraint firstItem="KZr-rg-toD" firstAttribute="width" secondItem="5tF-0G-kJA" secondAttribute="width" constant="-40" id="9qJ-Xh-QQn"/>
+                                <constraint firstItem="T9U-wE-UNf" firstAttribute="leading" secondItem="5tF-0G-kJA" secondAttribute="leading" id="Hie-lO-8EG"/>
+                                <constraint firstAttribute="trailing" secondItem="T9U-wE-UNf" secondAttribute="trailing" id="eGv-G8-gog"/>
+                                <constraint firstItem="KZr-rg-toD" firstAttribute="centerY" secondItem="5tF-0G-kJA" secondAttribute="centerY" id="n8v-tJ-alR"/>
+                                <constraint firstItem="KZr-rg-toD" firstAttribute="height" secondItem="5tF-0G-kJA" secondAttribute="height" constant="-24" id="q2z-U8-iiw"/>
+                                <constraint firstItem="KZr-rg-toD" firstAttribute="centerX" secondItem="5tF-0G-kJA" secondAttribute="centerX" id="zg3-TG-Z6X"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DoubleEditableTimeslotCell" id="nQc-jM-U5W" customClass="DoubleEditableTimeslotCell" customModule="pm0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nQc-jM-U5W" id="qw1-Is-o2C">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -472,7 +532,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SinglyEditableTimeslotCell" id="GnW-5V-Zqw" customClass="SinglyEditableTimeslotCell" customModule="pm0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GnW-5V-Zqw" id="77E-QE-loQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -565,11 +625,23 @@
         <namedColor name="vlEditableFieldTextColor">
             <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlWarmTintColor">
             <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
