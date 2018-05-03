@@ -28,6 +28,14 @@
             </objects>
             <point key="canvasLocation" x="-210" y="-498"/>
         </scene>
+        <!--HelpViewController-->
+        <scene sceneID="w1z-xs-P8B">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HelpViewController" id="IaZ-lr-J8N" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="emH-55-WN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="604" y="-933"/>
+        </scene>
         <!--Prescription List-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -87,8 +95,14 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Medications" largeTitleDisplayMode="always" id="7rG-cW-eqS">
+                        <barButtonItem key="leftBarButtonItem" title="Help" id="UBI-OY-jUx">
+                            <color key="tintColor" name="vlWarmTintColor"/>
+                            <connections>
+                                <segue destination="IaZ-lr-J8N" kind="show" identifier="showHelp" id="QbE-wB-c9C"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CGB-pa-nGB">
-                            <color key="tintColor" red="1" green="0.74901960779999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" name="vlWarmTintColor"/>
                             <connections>
                                 <action selector="tappedAddButton:" destination="9pv-A4-QxB" id="mRy-22-Rlf"/>
                             </connections>
@@ -119,6 +133,9 @@
         <image name="Tab-Rx" width="23" height="10"/>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

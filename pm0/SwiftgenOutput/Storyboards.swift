@@ -148,6 +148,7 @@ enum StoryboardSegue {
     case showPrescriptionHelp
   }
   enum PrescriptionListViewController: String, SegueType {
+    case showHelp
     case showPrescriptionAddEntry
     case showPrescriptionEditEntry
   }

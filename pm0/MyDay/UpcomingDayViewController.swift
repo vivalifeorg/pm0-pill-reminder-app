@@ -579,7 +579,7 @@ extension UpcomingDayViewController{
 
           These logs can be exported in the Faxing tab for all days that you've entered information into the app.
         """.renderMarkdownAsAttributedString
-      helpVC.title = "\(tabBarItem.title.spaceAfterOrEmpty)Tab Help"
+      helpVC.title = "\(tabBarItem.title.spaceAfterOrEmpty) Help"
       return
     }
   }

@@ -246,7 +246,47 @@ class PrescriptionListViewController: UIViewController {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    if let helpVC = segue.destination as? HelpViewController {
+      helpVC.helpText =
+        """
+          This screen shows what medications you currently plan to take.
+
+          Add a medication by tapping the '+' button.
+
+          Delete by swiping left and tapping delete. Deleting a medication does not affect the log: your  history will remain unchanged.
+
+          Edit by swiping left and tapping edit. Editing *may* reorder the today screen. Ensure today's record is correct after editing a prescription, and ensure you do not take a medication an extra time due to changing your plan.
+
+          The scheduled times of day are shown on this screen for each medicaiton. You can change this by editing the medication.
+
+          You can change the times of day shown by the different timeslots (breakfast, etc) by editing the medication as well.
+
+        """.renderMarkdownAsAttributedString
+      helpVC.title = "\(tabBarItem.title.spaceAfterOrEmpty) Help"
+      return
+    }
     switch segue.identifier ?? "" {
+    case StoryboardSegue.PrescriptionListViewController.showHelp.rawValue:
+      if let helpVC = segue.destination as? HelpViewController {
+        helpVC.helpText =
+          """
+          This screen shows what medications you currently plan to take.
+
+          Add a medication by tapping the '+' button.
+
+          Delete by swiping left and tapping delete. Deleting a medication does not affect the log: your  history will remain unchanged.
+
+          Edit by swiping left and tapping edit. Editing *may* reorder the "My Day" screen: Ensure today's record is correct after editing a prescription.
+
+          The scheduled times of day are shown on this screen for each medicaiton. You can change this by editing the medication.
+
+          You can change the times of day shown by the different timeslots (breakfast, etc) by editing the medication as well.
+
+        """.renderMarkdownAsAttributedString
+        helpVC.title = "\(tabBarItem.title.spaceAfterOrEmpty) Help"
+        return
+      }
     case StoryboardSegue.PrescriptionListViewController.showPrescriptionEditEntry.rawValue:
       guard let editIndex = viewModel.editingIndex else{
         debugPrint("RxEntry")
@@ -256,6 +296,8 @@ class PrescriptionListViewController: UIViewController {
       let rxEntry = (segue.destination as! UINavigationController).viewControllers.first 
             as! PrescriptionEntryViewController
       rxEntry.prescription = viewModel.prescriptions[editIndex]
+
+
     default:
       debugPrint("Other(rx)")
       let rxEntry = (segue.destination as! UINavigationController).viewControllers.first
@@ -290,6 +332,8 @@ class PrescriptionListViewController: UIViewController {
     tableView.refreshControl = UIRefreshControl()
     tableView.refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
   }
+
+
 
   override func viewWillAppear(_ animated: Bool) {
     viewModel.prescriptions = LocalStorage.PrescriptionStore.load()
