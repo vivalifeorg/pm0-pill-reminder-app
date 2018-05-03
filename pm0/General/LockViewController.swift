@@ -10,8 +10,21 @@ import UIKit
 
 class LockViewController:UIViewController{
 
+  var alertController:UIAlertController?
   override func viewDidLoad() {
     NotificationCenter.default.addObserver(self, selector: #selector(didGetNeedsAuthAgainNotification(_:)), name: VLNeedsAuthAgainNotification.name, object: nil)
+    let alert = UIAlertController(title: "Intro Slides Go Here", message:
+"""
+This lock screen wouldn't show on the first run.
+
+Onboarding screens will go here for the first run (still WIP).
+"""
+    , preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (a) in
+      alert.dismiss(animated: true, completion: nil)
+    }))
+    alertController = alert
+    alert.show(self, sender: self)
   }
 
   @IBAction func unwindToStart(segue:UIStoryboardSegue){
