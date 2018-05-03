@@ -618,6 +618,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
     if let rx = editRx {
       entryInfo = rx.editInfo
     }
+    updateNextButton()
 
 
     configureSearchField(nameLine.searchTextField)
@@ -664,6 +665,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
     conditionLine.helpInfo = RXEntryHelpText.conditionHelpText.renderMarkdownAsAttributedString
     conditionLine.helper = self
+    updateNextButton()
   }
 
 

@@ -162,10 +162,8 @@ struct PrescriptionListViewModel{
   mutating func receivedPrescription(_ rx:Prescription){
     prescriptions = LocalStorage.PrescriptionStore.load()
     if let editingIndex = editingIndex {
-      debugPrint("receivedPrescription: Saving Edited rx")
       prescriptions[editingIndex] = rx
     }else{
-      debugPrint("receivedPrescription: Making new rx")
       prescriptions.append(rx)
     }
     LocalStorage.PrescriptionStore.save(prescriptions)

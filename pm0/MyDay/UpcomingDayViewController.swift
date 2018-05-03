@@ -521,16 +521,7 @@ extension UpcomingDayViewController{
     }
   }
 
-  func alertUserOfFirstSave(){
-    onboardingAlert = UIAlertController(title: "You've added your first Rx", message: "This checklist shows when to take your medications each day. As you take each medication, tap the dose here to check it off. If you tap the wrong one, tap again to uncheck it.\n\nTo add more prescriptions, tap the 'Prescriptions' tab on the bottom", preferredStyle: .alert)
-    onboardingAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-      self.onboardingAlert.dismiss(animated:true)
-    }))
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-      //get past wierdness with unwind segue timing
-      self.present(self.onboardingAlert, animated: true, completion: nil)
-    }
-  }
+  
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let helpVC = segue.destination as? HelpViewController {
@@ -560,13 +551,9 @@ extension UpcomingDayViewController{
 
   @IBAction func unwindToMyDay(segue:UIStoryboardSegue){
     //If we're getting this, it's from the inital onboarding add, so we need to tell the user to add further elsewhere.
-    alertUserOfFirstSave()
-
 
     let rxEntryVC = segue.source as! ScheduleListViewController
-    var prescriptions = LocalStorage.PrescriptionStore.load()
-    prescriptions.append(rxEntryVC.entryInfo!.prescription)
-    LocalStorage.PrescriptionStore.save(prescriptions)
+    LocalStorage.PrescriptionStore.save([rxEntryVC.entryInfo!.prescription])
 
     loadDosages()
   }
