@@ -99,7 +99,7 @@ enum StoryboardScene {
   enum Main: StoryboardType {
     static let storyboardName = "Main"
 
-    static let initialScene = InitialSceneType<UIViewController>(storyboard: Main.self)
+    static let initialScene = InitialSceneType<pm0.LockViewController>(storyboard: Main.self)
   }
   enum PrescriptionEntryViewController: StoryboardType {
     static let storyboardName = "PrescriptionEntryViewController"
@@ -139,6 +139,9 @@ enum StoryboardSegue {
     case showHelpVC
     case unwindFromFaxingAfterCancel
     case unwindFromFaxingAfterSend
+  }
+  enum Main: String, SegueType {
+    case goToApp
   }
   enum PrescriptionEntryViewController: String, SegueType {
     case addCustomScheduleSegue

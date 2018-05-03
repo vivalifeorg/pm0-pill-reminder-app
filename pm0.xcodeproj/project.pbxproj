@@ -57,6 +57,8 @@
 		89C6682B206D7ED8004A0731 /* VivaButtonA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6682A206D7ED8004A0731 /* VivaButtonA.swift */; };
 		89C6682D206D807D004A0731 /* DoctorViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6682C206D807D004A0731 /* DoctorViewerViewController.swift */; };
 		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
+		89EE59A5209BB6500021A593 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE59A4209BB6500021A593 /* Authentication.swift */; };
+		89EE59A7209BB6A80021A593 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE59A6209BB6A80021A593 /* LockViewController.swift */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */; };
@@ -135,6 +137,8 @@
 		89C6682A206D7ED8004A0731 /* VivaButtonA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VivaButtonA.swift; sourceTree = "<group>"; };
 		89C6682C206D807D004A0731 /* DoctorViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewerViewController.swift; sourceTree = "<group>"; };
 		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89EE59A4209BB6500021A593 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		89EE59A6209BB6A80021A593 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
+				89EE59A4209BB6500021A593 /* Authentication.swift */,
+				89EE59A6209BB6A80021A593 /* LockViewController.swift */,
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
@@ -676,6 +682,7 @@
 				896052BE20470D8900DF502C /* PrescriptionLineEntry.swift in Sources */,
 				8991A9BC208E6BE300CCD703 /* NameViewController.swift in Sources */,
 				89F4D05D2073C2D600CC60E9 /* DatePickerViewController.swift in Sources */,
+				89EE59A5209BB6500021A593 /* Authentication.swift in Sources */,
 				89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */,
 				89987AB6207542D50057E685 /* FaxPreviewViewController.swift in Sources */,
 				89C6682B206D7ED8004A0731 /* VivaButtonA.swift in Sources */,
@@ -695,6 +702,7 @@
 				89FFFE7F2093BAA1000EDB65 /* HistoryLengthViewController.swift in Sources */,
 				89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */,
 				890CD30020658E35009DF10A /* DoctorListViewController.swift in Sources */,
+				89EE59A7209BB6A80021A593 /* LockViewController.swift in Sources */,
 				898BC93A206139B4006ED4CF /* FaxGeneratedSwagger.swift in Sources */,
 				8991A9BA208E4FEA00CCD703 /* SignatureViewController.swift in Sources */,
 				8982757B206A86760058A6E8 /* DoctorEntryViewController.swift in Sources */,

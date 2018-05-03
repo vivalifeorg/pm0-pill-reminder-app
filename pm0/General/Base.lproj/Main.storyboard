@@ -14,13 +14,19 @@
         <!--Locked-->
         <scene sceneID="Dgy-QC-cyw">
             <objects>
-                <viewController title="Locked" id="bKl-4F-fZl" sceneMemberID="viewController">
+                <viewController title="Locked" id="bKl-4F-fZl" customClass="LockViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7eE-Uh-Qd5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockBG" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-8N-5gg">
                                 <rect key="frame" x="-20" y="-20" width="415" height="852"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockPulse" translatesAutoresizingMaskIntoConstraints="NO" id="htP-ak-SXu">
+                                <rect key="frame" x="-10" y="213.66666666666663" width="395" height="395"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="htP-ak-SXu" secondAttribute="height" multiplier="1:1" id="dGW-Sf-qgJ"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9a-Ox-7s2">
                                 <rect key="frame" x="20" y="710" width="335" height="48"/>
@@ -46,15 +52,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="v9T-np-ZQx"/>
+                                    <action selector="userTappedUnlock:" destination="bKl-4F-fZl" eventType="touchUpInside" id="ciQ-md-nTD"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockPulse" translatesAutoresizingMaskIntoConstraints="NO" id="htP-ak-SXu">
-                                <rect key="frame" x="-10" y="213.66666666666663" width="395" height="395"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="htP-ak-SXu" secondAttribute="height" multiplier="1:1" id="dGW-Sf-qgJ"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Iv1-8N-5gg" firstAttribute="top" secondItem="7eE-Uh-Qd5" secondAttribute="top" constant="-20" id="7IZ-Ih-222"/>
@@ -70,6 +70,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eZe-Q6-Vwg"/>
                     </view>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="goToApp" id="b9p-GN-ltd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6h-ch-7c8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
