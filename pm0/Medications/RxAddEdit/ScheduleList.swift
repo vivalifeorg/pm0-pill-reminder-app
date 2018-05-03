@@ -10,12 +10,19 @@ import UIKit
 
 extension Schedule{
 
+
+/// Creates a tabular display in attributed text
+///
+/// - Parameters:
+///   - header: Text shown before the zebra stripes, one or many lines
+///   - indentation: Indentation put before each stripe, will not share stripe background color
+/// - Returns: NSAttributedString containing the table
 func tabularDisplay(header:NSAttributedString?=nil,
                            indentation:String="")->NSAttributedString{
   let schedule = self
 
   let timeslotIndent = NSAttributedString(string:indentation)
-  var zebra = Zebra()
+  var zebra = ZebraStriperIterator()
   let sortedTimeslots = schedule.timeslots.sorted(by: { (lhs, rhs) -> Bool in
     lhs < rhs
   })

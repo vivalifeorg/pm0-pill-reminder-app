@@ -10,6 +10,7 @@ import UIKit
 class PrescriptionDisplayView:UIView{
   @IBOutlet weak var title:UILabel!
   @IBOutlet weak var body:UILabel!
+  @IBOutlet weak var schedule:UILabel!
 
   public var showExtended:Bool = false{
     didSet{
@@ -28,6 +29,7 @@ class PrescriptionDisplayView:UIView{
     title?.attributedText = dosage?.attributedTitle
     if showExtended {
       body?.attributedText = dosage?.extendedAttributedBody
+      schedule?.attributedText = dosage?.schedule.tabularDisplay()
     }else{
       body?.attributedText = dosage?.attributedBody
     }

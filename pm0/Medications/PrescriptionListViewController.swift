@@ -27,31 +27,46 @@ import UIKit
 
 extension Timeslot{
 
-  func floridDescription(maxTimeWidth:Int = 12, foregroundColor:UIColor = Asset.Colors.vlTextColor.color,
+  /// Builds an appropriate line of the schedule
+  ///
+  /// - Parameters:
+  ///   - maxTimeWidth: used to send in the max width of the time string in characters in the collection this is a part of
+  ///   - foregroundColor: text color
+  ///   - backgroundColor: this stripe's bg color
+  /// - Returns: NSAttributed string rendering one single stripe
+  func floridDescription(maxTimeWidth:Int = 8, foregroundColor:UIColor = Asset.Colors.vlSecondaryTextColor.color,
                          backgroundColor:UIColor = Asset.Colors.vlCellBackgroundCommon.color) -> NSAttributedString{
 
-    let captionFont = UIFont.preferredFont(forTextStyle: .caption1)
+    let preferredFont = UIFont.preferredFont(forTextStyle: .footnote)
     let labelAttributes: [NSAttributedStringKey: Any] = [
       .foregroundColor:foregroundColor,
       .backgroundColor:backgroundColor,
       .strokeWidth:-1.0,
-      .font :UIFont.monospacedDigitSystemFont(ofSize:captionFont.pointSize,weight:.black)
+      .font: UIFont(name: "Menlo-Bold", size: preferredFont.pointSize) as Any
     ]
 
+    let itemAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:foregroundColor,
+      .backgroundColor:backgroundColor,
+      .strokeWidth:-1.0,
+      .font: preferredFont as Any
+    ]
 
     var paddedTimeString = timeString
     while paddedTimeString.count < maxTimeWidth{
       paddedTimeString = " \(paddedTimeString)"
     }
 
-
-    let displayCorrectedTimeString = "  \(paddedTimeString)     \t\(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
-    return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes)
+    let displayCorrectedTimeString = "   \(paddedTimeString)"
+    let itemString = " ┆ \(name)".padding(toLength: 200, withPad: " ", startingAt: 0)
+    return NSAttributedString(string:displayCorrectedTimeString, attributes:labelAttributes) +
+           NSAttributedString(string:itemString, attributes:itemAttributes)
 
   }
 }
 
-struct Zebra: IteratorProtocol {
+/// Used to make alternating light/dark backgrounds
+struct ZebraStriperIterator: IteratorProtocol {
   mutating func next() -> Bool? {
     return next()
   }
@@ -84,9 +99,12 @@ extension Dosage{
   }
 
   var doseAttributes: [NSAttributedStringKey: Any]{
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineBreakMode = .byWordWrapping
     return  [
-      .foregroundColor:Asset.Colors.vlTextColor.color,
-      .obliqueness:0.2
+      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
+      .obliqueness:0.2,
+      .paragraphStyle: paragraphStyle
     ]
   }
   var attributedBody:NSAttributedString{
@@ -98,32 +116,28 @@ extension Dosage{
 
   
   var extendedAttributedBody:NSAttributedString{
-
-
-    let labelAttributes: [NSAttributedStringKey: Any] = [
-      .foregroundColor:Asset.Colors.vlTextColor.color,
-      .strokeWidth:-1.9
-    ]
-    let scheduleTextAttributes: [NSAttributedStringKey: Any] = [
-      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
-      .strokeWidth:-0.1
-    ]
-
-
-
-
-
-    let newline = NSAttributedString(string:"\n")
-
-    let take = NSAttributedString(string:" Take: ",attributes:labelAttributes) + NSAttributedString(string: bodyString)
-    let scheduleTitle = NSMutableAttributedString(string:" Schedule: ",attributes:labelAttributes)
-
     let paragraphStyle = NSMutableParagraphStyle()
-    paragraphStyle.lineSpacing = 2
-    scheduleTitle.addAttributes([NSAttributedStringKey.paragraphStyle:paragraphStyle],
-      range: NSRange(location: 0, length: scheduleTitle.string.count))
+    paragraphStyle.lineBreakMode = .byWordWrapping
+    let labelAttributes: [NSAttributedStringKey: Any] = [
+      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
+      .strokeWidth:-2.9,
+      .paragraphStyle: paragraphStyle
+    ]
 
-    return schedule.tabularDisplay(header:take+newline+scheduleTitle,indentation: " ")
+    let interlineParagraphStyle = NSMutableParagraphStyle()
+    interlineParagraphStyle.lineBreakMode = .byWordWrapping
+    interlineParagraphStyle.lineSpacing = 10
+    let interlineAttributes: [NSAttributedStringKey: Any] = [
+      .paragraphStyle: interlineParagraphStyle,
+      .foregroundColor:Asset.Colors.vlSecondaryTextColor.color,
+      .strokeWidth:-2.9,
+    ]
+
+
+    let newline = NSAttributedString(string:"\n",attributes:interlineAttributes)
+    let take = NSAttributedString(string:"Take: ",attributes:labelAttributes) + attributedBody
+    let scheduleTitle = NSMutableAttributedString(string:"Schedule: ",attributes:interlineAttributes)
+    return take + newline + scheduleTitle
   }
 }
 

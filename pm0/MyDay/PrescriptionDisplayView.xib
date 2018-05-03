@@ -14,25 +14,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrescriptionDisplayView" customModule="pm0" customModuleProvider="target">
             <connections>
                 <outlet property="body" destination="pWg-Xf-aX9" id="CJj-vz-3XA"/>
+                <outlet property="schedule" destination="J1r-iK-eHN" id="TKS-uU-CeH"/>
                 <outlet property="title" destination="Z8E-6i-udn" id="Z8a-19-shn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="fuY-Ip-330">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="103"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="103"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8E-6i-udn" userLabel="Header">
-                            <rect key="frame" x="5" y="5" width="48" height="18.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8E-6i-udn" userLabel="Header">
+                            <rect key="frame" x="5" y="13" width="48" height="24"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                             <color key="textColor" name="vlTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWg-Xf-aX9" userLabel="Body">
-                            <rect key="frame" x="5" y="27.5" width="42" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWg-Xf-aX9" userLabel="Body">
+                            <rect key="frame" x="9" y="41" width="42" height="43"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <color key="textColor" name="vlTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1r-iK-eHN" userLabel="Schedul">
+                            <rect key="frame" x="9" y="90" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <color key="textColor" name="vlTextColor"/>
                             <nil key="highlightedColor"/>
@@ -41,12 +48,15 @@
                     <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                     <constraints>
                         <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pWg-Xf-aX9" secondAttribute="trailing" constant="8" id="5vr-6g-dh2"/>
+                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="top" secondItem="Z8E-6i-udn" secondAttribute="bottom" constant="4" id="DBF-0A-LpF"/>
+                        <constraint firstItem="J1r-iK-eHN" firstAttribute="leading" secondItem="pWg-Xf-aX9" secondAttribute="leading" id="DQF-6d-HF8"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J1r-iK-eHN" secondAttribute="trailing" constant="8" id="YZS-MN-iYF"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="J1r-iK-eHN" secondAttribute="bottom" constant="13" id="Ylm-xq-28J"/>
                         <constraint firstItem="Z8E-6i-udn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="a20-TW-q99"/>
                         <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z8E-6i-udn" secondAttribute="trailing" constant="8" id="gqz-5D-gjV"/>
-                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="top" secondItem="Z8E-6i-udn" secondAttribute="bottom" constant="4" id="iVU-mU-Srq"/>
-                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="leading" secondItem="Z8E-6i-udn" secondAttribute="leading" id="ozQ-qe-Y9T"/>
-                        <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pWg-Xf-aX9" secondAttribute="bottom" constant="12" id="rNS-op-S3G"/>
-                        <constraint firstItem="Z8E-6i-udn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="rn7-Ua-CdY"/>
+                        <constraint firstItem="pWg-Xf-aX9" firstAttribute="leading" secondItem="Z8E-6i-udn" secondAttribute="leading" constant="4" id="ozQ-qe-Y9T"/>
+                        <constraint firstItem="Z8E-6i-udn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="13" id="rn7-Ua-CdY"/>
+                        <constraint firstItem="J1r-iK-eHN" firstAttribute="top" secondItem="pWg-Xf-aX9" secondAttribute="bottom" constant="6" id="ueh-qE-KfE"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
                 </view>
@@ -60,12 +70,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="TTa-XY-izP"/>
-            <point key="canvasLocation" x="-81" y="-713"/>
+            <point key="canvasLocation" x="-81" y="-691.5"/>
         </view>
     </objects>
     <resources>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
