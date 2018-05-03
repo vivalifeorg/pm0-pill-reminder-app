@@ -169,6 +169,14 @@ class UpcomingDayViewController: UITableViewController {
 
   var medicationTakenEventLog:[MedicationLogEvent] = []
 
+  override func viewDidAppear(_ animated: Bool) {
+    print("View Did Appear: my day")
+    let possiblyUpdatedDosages = LocalStorage.PrescriptionStore.load().compactMap{$0.dosage}
+    if possiblyUpdatedDosages != scheduledDosages{
+      scheduledDosages = possiblyUpdatedDosages
+    }
+    super.viewDidAppear(animated)
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
@@ -293,7 +301,7 @@ class UpcomingDayViewController: UITableViewController {
       let minutesAfterSlotStart = 60.0
       let activeStart = startTime.addingTimeInterval(-minutesBefore * 60.0)
       let activeStop = startTime.addingTimeInterval(minutesAfterSlotStart * 60.0)
-      //debugPrint("\(activeStart) \(activeStop) for \(startTime)")
+
       return Section(title: $0.slotDescription, footnote: $0.footnote,
               medications: $0.items,
               isActive:{ (now:Date) in
@@ -307,15 +315,18 @@ class UpcomingDayViewController: UITableViewController {
     var times:[Int:[Dosage]] = [:]
     var timeNames:[Int:[String]] = [:]
     for dose in drugs{
-      for time in dose.timesTaken(for: date){
-        var dosesAtTime = times[time.offsetFromDayStart] ?? []
+      for slot in dose.schedule.timeslots{
+        debugPrint("Timeslot: \(slot.name) \(slot.hourOffset):\(slot.minuteOffset)")
+        var dosesAtTime = times[slot.offsetFromDayStart] ?? []
         dosesAtTime.append(dose)
-        times[time.offsetFromDayStart] = dosesAtTime
-        let name = time.name
+        times[slot.offsetFromDayStart] = dosesAtTime
+        let name = slot.name
         if name != "" {
-          var nameList = timeNames[time.offsetFromDayStart] ?? []
+          var nameList = timeNames[slot.offsetFromDayStart] ?? []
           nameList.append(name)
-          timeNames[time.offsetFromDayStart] = nameList
+          timeNames[slot.offsetFromDayStart] = nameList
+        } else {
+          print("\(slot.offsetFromDayStart) missing name, \(slot.description)")
         }
       }
     }
@@ -547,7 +558,7 @@ extension UpcomingDayViewController{
   }
 
 
-  @IBAction func unwindToPrescriptionList(segue:UIStoryboardSegue){
+  @IBAction func unwindToMyDay(segue:UIStoryboardSegue){
     //If we're getting this, it's from the inital onboarding add, so we need to tell the user to add further elsewhere.
     alertUserOfFirstSave()
 

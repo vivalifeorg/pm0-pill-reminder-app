@@ -221,7 +221,8 @@ struct Timeslot:Hashable,Codable{
   static func ==(lhs:Timeslot, rhs:Timeslot) -> Bool{
     return lhs.name == rhs.name &&
       lhs.slotType == rhs.slotType &&
-      lhs.offsetFromDayStart == rhs.offsetFromDayStart
+      lhs.offsetFromDayStart == rhs.offsetFromDayStart &&
+      lhs.name == rhs.name
   }
 
   static func userOverridenTimeOffsetFor(_ event:Timeslot) -> (hour:HourOffset,minute:MinuteOffset)?{

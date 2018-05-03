@@ -154,14 +154,18 @@ struct PrescriptionListViewModel{
 
   mutating func deleteItemAt(index:Int){
     editingIndex = nil
+    prescriptions = LocalStorage.PrescriptionStore.load()
     prescriptions.remove(at:index)
     LocalStorage.PrescriptionStore.save(prescriptions)
   }
 
   mutating func receivedPrescription(_ rx:Prescription){
-    if let editingIndex = editingIndex{
+    prescriptions = LocalStorage.PrescriptionStore.load()
+    if let editingIndex = editingIndex {
+      debugPrint("receivedPrescription: Saving Edited rx")
       prescriptions[editingIndex] = rx
     }else{
+      debugPrint("receivedPrescription: Making new rx")
       prescriptions.append(rx)
     }
     LocalStorage.PrescriptionStore.save(prescriptions)
@@ -216,13 +220,14 @@ class PrescriptionListViewController: UIViewController {
     self.present(alert, animated: true, completion: nil)
   }
 
-  func showEditRxViewController(){
-    self.performSegue(withIdentifier: StoryboardSegue.PrescriptionListViewController.showPrescriptionAddEntry.rawValue, sender: self)
-  }
-
   func editRxAction(_ action:UITableViewRowAction, indexPath:IndexPath){
     viewModel.editingIndex = indexPath.row
-    showEditRxViewController()
+    self.performSegue(withIdentifier: StoryboardSegue.PrescriptionListViewController.showPrescriptionEditEntry.rawValue, sender: self)
+  }
+
+  @IBAction func tappedAddButton(_ sender:Any){
+    viewModel.editingIndex = nil
+    self.performSegue(withIdentifier: StoryboardSegue.PrescriptionListViewController.showPrescriptionAddEntry.rawValue, sender: self)
   }
   
 
@@ -235,18 +240,20 @@ class PrescriptionListViewController: UIViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.identifier ?? "" {
-    case "showPrescriptionAddEntry":
+    case StoryboardSegue.PrescriptionListViewController.showPrescriptionEditEntry.rawValue:
       guard let editIndex = viewModel.editingIndex else{
         debugPrint("RxEntry")
         return //aka making new
       }
-
       debugPrint("EditingRx \(viewModel.prescriptions[editIndex].title)")
       let rxEntry = (segue.destination as! UINavigationController).viewControllers.first 
             as! PrescriptionEntryViewController
       rxEntry.prescription = viewModel.prescriptions[editIndex]
     default:
       debugPrint("Other(rx)")
+      let rxEntry = (segue.destination as! UINavigationController).viewControllers.first
+        as! PrescriptionEntryViewController
+      rxEntry.prescription = nil
       viewModel.editingIndex = nil //clear it when we return, etc
     }
   }

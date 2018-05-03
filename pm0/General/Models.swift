@@ -24,7 +24,7 @@ struct DosageForm:Codable{
 
 }
 
-struct Dosage:Codable{
+struct Dosage:Codable,Equatable{
   var name:String = "Drug"
   var unitDescription:String?
   var form:String?
@@ -36,10 +36,6 @@ struct Dosage:Codable{
   var schedule:Schedule
   var shortName:String{
     return name
-  }
-
-  func timesTaken(for:Date)->[Timeslot]{
-    return schedule.timeslots
   }
 }
 
@@ -91,6 +87,8 @@ struct Prescription:Codable{
   var obtainedFrom:MedicationSource?
   var conditionPrescribedFor:Condition?
   var editInfo:EntryInfo
+  let itemRef:UUID = UUID()
+  
 
   init(info:EntryInfo){
     editInfo = info

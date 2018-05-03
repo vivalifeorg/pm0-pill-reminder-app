@@ -190,17 +190,11 @@ class TimeslotEditorViewController:UITableViewController{
     var timeslotsByName:[String:Timeslot] = [:]
     let allTimeslots = timeslots[0] + timeslots[1]
     for timeslot in allTimeslots{
-      //changing names
-      if timeslot.name == newName,
-        let oldName = oldName,
-        let newName = newName{
-        var updatedTimeslot = timeslot
-        updatedTimeslot.name = newName
-        timeslotsByName[oldName] = updatedTimeslot // We have to index using the old name to find it
-      }else{
-        //changing times/other part of changing names for non-changed items
         timeslotsByName[timeslot.name] = timeslot
-      }
+    }
+
+    if let oldName = oldName, let newName = newName {
+      timeslotsByName[oldName] = timeslotsByName[newName] //handle the rename case in lookup
     }
 
     //Update old user schedules
@@ -234,8 +228,10 @@ class TimeslotEditorViewController:UITableViewController{
       if var dosage = oldPrescription.dosage{
         if let schedule = schedulesByName[dosage.schedule.name] {
           dosage.schedule = schedule
-          newPrescription.dosage = dosage
+        }else{
+          print("cannot find \(dosage.schedule.name)")
         }
+        newPrescription.dosage = dosage
       }
       return newPrescription
     }
