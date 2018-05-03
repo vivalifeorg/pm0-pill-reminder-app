@@ -560,15 +560,17 @@ extension UpcomingDayViewController{
     if let helpVC = segue.destination as? HelpViewController {
       helpVC.helpText =
         """
-          This screen shows what doses of medication you need to take. Come here every day and check off your medication every time you administer it. Each large line shows a dose of medication you need to take.
+          This screen shows what doses of medication you need to take.
 
-          Medications are grouped by time of day in which you take them. Each group shows you how many items are remaining for that group, or a white checkmark if you've taken them all.
+          Check off your medication every time you administer it each day.
 
-          As you take each dose, tap it to check it off.
+          Medications are grouped by time of day in which you said you wanted to take them them.
 
-          If you tap the wrong one, you can tap again to uncheck it.
+          Each group shows you how many items are remaining for that group after the name, or a white checkmark if you've taken them all at that time.
 
-          The ➙ indicator points at your next dose. If you have a lot of doses, this helps you see that you have taken all your medication so far today.
+          If you tap a dose you did not take yet, you can tap again to uncheck it.
+
+          The ➙ indicator points at your next dose. (If you have a lot of doses, this makes sure you don't miss one early in the day).
 
 
           ## Related Screens
