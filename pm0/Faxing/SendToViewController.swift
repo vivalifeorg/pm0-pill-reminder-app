@@ -22,9 +22,20 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     nextButton.isEnabled = selectedRows.count > 0
   }
 
+  func prepareToEdit(segue:UIStoryboardSegue, doctorInfoAtIndex:Int){
+
+    let doctorEntryViewController = segue.destination as! DoctorEntryViewController
+    doctorEntryViewController.doctor = doctors[doctorInfoAtIndex]
+  }
+
   let hippaFlowSendRestorationIdentifier = "SendToScreen"
   let medlogFlowSendRestorationIdentifier = "SendToViewControllerInMedFlow"
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    if segue.identifier == StoryboardSegue.FaxableDocuments.editDoctorFromSendToScreen.rawValue{
+      prepareToEdit(segue:segue, doctorInfoAtIndex: self.editingDoctorIndex!.row)
+      return
+    }
 
     guard var handler = segue.destination as? (PDFHandler & SendableDocumentMetadata) else {
       return //for cancel, etc
@@ -69,7 +80,36 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     updateNextButton()
   }
 
+
+
+  var alert:UIAlertController?
+
+  var editingDoctorIndex:IndexPath?
+  func editDoctorQuery(indexPath: IndexPath){
+    alert = UIAlertController(title: "Missing Fax Number",
+                              message: "This doctor doesn't have a fax number set",
+                              preferredStyle: .alert)
+    alert?.addAction(UIAlertAction(title: "Add",
+                                   style: .default,
+                                   handler: { (action) in
+      self.editingDoctorIndex = indexPath
+      self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.editDoctorFromSendToScreen.rawValue, sender: self)
+    }))
+    alert?.addAction(UIAlertAction(title: "Cancel",
+                                   style: .default,
+                                   handler:{  (action) in
+      self.tableView.deselectRow(at: indexPath, animated: false)
+    }))
+
+    present(alert!, animated: true, completion: nil)
+  }
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard doctors[indexPath.row].fax.number != "" else{
+      editDoctorQuery(indexPath:indexPath)
+      return
+    }
+
     let cell = tableView.cellForRow(at: indexPath)
     cell?.accessoryType = .checkmark
     selectedRows.append(indexPath)
@@ -160,7 +200,12 @@ func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
     }
     let doctorItem = (segue.source as! DoctorEntryViewController).doctor
     var doctorList = LocalStorage.DoctorStore.load()
-    doctorList.append(doctorItem)
+    if let editingDoctorIndex = editingDoctorIndex {
+      doctorList[editingDoctorIndex.row] = doctorItem
+    } else {
+      doctorList.append(doctorItem)
+    }
+    editingDoctorIndex = nil
     LocalStorage.DoctorStore.save(doctorList)
     doctors = doctorList
 

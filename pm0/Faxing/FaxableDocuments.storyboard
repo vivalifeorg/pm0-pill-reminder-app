@@ -251,6 +251,7 @@
                     <connections>
                         <outlet property="nextButton" destination="lV2-5Y-tjl" id="FJ3-81-Kcs"/>
                         <segue destination="TUk-QA-EgF" kind="presentation" identifier="AddDoctorFromSendToScreen" id="HVm-jB-Bnm"/>
+                        <segue destination="fRd-zV-YXI" kind="show" identifier="editDoctorFromSendToScreen" id="ZXe-kh-Biw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sda-0c-HTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1155,6 +1156,7 @@ You can also leave this blank.</string>
                     <connections>
                         <outlet property="nextButton" destination="J46-VT-Umk" id="kIj-33-Cf5"/>
                         <segue destination="TUk-QA-EgF" kind="presentation" identifier="AddDoctorFromSendToScreen" id="av5-uh-Se6"/>
+                        <segue destination="fRd-zV-YXI" kind="show" identifier="editDoctorFromSendToScreen" id="Ou6-gk-YeR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynD-SZ-W72" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1296,6 +1298,7 @@ You can also leave this blank.</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZXe-kh-Biw"/>
         <segue reference="HVm-jB-Bnm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="vlWarmTintColor"/>

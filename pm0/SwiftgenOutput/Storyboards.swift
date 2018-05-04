@@ -138,6 +138,7 @@ enum StoryboardSegue {
   enum FaxableDocuments: String, SegueType {
     case addDoctorFromSendToScreen = "AddDoctorFromSendToScreen"
     case doneSigning
+    case editDoctorFromSendToScreen
     case sendInfoFaxSegue
     case sendMedicationLog
     case showFaxStatus
