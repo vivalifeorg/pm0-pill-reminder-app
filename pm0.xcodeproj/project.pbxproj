@@ -59,6 +59,8 @@
 		89D783DA2051ACB5004F6110 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D783DB2051ACB5004F6110 /* KeychainAccess.framework */; };
 		89EE59A5209BB6500021A593 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE59A4209BB6500021A593 /* Authentication.swift */; };
 		89EE59A7209BB6A80021A593 /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE59A6209BB6A80021A593 /* LockViewController.swift */; };
+		89EE59A9209CB43A0021A593 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89EE59A8209CB43A0021A593 /* Onboarding.storyboard */; };
+		89EE59AB209CBA1B0021A593 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */; };
 		89F3D98F1FF6AC4F0081FA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */; };
 		89F3D9911FF6AC4F0081FA77 /* PrescriptionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */; };
 		89F3D9931FF6AC4F0081FA77 /* UpcomingDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3D9921FF6AC4F0081FA77 /* UpcomingDayViewController.swift */; };
@@ -139,6 +141,8 @@
 		89D783DB2051ACB5004F6110 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89EE59A4209BB6500021A593 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		89EE59A6209BB6A80021A593 /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
+		89EE59A8209CB43A0021A593 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		89F3D98B1FF6AC4F0081FA77 /* pm0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pm0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89F3D9901FF6AC4F0081FA77 /* PrescriptionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionListViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 				89F4D05520729B0A00CC60E9 /* HelpScreen */,
 				89F4D05420729B0000CC60E9 /* EntryLine */,
 				8970790C207E7C4F00A2CC11 /* IfNotNil.swift */,
+				89EE59A8209CB43A0021A593 /* Onboarding.storyboard */,
+				89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 				89987AB82075453F0057E685 /* PreviewUnavailable.pdf in Resources */,
 				89A5169320587AA90069D9AE /* DoctorList.storyboard in Resources */,
 				894FEC0820697F6A00E48ECA /* PrescriptionDisplayView.xib in Resources */,
+				89EE59A9209CB43A0021A593 /* Onboarding.storyboard in Resources */,
 				89C66829206D7478004A0731 /* HelpViewController.storyboard in Resources */,
 				8903B5CD205C777A002D6652 /* TestFaxToDS.pdf in Resources */,
 			);
@@ -697,6 +704,7 @@
 				89F9C44E20323EA50072FF7C /* FDADatabase.swift in Sources */,
 				890CD2FE20658538009DF10A /* RXEntryHelpText.swift in Sources */,
 				8991A9CA208FB11400CCD703 /* FaxMedlogEntryGenerated.swift in Sources */,
+				89EE59AB209CBA1B0021A593 /* OnboardingViewController.swift in Sources */,
 				898BC94020614A4A006ED4CF /* PDFBuilder.swift in Sources */,
 				890CD2FC206458DE009DF10A /* HelpViewController.swift in Sources */,
 				89FFFE7F2093BAA1000EDB65 /* HistoryLengthViewController.swift in Sources */,

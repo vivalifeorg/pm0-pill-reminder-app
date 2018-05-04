@@ -101,6 +101,11 @@ enum StoryboardScene {
 
     static let initialScene = InitialSceneType<pm0.LockViewController>(storyboard: Main.self)
   }
+  enum Onboarding: StoryboardType {
+    static let storyboardName = "Onboarding"
+
+    static let initialScene = InitialSceneType<UINavigationController>(storyboard: Onboarding.self)
+  }
   enum PrescriptionEntryViewController: StoryboardType {
     static let storyboardName = "PrescriptionEntryViewController"
 
@@ -143,6 +148,12 @@ enum StoryboardSegue {
   enum Main: String, SegueType {
     case goToApp
     case unwindToStart
+  }
+  enum Onboarding: String, SegueType {
+    case embedOnboarding
+    case showNextOnboarding
+    case unwindToOnboarding1
+    case unwindToOnboarding2
   }
   enum PrescriptionEntryViewController: String, SegueType {
     case addCustomScheduleSegue
