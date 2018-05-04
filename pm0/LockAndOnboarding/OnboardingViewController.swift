@@ -54,7 +54,7 @@ class OnboardingContainerViewController:UIViewController{
   }
 
   @objc open func skipButtonTapped(_ sender:UIButton){
-    performSegue(withIdentifier: StoryboardSegue.Onboarding.skipOnboarding.rawValue, sender: self)
+    embeddedViewController.performSegue(withIdentifier: StoryboardSegue.Onboarding.skipOnboarding.rawValue, sender: self)
   }
 }
 
@@ -109,7 +109,7 @@ class OnboardingContainer2:OnboardingContainerViewController{
 class OnboardingContainer3:OnboardingContainerViewController{
 
   @objc override open func nextButtonTapped(_ sender:UIButton){
-    performSegue(withIdentifier: StoryboardSegue.Onboarding.showNextOnboarding.rawValue, sender: self)
+    performSegue(withIdentifier: StoryboardSegue.Onboarding.unwindFinalOnboardingButton.rawValue, sender: self)
   }
 
   override func embedFinished(){
@@ -118,7 +118,7 @@ class OnboardingContainer3:OnboardingContainerViewController{
     embeddedViewController.mainImageView.image = Asset.Empty.emptyDoc.image
     embeddedViewController.mainLabel.text =
     """
-    Call the doctor's office from the app, or get driving directions.
+    Get driving directions or call the doctor's office from the app.
 
     No passwords needed: Login to the app by logging into your \(UIDevice.current.localizedModel).
     """

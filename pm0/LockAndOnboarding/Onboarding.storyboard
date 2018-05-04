@@ -209,6 +209,7 @@ This is a multi-line text area.</string>
                     </containerView>
                     <connections>
                         <segue destination="AjG-kp-LL2" kind="unwind" identifier="unwindToOnboarding2" unwindAction="unwindToOnboarding2WithSegue:" id="Nx8-3e-a1I"/>
+                        <segue destination="AjG-kp-LL2" kind="unwind" identifier="unwindFinalOnboardingButton" unwindAction="unwindHitFinalOnboardingButtonWithSegue:" id="06F-aJ-Qwh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZP-kt-6wz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +231,6 @@ This is a multi-line text area.</string>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nXb-ZD-WtE"/>
+        <segue reference="lbt-qp-JZG"/>
     </inferredMetricsTieBreakers>
 </document>

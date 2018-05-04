@@ -35,7 +35,7 @@
                                     <color key="titleColor" name="vlWarmTintColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6GP-oe-4uw" kind="presentation" id="hEZ-hP-Npd"/>
+                                    <segue destination="6GP-oe-4uw" kind="presentation" modalPresentationStyle="pageSheet" modalTransitionStyle="coverVertical" id="hEZ-hP-Npd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9a-Ox-7s2">

@@ -153,6 +153,7 @@ enum StoryboardSegue {
     case embedOnboarding
     case showNextOnboarding
     case skipOnboarding
+    case unwindFinalOnboardingButton
     case unwindToOnboarding1
     case unwindToOnboarding2
   }

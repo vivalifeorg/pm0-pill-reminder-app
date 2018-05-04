@@ -136,6 +136,6 @@ extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelega
   }
 
   func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-    debugPrint("Tapped")
+    
   }
 }

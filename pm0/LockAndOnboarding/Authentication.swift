@@ -38,6 +38,18 @@ func authenticateUser(completion:@escaping (Bool)->()) {
 }
 
 
+enum UserAuthenticationMode:String,Codable{
+  case biometricOrPasscodeOSLock
+}
+
+struct AuthenticationInfo:Codable{
+  var firstRun:Bool = true //be careful to not break login with this
+  var numberOfTimesLoggedIn:Int = 0
+  var numberOfFailedLoginAttempts:Int = 0
+  var lastLogin:Date? = nil
+  var authenticationMode:UserAuthenticationMode = .biometricOrPasscodeOSLock
+}
+
 enum VLAuthenticationState{
   case authenticated
   case notAuthenticted

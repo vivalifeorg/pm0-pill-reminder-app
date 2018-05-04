@@ -348,7 +348,7 @@ class UpcomingDayViewController: UITableViewController {
     var timeNames:[Int:[String]] = [:]
     for dose in drugs{
       for slot in dose.schedule.timeslots{
-        debugPrint("Timeslot: \(slot.name) \(slot.hourOffset):\(slot.minuteOffset)")
+        //debugPrint("Timeslot: \(slot.name) \(slot.hourOffset):\(slot.minuteOffset)")
         var dosesAtTime = times[slot.offsetFromDayStart] ?? []
         dosesAtTime.append(dose)
         times[slot.offsetFromDayStart] = dosesAtTime
