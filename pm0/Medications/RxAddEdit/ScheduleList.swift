@@ -67,7 +67,13 @@ var defaultSchedules = [
   Schedule(name:"With Breakfast and Dinner",
            aliases:["Twice a day with food",
                     "At least 6 hours apart",
-                    "At least 4 hours apart"], timeslots: [StandardTimeslots.breakfast,StandardTimeslots.dinner])
+                    "At least 4 hours apart"],
+           timeslots: [StandardTimeslots.breakfast,StandardTimeslots.dinner]),
+  Schedule(name:"Approximately 12 hours apart",
+           aliases:["On waking and dinner",], timeslots: [StandardTimeslots.wakeUp,StandardTimeslots.dinner]),
+  Schedule(name:"With Breakfast and Lunch",
+  aliases:["Early in the day with food"], timeslots: [StandardTimeslots.breakfast,StandardTimeslots.lunch])
+
 ]
 
 
