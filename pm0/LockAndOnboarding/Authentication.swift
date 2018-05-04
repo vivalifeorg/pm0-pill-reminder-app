@@ -33,7 +33,14 @@ enum AuthenticationOutcome:String{
 
 //strong refrerence to auth context to not lose it during run
 fileprivate let authenicationContext = LAContext()
-
+fileprivate var policy:LAPolicy = {
+  var error:NSError? = nil
+  if authenicationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error){
+    return LAPolicy.deviceOwnerAuthenticationWithBiometrics
+  }else {
+    return LAPolicy.deviceOwnerAuthentication
+  }
+}()
 
 /// Figures out what the authentication error means
 ///
@@ -78,9 +85,9 @@ func authenticateUser(completion:@escaping (AuthenticationOutcome)->()) {
     completion(.succeeded)
   }
 
-  let loginScreenText = "Sign into your device to proceed.\n\nThis uses TouchID, FaceID or your normal \(UIDevice.current.localizedModel) passcode"
+  let loginScreenText = "Sign into your device to proceed.\n\nUse Touch ID, Face ID or your \(UIDevice.current.localizedModel) passcode"
   authenicationContext.evaluatePolicy(
-    LAPolicy.deviceOwnerAuthentication,
+    policy,
     localizedReason: loginScreenText,
     reply: replyHandler
   )
