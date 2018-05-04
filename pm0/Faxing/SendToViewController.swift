@@ -105,9 +105,11 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard doctors[indexPath.row].fax.number != "" else{
-      editDoctorQuery(indexPath:indexPath)
-      return
+    if isSendToScreen { 
+      guard doctors[indexPath.row].fax.number != "" else{
+        editDoctorQuery(indexPath:indexPath)
+        return
+      }
     }
 
     let cell = tableView.cellForRow(at: indexPath)
@@ -131,6 +133,14 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
     cell.textLabel?.text = doctors[indexPath.row].name
     cell.detailTextLabel?.text = doctors[indexPath.row].specialty
+    if isSendToScreen{
+      let fax = doctors[indexPath.row].fax
+      if  fax.number == ""{
+        cell.detailTextLabel?.text = "\(cell.detailTextLabel?.text ?? "") -- No fax number, select to add one"
+      }else{
+        cell.detailTextLabel?.text = "\(cell.detailTextLabel?.text ?? ""), [Fax: \(doctors[indexPath.row].fax.number)]"
+      }
+    }
 
     cell.accessoryType = selectedRows.contains(indexPath) ? .checkmark : .none
     return cell
