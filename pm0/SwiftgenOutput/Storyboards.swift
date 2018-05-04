@@ -147,6 +147,7 @@ enum StoryboardSegue {
   }
   enum Main: String, SegueType {
     case goToApp
+    case showOnboarding
     case unwindToStart
   }
   enum Onboarding: String, SegueType {

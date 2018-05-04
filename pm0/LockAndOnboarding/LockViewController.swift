@@ -8,23 +8,33 @@
 
 import UIKit
 
+/// Manages the initial load screen for the app
 class LockViewController:UIViewController{
 
   var alertController:UIAlertController?
   override func viewDidLoad() {
+    self.view.backgroundColor = UIColor(patternImage: Asset.Lock.lockBG.image)
     NotificationCenter.default.addObserver(self, selector: #selector(didGetNeedsAuthAgainNotification(_:)), name: VLNeedsAuthAgainNotification.name, object: nil)
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    if authInfo.firstRun {
+      performSegue(withIdentifier: StoryboardSegue.Main.showOnboarding.rawValue, sender: self)
+    }
   }
 
   var authInfo:AuthenticationInfo{
     return LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
   }
 
+  /// record that the user used the app
   func markFirstRun(){
     var authInfo = LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
     authInfo.firstRun = false
     LocalStorage.AuthenticationStore.save([authInfo])
   }
 
+  /// record stats when the user has authenticated successfully
   func markLogin(){
     var authInfo = LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
     authInfo.lastLogin = Date()
@@ -32,12 +42,16 @@ class LockViewController:UIViewController{
     LocalStorage.AuthenticationStore.save([authInfo])
   }
 
+  /// "User tried to login, and failed"
   func markFailedLogin(){
     var authInfo = LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
     authInfo.numberOfFailedLoginAttempts += 1
     LocalStorage.AuthenticationStore.save([authInfo])
   }
 
+  /// Allows user to get in when it's data free
+  ///
+  /// - Parameter segue: storyboard segue used to get here from onboarding
   @IBAction func unwindHitFinalOnboardingButton(segue:UIStoryboardSegue){
     //On the first run, there is no data to secure, so we can let them into the app
     guard authInfo.firstRun else {
@@ -48,13 +62,23 @@ class LockViewController:UIViewController{
     self.performSegue(withIdentifier: StoryboardSegue.Main.goToApp.rawValue, sender: self)
   }
 
+  /// User tapped onboarding skip button
+  ///
+  /// - Parameter segue: segue from storyboard in onboarding
   @IBAction func unwindSkipOnboarding(segue:UIStoryboardSegue){
   }
 
+  /// Used to pop back out to login
+  ///
+  /// - Parameter segue: segue from storyboard
   @IBAction func unwindToStart(segue:UIStoryboardSegue){
     
   }
 
+  /// Makes the app pop the user interface off
+  ///   this needs to be tested a lot with popups, etc, before using it
+  ///
+  /// - Parameter notification: the notification that tells us that.
   @objc func didGetNeedsAuthAgainNotification(_ notification:VLNeedsAuthAgainNotification){
     debugPrint("user needs to re-auth")
     DispatchQueue.main.async {
@@ -62,6 +86,12 @@ class LockViewController:UIViewController{
     }
   }
 
+
+  /// Unlock button on the main screen
+  ///
+  /// <#Description#>
+  ///
+  /// - Parameter sender: <#sender description#>
   @IBAction func userTappedUnlock(_ sender:Any){
     authenticateUser(){ outcome in
       DispatchQueue.main.async{

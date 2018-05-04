@@ -65,9 +65,6 @@ func decodeAuthenticationError(_ error:Error?, completion:@escaping (Authenticat
   }
 }
 
-/**
- Checks to see if the owner of the phone has it in their posession
- */
 /// Can they prove they own the phone
 ///
 /// - Parameter completion: Shows success if they do, otherwise, various types of non-authentication
