@@ -100,9 +100,9 @@ class SendToViewController:UITableViewController, SendableDocumentMetadata, PDFH
 import DZNEmptyDataSet
 
 extension SendToViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
-func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-  return Asset.Empty.emptyDoc.image
-}
+//func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+//  return Asset.Empty.emptyDoc.image
+//}
 
 func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
   return emptyStateAttributedString("We need to know more about your doctor first")
