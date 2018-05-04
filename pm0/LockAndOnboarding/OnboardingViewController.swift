@@ -38,6 +38,7 @@ class OnboardingContainerViewController:UIViewController{
 
     embeddedViewController.skipButton.addTarget(self, action: #selector(OnboardingContainerViewController.skipButtonTapped), for: .touchUpInside)
 
+
     embedFinished()
   }
 
@@ -73,6 +74,8 @@ class OnboardingContainer1:OnboardingContainerViewController{
 
     All your information is securely protected by encryption and kept on your device.
     """
+
+    embeddedViewController.view.backgroundColor = UIColor(patternImage:Asset.Lock.lockBG.image)
   }
 
   @IBAction func unwindToOnboarding1(segue:UIStoryboardSegue){
@@ -95,6 +98,7 @@ class OnboardingContainer2:OnboardingContainerViewController{
 
     Don't miss a single detail & save time filling out waiting room paperwork.
     """
+    embeddedViewController.view.backgroundColor = UIColor(patternImage:Asset.Lock.lockBG.image)
   }
 
   override func backButtonTapped(_ sender: UIButton) {
@@ -123,6 +127,7 @@ class OnboardingContainer3:OnboardingContainerViewController{
     No passwords needed: Login to the app by logging into your \(UIDevice.current.localizedModel).
     """
     embeddedViewController.nextButton.setTitle("Begin Now", for: .normal)
+    embeddedViewController.view.backgroundColor = UIColor(patternImage:Asset.Lock.lockBG.image)
   }
 
   override func backButtonTapped(_ sender: UIButton) {

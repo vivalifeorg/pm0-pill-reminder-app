@@ -17,9 +17,13 @@ class FaxStatusViewController:UIViewController{
   @IBOutlet weak var  cancelButton:UIButton!
   @IBOutlet weak var  statusLabel:UILabel!
 
+  var isAnimating = true
 
   func resetAnimation(){
-      faxLeadingSpace.constant = vivaLogo.frame.origin.x
+    guard isAnimating else{
+      return
+    }
+    faxLeadingSpace.constant = vivaLogo.frame.origin.x
   }
 
 
@@ -31,6 +35,9 @@ class FaxStatusViewController:UIViewController{
   func updateStatus(message:String, cancelButtonEnabled:Bool){
     statusLabel.text = message
     cancelButton.isEnabled = cancelButtonEnabled
+    if cancelButtonEnabled == false{
+      stopAnimations()
+    }
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +53,7 @@ class FaxStatusViewController:UIViewController{
   }
 
   func stopAnimations(){
+    isAnimating = false
     self.view.layer.removeAllAnimations()
   }
   override func viewWillDisappear(_ animated: Bool) {

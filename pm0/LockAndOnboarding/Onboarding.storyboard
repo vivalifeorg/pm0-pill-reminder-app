@@ -99,7 +99,6 @@ This is a multi-line text area.</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="vlZebraLighter"/>
                         <constraints>
                             <constraint firstItem="ZHe-H2-nyq" firstAttribute="centerX" secondItem="CB5-jo-h32" secondAttribute="centerX" id="1xO-NB-W1l"/>
                             <constraint firstItem="CB5-jo-h32" firstAttribute="bottom" secondItem="fmZ-au-eFe" secondAttribute="bottom" constant="20" id="6gf-WP-xys"/>
