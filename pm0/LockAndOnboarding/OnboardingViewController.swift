@@ -25,16 +25,18 @@ class OnboardingContainerViewController:UIViewController{
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == StoryboardSegue.Onboarding.embedOnboarding.rawValue else {
-      print("FAILING EMBED")
       return
     }
     embeddedViewController = segue.destination as! OnboardingViewController
+  }
 
-    embeddedViewController.nextButton.addTarget(self, action: #selector(OnboardingContainer1.nextButtonTapped), for: .touchUpInside)
+  override func viewDidLoad() {
+    self.navigationController?.isNavigationBarHidden = true
+    embeddedViewController.nextButton.addTarget(self, action: #selector(OnboardingContainerViewController.nextButtonTapped), for: .touchUpInside)
 
-    embeddedViewController.backButton.addTarget(self, action: #selector(OnboardingContainer1.backButtonTapped), for: .touchUpInside)
+    embeddedViewController.backButton.addTarget(self, action: #selector(OnboardingContainerViewController.backButtonTapped), for: .touchUpInside)
 
-    embeddedViewController.skipButton.addTarget(self, action: #selector(OnboardingContainer1.skipButtonTapped), for: .touchUpInside)
+    embeddedViewController.skipButton.addTarget(self, action: #selector(OnboardingContainerViewController.skipButtonTapped), for: .touchUpInside)
 
     embedFinished()
   }
@@ -67,9 +69,7 @@ class OnboardingContainer1:OnboardingContainerViewController{
     embeddedViewController.mainImageView.image = Asset.Empty.emptyMyDay.image
     embeddedViewController.mainLabel.text =
     """
-    Feel better about your meds. Med Manager lets your medication anxiety evaporate.
-
-    It tracks what medications you are taking and groups them by when you need to take them.
+    Med Manager relieves your medication headache. It tracks what medications you are taking and groups them by when you need to take them.
     """
   }
 
@@ -85,13 +85,13 @@ class OnboardingContainer2:OnboardingContainerViewController{
   }
 
   override func embedFinished(){
-    embeddedViewController.backButton.isHidden = true
-    embeddedViewController.mainImageView.image = Asset.Empty.emptyMyDay.image
+    embeddedViewController.backButton.isHidden = false
+    embeddedViewController.mainImageView.image = Asset.FaxAnim.faxAnimFaxPage.image
     embeddedViewController.mainLabel.text =
     """
-    Feel better about your meds. Med Manager lets your medication anxiety evaporate.
+    Push a button to fax your medication history to your doctor.
 
-    It tracks what medications you are taking and groups them by when you need to take them.
+    Don't miss a single detail & save time filling out waiting room paperwork.
     """
   }
 
@@ -111,14 +111,18 @@ class OnboardingContainer3:OnboardingContainerViewController{
   }
 
   override func embedFinished(){
-    embeddedViewController.backButton.isHidden = true
-    embeddedViewController.mainImageView.image = Asset.Empty.emptyMyDay.image
+    embeddedViewController.backButton.isHidden = false
+    embeddedViewController.skipButton.isHidden = true
+    embeddedViewController.mainImageView.image = Asset.Empty.emptyDoc.image
     embeddedViewController.mainLabel.text =
     """
-    Feel better about your meds. Med Manager lets your medication anxiety evaporate.
+    Call the doctor's office from the app, or get driving directions.
 
-    It tracks what medications you are taking and groups them by when you need to take them.
+    All your information is securely protected by encryption and kept on your device.
+
+    You login to the app by logging into your device. No additional passwords to remember.
     """
+    embeddedViewController.nextButton.setTitle("Begin Now", for: .normal)
   }
 
   override func backButtonTapped(_ sender: UIButton) {

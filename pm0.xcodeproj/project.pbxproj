@@ -289,8 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				89F3D98E1FF6AC4F0081FA77 /* AppDelegate.swift */,
-				89EE59A4209BB6500021A593 /* Authentication.swift */,
-				89EE59A6209BB6A80021A593 /* LockViewController.swift */,
 				89B4E1D2204DEFC200A09B27 /* VLColors.swift */,
 				8954AC5E204DCE1B00E97305 /* Models.swift */,
 				89F3D9941FF6AC4F0081FA77 /* Main.storyboard */,
@@ -298,8 +296,6 @@
 				89F4D05520729B0A00CC60E9 /* HelpScreen */,
 				89F4D05420729B0000CC60E9 /* EntryLine */,
 				8970790C207E7C4F00A2CC11 /* IfNotNil.swift */,
-				89EE59A8209CB43A0021A593 /* Onboarding.storyboard */,
-				89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -350,6 +346,17 @@
 			path = MyDay;
 			sourceTree = "<group>";
 		};
+		89EE59AC209CBFB80021A593 /* LockAndOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				89EE59A4209BB6500021A593 /* Authentication.swift */,
+				89EE59A6209BB6A80021A593 /* LockViewController.swift */,
+				89EE59A8209CB43A0021A593 /* Onboarding.storyboard */,
+				89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */,
+			);
+			path = LockAndOnboarding;
+			sourceTree = "<group>";
+		};
 		89F3D9821FF6AC4F0081FA77 = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				89921521207292F8008B30C9 /* General */,
+				89EE59AC209CBFB80021A593 /* LockAndOnboarding */,
 				89B4E1CF204DE55F00A09B27 /* MyDay */,
 				894DBC3E205040460020353F /* Medications */,
 				89A5168F20587A4D0069D9AE /* Doctors */,

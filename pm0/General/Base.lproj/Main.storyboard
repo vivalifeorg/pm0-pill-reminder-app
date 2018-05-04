@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,6 +29,15 @@
                                     <constraint firstAttribute="width" secondItem="htP-ak-SXu" secondAttribute="height" multiplier="1:1" id="dGW-Sf-qgJ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bK7-aB-4UO">
+                                <rect key="frame" x="324" y="34" width="31" height="30"/>
+                                <state key="normal" title="Tour">
+                                    <color key="titleColor" name="vlWarmTintColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="6GP-oe-4uw" kind="presentation" id="hEZ-hP-Npd"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9a-Ox-7s2">
                                 <rect key="frame" x="20" y="710" width="335" height="48"/>
                                 <constraints>
@@ -57,14 +67,17 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="bK7-aB-4UO" firstAttribute="bottom" secondItem="eZe-Q6-Vwg" secondAttribute="top" constant="20" id="5fn-KO-alU"/>
                             <constraint firstItem="Iv1-8N-5gg" firstAttribute="top" secondItem="7eE-Uh-Qd5" secondAttribute="top" constant="-20" id="7IZ-Ih-222"/>
                             <constraint firstItem="eZe-Q6-Vwg" firstAttribute="leading" secondItem="htP-ak-SXu" secondAttribute="leading" constant="10" id="FMK-pX-Izg"/>
                             <constraint firstAttribute="trailing" secondItem="Iv1-8N-5gg" secondAttribute="trailing" constant="-20" id="LSo-0I-ume"/>
                             <constraint firstItem="htP-ak-SXu" firstAttribute="trailing" secondItem="eZe-Q6-Vwg" secondAttribute="trailing" constant="10" id="Lix-hM-nPO"/>
+                            <constraint firstItem="bK7-aB-4UO" firstAttribute="trailing" secondItem="eZe-Q6-Vwg" secondAttribute="trailing" constant="-20" id="PQz-dh-kyM"/>
                             <constraint firstAttribute="bottom" secondItem="Iv1-8N-5gg" secondAttribute="bottom" constant="-20" id="RQz-WH-zAc"/>
                             <constraint firstItem="eZe-Q6-Vwg" firstAttribute="bottom" secondItem="m9a-Ox-7s2" secondAttribute="bottom" constant="20" id="Y80-oW-cCe"/>
                             <constraint firstItem="m9a-Ox-7s2" firstAttribute="width" secondItem="eZe-Q6-Vwg" secondAttribute="width" constant="-40" id="ZPB-31-555"/>
                             <constraint firstItem="m9a-Ox-7s2" firstAttribute="centerX" secondItem="eZe-Q6-Vwg" secondAttribute="centerX" id="m6b-79-95k"/>
+                            <constraint firstItem="bK7-aB-4UO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7eE-Uh-Qd5" secondAttribute="trailing" constant="-51" id="qPi-sj-2cb"/>
                             <constraint firstItem="htP-ak-SXu" firstAttribute="centerY" secondItem="eZe-Q6-Vwg" secondAttribute="centerY" id="qx7-7K-nSI"/>
                             <constraint firstItem="Iv1-8N-5gg" firstAttribute="leading" secondItem="7eE-Uh-Qd5" secondAttribute="leading" constant="-20" id="y00-JD-k78"/>
                         </constraints>
@@ -77,6 +90,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6h-ch-7c8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-919.20000000000005" y="1.4778325123152709"/>
+        </scene>
+        <!--Onboarding-->
+        <scene sceneID="FDW-Ys-Vs2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Onboarding" id="6GP-oe-4uw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFa-wT-Pl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-306" y="-415"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -148,6 +169,9 @@
         <image name="LockBG" width="772" height="1366"/>
         <image name="LockPulse" width="750" height="426"/>
         <image name="Tab-Doc" width="23" height="23"/>
+        <namedColor name="vlWarmTintColor">
+            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <color key="tintColor" name="vlWarmTintColor"/>
 </document>
