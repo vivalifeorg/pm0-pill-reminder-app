@@ -98,7 +98,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
       return
     }
     faxStatusVC.updateStatus(message: "Fax failed to send:\n \(message)", cancelButtonEnabled: true)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
       self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterSend.rawValue, sender: self)
     }
   }

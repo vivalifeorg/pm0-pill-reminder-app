@@ -395,12 +395,15 @@ const NSString* fileKey = @"file[]";
             NSLog(@"dataTaskWithRequest error: %@", error);
         }
         
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-            if (statusCode != 200) {
-                NSLog(@"Expected responseCode == 200; received %ld", (long)statusCode);
-            }
+        if (![response isKindOfClass:[NSHTTPURLResponse class]]) {
+          return;
         }
+
+        NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+        if (statusCode != 200) {
+                NSLog(@"Expected responseCode == 200; received %ld", (long)statusCode);
+        }
+
         
          NSError *parseError;
 
@@ -411,7 +414,7 @@ const NSString* fileKey = @"file[]";
              NSLog(@"responseObject = %@", json);
           }
 
-        [self handlePostResponseForAPIMethod:api_method AndJSONResponse:json];
+      [self handlePostResponseForAPIMethod:api_method AndJSONResponse:json statusCode:statusCode];
         
     }];
     [task resume];
@@ -530,11 +533,13 @@ const NSString* fileKey = @"file[]";
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
 
-- (void)handlePostResponseForAPIMethod:(int)api_method AndJSONResponse:(NSDictionary*)json
+- (void)handlePostResponseForAPIMethod:(int)api_method
+                       AndJSONResponse:(NSDictionary*)json
+                            statusCode:(NSInteger)statusCode
 {
     if (api_method == SENT_FAX)
     {
-        BOOL success = [json valueForKey:@"success"];
+      BOOL success = (statusCode>=200 && statusCode < 300);
         [[self delegate] sentFax:success andResponse:json];
     }
     else if (api_method == CANCEL_FAX)
