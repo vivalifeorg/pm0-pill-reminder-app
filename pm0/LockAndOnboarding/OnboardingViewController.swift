@@ -54,7 +54,7 @@ class OnboardingContainerViewController:UIViewController{
   }
 
   @objc open func skipButtonTapped(_ sender:UIButton){
-    //to override
+    performSegue(withIdentifier: StoryboardSegue.Onboarding.skipOnboarding.rawValue, sender: self)
   }
 }
 
@@ -70,6 +70,8 @@ class OnboardingContainer1:OnboardingContainerViewController{
     embeddedViewController.mainLabel.text =
     """
     Med Manager relieves your medication headache. It tracks what medications you are taking and groups them by when you need to take them.
+
+    All your information is securely protected by encryption and kept on your device.
     """
   }
 
@@ -118,9 +120,7 @@ class OnboardingContainer3:OnboardingContainerViewController{
     """
     Call the doctor's office from the app, or get driving directions.
 
-    All your information is securely protected by encryption and kept on your device.
-
-    You login to the app by logging into your device. No additional passwords to remember.
+    No passwords needed: Login to the app by logging into your \(UIDevice.current.localizedModel).
     """
     embeddedViewController.nextButton.setTitle("Begin Now", for: .normal)
   }

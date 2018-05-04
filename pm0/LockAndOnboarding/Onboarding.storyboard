@@ -75,25 +75,28 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHe-H2-nyq">
-                                <rect key="frame" x="47.5" y="408.5" width="280" height="124.5"/>
-                                <string key="text">Med Manager eliminates medication anxiety. It tracks what medications you are taking and groups them by when you need to take them.
+                                <rect key="frame" x="47.5" y="408.5" width="280" height="61.5"/>
+                                <string key="text">Insert copy text here.
 
-</string>
+This is a multi-line text area.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <color key="textColor" name="vlTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afy-fq-STl">
-                                <rect key="frame" x="13" y="12" width="48" height="30"/>
-                                <state key="normal" title="&lt; Back">
+                                <rect key="frame" x="20" y="12" width="45" height="30"/>
+                                <state key="normal" title="‹ Back">
                                     <color key="titleColor" name="vlWarmTintColor"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PC-MV-WCz">
-                                <rect key="frame" x="332" y="12" width="30" height="30"/>
+                                <rect key="frame" x="325" y="12" width="30" height="30"/>
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" name="vlWarmTintColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Zbb-Xr-y2E" kind="unwind" identifier="skipOnboarding" unwindAction="unwindSkipOnboardingWithSegue:" id="Lwu-jh-ahF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" name="vlZebraLighter"/>
@@ -103,12 +106,12 @@
                             <constraint firstItem="FK6-Yz-1zi" firstAttribute="centerY" secondItem="CB5-jo-h32" secondAttribute="centerY" constant="-80" id="AbU-Jj-n5z"/>
                             <constraint firstItem="ZHe-H2-nyq" firstAttribute="width" secondItem="FK6-Yz-1zi" secondAttribute="width" constant="40" id="B4n-vx-sUk"/>
                             <constraint firstItem="CB5-jo-h32" firstAttribute="top" secondItem="Afy-fq-STl" secondAttribute="top" constant="8" id="Dz8-lM-3De"/>
-                            <constraint firstItem="Afy-fq-STl" firstAttribute="leading" secondItem="CB5-jo-h32" secondAttribute="leading" constant="13" id="ZVX-mE-ZMu"/>
+                            <constraint firstItem="Afy-fq-STl" firstAttribute="leading" secondItem="CB5-jo-h32" secondAttribute="leading" constant="20" id="ZVX-mE-ZMu"/>
                             <constraint firstItem="fmZ-au-eFe" firstAttribute="width" secondItem="Vw8-Ln-bAG" secondAttribute="width" constant="-40" id="a9N-eH-kCx"/>
                             <constraint firstItem="FK6-Yz-1zi" firstAttribute="centerX" secondItem="CB5-jo-h32" secondAttribute="centerX" id="bQK-26-szt"/>
                             <constraint firstItem="CB5-jo-h32" firstAttribute="top" secondItem="6PC-MV-WCz" secondAttribute="top" constant="8" id="e09-xl-0YA"/>
                             <constraint firstItem="ZHe-H2-nyq" firstAttribute="top" secondItem="FK6-Yz-1zi" secondAttribute="bottom" constant="25" id="g2U-3D-5F3"/>
-                            <constraint firstItem="CB5-jo-h32" firstAttribute="trailing" secondItem="6PC-MV-WCz" secondAttribute="trailing" constant="13" id="iCp-dC-aUM"/>
+                            <constraint firstItem="CB5-jo-h32" firstAttribute="trailing" secondItem="6PC-MV-WCz" secondAttribute="trailing" constant="20" id="iCp-dC-aUM"/>
                             <constraint firstItem="fmZ-au-eFe" firstAttribute="centerX" secondItem="CB5-jo-h32" secondAttribute="centerX" id="teF-VF-bXD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CB5-jo-h32"/>
@@ -128,6 +131,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="02W-28-QFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zbb-Xr-y2E" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="633" y="902"/>
         </scene>
