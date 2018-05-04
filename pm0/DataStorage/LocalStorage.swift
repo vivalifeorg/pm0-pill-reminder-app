@@ -139,6 +139,7 @@ struct FilePassword:Codable{
   let logFiles:[String]
 }
 
+/// Stores things to a series of log files
 struct FilePersistor<T:Codable>:Persistor{
   typealias PersistedType = T
   var key:LocalStorage.KeychainKey

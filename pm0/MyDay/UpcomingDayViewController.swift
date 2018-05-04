@@ -36,7 +36,11 @@ struct MedicationLogEvent:Codable{
 
 extension MedicationLogEvent{
   var isToday:Bool{
-    return Calendar.current.startOfDay(for:timestamp) == Calendar.current.startOfDay(for:Date())
+    return matchesDay(date: Date())
+  }
+
+  func matchesDay(date:Date)->Bool{
+    return Calendar.current.startOfDay(for:timestamp) == Calendar.current.startOfDay(for:date)
   }
 }
 
