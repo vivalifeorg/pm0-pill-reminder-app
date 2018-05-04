@@ -107,7 +107,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
     self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.unwindFromFaxingAfterSend.rawValue, sender: self)
   }
 
-  var faxNumber = "+18558237571"
+
   @IBAction func sendShownFax(_:AnyObject){
     self.performSegue(withIdentifier: StoryboardSegue.FaxableDocuments.showFaxStatus.rawValue, sender: self)
     sendFax(toNumber:sendableDocumentDestinations.first!.value, documentPaths: [pdfPreviewURL]){ isSuccess,msg in
