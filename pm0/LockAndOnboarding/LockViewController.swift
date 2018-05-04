@@ -15,7 +15,6 @@ class LockViewController:UIViewController{
     NotificationCenter.default.addObserver(self, selector: #selector(didGetNeedsAuthAgainNotification(_:)), name: VLNeedsAuthAgainNotification.name, object: nil)
   }
 
-
   var authInfo:AuthenticationInfo{
     return LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
   }
@@ -32,7 +31,7 @@ class LockViewController:UIViewController{
     authInfo.numberOfTimesLoggedIn += 1
     LocalStorage.AuthenticationStore.save([authInfo])
   }
-  
+
   func markFailedLogin(){
     var authInfo = LocalStorage.AuthenticationStore.load().first ?? AuthenticationInfo()
     authInfo.numberOfFailedLoginAttempts += 1
@@ -64,9 +63,9 @@ class LockViewController:UIViewController{
   }
 
   @IBAction func userTappedUnlock(_ sender:Any){
-    authenticateUser(){ success in
+    authenticateUser(){ outcome in
       DispatchQueue.main.async{
-        if success{
+        if outcome == .succeeded {
           self.performSegue(withIdentifier: StoryboardSegue.Main.goToApp.rawValue, sender: self)
           self.markLogin()
         }else{
