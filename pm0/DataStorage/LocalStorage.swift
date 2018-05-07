@@ -152,10 +152,15 @@ extension FetchableQueryParams{
   }
 }
 
-let encryptionEnabled = false
-fileprivate var cachedLoadStatements:[FetchableQueryParams:OpaquePointer?] = [:]
-fileprivate var cachedSaveStatements:[FetchableQueryParams:OpaquePointer?] = [:]
+///changing this only works with a completely new database
+let usesEncryptedDatabase = true
+
+///used to make queries blazingly fast by reuse
+fileprivate var filePersistorCachedLoadStatements:[FetchableQueryParams:OpaquePointer?] = [:]
+fileprivate var filePersistorCachedSaveStatements:[FetchableQueryParams:OpaquePointer?] = [:]
+
 fileprivate let dateNotSpecified = "NOT_SPECIFIED"
+
 struct FilePersistor<T:Codable>:Persistor{
   typealias PersistedType = T
   var key:LocalStorage.KeychainKey
@@ -165,9 +170,94 @@ struct FilePersistor<T:Codable>:Persistor{
     _ = try? FileManager.default.removeItem(atPath: persistenceFilePath)
   }
 
+  ///should not be used for this class, use date specified or loadLastDays
+  func load() -> [T] {
+    return load(relevantDate:dateNotSpecified)
+  }
+
+  private let daySeconds:Double =  24 * 60 * 60
+
+  ///should be used for things like medlog that need many days of stuff
+  func loadLastDays(_ numberOfDays:Int) -> [String:[T]] {
+    var dayEvents = [String:[T]]()
+    for n in 0..<numberOfDays{
+      let today = Date()
+      let thatDay = today.addingTimeInterval((-daySeconds) * Double(n) )
+      dayEvents[thatDay.relevantDateString] = load(relevantDate:thatDay.relevantDateString)
+    }
+    return dayEvents
+  }
+
+  ///should be primary load mechanism for medlog single days
+  func load(relevantDate:String) -> [T] {
+    ensureDBIsEncrypted()
+    createTableIfNeeded()
+
+    let dbItems = loadFromDB(datePredicateStr: relevantDate)
+    let dataItems:[Data] = dbItems.map{ dbItem in
+      guard let dataT = dbItem.data(using: .utf8) else {
+        fatalError()
+      }
+      return dataT
+    }
+
+    let items:[T] = dataItems.map{ dataT in
+      guard let item = (try? JSONDecoder().decode(Wrapper<T>.self, from: dataT))?.wrapped.first else{
+        print("Could not decode data in \(T.self)")
+        fatalError()
+      }
+      return item
+    }
+    return items
+  }
+
+  ///should be used; Adds events to the medlog
+  func append(_ items:[T], relevantDate:String = dateNotSpecified){
+    save(items, relevantDate:relevantDate)
+  }
+
+  ///Saves the given items, generally not intended for use
+  func save(_ items:[T]){
+    save(items,relevantDate:dateNotSpecified)
+  }
+
+  ///Saves the given items  for the date specified, generally not intended for use
+  func save(_ items:[T], relevantDate:String = dateNotSpecified){
+
+    //now, we encode the data a little awkwardly
+    let encodedItems:[Data] = items.map{ item in
+      let wrappedItem = Wrapper<T>(wrapped:[item],key:key)
+      guard let encoded = try? JSONEncoder().encode(wrappedItem) else {
+        fatalError("Encoding is broken for these")
+      }
+      return encoded
+    }
+
+    if shouldExportToYamlForTesting {
+      encodedItems.forEach { wrapped in
+        printYamlAndHeader(wrapped, key: key, addAssociated:true)
+      }
+    }
+
+    //
+    //encrypt and store the data
+    //
+    let encodedStrings = encodedItems.map{
+      String(data:$0,encoding:.utf8)!
+    }
+
+    //We need to load/generate a password for symmetric encryption, and save it
+    let password = storedEncryptionKey()
+    KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:password,logFiles:[persistenceFilePath])])
+    ensureDBIsEncrypted()
+    createTableIfNeeded()
+    writeToDB(data: encodedStrings, datePredicateStr: relevantDate)
+  }
+
+
   private func loadFromDB(datePredicateStr:String) -> [String]{
     var statement:OpaquePointer?
-    if let cached = cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] {
+    if let cached = filePersistorCachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] {
       statement = cached
     }else{
       let stmtString = "SELECT relevantDate, jsonEncoded FROM \(FilePersistor<T>.tableName) where relevantDate=?;"
@@ -176,7 +266,7 @@ struct FilePersistor<T:Codable>:Persistor{
         print("SELECT statement could not be prepared ERROR \(prepResult) \(String(cString: sqlite3_errmsg(db)))")
         return []
       }
-      cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] = statement
+      filePersistorCachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
     sqlite3_bind_text(statement, Int32(1), datePredicateStr, -1, SQLITE_TRANSIENT)
@@ -195,7 +285,7 @@ struct FilePersistor<T:Codable>:Persistor{
 
   private func writeToDB(data:[String], datePredicateStr:String){
     var statement:OpaquePointer?
-    if let cached = cachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] {
+    if let cached = filePersistorCachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] {
       statement = cached
     }else{
       /*
@@ -207,7 +297,7 @@ struct FilePersistor<T:Codable>:Persistor{
         print("insert statement could not be prepared ERROR \(prepResult) \(String(cString: sqlite3_errmsg(db)))")
         return
       }
-      cachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] = statement
+      filePersistorCachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
     ///Be careful with memory management and bind calls: SQL lite is in C memory management mode
@@ -238,50 +328,6 @@ struct FilePersistor<T:Codable>:Persistor{
 
   }
 
-  func load() -> [T] {
-    return load(relevantDate:dateNotSpecified) //todo, make this load all so fax export works
-  }
-
-
-
-
-
-
-  private let daySeconds:Double =  24 * 60 * 60
-
-  func loadLastDays(_ numberOfDays:Int) -> [String:[T]] {
-    var dayEvents = [String:[T]]()
-    for n in 0..<numberOfDays{
-      let today = Date()
-      let thatDay = today.addingTimeInterval((-daySeconds) * Double(n) )
-      dayEvents[thatDay.relevantDateString] = load(relevantDate:thatDay.relevantDateString)
-    }
-    return dayEvents
-  }
-
-  func load(relevantDate:String) -> [T] {
-    ensureDBIsEncrypted()
-    createTableIfNeeded()
-
-    let dbItems = loadFromDB(datePredicateStr: relevantDate)
-    let dataItems:[Data] = dbItems.map{ dbItem in
-      guard let dataT = dbItem.data(using: .utf8) else {
-        fatalError()
-      }
-      return dataT
-    }
-
-    let items:[T] = dataItems.map{ dataT in
-      guard let item = (try? JSONDecoder().decode(Wrapper<T>.self, from: dataT))?.wrapped.first else{
-        print("Could not decode data in \(T.self)")
-        fatalError()
-      }
-      return item
-    }
-
-    return items
-  }
-
   private static func db(filePath:String,encryptionKey:String)->OpaquePointer? {
     if let path = openFilePersistorDBConnection[filePath]{
       return path
@@ -295,7 +341,7 @@ struct FilePersistor<T:Codable>:Persistor{
       return nil
     }
 
-    if encryptionEnabled{
+    if usesEncryptedDatabase{
       let password: String = encryptionKey
       let keyResult = sqlite3_key(db, password, Int32(password.utf8CString.count))
       guard keyResult == SQLITE_OK else {
@@ -309,22 +355,18 @@ struct FilePersistor<T:Codable>:Persistor{
     return db
   }
 
-
-
   private var db:OpaquePointer!{
     return FilePersistor<T>.db(filePath: persistenceFilePath, encryptionKey: storedEncryptionKey())
   }
 
   //allow for easier migrations
   private static var currentEncodingVersion:String{
-    return Wrapper<T>.WrapperVersions.v0_2_unversioned.rawValue
+    return Wrapper<T>.WrapperVersions.v0_2_180507_2110.rawValue
   }
 
   private static var tableName:String{
     return "Entries"
   }
-
-
 
   private func createTableIfNeeded(){
 
@@ -359,50 +401,6 @@ struct FilePersistor<T:Codable>:Persistor{
     print("\(theTableName) Table created")
   }
 
-  func append(_ items:[T], relevantDate:String = dateNotSpecified){
-    let theOldItems = load()
-    save(theOldItems + items, relevantDate:relevantDate)
-  }
-
-  func save(_ items:[T]){
-    save(items,relevantDate:dateNotSpecified)
-  }
-
-  func save(_ items:[T], relevantDate:String = dateNotSpecified){
-
-    //now, we encode the data a little awkwardly
-    let encodedItems:[Data] = items.map{ item in
-      let wrappedItem = Wrapper<T>(wrapped:[item],key:key)
-      guard let encoded = try? JSONEncoder().encode(wrappedItem) else {
-        fatalError("Encoding is broken for these")
-      }
-      return encoded
-    }
-
-    if shouldExportToYamlForTesting {
-      encodedItems.forEach { wrapped in
-        printYamlAndHeader(wrapped, key: key, addAssociated:true)
-      }
-    }
-
-    //
-    //encrypt and store the data
-    //
-    let encodedStrings = encodedItems.map{
-      String(data:$0,encoding:.utf8)!
-    }
-
-    //We need to load/generate a password for symmetric encryption, and save it
-    let password = storedEncryptionKey()
-    KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:password,logFiles:[persistenceFilePath])])
-    ensureDBIsEncrypted()
-    createTableIfNeeded()
-    writeToDB(data: encodedStrings, datePredicateStr: relevantDate)
-  }
-
-  //////
-
-  //todo make a way to autopage to a new log file when appropriate
   private func generateKey()->String{
     debugPrint("Generating Key/Password for checks because we don't have one")
     return RNCryptor.randomData(ofLength: 12).base64EncodedString()
@@ -416,7 +414,8 @@ struct FilePersistor<T:Codable>:Persistor{
   static private func filepath(`for` key:LocalStorage.KeychainKey, index:Int = 0)->String{
     let currentLogIndex = String(0)
     let paddedIndex = currentLogIndex.padding(toLength: 8, withPad: "0", startingAt: 0)
-    let prefix = "FilePersistorData-"
+    let encStr = usesEncryptedDatabase ? "encrypted-": ""
+    let prefix = "FilePersistorData-\(encStr)"
     return FileManager.documentsDirectory() + "/" + prefix + key.rawValue + "_" + paddedIndex + ".db"
   }
 
@@ -425,11 +424,10 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   private func ensureDBIsEncrypted(){
-    guard encryptionEnabled else {
+    guard usesEncryptedDatabase else {//should only be disabled on debug builds
       print("ENCRYPTION NOT ENABLED")
       return
-
-    } //should only be disabled on debug builds
+    }
 
     let password: String = storedEncryptionKey()
     var db: OpaquePointer? = nil
@@ -497,10 +495,11 @@ struct Wrapper<T:Codable>:Codable{
   enum WrapperVersions:String,Codable{
     case v0_1_unversioned
     case v0_2_unversioned
+    case v0_2_180507_2110
   }
 
   let wrapped:[T]
-  let version:String = WrapperVersions.v0_2_unversioned.rawValue
+  let version:String = WrapperVersions.v0_2_180507_2110.rawValue
   let key:LocalStorage.KeychainKey
 }
 
