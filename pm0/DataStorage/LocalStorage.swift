@@ -178,7 +178,7 @@ struct FilePersistor<T:Codable>:Persistor{
       cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
-    sqlite3_bind_text(statement, 1, datePredicateStr, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
+    sqlite3_bind_text(statement, Int32(1), datePredicateStr, -1, SQLITE_TRANSIENT)
     var items:[String] = []
     while (sqlite3_step(statement) == SQLITE_ROW) {
       _ = String(cString:sqlite3_column_text(statement, 0))
@@ -209,6 +209,7 @@ struct FilePersistor<T:Codable>:Persistor{
       cachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
+    ///Be careful with memory management and bind calls: SQL lite is in C memory management mode
     for (_,item) in data.enumerated() {
       let bind1Result = sqlite3_bind_text(statement, Int32(1), datePredicateStr, -1, SQLITE_TRANSIENT)
       guard bind1Result == SQLITE_OK else{
