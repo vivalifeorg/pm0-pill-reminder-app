@@ -9,12 +9,6 @@
 import Foundation
 
 
-struct DosingSchedule{
-  var periodLength:Int
-  var dosesPerPeriod:Int
-  var isWakeToTake:Bool = false
-  var isOnlyForConsumptionWithFood:Bool = false
-}
 
 struct Prescriber:Codable{
 
@@ -61,30 +55,32 @@ struct MedicationSource:Codable{
   var isOverTheCounter:Bool
 }
 
+
+/// Used to record what the person picked, this is saved to make editing a lot easier to recreate. Somewhat duplicates other fields of the prescription datastructure.
 struct EntryInfo:Codable{
-  var name:String?
-  var form:String?
-  var unitDescription:String?
-  var quantityOfUnits:String?
-  var scheduleSelection:Schedule? 
-  var prescribingDoctor:String?
-  var pharmacy:String?
-  var condition:String?
-  var drugDBSelection:MedicationPackage?
-  var prescription:Prescription{
+  var name:String? ///What they typed on the name line
+  var form:String? ///what they typed on the pill description line
+  var unitDescription:String? ///what they typed on the how much do you take line
+  var quantityOfUnits:String? ///how many they take at once
+  var scheduleSelection:Schedule?  ///Which schedue they picked
+  var prescribingDoctor:String? ///Who told them to take it
+  var pharmacy:String? /// where they get it
+  var condition:String? ///Why they take it
+  var drugDBSelection:MedicationPackage? ///What item out of the drug db they selected, used so we can figure out more about what they chose
+  var prescription:Prescription{ ///The item this distills down to elsewhere in the app
     return Prescription(info:self)
   }
 }
 
 
+/// Used to record the item given to the user by their doctor to say how to take a medication
 struct Prescription:Codable{
-  var dosage:Dosage?
-  var prescriber:Prescriber?
-  var obtainedFrom:MedicationSource?
-  var conditionPrescribedFor:Condition?
-  var editInfo:EntryInfo
-  let itemRef:UUID = UUID()
-  
+  var dosage:Dosage? ///One use of the medication
+  var prescriber:Prescriber? ///Who prescribed it
+  var obtainedFrom:MedicationSource? ///Pharmacy or other place of acquisition
+  var conditionPrescribedFor:Condition? ///Why they take it
+  var editInfo:EntryInfo ///Used to repopulate the entry field when editing
+  let itemRef:UUID = UUID() ///Used primarily for logging
 
   init(info:EntryInfo){
     editInfo = info
@@ -100,8 +96,7 @@ struct Prescription:Codable{
 }
 
 
-///Doctors
-
+///Where their doctor is. Clearly US oriented right now
 struct Address:Codable{
   var street:String
   var streetCont:String
@@ -111,19 +106,21 @@ struct Address:Codable{
 }
 
 
+///This is used to store what the user typed as their name
 struct PatientInfo:Codable{
   var lastDocumentName:String = "" //last name the user put on a document (transgender complexities/recent name changes make this important to track).
   var contactPhoneNumber:String = ""
 }
 
 extension String {
-
   var digitsOnly: String {
     //todo: handle # and *
     let filtered = self.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
     return filtered
   }
 }
+
+///A phone number that is callable most likely
 struct PhoneNumber:Codable{
   var number:String
   var telURL:URL?{
@@ -131,14 +128,15 @@ struct PhoneNumber:Codable{
     return url
   }
 }
-
+///A phone number that you can fax to
 struct FaxNumber:Codable{
   var number:String
 }
 
+///info about a doctor
 struct DoctorInfo:Codable{
   var name:String
-  var specialty:String
+  var specialty:String ///e.g. Podiatry
   var address:Address
   var fax:FaxNumber
   var phone:PhoneNumber
@@ -155,4 +153,4 @@ extension DoctorInfo{
   }
 }
 
-///End doctors
+
