@@ -242,6 +242,23 @@ struct FilePersistor<T:Codable>:Persistor{
     return load(relevantDate:dateNotSpecified) //todo, make this load all so fax export works
   }
 
+
+
+
+
+
+  private let daySeconds:Double =  24 * 60 * 60
+
+  func loadLastDays(_ numberOfDays:Int) -> [String:[T]] {
+    var dayEvents = [String:[T]]()
+    for n in 0..<numberOfDays{
+      let today = Date()
+      let thatDay = today.addingTimeInterval((-daySeconds) * Double(n) )
+      dayEvents[thatDay.relevantDateString] = load(relevantDate:thatDay.relevantDateString)
+    }
+    return dayEvents
+  }
+
   func load(relevantDate:String) -> [T] {
     ensureDBIsEncrypted()
     createTableIfNeeded()

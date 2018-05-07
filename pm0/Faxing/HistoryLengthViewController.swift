@@ -15,31 +15,29 @@ class HistoryLengthViewController:UITableViewController, SendableDocumentMetadat
 
   var sendableDocumentTopics: [DocumentTopic] = []
 
-  let daySeconds:Double =  24 * 60 * 60
   func selectedPeriod(_ period:Int){
 
     switch period{
     case 0:
-      timePeriod = 30.0 * daySeconds
+      timePeriod = 30
     case 1:
-      timePeriod = 90.0 * daySeconds
+      timePeriod = 90
     case 2:
-      timePeriod = 10000.0 * daySeconds
+      timePeriod = 366 // "all" is now "a year", we can fix this, but not right now
     default:
       print("wierd case")
     }
   }
-  lazy var timePeriod:TimeInterval = daySeconds * 30
+  lazy var timePeriod:Int = 30
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     var handler = segue.destination as! PDFHandler & SendableDocumentMetadata
     handler.sendableDocumentTopics = sendableDocumentTopics
     handler.sendableDocumentDestinations = sendableDocumentDestinations
 
-    let rawLog = LocalStorage.MedicationLogStore.load()
-    let today = Date()
-    let filteredLog = Array(rawLog.filter{ $0.timestamp.addingTimeInterval(timePeriod) > today }.reversed())
-    let medlog = medlogForm(events: filteredLog, patient: LocalStorage.UserInfoStore.loadSingle()!)
+    let filteredLog = LocalStorage.MedicationLogStore.loadLastDays(timePeriod)
+    let combinedFilteredLog = filteredLog.keys.flatMap{filteredLog[$0]!}
+    let medlog = medlogForm(events: combinedFilteredLog, patient: LocalStorage.UserInfoStore.loadSingle()!)
     sendableDocuments = [medlog]
 
     handler.sendableDocuments = sendableDocuments
