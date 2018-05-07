@@ -9,12 +9,13 @@
 import Foundation
 
 
-
+///makes it so the prescriber can be saved to a file, clearly, nothing is saved yet
 struct Prescriber:Codable{
 
 }
 
 
+///What they user needs to take of a medicine
 struct Dosage:Codable,Equatable{
   var name:String = "Drug"
   var unitDescription:String?
@@ -39,6 +40,7 @@ func ==(lhs:Dosage, rhs:Dosage)->Bool{
 }
 
 
+///Why a user tkaes a medication
 struct Condition:Codable{
   var name:String
 
@@ -47,6 +49,7 @@ struct Condition:Codable{
   }
 }
 
+///How a user gets a medication, some are from *wierd* places to pick them up
 struct MedicationSource:Codable{
   var name:String
   var isPharmacy:Bool
