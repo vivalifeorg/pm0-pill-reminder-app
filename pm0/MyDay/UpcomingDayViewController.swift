@@ -273,16 +273,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct Section{
-    func footerColorAtTime(_ date:Date)->UIColor {
-
-      let aFewMinutes = 30.0*60.0
-      let isSomewhatLate = date.timeIntervalSinceNow < aFewMinutes
-      let allTaken = medications.reduce(true){$0 && $1.isTaken}
-
-      if allTaken { return VLColors.footerAllGood }
-      if isSomewhatLate { return VLColors.footerMissedMeds }
-      return VLColors.footerInfoPertinent
-    }
+    
 
 
     var title:String
@@ -544,7 +535,7 @@ extension UpcomingDayViewController{
                           willDisplayFooterView view: UIView,
                           forSection section: Int) {
     guard let header = view as? UITableViewHeaderFooterView else { return }
-    header.textLabel?.textColor = sections[section].footerColorAtTime(Date())
+    header.textLabel?.textColor = Asset.Colors.vlTextColor.color
     header.textLabel?.frame = header.frame
   }
 
