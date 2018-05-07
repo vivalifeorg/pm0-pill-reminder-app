@@ -14,15 +14,13 @@ struct FaxSizes{
   static let fine = CGSize(width:196.0, height:204.0)
 }
 
-extension VLColors{
-  static let faxBackgroundColor = UIColor.white
-  static let faxBorderColor = UIColor.black
-}
+
+let faxBorderColor = UIColor.black
 
 extension UILabel{
   convenience init(frameForPDF:CGRect){
     self.init(frame:frameForPDF)
-    self.backgroundColor = VLColors.faxBackgroundColor
+    self.backgroundColor = .white
     self.adjustsFontSizeToFitWidth = true
     self.font = faxBodyFont
   }
@@ -194,7 +192,7 @@ func addHeader(_ text:String, view: UIView, y offset:CGFloat)->CGFloat{
 func coverPage(totalPageCountIncludingCoverPage pageCount:Int, to:String, forPatient:String) -> DocumentRef {
 
   let backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-  backgroundView.backgroundColor = VLColors.faxBackgroundColor
+  backgroundView.backgroundColor = .white
 
 
 
@@ -458,7 +456,7 @@ func hipaaConsentForm(doctors:[DocumentTopic],
   let pageSize = FaxSizes.hyperFine
 
   var backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-  backgroundView.backgroundColor = VLColors.faxBackgroundColor
+  backgroundView.backgroundColor = .white
 
   let title = "Patient Information Disclosure Consent Form"
   var runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
@@ -595,13 +593,19 @@ func addFooter(view:inout UIView,leftText:String="",centerText:String="",rightTe
   }
 }
 
+
+/// Creates a list of medication record events
+///
+/// - Parameters:
+///   - events: Check/Uncheck events
+///   - patient: What the patient calls themselves, etc
+/// - Returns: A link to a pdf
 func medlogForm(events: [MedicationLogEvent],
                 patient:PatientInfo) -> DocumentRef {
   let pageSize = FaxSizes.hyperFine
 
   var backgroundView = UIView(frame: CGRect(origin: CGPoint.zero, size: pageSize))
-  backgroundView.backgroundColor = VLColors.faxBackgroundColor
-
+  backgroundView.backgroundColor = .white
   let title = "Patient Medication Log"
   var runningVerticalOffset = addHeader(title, view: backgroundView, y: topMargin)
 

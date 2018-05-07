@@ -50,6 +50,7 @@ struct Condition:Codable{
 }
 
 ///How a user gets a medication, some are from *wierd* places to pick them up
+///  Mostly not used yet
 struct MedicationSource:Codable{
   var name:String
   var isPharmacy:Bool
