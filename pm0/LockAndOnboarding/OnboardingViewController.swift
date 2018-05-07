@@ -91,7 +91,7 @@ class OnboardingContainer2:OnboardingContainerViewController{
 
   override func embedFinished(){
     embeddedViewController.backButton.isHidden = false
-    embeddedViewController.mainImageView.image = Asset.FaxAnim.faxAnimFaxPage.image
+    embeddedViewController.mainImageView.image = Asset.Fax.faxUpright.image
     embeddedViewController.mainLabel.text =
     """
     Push a button to fax your medication history to your doctor.

@@ -250,7 +250,7 @@ struct Wrapper<T:Codable>:Codable{
 
 
 let yamlEncoder = YAMLEncoder()
-let shouldExportToYamlForTesting = true
+let shouldExportToYamlForTesting = false
 
 let operatingSystemName = UIDevice.current.systemName
 let operatingSystemVersion = UIDevice.current.systemVersion

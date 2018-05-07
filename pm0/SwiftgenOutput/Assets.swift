@@ -71,6 +71,7 @@ enum Asset {
   enum Fax {
     static let blackAndWhiteLogo = ImageAsset(name: "BlackAndWhiteLogo")
     static let exampleFaxSignature = ImageAsset(name: "ExampleFaxSignature")
+    static let faxUpright = ImageAsset(name: "FaxUpright")
     static let qrCodeForCover = ImageAsset(name: "QRCodeForCover")
     static let linkToApp = ImageAsset(name: "linkToApp")
   }
@@ -116,6 +117,7 @@ enum Asset {
     Empty.orangeButtonBorder,
     Fax.blackAndWhiteLogo,
     Fax.exampleFaxSignature,
+    Fax.faxUpright,
     Fax.qrCodeForCover,
     Fax.linkToApp,
     FaxAnim.faxAnimBackground,

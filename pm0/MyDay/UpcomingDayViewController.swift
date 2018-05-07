@@ -402,8 +402,6 @@ class UpcomingDayViewController: UITableViewController {
                              date:timeSlotDate,
                              items:displayable, footnote:footnote)
       timeSlots.append(timeSlot)
-
-      //debugPrint("\(thisTime.hour!):\(thisTime.minute!) \(timeSlot)")
     }
 
     return timeSlots
@@ -537,7 +535,11 @@ extension UpcomingDayViewController{
 
 
   func recordMedicationEvent(_ event:MedicationLogEvent){
-    medicationTakenEventLog.append(event)
+
+    ///To quickly make this save tons
+    //for _ in 0..<1000{
+      medicationTakenEventLog.append(event)
+    //}
     LocalStorage.MedicationLogStore.save(medicationTakenEventLog)
   }
 
