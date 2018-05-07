@@ -162,7 +162,7 @@
         <image name="LockPulse" width="750" height="422"/>
         <image name="Tab-Doc" width="23" height="23"/>
         <namedColor name="vlWarmTintColor">
-            <color red="0.87800002098083496" green="0.61599999666213989" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.87450980392156863" green="0.61568627450980395" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="vlWarmTintColor"/>
