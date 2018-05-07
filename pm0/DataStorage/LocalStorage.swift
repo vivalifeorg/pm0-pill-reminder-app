@@ -142,57 +142,97 @@ struct FilePassword:Codable{
 
 /// Stores things to a series of log files
 fileprivate var openFilePersistorDBConnection:[String:OpaquePointer?] = [:] //swift static class variables aren't supported on generics
+struct FetchableQueryParams:Hashable{
+  let dateString:String
+  let key:LocalStorage.KeychainKey
+}
+extension FetchableQueryParams{
+  init(_ pkey:LocalStorage.KeychainKey, _ pdateString:String ){
+    key = pkey
+    dateString = pdateString
+  }
+}
+
+fileprivate var cachedLoadStatements:[FetchableQueryParams:OpaquePointer?] = [:]
+fileprivate var cachedSaveStatements:[FetchableQueryParams:OpaquePointer?] = [:]
 struct FilePersistor<T:Codable>:Persistor{
   typealias PersistedType = T
   var key:LocalStorage.KeychainKey
-
-
 
   func blank(){
     KeychainPersistor<FilePassword>(key: key).blank()
     _ = try? FileManager.default.removeItem(atPath: persistenceFilePath)
   }
 
-  func loadFromDB(datePredicateStr:String) -> String{
-    let stmtString = "SELECT relevantDate, jsonEncoded FROM \(FilePersistor<T>.tableName);"
-    var statement: OpaquePointer? = nil
-
-    let prepResult = sqlite3_prepare_v2(db, stmtString, -1, &statement, nil)
-    guard prepResult == SQLITE_OK else{
-      print("SELECT statement could not be prepared")
-      return ""
-    }
-    defer {
-      sqlite3_finalize(statement)
-    }
-
-    guard  sqlite3_step(statement) == SQLITE_ROW else{
-      print("No results")
-      return ""
+  private func loadFromDB(datePredicateStr:String) -> [String]{
+    var statement:OpaquePointer?
+    if let cached = cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] {
+      statement = cached
+    }else{
+      let stmtString = "SELECT relevantDate, jsonEncoded FROM \(FilePersistor<T>.tableName);"
+      let prepResult = sqlite3_prepare_v2(db, stmtString, -1, &statement, nil)
+      guard prepResult == SQLITE_OK else{
+        print("SELECT statement could not be prepared ERROR \(prepResult) \(String(cString: sqlite3_errmsg(db)))")
+        return []
+      }
+      cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
-    let dateStr = String(cString:sqlite3_column_text(statement, 0))
-    let json = String(cString:sqlite3_column_text(statement, 1))
+    var items:[String] = []
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+      _ = String(cString:sqlite3_column_text(statement, 0))
+      let json = String(cString:sqlite3_column_text(statement, 1))
+      items.append(json)
+    }
+    return items
+  }
 
-    return "Date:\(dateStr) JSON:\(json)"
+  private func writeToDB(data:[String], datePredicateStr:String){
+    var statement:OpaquePointer?
+    if let cached = cachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] {
+      statement = cached
+    }else{
+      /*
+       INSERT INTO artists (name) VALUES ('Bud Powell');
+      */
+      let stmtString = "insert into entries (relevantDate, encodingVersion, jsonEncoded) VALUES (?,?,?);"
+      let prepResult = sqlite3_prepare_v2(db, stmtString, -1, &statement, nil)
+      guard prepResult == SQLITE_OK else{
+        print("insert statement could not be prepared ERROR \(prepResult) \(String(cString: sqlite3_errmsg(db)))")
+        return
+      }
+      cachedSaveStatements[FetchableQueryParams(key,datePredicateStr)] = statement
+    }
+
+    for (_,item) in data.enumerated() {
+      sqlite3_bind_text(statement, 1, datePredicateStr, -1, nil)
+      sqlite3_bind_text(statement, 2, FilePersistor<T>.currentEncodingVersion, -1, nil)
+      sqlite3_bind_text(statement, 3, item, -1, nil)
+
+      let stepResult = sqlite3_step(statement)
+      guard stepResult == SQLITE_DONE else{
+        print("ERROR: \(stepResult) \(String(cString: sqlite3_errmsg(db)))")
+        return
+      }
+    }
+
   }
 
   func load() -> [T] {
     ensureDBIsEncrypted()
     createTableIfNeeded()
 
-    print(loadFromDB(datePredicateStr: "2018-05-07"))
-    
-    guard let ciphertext = try? Data.init(contentsOf:URL(fileURLWithPath: persistenceFilePath)) else{
-      print("missing file: \(persistenceFilePath)")
-      return []
-    }
-    guard let data = try? RNCryptor.decrypt(data: ciphertext, withPassword: storedEncryptionKey()) else{
-      print("couldn't decrypt file: \(persistenceFilePath)")
+    let dbItems = loadFromDB(datePredicateStr: "2018-05-07")
+    guard let dataT = dbItems[0].data(using: .utf8) else {
       return []
     }
 
-    return decodeData(data)
+    guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
+      print("Could not decode data in \(T.self)")
+      return []
+    }
+
+    return items.wrapped
   }
 
   private static func db(filePath:String,encryptionKey:String)->OpaquePointer? {
@@ -200,19 +240,20 @@ struct FilePersistor<T:Codable>:Persistor{
       return path
     }
 
-    let password: String = encryptionKey
     var db: OpaquePointer? = nil
-    var rc:Int32 = sqlite3_open(filePath, &db)
-    if (rc != SQLITE_OK) {
+    let openResult:Int32 = sqlite3_open(filePath, &db)
+    guard openResult == SQLITE_OK  else{
       let errmsg = String(cString: sqlite3_errmsg(db))
       NSLog("SQLCipher: Error opening database: \(errmsg)")
       return nil
     }
 
-    rc = sqlite3_key(db, password, Int32(password.utf8CString.count))
-    if (rc != SQLITE_OK) {
+    let password: String = encryptionKey
+    let keyResult = sqlite3_key(db, password, Int32(password.utf8CString.count))
+    guard keyResult == SQLITE_OK else {
       let errmsg = String(cString: sqlite3_errmsg(db))
       NSLog("SQLCipher: Error setting key: \(errmsg)")
+      return nil
     }
 
     openFilePersistorDBConnection[filePath] = db
@@ -226,8 +267,8 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   //allow for easier migrations
-  private static var versionPrefix:String{
-    return "v0_2"
+  private static var currentEncodingVersion:String{
+    return "v0_2_X"
   }
 
   private static var tableName:String{
@@ -242,19 +283,24 @@ struct FilePersistor<T:Codable>:Persistor{
     let theTableName = FilePersistor<T>.tableName
     let createTableString = """
     CREATE TABLE \(theTableName)(
-    Id INT PRIMARY KEY NOT NULL,
-    TEXT relevantDate,
-    TEXT jsonEncoded;
+    Id INTEGER PRIMARY KEY NOT NULL,
+    relevantDate TEXT,
+    encodingVersion TEXT,
+    jsonEncoded TEXT);
     """
     var createTableStatement: OpaquePointer? = nil
     let prepResult = sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil)
     guard  prepResult == SQLITE_OK else{
-      print("CREATE TABLE statement could not be prepared.")
+      let errorMsg = String(cString: sqlite3_errmsg(db))
+      if errorMsg != "table Entries already exists"{
+        print("CREATE TABLE statement could not be prepared. ERROR \(prepResult), \(sqlite3_extended_errcode(db)), \(String(cString: sqlite3_errmsg(db)))")
+      }
       return
     }
 
-    guard sqlite3_step(createTableStatement) == SQLITE_DONE else{
-      print("\(key) file persistor not be created. Possibly already exists.")
+    let stepResult = sqlite3_step(createTableStatement)
+    guard stepResult == SQLITE_DONE else{
+      print("\(key) file persistor not be created. Possibly already exists. ERROR \(stepResult) \(String(cString: sqlite3_errmsg(db)))")
       return
     }
     defer {
@@ -262,8 +308,10 @@ struct FilePersistor<T:Codable>:Persistor{
     }
 
     print("\(theTableName) Table created")
-    sqlite3_finalize(createTableStatement)
   }
+
+
+
 
   func save(_ items:[T]){
     ensureDBIsEncrypted()
@@ -283,18 +331,7 @@ struct FilePersistor<T:Codable>:Persistor{
       printYamlAndHeader(wrapped, key: key, addAssociated:true)
     }
 
-    
-
-
-    /*
-    let ciphertextData = RNCryptor.encrypt(data:encoded,withPassword:password)
-
-    do{
-      try ciphertextData.write(to:URL(fileURLWithPath: persistenceFilePath))
-    }catch{
-      print("Failed to write file")
-    }
-     */
+    writeToDB(data: [String(data:encoded,encoding:.utf8)!], datePredicateStr: "2018-05-07")
   }
 
   //////
