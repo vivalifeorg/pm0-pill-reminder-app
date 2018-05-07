@@ -50,9 +50,8 @@ enum LocalStorage{
     case authentication
   }
 
-  static var MedicationLogStore:FilePersistor<MedicationLogEvent> {
-    return FilePersistor(key:.userMedicationLog)
-  }
+  static let MedicationLogStore:FilePersistor<MedicationLogEvent> = FilePersistor(key:.userMedicationLog)
+
 
   static var UserInfoStore:KeychainPersistor<PatientInfo>{
     return KeychainPersistor(key:.userInfo)
@@ -153,6 +152,7 @@ extension FetchableQueryParams{
   }
 }
 
+let encryptionEnabled = false
 fileprivate var cachedLoadStatements:[FetchableQueryParams:OpaquePointer?] = [:]
 fileprivate var cachedSaveStatements:[FetchableQueryParams:OpaquePointer?] = [:]
 struct FilePersistor<T:Codable>:Persistor{
@@ -169,7 +169,7 @@ struct FilePersistor<T:Codable>:Persistor{
     if let cached = cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] {
       statement = cached
     }else{
-      let stmtString = "SELECT relevantDate, jsonEncoded FROM \(FilePersistor<T>.tableName);"
+      let stmtString = "SELECT relevantDate, jsonEncoded FROM \(FilePersistor<T>.tableName) where relevantDate=?;"
       let prepResult = sqlite3_prepare_v2(db, stmtString, -1, &statement, nil)
       guard prepResult == SQLITE_OK else{
         print("SELECT statement could not be prepared ERROR \(prepResult) \(String(cString: sqlite3_errmsg(db)))")
@@ -178,14 +178,19 @@ struct FilePersistor<T:Codable>:Persistor{
       cachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] = statement
     }
 
+    sqlite3_bind_text(statement, 1, datePredicateStr, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
     var items:[String] = []
     while (sqlite3_step(statement) == SQLITE_ROW) {
       _ = String(cString:sqlite3_column_text(statement, 0))
       let json = String(cString:sqlite3_column_text(statement, 1))
       items.append(json)
     }
+    sqlite3_reset(statement)
     return items
   }
+
+  internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+  internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 
   private func writeToDB(data:[String], datePredicateStr:String){
     var statement:OpaquePointer?
@@ -205,15 +210,28 @@ struct FilePersistor<T:Codable>:Persistor{
     }
 
     for (_,item) in data.enumerated() {
-      sqlite3_bind_text(statement, 1, datePredicateStr, -1, nil)
-      sqlite3_bind_text(statement, 2, FilePersistor<T>.currentEncodingVersion, -1, nil)
-      sqlite3_bind_text(statement, 3, item, -1, nil)
+      let bind1Result = sqlite3_bind_text(statement, Int32(1), datePredicateStr, -1, SQLITE_TRANSIENT)
+      guard bind1Result == SQLITE_OK else{
+        print("Error making bind \(bind1Result):\(String(cString: sqlite3_errmsg(db)))")
+        return
+      }
+      let bind2Result = sqlite3_bind_text(statement, Int32(2), FilePersistor<T>.currentEncodingVersion, -1, SQLITE_TRANSIENT)
+      guard bind2Result == SQLITE_OK else{
+        print("Error making bind \(bind2Result):\(String(cString: sqlite3_errmsg(db)))")
+        return
+      }
+      let bind3Result = sqlite3_bind_text(statement, Int32(3), item, -1, SQLITE_TRANSIENT)
+      guard bind3Result == SQLITE_OK else{
+        print("Error making bind \(bind3Result):\(String(cString: sqlite3_errmsg(db)))")
+        return
+      }
 
       let stepResult = sqlite3_step(statement)
       guard stepResult == SQLITE_DONE else{
         print("ERROR: \(stepResult) \(String(cString: sqlite3_errmsg(db)))")
         return
       }
+      sqlite3_reset(statement)
     }
 
   }
@@ -223,7 +241,7 @@ struct FilePersistor<T:Codable>:Persistor{
     createTableIfNeeded()
 
     let dbItems = loadFromDB(datePredicateStr: "2018-05-07")
-    guard let dataT = dbItems[0].data(using: .utf8) else {
+    guard let dataT = dbItems.first?.data(using: .utf8) else {
       return []
     }
 
@@ -248,12 +266,14 @@ struct FilePersistor<T:Codable>:Persistor{
       return nil
     }
 
-    let password: String = encryptionKey
-    let keyResult = sqlite3_key(db, password, Int32(password.utf8CString.count))
-    guard keyResult == SQLITE_OK else {
-      let errmsg = String(cString: sqlite3_errmsg(db))
-      NSLog("SQLCipher: Error setting key: \(errmsg)")
-      return nil
+    if encryptionEnabled{
+      let password: String = encryptionKey
+      let keyResult = sqlite3_key(db, password, Int32(password.utf8CString.count))
+      guard keyResult == SQLITE_OK else {
+        let errmsg = String(cString: sqlite3_errmsg(db))
+        NSLog("SQLCipher: Error setting key: \(errmsg)")
+        return nil
+      }
     }
 
     openFilePersistorDBConnection[filePath] = db
@@ -359,6 +379,12 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   private func ensureDBIsEncrypted(){
+    guard encryptionEnabled else {
+      print("ENCRYPTION NOT ENABLED")
+      return
+
+    } //should only be disabled on debug builds
+
     let password: String = storedEncryptionKey()
     var db: OpaquePointer? = nil
     var rc:Int32 = sqlite3_open(persistenceFilePath, &db)

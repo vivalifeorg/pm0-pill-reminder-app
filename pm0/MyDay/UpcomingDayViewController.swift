@@ -194,6 +194,7 @@ class UpcomingDayViewController: UITableViewController {
     if possiblyUpdatedDosages != scheduledDosages{
       scheduledDosages = possiblyUpdatedDosages
     }
+    loadMedicationLog()
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -424,6 +425,7 @@ class UpcomingDayViewController: UITableViewController {
 
   func loadMedicationLog(){
     medicationTakenEventLog = LocalStorage.MedicationLogStore.load()
+    print("Found \(medicationTakenEventLog.count) medlog events")
     let todaysActions = medicationTakenEventLog.filter{ $0.isToday }.sorted {
       $0.timestamp < $1.timestamp
     }
@@ -536,10 +538,14 @@ extension UpcomingDayViewController{
 
   func recordMedicationEvent(_ event:MedicationLogEvent){
 
+    /*
     ///To quickly make this save tons
-    //for _ in 0..<1000{
+    for _ in 0..<1000{
       medicationTakenEventLog.append(event)
-    //}
+    }
+     */
+    print("Appending: \(event.eventType.rawValue)")
+    medicationTakenEventLog.append(event)
     LocalStorage.MedicationLogStore.save(medicationTakenEventLog)
   }
 
