@@ -228,8 +228,8 @@ class UpcomingDayViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = UIView() //gets rid of excess lines
-    tableView.tableFooterView?.backgroundColor = VLColors.background
-    tableView.backgroundColor = VLColors.background
+    tableView.tableFooterView?.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
+    tableView.backgroundColor = Asset.Colors.vlCellBackgroundCommon.color
     tableView.separatorColor = UIColor.lightGray
     tableView.allowsSelection = true
     tableView.rowHeight = UITableViewAutomaticDimension

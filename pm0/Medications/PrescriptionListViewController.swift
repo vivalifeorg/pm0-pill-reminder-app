@@ -372,10 +372,10 @@ extension PrescriptionListViewController: UITableViewDelegate,UITableViewDataSou
 
     //cell.backgroundColor = VLColors.cellBackground
     let selectedBG = UIView()
-    selectedBG.backgroundColor  = VLColors.selectedCellBackground
+    selectedBG.backgroundColor  = Asset.Colors.vlCellBackgroundCommon.color
     cell.selectedBackgroundView = selectedBG
 
-    view.tintColor = VLColors.tintColor
+    view.tintColor = Asset.Colors.vlWarmTintColor.color
     return cell
   }
 
