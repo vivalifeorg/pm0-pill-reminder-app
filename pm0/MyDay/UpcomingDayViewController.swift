@@ -273,9 +273,6 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   struct Section{
-    
-
-
     var title:String
     var footnote:String
     var remaining:String{
