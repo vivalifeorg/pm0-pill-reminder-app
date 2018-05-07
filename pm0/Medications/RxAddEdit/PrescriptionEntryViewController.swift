@@ -489,7 +489,7 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
       NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):
         UIFont.boldSystemFont(ofSize: searchMainTextSize),
       NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue):
-        VLColors.warmHighlight,
+        Asset.Colors.vlWarmTintColor.color,
     ]
     field.theme.separatorColor = UIColor.darkGray
     field.tableBottomMargin = 0

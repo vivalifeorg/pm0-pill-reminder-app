@@ -107,6 +107,18 @@ class ScheduleDetailViewController:UITableViewController{
       return ["","Standard Timeslots",""][section]
     }
   }
+  override func tableView(_ tableView: UITableView,
+                          willDisplayHeaderView view: UIView,
+                          forSection section: Int){
+    print("Will display \(view) \(view.subviews)")
+    guard let header = view as? UITableViewHeaderFooterView else {
+      return
+    }
+
+    header.textLabel?.textColor = Asset.Colors.vlTextColor.color
+    header.backgroundView?.backgroundColor = UIColor.darkGray
+
+  }
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
       switch section{
       case 0:

@@ -293,7 +293,8 @@ class TimeslotEditorViewController:UITableViewController{
     }
 
     header.textLabel?.textColor = Asset.Colors.vlTextColor.color
-    header.backgroundView?.backgroundColor = VLColors.tableViewSectionHeaderBackgroundColor
+    header.backgroundView?.backgroundColor = UIColor.darkGray
+    
   }
   
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

@@ -93,7 +93,7 @@ class MyDayTableSectionHeaderView:UITableViewHeaderFooterView{
   override func awakeFromNib() {
     super.awakeFromNib()
     let backgroundView = UIView(frame: bounds)
-    backgroundView.backgroundColor = VLColors.tableViewSectionHeaderBackgroundColor
+    backgroundView.backgroundColor = UIColor.darkGray
     self.backgroundView = backgroundView
   }
 }
