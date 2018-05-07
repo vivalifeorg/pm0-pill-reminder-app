@@ -14,6 +14,7 @@ target "pm0" do
   pod 'Yams', :inhibit_warnings => true #yaml generator to export data for tests tests for migrations
   pod 'RNCryptor', '~> 5.0', :inhibit_warnings => true #symmetric file encryption for daily checkmarks
   pod 'SwiftySignature', :inhibit_warnings => true # drives signature view
+  pod 'SQLCipher', :inhibit_warnings => true # database encryption
 end
 
 #Source https://github.com/CocoaPods/CocoaPods/issues/5334

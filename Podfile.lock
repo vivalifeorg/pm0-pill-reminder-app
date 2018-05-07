@@ -6,6 +6,11 @@ PODS:
   - PhaxioiOS (0.1.0)
   - RNCryptor (5.0.2)
   - SearchTextField (1.2.0)
+  - SQLCipher (3.4.2):
+    - SQLCipher/standard (= 3.4.2)
+  - SQLCipher/common (3.4.2)
+  - SQLCipher/standard (3.4.2):
+    - SQLCipher/common
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
@@ -21,6 +26,7 @@ DEPENDENCIES:
   - PhaxioiOS (from `pm0/Faxing/PhaxioAPIObjC/phaxio-ios-master`)
   - RNCryptor (~> 5.0)
   - SearchTextField (from `https://github.com/langford/SearchTextField`, commit `9b329767b7ba129ede51c1346b29c0a8a672db62`)
+  - SQLCipher
   - SQLite.swift (~> 0.11.4)
   - SwiftGen
   - SwiftySignature
@@ -52,11 +58,12 @@ SPEC CHECKSUMS:
   PhaxioiOS: 6622fa5ed57dba8db71e67d92ebbd4a4541447f0
   RNCryptor: 59b9f92e9fa8a1af74c32dc6b1af5e30ff5e1b64
   SearchTextField: d03bf00fa898814a6ef1474250aa8166dc85d0c4
+  SQLCipher: f9fcf29b2e59ced7defc2a2bdd0ebe79b40d4990
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftGen: 444b4c467e512a4812b8a800d731643fd265139e
   SwiftySignature: 5f5905fcad18659e53e7c01ed467cfe00ea6127c
   Yams: 58b13424ca380835c4c797bc775ce6cbb3bc0167
 
-PODFILE CHECKSUM: b5844708d16f788efed0bd280b85f4610c0c60a8
+PODFILE CHECKSUM: 14d06776ea2656b2742c80bb48f440a5181de292
 
 COCOAPODS: 1.4.0.beta.2
