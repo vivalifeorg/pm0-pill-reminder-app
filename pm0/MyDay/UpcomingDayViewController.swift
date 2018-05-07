@@ -32,19 +32,17 @@ struct MedicationLogEvent:Codable{
     case markedMedicationTaken
     case unmarkedMedicationTaken
   }
-  var relevantDate:String{
+  var relevantDate:String{ ///used in DB Lookup
     return dateOfAdministration.relevantDateString
   }
   var eventType:MedicationLogEventType
   var dosage:Dosage
-  var timestamp:Date
-  var dateOfAdministration:Date{
-    return timestamp //may eventually diverge as we allow editing of past
-  }
+  var timestamp:Date ///then the user interface event took place in the app
+  var dateOfAdministration:Date///When the user took the med
   var deviceId:DeviceIdentifier
   var eventId:EventIdentifier
-  var sectionName:String
-  var timezone:TimeZone
+  var sectionName:String  /// what the section name was, this is a proxy for apparent scheduled time
+  var timezone:TimeZone ///user's timezone
 }
 
 extension MedicationLogEvent{
@@ -61,7 +59,8 @@ extension MedicationLogEvent{
   static func markedTaken(dosage:Dosage,date:Date,sectionName:String)->MedicationLogEvent{
     return MedicationLogEvent(eventType: .markedMedicationTaken,
                        dosage: dosage,
-                       timestamp: date,
+                       timestamp: Date(),
+                       dateOfAdministration: date,
                        deviceId: loadDeviceID(),
                        eventId: UUID().uuidString,
                        sectionName:sectionName,
@@ -71,7 +70,8 @@ extension MedicationLogEvent{
   static func unmarkedTaken(dosage:Dosage, date:Date, sectionName:String)->MedicationLogEvent{
     return MedicationLogEvent(eventType: .unmarkedMedicationTaken,
                        dosage: dosage,
-                       timestamp: date,
+                       timestamp: Date(),
+                       dateOfAdministration: date,
                        deviceId: loadDeviceID(),
                        eventId: UUID().uuidString,
                        sectionName:sectionName,
