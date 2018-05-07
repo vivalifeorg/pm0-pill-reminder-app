@@ -155,6 +155,7 @@ extension FetchableQueryParams{
 let encryptionEnabled = false
 fileprivate var cachedLoadStatements:[FetchableQueryParams:OpaquePointer?] = [:]
 fileprivate var cachedSaveStatements:[FetchableQueryParams:OpaquePointer?] = [:]
+fileprivate let dateNotSpecified = "NOT_SPECIFIED"
 struct FilePersistor<T:Codable>:Persistor{
   typealias PersistedType = T
   var key:LocalStorage.KeychainKey
@@ -238,20 +239,30 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   func load() -> [T] {
+    return load(relevantDate:dateNotSpecified) //todo, make this load all so fax export works
+  }
+
+  func load(relevantDate:String) -> [T] {
     ensureDBIsEncrypted()
     createTableIfNeeded()
 
-    let dbItems = loadFromDB(datePredicateStr: "2018-05-07")
-    guard let dataT = dbItems.first?.data(using: .utf8) else {
-      return []
+    let dbItems = loadFromDB(datePredicateStr: relevantDate)
+    let dataItems:[Data] = dbItems.map{ dbItem in
+      guard let dataT = dbItem.data(using: .utf8) else {
+        fatalError()
+      }
+      return dataT
     }
 
-    guard let items = try? JSONDecoder().decode(Wrapper<T>.self, from: dataT) else{
-      print("Could not decode data in \(T.self)")
-      return []
+    let items:[T] = dataItems.map{ dataT in
+      guard let item = (try? JSONDecoder().decode(Wrapper<T>.self, from: dataT))?.wrapped.first else{
+        print("Could not decode data in \(T.self)")
+        fatalError()
+      }
+      return item
     }
 
-    return items.wrapped
+    return items
   }
 
   private static func db(filePath:String,encryptionKey:String)->OpaquePointer? {
@@ -289,7 +300,7 @@ struct FilePersistor<T:Codable>:Persistor{
 
   //allow for easier migrations
   private static var currentEncodingVersion:String{
-    return "v0_2_X"
+    return Wrapper<T>.WrapperVersions.v0_2_unversioned.rawValue
   }
 
   private static var tableName:String{
@@ -331,28 +342,45 @@ struct FilePersistor<T:Codable>:Persistor{
     print("\(theTableName) Table created")
   }
 
-
-
+  func append(_ items:[T], relevantDate:String = dateNotSpecified){
+    let theOldItems = load()
+    save(theOldItems + items, relevantDate:relevantDate)
+  }
 
   func save(_ items:[T]){
-    ensureDBIsEncrypted()
-    createTableIfNeeded()
+    save(items,relevantDate:dateNotSpecified)
+  }
+
+  func save(_ items:[T], relevantDate:String = dateNotSpecified){
+
+    //now, we encode the data a little awkwardly
+    let encodedItems:[Data] = items.map{ item in
+      let wrappedItem = Wrapper<T>(wrapped:[item],key:key)
+      guard let encoded = try? JSONEncoder().encode(wrappedItem) else {
+        fatalError("Encoding is broken for these")
+      }
+      return encoded
+    }
+
+    if shouldExportToYamlForTesting {
+      encodedItems.forEach { wrapped in
+        printYamlAndHeader(wrapped, key: key, addAssociated:true)
+      }
+    }
+
+    //
+    //encrypt and store the data
+    //
+    let encodedStrings = encodedItems.map{
+      String(data:$0,encoding:.utf8)!
+    }
 
     //We need to load/generate a password for symmetric encryption, and save it
     let password = storedEncryptionKey()
     KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:password,logFiles:[persistenceFilePath])])
-
-    //now, we encode then encrypt the data
-    let wrapped = Wrapper<T>(wrapped:items,key:key)
-    guard let encoded = try? JSONEncoder().encode(wrapped) else {
-      return
-    }
-
-    if shouldExportToYamlForTesting {
-      printYamlAndHeader(wrapped, key: key, addAssociated:true)
-    }
-
-    writeToDB(data: [String(data:encoded,encoding:.utf8)!], datePredicateStr: "2018-05-07")
+    ensureDBIsEncrypted()
+    createTableIfNeeded()
+    writeToDB(data: encodedStrings, datePredicateStr: relevantDate)
   }
 
   //////
@@ -451,10 +479,11 @@ private func LoadLocal<T:Codable>(key:LocalStorage.KeychainKey)->[T]{
 struct Wrapper<T:Codable>:Codable{
   enum WrapperVersions:String,Codable{
     case v0_1_unversioned
+    case v0_2_unversioned
   }
 
   let wrapped:[T]
-  let version:String = WrapperVersions.v0_1_unversioned.rawValue
+  let version:String = WrapperVersions.v0_2_unversioned.rawValue
   let key:LocalStorage.KeychainKey
 }
 

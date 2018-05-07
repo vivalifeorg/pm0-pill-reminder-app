@@ -19,15 +19,28 @@ func loadDeviceID()->DeviceIdentifier{
   return devId
 }
 
+extension Date{
+  var relevantDateString:String{
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: self)
+  }
+}
 
 struct MedicationLogEvent:Codable{
   enum MedicationLogEventType:String,Codable{
     case markedMedicationTaken
     case unmarkedMedicationTaken
   }
+  var relevantDate:String{
+    return dateOfAdministration.relevantDateString
+  }
   var eventType:MedicationLogEventType
   var dosage:Dosage
   var timestamp:Date
+  var dateOfAdministration:Date{
+    return timestamp //may eventually diverge as we allow editing of past
+  }
   var deviceId:DeviceIdentifier
   var eventId:EventIdentifier
   var sectionName:String
@@ -424,7 +437,7 @@ class UpcomingDayViewController: UITableViewController {
   }
 
   func loadMedicationLog(){
-    medicationTakenEventLog = LocalStorage.MedicationLogStore.load()
+    medicationTakenEventLog = LocalStorage.MedicationLogStore.load(relevantDate: Date().relevantDateString)
     print("Found \(medicationTakenEventLog.count) medlog events")
     let todaysActions = medicationTakenEventLog.filter{ $0.isToday }.sorted {
       $0.timestamp < $1.timestamp
@@ -438,10 +451,10 @@ class UpcomingDayViewController: UITableViewController {
             sections[sectionIndex].title == logItem.sectionName {
             switch logItem{
             case let x where x.eventType == .markedMedicationTaken:
-              print("checked, \(logItem.sectionName), \(medicationIndex) ")
+           //   print("checked, \(logItem.sectionName), \(medicationIndex) ")
               sections[sectionIndex].medications[medicationIndex].isTaken = true
             case let x where x.eventType == .unmarkedMedicationTaken:
-              print("unchecked, \(logItem.sectionName), \(medicationIndex) ")
+          //    print("unchecked, \(logItem.sectionName), \(medicationIndex) ")
               sections[sectionIndex].medications[medicationIndex].isTaken = false
             default:
               print("ERROR")
@@ -546,7 +559,7 @@ extension UpcomingDayViewController{
      */
     print("Appending: \(event.eventType.rawValue)")
     medicationTakenEventLog.append(event)
-    LocalStorage.MedicationLogStore.save(medicationTakenEventLog)
+    LocalStorage.MedicationLogStore.append([event], relevantDate: event.relevantDate)
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
