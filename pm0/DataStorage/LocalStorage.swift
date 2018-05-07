@@ -355,6 +355,7 @@ struct FilePersistor<T:Codable>:Persistor{
     return db
   }
 
+  //this is the db that is there, app may crash in low disk space situations
   private var db:OpaquePointer!{
     return FilePersistor<T>.db(filePath: persistenceFilePath, encryptionKey: storedEncryptionKey())
   }
@@ -364,9 +365,11 @@ struct FilePersistor<T:Codable>:Persistor{
     return Wrapper<T>.WrapperVersions.v0_2_180507_2110.rawValue
   }
 
+  //version this eventually?
   private static var tableName:String{
     return "Entries"
   }
+
 
   private func createTableIfNeeded(){
 
@@ -505,7 +508,7 @@ struct Wrapper<T:Codable>:Codable{
 
 
 let yamlEncoder = YAMLEncoder()
-let shouldExportToYamlForTesting = false
+let shouldExportToYamlForTesting = false //this is primarily to increase readability, and to show what the JSON looks like for use when writing webservices/android. It is comparatively quite slow, and the the print statements it makes are even slower, so don't leave it on when released. Yaml output is *excellent* though for use in testing, and you can re-encode it back to json easily using the same library. 
 
 let operatingSystemName = UIDevice.current.systemName
 let operatingSystemVersion = UIDevice.current.systemVersion
