@@ -20,9 +20,6 @@ struct Prescriber:Codable{
 
 }
 
-struct DosageForm:Codable{
-
-}
 
 struct Dosage:Codable,Equatable{
   var name:String = "Drug"
