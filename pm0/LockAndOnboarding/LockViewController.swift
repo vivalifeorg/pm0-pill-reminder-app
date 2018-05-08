@@ -22,6 +22,9 @@ class LockViewController:UIViewController{
       performSegue(withIdentifier: StoryboardSegue.Main.showOnboarding.rawValue, sender: self)
     } else if isFirstRunAndJustFinishedOnboarding{
       performSegue(withIdentifier: StoryboardSegue.Main.goToApp.rawValue, sender: self)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.isFirstRunAndJustFinishedOnboarding = false //make it so locking out works again
+      }
     }
   }
 
