@@ -362,7 +362,7 @@ struct FilePersistor<T:Codable>:Persistor{
 
   //allow for easier migrations
   private static var currentEncodingVersion:String{
-    return Wrapper<T>.WrapperVersions.v0_2_180507_2110.rawValue
+    return Wrapper<T>.WrapperVersions.v1_0_180508_2008.rawValue
   }
 
   //version this eventually?
@@ -499,10 +499,11 @@ struct Wrapper<T:Codable>:Codable{
     case v0_1_unversioned
     case v0_2_unversioned
     case v0_2_180507_2110
+    case v1_0_180508_2008
   }
 
   let wrapped:[T]
-  let version:String = WrapperVersions.v0_2_180507_2110.rawValue
+  let version:String = WrapperVersions.v1_0_180508_2008.rawValue
   let key:LocalStorage.KeychainKey
 }
 
