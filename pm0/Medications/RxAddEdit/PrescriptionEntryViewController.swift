@@ -624,10 +624,6 @@ class PrescriptionEntryViewController: UITableViewController,LineHelper {
 
 
     configureSearchField(nameLine.searchTextField)
-    //configureHeader(nameLine.searchTextField, withText: "Tap to fill-in")
-
-    //updateDrugsPopup()
-
 
     nameLine.searchTextField.userStoppedTypingHandler = updateDrugsPopup
     nameLine.helpInfo = RXEntryHelpText.nameHelpText.renderMarkdownAsAttributedString

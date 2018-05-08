@@ -354,6 +354,7 @@
 				89EE59A6209BB6A80021A593 /* LockViewController.swift */,
 				89EE59A8209CB43A0021A593 /* Onboarding.storyboard */,
 				89EE59AA209CBA1B0021A593 /* OnboardingViewController.swift */,
+				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
 			);
 			path = LockAndOnboarding;
 			sourceTree = "<group>";
@@ -391,7 +392,6 @@
 				89F3D9971FF6AC4F0081FA77 /* Assets.xcassets */,
 				894092832051A9C800FA1B9F /* DataStorage */,
 				89F9C44920323E760072FF7C /* FDA_DB */,
-				89F3D9991FF6AC4F0081FA77 /* LaunchScreen.storyboard */,
 				897223DE206C12CF0008F80A /* swiftgen.yml */,
 				8951A91D205B01FE0027076E /* TestPages */,
 				89F3D99C1FF6AC4F0081FA77 /* Info.plist */,
