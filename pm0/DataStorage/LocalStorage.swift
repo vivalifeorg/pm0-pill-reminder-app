@@ -337,7 +337,7 @@ struct FilePersistor<T:Codable>:Persistor{
     let openResult:Int32 = sqlite3_open(filePath, &db)
     guard openResult == SQLITE_OK  else{
       let errmsg = String(cString: sqlite3_errmsg(db))
-      NSLog("SQLCipher: Error opening database: \(errmsg)")
+      NSLog("SQLCipher: Error opening database: \(errmsg) at path \(filePath)")
       return nil
     }
 
@@ -346,7 +346,7 @@ struct FilePersistor<T:Codable>:Persistor{
       let keyResult = sqlite3_key(db, password, Int32(password.utf8CString.count))
       guard keyResult == SQLITE_OK else {
         let errmsg = String(cString: sqlite3_errmsg(db))
-        NSLog("SQLCipher: Error setting key: \(errmsg)")
+        NSLog("SQLCipher: Error setting key: \(errmsg) at path \(filePath)")
         return nil
       }
     }
@@ -387,7 +387,7 @@ struct FilePersistor<T:Codable>:Persistor{
     guard  prepResult == SQLITE_OK else{
       let errorMsg = String(cString: sqlite3_errmsg(db))
       if errorMsg != "table Entries already exists"{
-        print("CREATE TABLE statement could not be prepared. ERROR \(prepResult), \(sqlite3_extended_errcode(db)), \(String(cString: sqlite3_errmsg(db)))")
+        print("CREATE TABLE statement could not be prepared. ERROR \(prepResult), \(sqlite3_extended_errcode(db)), \(String(cString: sqlite3_errmsg(db))) reguarding db at \(persistenceFilePath)")
       }
       return
     }
