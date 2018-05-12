@@ -80,6 +80,7 @@ enum Asset {
     static let faxAnimFaxPage = ImageAsset(name: "FaxAnimFaxPage")
     static let faxAnimForegroundML = ImageAsset(name: "FaxAnimForegroundML")
     static let faxAnimForegroundVL = ImageAsset(name: "FaxAnimForegroundVL")
+    static let faxStatusBackground = ImageAsset(name: "FaxStatusBackground")
   }
   enum Lock {
     static let buttonBG = ImageAsset(name: "ButtonBG")
@@ -124,6 +125,7 @@ enum Asset {
     FaxAnim.faxAnimFaxPage,
     FaxAnim.faxAnimForegroundML,
     FaxAnim.faxAnimForegroundVL,
+    FaxAnim.faxStatusBackground,
     Lock.buttonBG,
     Lock.lockBG,
     Lock.lockPulse,

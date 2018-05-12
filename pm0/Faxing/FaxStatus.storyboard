@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b9c-nd-Zup">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,17 +20,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending Fax..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-ak-bjj">
-                                <rect key="frame" x="-0.5" y="40" width="320.5" height="20.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" name="vlTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sc-sp-v2Z">
+                                <rect key="frame" x="0.0" y="-22" width="320" height="127.33333333333333"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZf-pL-S2R">
+                                        <rect key="frame" x="0.0" y="66" width="320" height="61.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending Fax..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-ak-bjj">
+                                                <rect key="frame" x="20" y="20" width="280" height="21.333333333333329"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <color key="textColor" name="vlTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.66666666666666663" alpha="0.28186536815068491" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <size key="shadowOffset" width="0.0" height="1"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="tyi-ak-bjj" secondAttribute="bottom" constant="20" id="3Tl-VT-4ma"/>
+                                            <constraint firstAttribute="bottom" secondItem="tyi-ak-bjj" secondAttribute="bottom" constant="20" id="A9L-4w-Xnh"/>
+                                            <constraint firstItem="tyi-ak-bjj" firstAttribute="top" secondItem="EZf-pL-S2R" secondAttribute="top" constant="20" id="Dgb-cA-27e"/>
+                                            <constraint firstAttribute="trailing" secondItem="tyi-ak-bjj" secondAttribute="trailing" constant="20" id="P9g-tV-lUw"/>
+                                            <constraint firstItem="tyi-ak-bjj" firstAttribute="leading" secondItem="EZf-pL-S2R" secondAttribute="leading" constant="20" id="r9J-eL-u0G"/>
+                                            <constraint firstItem="tyi-ak-bjj" firstAttribute="centerX" secondItem="EZf-pL-S2R" secondAttribute="centerX" id="vCe-IY-zpe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="vlZebraDarker"/>
+                                <constraints>
+                                    <constraint firstItem="EZf-pL-S2R" firstAttribute="width" secondItem="3Sc-sp-v2Z" secondAttribute="width" id="7H3-oc-kra"/>
+                                    <constraint firstAttribute="bottom" secondItem="EZf-pL-S2R" secondAttribute="bottom" id="ish-hI-v2H"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-HP-p2e" userLabel="SwapView">
-                                <rect key="frame" x="0.0" y="80.5" width="320" height="180.5"/>
+                                <rect key="frame" x="0.0" y="156" width="320" height="90"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pV3-qc-AQ0" userLabel="SendingView">
-                                        <rect key="frame" x="35" y="57.5" width="250" height="65"/>
+                                        <rect key="frame" x="35" y="12.333333333333343" width="250" height="65"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaxAnimFaxPage" translatesAutoresizingMaskIntoConstraints="NO" id="3ZD-Ie-EYJ">
                                                 <rect key="frame" x="15" y="25" width="30" height="20"/>
@@ -67,33 +92,38 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180.5" id="P2d-LC-Tyr"/>
+                                    <constraint firstAttribute="height" constant="90" id="P2d-LC-Tyr"/>
                                     <constraint firstItem="pV3-qc-AQ0" firstAttribute="centerY" secondItem="pPv-HP-p2e" secondAttribute="centerY" id="QyB-ya-RiE"/>
                                     <constraint firstItem="pV3-qc-AQ0" firstAttribute="centerX" secondItem="pPv-HP-p2e" secondAttribute="centerX" id="Wnm-zz-ptM"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-Eg-j1F" customClass="VivaButtonA" customModule="pm0" customModuleProvider="target">
-                                <rect key="frame" x="20" y="281" width="280" height="34"/>
-                                <state key="normal" title="Cancel"/>
+                                <rect key="frame" x="20" y="266" width="280" height="34"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="VQG-UH-CdW" kind="unwind" unwindAction="unwindFromFaxingAfterCancelWithSegue:" id="Ed2-mK-UvF"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
                         <constraints>
                             <constraint firstItem="tiI-Eg-j1F" firstAttribute="width" secondItem="Esg-TD-Eko" secondAttribute="width" constant="-40" id="3Hn-Ev-GhI"/>
-                            <constraint firstItem="tyi-ak-bjj" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="LHB-Kv-PlF"/>
-                            <constraint firstItem="tyi-ak-bjj" firstAttribute="top" secondItem="Cpm-jL-Hzx" secondAttribute="top" constant="20" id="MWa-ap-39t"/>
+                            <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="EZf-pL-S2R" secondAttribute="trailing" id="3hW-Ub-ufU"/>
+                            <constraint firstItem="3Sc-sp-v2Z" firstAttribute="top" secondItem="Cpm-jL-Hzx" secondAttribute="top" constant="-66" id="704-qd-Mfi"/>
+                            <constraint firstItem="3Sc-sp-v2Z" firstAttribute="leading" secondItem="Cpm-jL-Hzx" secondAttribute="leading" id="HEG-EY-32a"/>
+                            <constraint firstItem="EZf-pL-S2R" firstAttribute="top" secondItem="Cpm-jL-Hzx" secondAttribute="top" id="NZp-c0-uOR"/>
                             <constraint firstItem="pPv-HP-p2e" firstAttribute="leading" secondItem="Cpm-jL-Hzx" secondAttribute="leading" id="OR2-rv-tBC"/>
                             <constraint firstItem="tiI-Eg-j1F" firstAttribute="top" secondItem="pPv-HP-p2e" secondAttribute="bottom" constant="20" id="Q8E-Fp-7Ud"/>
                             <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="pPv-HP-p2e" secondAttribute="trailing" id="Qfv-Se-7HM"/>
-                            <constraint firstItem="pPv-HP-p2e" firstAttribute="top" secondItem="tyi-ak-bjj" secondAttribute="bottom" constant="20" id="XSO-qi-26z"/>
                             <constraint firstItem="pPv-HP-p2e" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="jkr-si-YNG"/>
+                            <constraint firstItem="3Sc-sp-v2Z" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="jr1-it-kpx"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="centerY" secondItem="Cpm-jL-Hzx" secondAttribute="centerY" constant="-60" id="lCX-3Q-VmR"/>
                             <constraint firstItem="tiI-Eg-j1F" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="p5h-rb-H8u"/>
+                            <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="3Sc-sp-v2Z" secondAttribute="trailing" id="tBr-au-nqi"/>
                             <constraint firstItem="pPv-HP-p2e" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="tfK-bh-6Zv"/>
-                            <constraint firstItem="tyi-ak-bjj" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="yQn-5Y-2v5"/>
                             <constraint firstItem="Cpm-jL-Hzx" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tiI-Eg-j1F" secondAttribute="bottom" constant="8" id="zEQ-TW-6gV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cpm-jL-Hzx"/>
@@ -117,10 +147,16 @@
     </scenes>
     <resources>
         <image name="FaxAnimFaxPage" width="138" height="108"/>
-        <image name="FaxAnimForegroundML" width="360" height="360"/>
+        <image name="FaxAnimForegroundML" width="360" height="366"/>
         <image name="FaxAnimForegroundVL" width="360" height="360"/>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -82,7 +82,7 @@ struct FaxService{
     let faxEndpoint = "https://elbhuv5fm7.execute-api.us-east-2.amazonaws.com/production/fax/credentials"
 
     //Rowdy Labs Staging
-    //let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
+   // let faxEndpoint = "https://ifoamvnu09.execute-api.us-east-1.amazonaws.com/staging/fax/credentials"
 
     //VivA Life Staging
     //let faxEndpoint = ""
