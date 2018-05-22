@@ -23,10 +23,10 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sc-sp-v2Z">
                                 <rect key="frame" x="0.0" y="-46" width="320" height="127.5"/>
                                 <subviews>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZf-pL-S2R">
+                                    <view opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="EZf-pL-S2R">
                                         <rect key="frame" x="0.0" y="66" width="320" height="61.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending Fax..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-ak-bjj">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Sending Fax..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyi-ak-bjj">
                                                 <rect key="frame" x="20" y="20" width="280" height="21.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <color key="textColor" name="vlTextColor"/>
@@ -120,7 +120,7 @@
                             <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="pPv-HP-p2e" secondAttribute="trailing" id="Qfv-Se-7HM"/>
                             <constraint firstItem="pPv-HP-p2e" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="jkr-si-YNG"/>
                             <constraint firstItem="3Sc-sp-v2Z" firstAttribute="width" secondItem="Cpm-jL-Hzx" secondAttribute="width" id="jr1-it-kpx"/>
-                            <constraint firstItem="pPv-HP-p2e" firstAttribute="centerY" secondItem="Cpm-jL-Hzx" secondAttribute="centerY" constant="-60" id="lCX-3Q-VmR"/>
+                            <constraint firstItem="pPv-HP-p2e" firstAttribute="centerY" secondItem="Cpm-jL-Hzx" secondAttribute="centerY" priority="999" constant="-60" id="lCX-3Q-VmR"/>
                             <constraint firstItem="tiI-Eg-j1F" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="p5h-rb-H8u"/>
                             <constraint firstItem="Cpm-jL-Hzx" firstAttribute="trailing" secondItem="3Sc-sp-v2Z" secondAttribute="trailing" id="tBr-au-nqi"/>
                             <constraint firstItem="pPv-HP-p2e" firstAttribute="centerX" secondItem="Cpm-jL-Hzx" secondAttribute="centerX" id="tfK-bh-6Zv"/>
