@@ -191,7 +191,7 @@ func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedStrin
 }
 
 func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
-  return 0
+       return UIDevice.current.model == "iPad" ? 65 : 0
 }
 
 
