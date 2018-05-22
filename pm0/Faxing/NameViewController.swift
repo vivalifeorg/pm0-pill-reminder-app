@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NameViewController:UIViewController, PDFHandler, SendableDocumentMetadata{
+class NameViewController:UITableViewController, PDFHandler, SendableDocumentMetadata{
   @IBOutlet weak var nameField:UITextField!
 
   var sendableDocumentDestinations: [DocumentDestination] = []
