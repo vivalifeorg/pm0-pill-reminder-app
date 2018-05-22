@@ -682,7 +682,8 @@ extension UIImage {
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-    return Asset.Empty.emptyMyDay.image
+    return UIDevice.current.model == "iPad" ?
+      UIImage() : Asset.Empty.emptyMyDay.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
