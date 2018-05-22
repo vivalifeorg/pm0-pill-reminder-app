@@ -192,7 +192,7 @@ class UpcomingDayViewController: UITableViewController {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .ordinal
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "EEEE,  MMMM "
+    dateFormatter.dateFormat = UIDevice.current.model == "iPad" ? "E, MMMM " : "EEEE,  MMMM "
 
     let day:Int = Calendar.current.component(.day, from: displayDay)
     let dayNumber = NSNumber(value:day)
