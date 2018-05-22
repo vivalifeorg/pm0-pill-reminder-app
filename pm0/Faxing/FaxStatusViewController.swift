@@ -50,7 +50,10 @@ class FaxStatusViewController:UIViewController{
                    options: [.repeat],
                    animations: { self.animateStep()},
                    completion: { _ in self.resetAnimation()})
+  }
 
+  override func viewDidLoad(){
+    self.view.backgroundColor = UIColor(patternImage:  Asset.FaxAnim.faxStatusBackground.image)
   }
 
   func stopAnimations(){
@@ -60,10 +63,5 @@ class FaxStatusViewController:UIViewController{
   override func viewWillDisappear(_ animated: Bool) {
     stopAnimations()
   }
-  override func viewWillAppear(_ animated: Bool) {
-    self.view.backgroundColor = UIColor(patternImage:  Asset.FaxAnim.faxStatusBackground.image)
-  }
-  override func viewDidLoad() {
 
-  }
 }

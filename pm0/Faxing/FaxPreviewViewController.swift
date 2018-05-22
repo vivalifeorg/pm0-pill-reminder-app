@@ -80,7 +80,7 @@ class FaxPreviewViewController:UIViewController, PDFHandler, SendableDocumentMet
 
     if "Fax queued for sending" == message {
       faxStatusVC.updateStatus(message: "Great Job! \n\n Your fax should arrive soon.\n\n This screen will close automatically.",
-                               cancelButtonEnabled: false)
+                               cancelButtonEnabled: false) //make sure and check this on iPad on iPhone form factor
           faxStatusVC.stopAnimations()
       AudioServicesPlaySystemSound (systemSoundID)
     }else{
