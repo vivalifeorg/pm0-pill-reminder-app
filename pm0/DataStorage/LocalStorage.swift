@@ -247,15 +247,22 @@ struct FilePersistor<T:Codable>:Persistor{
     }
 
     //We need to load/generate a password for symmetric encryption, and save it
+    ensurePreppedDBExists()
+    writeToDB(data: encodedStrings, datePredicateStr: relevantDate)
+  }
+
+  ///Connections usually do this, but we need to check due to encryption needs
+  private func ensurePreppedDBExists(){
     let password = storedEncryptionKey()
     KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:password,logFiles:[persistenceFilePath])])
     ensureDBIsEncrypted()
     createTableIfNeeded()
-    writeToDB(data: encodedStrings, datePredicateStr: relevantDate)
   }
 
 
   private func loadFromDB(datePredicateStr:String) -> [String]{
+    ensurePreppedDBExists()
+
     var statement:OpaquePointer?
     if let cached = filePersistorCachedLoadStatements[FetchableQueryParams(key,datePredicateStr)] {
       statement = cached
@@ -410,8 +417,12 @@ struct FilePersistor<T:Codable>:Persistor{
   }
 
   private func storedEncryptionKey()->String{
-    let encryptionKey = KeychainPersistor<FilePassword>(key: key).load().first?.password ?? generateKey()
-    return encryptionKey
+    guard let encKey = KeychainPersistor<FilePassword>(key: key).load().first?.password else{
+      let generatedPassword = generateKey()
+      KeychainPersistor<FilePassword>(key: key).save([FilePassword(password:generatedPassword,logFiles:[persistenceFilePath])])
+      return generatedPassword
+    }
+    return encKey
   }
 
   static private func filepath(`for` key:LocalStorage.KeychainKey, index:Int = 0)->String{
@@ -455,7 +466,10 @@ struct FilePersistor<T:Codable>:Persistor{
     }
     rc = sqlite3_step(stmt)
     if (rc == SQLITE_ROW) {
-      NSLog("SQLCipher: cipher_version: %s", sqlite3_column_text(stmt, 0))
+      if !hasPrintedOutCipherVersion{
+        NSLog("SQLCipher: cipher_version: %s", sqlite3_column_text(stmt, 0))
+        hasPrintedOutCipherVersion = true
+      }
     } else {
       let errmsg = String(cString: sqlite3_errmsg(db))
       NSLog("SQLCipher: Error retrieiving cipher_version: \(errmsg)")
@@ -464,6 +478,8 @@ struct FilePersistor<T:Codable>:Persistor{
     sqlite3_close(db)
   }
 }
+
+var hasPrintedOutCipherVersion = false
 
 private func BlankLocal(key:LocalStorage.KeychainKey){
   let key = key.rawValue as String
