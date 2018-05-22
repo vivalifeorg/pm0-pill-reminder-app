@@ -117,7 +117,7 @@ import DZNEmptyDataSet
 extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
     return UIDevice.current.model == "iPad" ?
-      UIImage() : Asset.Empty.emptyDoc.image
+      Asset.Empty.emptyDoc.image.scaled(by: 0.2) : Asset.Empty.emptyDoc.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -129,7 +129,7 @@ extension DoctorListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelega
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
-    return 0
+      return UIDevice.current.model == "iPad" ? 20 : 0
   }
 
   func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {

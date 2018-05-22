@@ -679,11 +679,23 @@ extension UIImage {
   }
 }
 
+extension UIImage{
+
+  func scaled(by scaledBy:CGFloat) -> UIImage{
+    let newSize = CGSize(width:  size.width * scaledBy,
+                         height: size.height * scaledBy)
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+    self.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+    let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    return newImage
+  }
+}
 
 extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
     return UIDevice.current.model == "iPad" ?
-      UIImage() : Asset.Empty.emptyMyDay.image
+      Asset.Empty.emptyMyDay.image.scaled(by: 0.2): Asset.Empty.emptyMyDay.image
   }
 
   func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -723,7 +735,7 @@ extension UpcomingDayViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDeleg
   }
 
   func verticalOffset(forEmptyDataSet scrollView:UIScrollView)->CGFloat{
-    return -110
+    return UIDevice.current.model == "iPad" ? -90 : -110
   }
 
 

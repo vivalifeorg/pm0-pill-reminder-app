@@ -410,7 +410,7 @@ func emptyStateAttributedString(_ string:String)->NSAttributedString{
 extension PrescriptionListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
   func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
     return UIDevice.current.model == "iPad" ?
-      UIImage() :
+    Asset.Empty.emptyRx.image.scaled(by: 0.2) : 
       Asset.Empty.emptyRx.image
   }
 
