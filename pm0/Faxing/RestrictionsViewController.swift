@@ -18,7 +18,7 @@ protocol RestrictionsMetadata{
   var restrictions:[String] {set get}
 }
 
-class RestrictionsViewController:UIViewController,PDFHandler, SendableDocumentMetadata{
+class RestrictionsViewController:UITableViewController,PDFHandler, SendableDocumentMetadata{
   @IBOutlet weak var restrictionsTextView:UITextView!
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

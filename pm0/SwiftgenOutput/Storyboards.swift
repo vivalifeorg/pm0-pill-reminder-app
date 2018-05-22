@@ -84,7 +84,11 @@ enum StoryboardScene {
 
     static let sendToViewControllerInMedFlow = SceneType<pm0.SendToViewController>(storyboard: FaxableDocuments.self, identifier: "SendToViewControllerInMedFlow")
 
+    static let hippaFlowRestorationNameController = SceneType<pm0.NameViewController>(storyboard: FaxableDocuments.self, identifier: "hippaFlowRestorationNameController")
+
     static let medlogFlowRestorationNameController = SceneType<pm0.NameViewController>(storyboard: FaxableDocuments.self, identifier: "medlogFlowRestorationNameController")
+
+    static let restrictionsViewController = SceneType<pm0.RestrictionsViewController>(storyboard: FaxableDocuments.self, identifier: "restrictionsViewController")
   }
   enum HelpViewController: StoryboardType {
     static let storyboardName = "HelpViewController"

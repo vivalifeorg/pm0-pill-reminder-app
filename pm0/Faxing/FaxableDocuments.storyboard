@@ -377,7 +377,7 @@
                     <navigationItem key="navigationItem" title="Sharing From" id="bC7-2e-IBE">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="K0q-j2-U0Y">
                             <connections>
-                                <segue destination="vCa-jE-kf3" kind="show" id="75a-DE-KUB"/>
+                                <segue destination="WRq-PR-5vi" kind="show" id="dcG-ge-wgE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -390,189 +390,112 @@
             <point key="canvasLocation" x="1977" y="-553"/>
         </scene>
         <!--Restrictions-->
-        <scene sceneID="IUY-X5-twH">
+        <scene sceneID="J0G-a3-3IY">
             <objects>
-                <viewController id="w6b-nS-TNt" customClass="RestrictionsViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WsE-b3-ALI">
+                <tableViewController storyboardIdentifier="restrictionsViewController" id="H4p-9q-2Rc" customClass="RestrictionsViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Mka-Wu-7Dj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1S-62-mZK">
-                                <rect key="frame" x="0.0" y="140" width="375" height="149.33333333333337"/>
-                                <subviews>
-                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9u-Kj-W3h">
-                                        <rect key="frame" x="20" y="12.66666666666665" width="335" height="125.33333333333331"/>
-                                        <string key="text">You can request doctors do not use your data in a specific manner. For instance, you may request adoption status not be shared with a child. 
-
-You can also leave this blank.</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                        <color key="textColor" name="vlSecondaryTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-Lj-EAD">
-                                        <rect key="frame" x="0.0" y="148.66666666666669" width="375" height="0.66666666666665719"/>
-                                        <color key="backgroundColor" name="vlZebraDarker"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.5" id="Poi-Ab-dB7"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" name="vlZebraDarker"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Uda-Lj-EAD" secondAttribute="bottom" id="J0P-AP-78T"/>
-                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="width" secondItem="t1S-62-mZK" secondAttribute="width" constant="-40" id="WqS-Pw-THM"/>
-                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="centerX" secondItem="t1S-62-mZK" secondAttribute="centerX" id="bN2-8Q-erw"/>
-                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="centerY" secondItem="t1S-62-mZK" secondAttribute="centerY" id="cmu-hs-7NR"/>
-                                    <constraint firstAttribute="trailing" secondItem="Uda-Lj-EAD" secondAttribute="trailing" id="jvz-Tv-fH9"/>
-                                    <constraint firstItem="y9u-Kj-W3h" firstAttribute="height" secondItem="t1S-62-mZK" secondAttribute="height" constant="-24" id="rFo-H2-Neo"/>
-                                    <constraint firstItem="Uda-Lj-EAD" firstAttribute="leading" secondItem="t1S-62-mZK" secondAttribute="leading" id="yZI-l7-DoR"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SI0-Lk-c2W">
-                                <rect key="frame" x="20" y="309.33333333333326" width="335" height="355.66666666666674"/>
-                                <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
-                                <color key="textColor" name="vlEditableFieldTextColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="9"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                        <constraints>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="top" secondItem="t1S-62-mZK" secondAttribute="bottom" constant="20" id="Abb-RP-fMz"/>
-                            <constraint firstItem="EEV-zf-cF8" firstAttribute="trailing" secondItem="SI0-Lk-c2W" secondAttribute="trailing" constant="20" id="E3v-GI-67Z"/>
-                            <constraint firstItem="SI0-Lk-c2W" firstAttribute="leading" secondItem="EEV-zf-cF8" secondAttribute="leading" constant="20" id="IYX-J8-AVM"/>
-                            <constraint firstItem="t1S-62-mZK" firstAttribute="centerX" secondItem="EEV-zf-cF8" secondAttribute="centerX" id="NPi-9D-ysZ"/>
-                            <constraint firstItem="t1S-62-mZK" firstAttribute="width" secondItem="WsE-b3-ALI" secondAttribute="width" id="UCm-0Z-tnL"/>
-                            <constraint firstItem="EEV-zf-cF8" firstAttribute="top" secondItem="t1S-62-mZK" secondAttribute="top" id="cjc-pr-U92"/>
-                            <constraint firstItem="EEV-zf-cF8" firstAttribute="bottom" secondItem="SI0-Lk-c2W" secondAttribute="bottom" constant="20" id="oHF-YH-XxH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EEV-zf-cF8"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Restrictions" id="zOP-BR-QxZ">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="21d-5T-4f4">
+                        <sections>
+                            <tableViewSection id="7qh-6I-IJK">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="812" id="H3N-0b-r36">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H3N-0b-r36" id="UhO-Pz-ZtU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="811.66666666666663"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtj-hy-lYM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="811.66666666666663"/>
+                                                    <subviews>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diH-Ag-jaY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="107.33333333333333"/>
+                                                            <subviews>
+                                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cJ-bO-CZ5">
+                                                                    <rect key="frame" x="20" y="12.666666666666664" width="335" height="83.333333333333343"/>
+                                                                    <string key="text">You can request doctors do not use your data in a specific manner. For instance, you may request adoption status not be shared with a child. </string>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                    <color key="textColor" name="vlSecondaryTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYP-rA-cbO">
+                                                                    <rect key="frame" x="0.0" y="106.66666666666667" width="375" height="0.6666666666666714"/>
+                                                                    <color key="backgroundColor" name="vlZebraDarker"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="0.5" id="2Jv-Pv-BWn"/>
+                                                                    </constraints>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="vlZebraDarker"/>
+                                                            <constraints>
+                                                                <constraint firstItem="5cJ-bO-CZ5" firstAttribute="width" secondItem="diH-Ag-jaY" secondAttribute="width" constant="-40" id="4vU-xQ-BFR"/>
+                                                                <constraint firstItem="5cJ-bO-CZ5" firstAttribute="centerY" secondItem="diH-Ag-jaY" secondAttribute="centerY" id="Sja-3L-4gf"/>
+                                                                <constraint firstItem="JYP-rA-cbO" firstAttribute="leading" secondItem="diH-Ag-jaY" secondAttribute="leading" id="hmA-Bp-prZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="JYP-rA-cbO" secondAttribute="trailing" id="iPh-Sz-aJc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="JYP-rA-cbO" secondAttribute="bottom" id="oUt-cQ-Qdo"/>
+                                                                <constraint firstItem="5cJ-bO-CZ5" firstAttribute="height" secondItem="diH-Ag-jaY" secondAttribute="height" constant="-24" id="rUu-lW-hX9"/>
+                                                                <constraint firstItem="5cJ-bO-CZ5" firstAttribute="centerX" secondItem="diH-Ag-jaY" secondAttribute="centerX" id="unp-vz-p5o"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5f-Nd-rlD">
+                                                            <rect key="frame" x="20" y="127.33333333333331" width="335" height="664.33333333333348"/>
+                                                            <color key="backgroundColor" name="vlTextBackgroundAreaColor"/>
+                                                            <color key="textColor" name="vlEditableFieldTextColor"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="9"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <constraints>
+                                                        <constraint firstItem="KjQ-N7-g2c" firstAttribute="top" secondItem="diH-Ag-jaY" secondAttribute="top" id="7nR-lp-83y"/>
+                                                        <constraint firstItem="KjQ-N7-g2c" firstAttribute="bottom" secondItem="q5f-Nd-rlD" secondAttribute="bottom" constant="20" id="8dO-aw-AFq"/>
+                                                        <constraint firstItem="q5f-Nd-rlD" firstAttribute="leading" secondItem="KjQ-N7-g2c" secondAttribute="leading" constant="20" id="ANP-2m-L38"/>
+                                                        <constraint firstItem="q5f-Nd-rlD" firstAttribute="top" secondItem="diH-Ag-jaY" secondAttribute="bottom" constant="20" id="I3m-s5-Kyf"/>
+                                                        <constraint firstItem="KjQ-N7-g2c" firstAttribute="trailing" secondItem="q5f-Nd-rlD" secondAttribute="trailing" constant="20" id="KY5-Va-Dz0"/>
+                                                        <constraint firstItem="diH-Ag-jaY" firstAttribute="centerX" secondItem="KjQ-N7-g2c" secondAttribute="centerX" id="SQe-fU-zqn"/>
+                                                        <constraint firstItem="diH-Ag-jaY" firstAttribute="width" secondItem="Qtj-hy-lYM" secondAttribute="width" id="UD4-g8-H5I"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="KjQ-N7-g2c"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Qtj-hy-lYM" secondAttribute="bottom" id="7dK-43-OXt"/>
+                                                <constraint firstItem="Qtj-hy-lYM" firstAttribute="top" secondItem="UhO-Pz-ZtU" secondAttribute="top" id="OKG-KK-9uV"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qtj-hy-lYM" secondAttribute="trailing" id="Szj-fL-00B"/>
+                                                <constraint firstItem="Qtj-hy-lYM" firstAttribute="leading" secondItem="UhO-Pz-ZtU" secondAttribute="leading" id="xDG-gf-594"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="H4p-9q-2Rc" id="Fbf-nC-Wl5"/>
+                            <outlet property="delegate" destination="H4p-9q-2Rc" id="423-qW-2WR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Restrictions" id="v9C-cz-x4A">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="a5V-sV-m18">
                             <connections>
-                                <segue destination="OkB-dV-NGA" kind="show" id="M3j-Pw-UW6"/>
+                                <segue destination="OkB-dV-NGA" kind="show" id="SWv-DL-5bw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="restrictionsTextView" destination="SI0-Lk-c2W" id="rls-po-pUX"/>
+                        <outlet property="restrictionsTextView" destination="q5f-Nd-rlD" id="PgI-CY-IaJ"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="drL-RO-3Lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1j-SE-ouV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3465" y="-562"/>
-        </scene>
-        <!--Verify Name-->
-        <scene sceneID="dzG-JA-TaI">
-            <objects>
-                <viewController id="vCa-jE-kf3" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="k2s-N3-Omi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKW-AL-8xg">
-                                <rect key="frame" x="0.0" y="140" width="375" height="65.333333333333314"/>
-                                <subviews>
-                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="You can change the name that will be shown on the document before sending it. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn9-w9-7og">
-                                        <rect key="frame" x="20" y="12.666666666666661" width="335" height="41.333333333333343"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                        <color key="textColor" name="vlSecondaryTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-sf-ZHz">
-                                        <rect key="frame" x="0.0" y="64.666666666666657" width="375" height="0.6666666666666714"/>
-                                        <color key="backgroundColor" name="vlZebraDarker"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.5" id="J2M-ZL-0es"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" name="vlZebraDarker"/>
-                                <constraints>
-                                    <constraint firstItem="nn9-w9-7og" firstAttribute="height" secondItem="dKW-AL-8xg" secondAttribute="height" constant="-24" id="EtI-yi-2zw"/>
-                                    <constraint firstItem="nn9-w9-7og" firstAttribute="width" secondItem="dKW-AL-8xg" secondAttribute="width" constant="-40" id="MHq-aD-fjI"/>
-                                    <constraint firstItem="nn9-w9-7og" firstAttribute="centerY" secondItem="dKW-AL-8xg" secondAttribute="centerY" id="Xqr-gl-dsJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dh2-sf-ZHz" secondAttribute="trailing" id="bqy-sP-f4X"/>
-                                    <constraint firstAttribute="bottom" secondItem="dh2-sf-ZHz" secondAttribute="bottom" id="gf0-LB-r5v"/>
-                                    <constraint firstItem="nn9-w9-7og" firstAttribute="centerX" secondItem="dKW-AL-8xg" secondAttribute="centerX" id="lzX-GC-cix"/>
-                                    <constraint firstItem="dh2-sf-ZHz" firstAttribute="leading" secondItem="dKW-AL-8xg" secondAttribute="leading" id="rzo-Oa-Co5"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8I8-yt-fBJ">
-                                <rect key="frame" x="0.0" y="205" width="375" height="573"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CdK-LJ-Eba">
-                                        <rect key="frame" x="20" y="16" width="335" height="30"/>
-                                        <color key="backgroundColor" name="vlDisabledButtonColor"/>
-                                        <accessibility key="accessibilityConfiguration" label="Patient Name"/>
-                                        <color key="textColor" name="vlEditableFieldTextColor"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udM-tG-Qph">
-                                        <rect key="frame" x="20" y="8" width="335" height="0.0"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <color key="textColor" name="vlTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-5V-RiD">
-                                        <rect key="frame" x="20" y="54" width="335" height="46.333333333333343"/>
-                                        <string key="text">You probably don't need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <color key="textColor" name="vlSecondaryTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                                <constraints>
-                                    <constraint firstItem="udM-tG-Qph" firstAttribute="top" secondItem="X6i-Uc-Iyu" secondAttribute="top" constant="8" id="8ws-3E-TAt"/>
-                                    <constraint firstItem="udM-tG-Qph" firstAttribute="leading" secondItem="CdK-LJ-Eba" secondAttribute="leading" id="JxP-9H-pJK"/>
-                                    <constraint firstItem="CdK-LJ-Eba" firstAttribute="leading" secondItem="X6i-Uc-Iyu" secondAttribute="leading" constant="20" id="Jxc-bh-Fjz"/>
-                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="leading" secondItem="X6i-Uc-Iyu" secondAttribute="leading" constant="20" id="Tbc-8I-up6"/>
-                                    <constraint firstItem="X6i-Uc-Iyu" firstAttribute="trailing" secondItem="CdK-LJ-Eba" secondAttribute="trailing" constant="19.999999999999773" id="cOx-j9-VkY"/>
-                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="width" secondItem="CdK-LJ-Eba" secondAttribute="width" id="i70-X5-eiN"/>
-                                    <constraint firstItem="bUd-5V-RiD" firstAttribute="top" secondItem="CdK-LJ-Eba" secondAttribute="bottom" constant="8" id="iTN-nh-AOZ"/>
-                                    <constraint firstItem="CdK-LJ-Eba" firstAttribute="top" secondItem="udM-tG-Qph" secondAttribute="bottom" constant="8" id="ksX-T8-OtR"/>
-                                    <constraint firstItem="X6i-Uc-Iyu" firstAttribute="trailing" secondItem="bUd-5V-RiD" secondAttribute="trailing" constant="20" id="sDG-ii-Aam"/>
-                                    <constraint firstItem="udM-tG-Qph" firstAttribute="trailing" secondItem="CdK-LJ-Eba" secondAttribute="trailing" id="tze-im-eqa"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="X6i-Uc-Iyu"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
-                        <constraints>
-                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="trailing" secondItem="Nyw-bx-XiV" secondAttribute="trailing" id="8Xg-gC-Qut"/>
-                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="bottom" secondItem="Nyw-bx-XiV" secondAttribute="bottom" constant="93" id="CGa-ET-cmM"/>
-                            <constraint firstItem="Nyw-bx-XiV" firstAttribute="top" secondItem="dKW-AL-8xg" secondAttribute="top" id="WbS-tw-aFw"/>
-                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="top" secondItem="dKW-AL-8xg" secondAttribute="bottom" id="Xaf-Jg-eMI"/>
-                            <constraint firstItem="dKW-AL-8xg" firstAttribute="centerX" secondItem="Nyw-bx-XiV" secondAttribute="centerX" id="gtL-wN-Oss"/>
-                            <constraint firstItem="8I8-yt-fBJ" firstAttribute="leading" secondItem="Nyw-bx-XiV" secondAttribute="leading" id="oE5-Kt-Z1b"/>
-                            <constraint firstItem="dKW-AL-8xg" firstAttribute="width" secondItem="k2s-N3-Omi" secondAttribute="width" id="r15-qZ-fPK"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Nyw-bx-XiV"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Verify Name" id="GKC-d4-dbn">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="4f9-ul-42w">
-                            <connections>
-                                <segue destination="w6b-nS-TNt" kind="show" id="CO7-fI-W5h"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nameField" destination="CdK-LJ-Eba" id="ImZ-NC-9rz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjt-8Z-boe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2707" y="-562"/>
+            <point key="canvasLocation" x="3471" y="-565"/>
         </scene>
         <!--Verify Name-->
         <scene sceneID="a4K-r3-WgT">
@@ -729,6 +652,162 @@ You can also leave this blank.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9n9-jZ-cu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2148" y="144"/>
+        </scene>
+        <!--Verify Name-->
+        <scene sceneID="RBx-cC-ALt">
+            <objects>
+                <tableViewController storyboardIdentifier="hippaFlowRestorationNameController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WRq-PR-5vi" customClass="NameViewController" customModule="pm0" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DRg-nx-vOs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                        <color key="separatorColor" name="vlCellBackgroundCommon"/>
+                        <sections>
+                            <tableViewSection id="ogy-v5-l6i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="812" id="2kz-VB-pJH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2kz-VB-pJH" id="PXX-Cs-G3i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="811.66666666666663"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uK-8q-c9h" userLabel="Outermost view">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="811.66666666666663"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57P-SK-uZu" userLabel="inside scroll">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
+                                                            <subviews>
+                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hp7-7c-5sj" userLabel="bumper">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.333333333333329"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="You can change the name that will be shown on the document before sending it. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVa-gl-DxN">
+                                                                            <rect key="frame" x="20" y="12.666666666666668" width="335" height="41.333333333333329"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" name="vlSecondaryTextColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </label>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-Nu-eny">
+                                                                            <rect key="frame" x="0.0" y="64.666666666666671" width="375" height="0.6666666666666714"/>
+                                                                            <color key="backgroundColor" name="vlZebraDarker"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="0.5" id="YK5-zB-1eo"/>
+                                                                            </constraints>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="vlZebraDarker"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="sVa-gl-DxN" firstAttribute="centerY" secondItem="hp7-7c-5sj" secondAttribute="centerY" id="3xR-Qk-faD"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="mxf-Nu-eny" secondAttribute="trailing" id="aaM-kF-cCx"/>
+                                                                        <constraint firstItem="mxf-Nu-eny" firstAttribute="leading" secondItem="hp7-7c-5sj" secondAttribute="leading" id="d5M-rU-1oP"/>
+                                                                        <constraint firstItem="sVa-gl-DxN" firstAttribute="centerX" secondItem="hp7-7c-5sj" secondAttribute="centerX" id="iWR-nW-ju0"/>
+                                                                        <constraint firstItem="sVa-gl-DxN" firstAttribute="height" secondItem="hp7-7c-5sj" secondAttribute="height" constant="-24" id="kgF-5N-Ehu"/>
+                                                                        <constraint firstItem="sVa-gl-DxN" firstAttribute="width" secondItem="hp7-7c-5sj" secondAttribute="width" constant="-40" id="v4O-z0-3vj"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="mxf-Nu-eny" secondAttribute="bottom" id="xiL-Ia-kMG"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kqj-eh-lzL" userLabel="content">
+                                                                    <rect key="frame" x="0.0" y="65" width="375" height="500"/>
+                                                                    <subviews>
+                                                                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="300" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. John Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4go-LE-VzX">
+                                                                            <rect key="frame" x="20" y="16" width="335" height="30"/>
+                                                                            <color key="backgroundColor" name="vlDisabledButtonColor"/>
+                                                                            <accessibility key="accessibilityConfiguration" label="Patient Name"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="30" id="5DY-t7-7Im"/>
+                                                                            </constraints>
+                                                                            <color key="textColor" name="vlEditableFieldTextColor"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                            <textInputTraits key="textInputTraits"/>
+                                                                        </textField>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-80-WBd">
+                                                                            <rect key="frame" x="20" y="8" width="335" height="0.0"/>
+                                                                            <accessibility key="accessibilityConfiguration" label="Patient Name"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                            <color key="textColor" name="vlTextColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-VC-h0i">
+                                                                            <rect key="frame" x="20" y="54" width="335" height="46.333333333333343"/>
+                                                                            <string key="text">You probably don't need to change this. It is primarily for people taking care of others, and for those who recently changed their name. </string>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                            <color key="textColor" name="vlSecondaryTextColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="4go-LE-VzX" firstAttribute="top" secondItem="rkK-80-WBd" secondAttribute="bottom" constant="8" id="DQA-9e-ggb"/>
+                                                                        <constraint firstItem="rkK-80-WBd" firstAttribute="trailing" secondItem="4go-LE-VzX" secondAttribute="trailing" id="EHb-Rr-fgd"/>
+                                                                        <constraint firstItem="UVb-VC-h0i" firstAttribute="top" secondItem="4go-LE-VzX" secondAttribute="bottom" constant="8" id="EoL-Ce-UiM"/>
+                                                                        <constraint firstItem="UVb-VC-h0i" firstAttribute="leading" secondItem="ZT9-ne-oJ6" secondAttribute="leading" constant="20" id="FN8-9j-EXp"/>
+                                                                        <constraint firstItem="rkK-80-WBd" firstAttribute="top" secondItem="ZT9-ne-oJ6" secondAttribute="top" constant="8" id="FsB-vh-npO"/>
+                                                                        <constraint firstAttribute="height" constant="500" id="NaS-ub-QQC"/>
+                                                                        <constraint firstItem="rkK-80-WBd" firstAttribute="leading" secondItem="4go-LE-VzX" secondAttribute="leading" id="jfk-Xd-3fk"/>
+                                                                        <constraint firstItem="UVb-VC-h0i" firstAttribute="width" secondItem="4go-LE-VzX" secondAttribute="width" id="mD9-Tb-Mfo"/>
+                                                                        <constraint firstItem="ZT9-ne-oJ6" firstAttribute="trailing" secondItem="UVb-VC-h0i" secondAttribute="trailing" constant="20" id="nFj-6b-Q3L"/>
+                                                                        <constraint firstItem="4go-LE-VzX" firstAttribute="leading" secondItem="ZT9-ne-oJ6" secondAttribute="leading" constant="20" id="t49-Ms-ga5"/>
+                                                                        <constraint firstItem="ZT9-ne-oJ6" firstAttribute="trailing" secondItem="4go-LE-VzX" secondAttribute="trailing" constant="19.999999999999773" id="wfo-Jf-KFL"/>
+                                                                    </constraints>
+                                                                    <viewLayoutGuide key="safeArea" id="ZT9-ne-oJ6"/>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                            <constraints>
+                                                                <constraint firstItem="hp7-7c-5sj" firstAttribute="top" secondItem="57P-SK-uZu" secondAttribute="top" id="Fmj-W3-n5U"/>
+                                                                <constraint firstItem="Kqj-eh-lzL" firstAttribute="centerX" secondItem="57P-SK-uZu" secondAttribute="centerX" id="OPE-uV-QPA"/>
+                                                                <constraint firstItem="Kqj-eh-lzL" firstAttribute="top" secondItem="hp7-7c-5sj" secondAttribute="bottom" id="REe-67-TkJ"/>
+                                                                <constraint firstItem="hp7-7c-5sj" firstAttribute="width" secondItem="57P-SK-uZu" secondAttribute="width" id="Y6z-O0-HqC"/>
+                                                                <constraint firstItem="hp7-7c-5sj" firstAttribute="centerX" secondItem="57P-SK-uZu" secondAttribute="centerX" id="gla-d9-u8G"/>
+                                                                <constraint firstItem="Kqj-eh-lzL" firstAttribute="width" secondItem="57P-SK-uZu" secondAttribute="width" id="lFb-oA-Ftn"/>
+                                                                <constraint firstItem="Kqj-eh-lzL" firstAttribute="bottom" secondItem="57P-SK-uZu" secondAttribute="bottom" constant="2" id="oyz-6C-fcs"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="vlCellBackgroundCommon"/>
+                                                    <constraints>
+                                                        <constraint firstItem="57P-SK-uZu" firstAttribute="top" secondItem="2uK-8q-c9h" secondAttribute="top" id="29d-Vx-wIN"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Xyy-Mf-wdL" secondAttribute="bottom" id="9ac-ue-mJW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="57P-SK-uZu" secondAttribute="trailing" id="CFa-tD-6le"/>
+                                                        <constraint firstItem="57P-SK-uZu" firstAttribute="leading" secondItem="2uK-8q-c9h" secondAttribute="leading" id="E6h-f9-ZBa"/>
+                                                        <constraint firstItem="Xyy-Mf-wdL" firstAttribute="top" secondItem="2uK-8q-c9h" secondAttribute="top" id="eDO-C6-LkW"/>
+                                                        <constraint firstItem="Xyy-Mf-wdL" firstAttribute="leading" secondItem="2uK-8q-c9h" secondAttribute="leading" id="jEk-P5-30T"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Xyy-Mf-wdL" secondAttribute="trailing" id="vxi-y5-POQ"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="Xyy-Mf-wdL"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="2uK-8q-c9h" secondAttribute="trailing" id="9o1-1L-wZR"/>
+                                                <constraint firstItem="2uK-8q-c9h" firstAttribute="top" secondItem="PXX-Cs-G3i" secondAttribute="top" id="C0j-m7-LUL"/>
+                                                <constraint firstAttribute="bottom" secondItem="2uK-8q-c9h" secondAttribute="bottom" id="gmQ-Bz-1hs"/>
+                                                <constraint firstItem="2uK-8q-c9h" firstAttribute="leading" secondItem="PXX-Cs-G3i" secondAttribute="leading" id="kVZ-fY-yXX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="WRq-PR-5vi" id="q8r-8V-k6J"/>
+                            <outlet property="delegate" destination="WRq-PR-5vi" id="WQv-Pf-ohW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Verify Name" id="EZh-AT-GaF">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="T2V-tq-0XA">
+                            <connections>
+                                <segue destination="H4p-9q-2Rc" kind="show" id="vgN-vQ-rFE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="4go-LE-VzX" id="Sqw-Uc-fue"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uyo-Ty-nu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2690" y="-556"/>
         </scene>
         <!--History Length-->
         <scene sceneID="wGf-Th-d2v">
@@ -1325,10 +1404,22 @@ You can also leave this blank.</string>
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
-            <color red="0.078431372549019607" green="0.18823529411764706" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlCellBackgroundCommon">
+            <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlCellBackgroundCommon">
             <color red="0.078431372550000003" green="0.18823529410000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1343,7 +1434,16 @@ You can also leave this blank.</string>
             <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlEditableFieldTextColor">
-            <color red="0.78799998760223389" green="0.88999998569488525" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlEditableFieldTextColor">
+            <color red="0.78799998760000001" green="0.88999998570000005" blue="0.96499997380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="vlSecondaryTextColor">
+            <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="vlSecondaryTextColor">
             <color red="0.93300002810000005" green="0.93300002810000005" blue="0.93300002810000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1354,6 +1454,12 @@ You can also leave this blank.</string>
         <namedColor name="vlTextBackgroundAreaColor">
             <color red="0.40799999237060547" green="0.40799999237060547" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="vlTextBackgroundAreaColor">
+            <color red="0.40799999240000001" green="0.40799999240000001" blue="0.41200000050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlTextColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="vlTextColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1362,6 +1468,12 @@ You can also leave this blank.</string>
         </namedColor>
         <namedColor name="vlWarmTintColor">
             <color red="0.87450980392156863" green="0.61568627450980395" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vlZebraDarker">
+            <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="vlZebraDarker">
             <color red="0.074000000950000006" green="0.1340000033" blue="0.21299999950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
