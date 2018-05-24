@@ -1,5 +1,7 @@
 pm0.xcworkspace/xcuserdata/*.xcuserdatad/UserInterfaceState.xcuserstate
 fastlane/report.xml
 *.ipa
+/.gtm/
 *.dSYM.zip
 build/*
+/.gtm/
